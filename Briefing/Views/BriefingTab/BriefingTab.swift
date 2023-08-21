@@ -8,6 +8,11 @@
 import UIKit
 
 class BriefingTab: UIViewController {
+    let network = Network()
+    
+    var rank_counts = 0
+    var update_timestamp = ""
+    
     let layout_nav = UIView()
     let layout_dates = UIView()
     let layout_mid = UIView()
@@ -15,7 +20,7 @@ class BriefingTab: UIViewController {
     
     let label_descrip = UILabel()
     
-    var ranks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    var ranks = [""]
     var topics: [String] = [""]
     var descrips: [String] = [""]
     
@@ -23,6 +28,8 @@ class BriefingTab: UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = .secondBlue
+        
+        getKeywordsData()
         
 //        tabBarController?.tabBar.isHidden = false
         
@@ -38,6 +45,7 @@ class BriefingTab: UIViewController {
         
         layout_table.dataSource = self
         layout_table.delegate = self
+        
     }
     
     private func setNav() {
@@ -70,6 +78,7 @@ class BriefingTab: UIViewController {
         }
         
         button_setting.setImage(UIImage(named: "setting"), for: .normal)
+        button_setting.addTarget(self, action: #selector(settingButtonTapped), for: .touchUpInside)
         
         button_storage.snp.makeConstraints{ make in
             make.centerY.equalTo(label_title)
@@ -182,7 +191,7 @@ class BriefingTab: UIViewController {
             make.trailing.equalToSuperview().inset(17)
         }
         
-        label_update.text = "Updated: 00.00.00 0AM"
+        label_update.text = "Updated: \(update_timestamp)"
         label_update.font = UIFont(name: "ProductSans-Regular", size: 11)
         label_update.textColor = .thirdBlue
         label_update.textAlignment = .left
@@ -210,13 +219,16 @@ extension BriefingTab {
     }
     
     @objc func settingButtonTapped() {
-        
+        print("setting tapped")
+        let nextVC = Setting()
+        nextVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
 extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        return ranks.count - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -224,9 +236,9 @@ extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
         
         cell.delegate = self
         
-        cell.label_order.text = ranks[indexPath.row]
-        cell.label_topic.text = "배터리 혁명"
-        cell.label_descript.text = "2차 전지 혁명으로 인한 놀라운 발전과..."
+        cell.label_order.text = ranks[indexPath.row+1]
+        cell.label_topic.text = topics[indexPath.row+1]
+        cell.label_descript.text = descrips[indexPath.row+1]
         
         cell.configureOrderLabel(forIndex: indexPath.row)
         
@@ -261,6 +273,36 @@ extension BriefingTab: CustomDateSelectionViewDelegate {
         } else {
             label_descrip.text = "오늘의 키워드 브리핑"
         }
+    }
+}
+
+//MARK: - Extension for Network
+extension BriefingTab {
+    
+    
+    func getKeywordsData() {
+        network.getKeywords(date: "2023-08-21", type: "korea", completion: { response in
+            switch response {
+            case .success(let data):
+                guard let keywords = (data as? KeywordsData), let briefing = (data as? KeywordsData)?.briefings else { return }
+                
+                self.rank_counts = briefing.count
+                self.update_timestamp = keywords.createdAt
+                
+                print("created at : ", keywords.createdAt)
+                
+                briefing.forEach{ item in
+                    self.ranks.append(String(item.rank))
+                    self.topics.append(item.title)
+                    self.descrips.append(item.subtitle)
+                }
+                
+            default:
+                print("failed get post detail data")
+            }
+            
+            self.layout_table.reloadData()
+        })
     }
 }
 
