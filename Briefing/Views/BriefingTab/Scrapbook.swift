@@ -1,5 +1,5 @@
 //
-//  BriefingCard.swift
+//  Scrapbook.swift
 //  Briefing
 //
 //  Created by BoMin on 2023/08/21.
@@ -7,25 +7,23 @@
 
 import UIKit
 
-class BriefingCard: UIViewController {
+class Scrapbook: UIViewController {
     let layout_nav = UIView()
-    let layout_table = UITableView()
-    
-    var order_num = "1"
-    
+    let layout_section_table = UITableView()
+      
     override func viewDidLoad() {
-        self.view.backgroundColor = .secondBlue
+        self.view.backgroundColor = .mainGray
         
-        self.view.addSubviews(layout_nav, layout_table)
+        self.view.addSubviews(layout_nav, layout_section_table)
         
-        layout_table.register(BriefingCardCell.self, forCellReuseIdentifier: BriefingCardCell.cellID)
-        layout_table.reloadData()
-        
-        layout_table.dataSource = self
-        layout_table.delegate = self
+        layout_section_table.register(BriefingCardCell.self, forCellReuseIdentifier: BriefingCardCell.cellID)
+        layout_section_table.reloadData()
+
+        layout_section_table.dataSource = self
+        layout_section_table.delegate = self
         
         setNav()
-        setCard()
+        setSections()
     }
     
     private func setNav() {
@@ -35,17 +33,17 @@ class BriefingCard: UIViewController {
         
         layout_nav.snp.makeConstraints{ make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(self.view.frame.height * 0.141)
+            make.height.equalTo(self.view.frame.height * 0.159)
         }
         
-        layout_nav.addSubviews(label_title, button_back, button_scrap)
+        layout_nav.addSubviews(label_title, button_back)
         
         label_title.snp.makeConstraints{ make in
             make.centerX.centerY.equalToSuperview()
         }
         
-        label_title.text = "Breifing #\(order_num)"
-        label_title.textColor = .white
+        label_title.text = "스크랩북"
+        label_title.textColor = .mainBlue
         label_title.font = UIFont(name: "ProductSans-Regular", size: 24)
         label_title.textAlignment = .center
         label_title.numberOfLines = 1
@@ -56,34 +54,26 @@ class BriefingCard: UIViewController {
             make.width.height.equalTo(25)
         }
         
-        button_back.setImage(UIImage(named: "arrow_left"), for: .normal)
-        
-        button_scrap.snp.makeConstraints{ make in
-            make.centerY.equalTo(label_title)
-            make.trailing.equalToSuperview().inset(self.view.frame.width * 0.076)
-            make.width.height.equalTo(25)
-        }
-        
-        button_scrap.setImage(UIImage(named: "scrap_normal"), for: .normal)
+        button_back.setImage(UIImage(named: "arrow_blue"), for: .normal)
     }
     
-    private func setCard() {
-        layout_table.snp.makeConstraints{ make in
+    private func setSections() {
+        layout_section_table.snp.makeConstraints{ make in
             make.top.equalTo(layout_nav.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
-        layout_table.backgroundColor = .secondBlue
-        layout_table.separatorStyle = .none
+        layout_section_table.backgroundColor = .mainGray
+        layout_section_table.separatorStyle = .none
         //MARK: Todo: 개수에 따라 변경해야 함
-        layout_table.rowHeight = UITableView.automaticDimension
-        layout_table.rowHeight = 520
+        layout_section_table.rowHeight = UITableView.automaticDimension
+        layout_section_table.rowHeight = 520
     }
 }
 
-extension BriefingCard: UITableViewDelegate, UITableViewDataSource {
+extension Scrapbook: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -1,5 +1,5 @@
 //
-//  BriefingCardCell.swift
+//  ScrapSectionCell.swift
 //  Briefing
 //
 //  Created by BoMin on 2023/08/21.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class BriefingCardCell: UITableViewCell {
-    static let cellID = "BrefingCardCell"
+class ScrapSectionCell: UITableViewCell {
+    static let cellID = "ScrapSectionCell"
     
     let layout_main = UIView()
     
