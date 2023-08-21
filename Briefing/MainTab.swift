@@ -10,6 +10,7 @@ import UIKit
 class MainTab: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
+//        tabBarController?.tabBar.isHidden = false
         setView()
     }
     

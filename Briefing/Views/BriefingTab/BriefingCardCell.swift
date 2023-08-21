@@ -106,6 +106,9 @@ class BriefingCardCell: UITableViewCell {
         label_context.font = UIFont(name: "ProductSans-Regular", size: 13)
         label_context.numberOfLines = 0
         label_context.lineBreakMode = .byCharWrapping
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.4
+        label_context.attributedText = NSMutableAttributedString(string: "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
     
         label_related.snp.makeConstraints{ make in
             make.top.equalTo(label_context.snp.bottom).offset(30)
@@ -146,6 +149,7 @@ class BriefingCardCell: UITableViewCell {
             make.top.equalTo(layout_news2.snp.bottom).offset(8)
             make.leading.trailing.equalTo(label_topic)
             make.height.equalTo(60)
+            make.bottom.equalTo(layout_main.snp.bottom).inset(25)
         }
         
         layout_news3.layer.masksToBounds = true

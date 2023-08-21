@@ -30,6 +30,8 @@
 		2443C58E2A9398D9009586C7 /* BriefingCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C58D2A9398D9009586C7 /* BriefingCardCell.swift */; };
 		2443C5902A93A928009586C7 /* Scrapbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C58F2A93A928009586C7 /* Scrapbook.swift */; };
 		2443C5922A93AB24009586C7 /* ScrapSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5912A93AB24009586C7 /* ScrapSectionCell.swift */; };
+		2443C5942A93ABFF009586C7 /* ScrapDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5932A93ABFF009586C7 /* ScrapDetailCell.swift */; };
+		2443C5962A93C3A0009586C7 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5952A93C3A0009586C7 /* Setting.swift */; };
 		DBB4CC6C614E20F93FD89172 /* Pods_Briefing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		2443C58D2A9398D9009586C7 /* BriefingCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingCardCell.swift; sourceTree = "<group>"; };
 		2443C58F2A93A928009586C7 /* Scrapbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scrapbook.swift; sourceTree = "<group>"; };
 		2443C5912A93AB24009586C7 /* ScrapSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapSectionCell.swift; sourceTree = "<group>"; };
+		2443C5932A93ABFF009586C7 /* ScrapDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapDetailCell.swift; sourceTree = "<group>"; };
+		2443C5952A93C3A0009586C7 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Briefing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.release.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +165,8 @@
 				2443C58D2A9398D9009586C7 /* BriefingCardCell.swift */,
 				2443C58F2A93A928009586C7 /* Scrapbook.swift */,
 				2443C5912A93AB24009586C7 /* ScrapSectionCell.swift */,
+				2443C5932A93ABFF009586C7 /* ScrapDetailCell.swift */,
+				2443C5952A93C3A0009586C7 /* Setting.swift */,
 			);
 			path = BriefingTab;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 				2443C58E2A9398D9009586C7 /* BriefingCardCell.swift in Sources */,
 				2443C5802A93337F009586C7 /* CustomToggleButton.swift in Sources */,
 				2443C5542A8FE88B009586C7 /* AppDelegate.swift in Sources */,
+				2443C5962A93C3A0009586C7 /* Setting.swift in Sources */,
 				2443C58C2A937C9C009586C7 /* BriefingCard.swift in Sources */,
 				2443C5752A8FEF57009586C7 /* BriefingTableViewCell.swift in Sources */,
 				2443C5562A8FE88B009586C7 /* SceneDelegate.swift in Sources */,
@@ -325,6 +332,7 @@
 				2443C5692A8FEB1B009586C7 /* UIColor+Extension.swift in Sources */,
 				2443C56F2A8FECD0009586C7 /* MainTab.swift in Sources */,
 				2443C5922A93AB24009586C7 /* ScrapSectionCell.swift in Sources */,
+				2443C5942A93ABFF009586C7 /* ScrapDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

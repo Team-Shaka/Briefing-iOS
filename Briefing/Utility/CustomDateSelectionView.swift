@@ -8,6 +8,7 @@
 import UIKit
 
 class CustomDateSelectionView: UIView {
+    weak var delegate: CustomDateSelectionViewDelegate?
     
     private var isInitialPositionSet = false
     private var dateLabels: [UILabel] = []
@@ -94,7 +95,7 @@ class CustomDateSelectionView: UIView {
             let targetOffsetX = label.center.x - scrollView.bounds.width / 2
             scrollView.setContentOffset(CGPoint(x: targetOffsetX, y: 0), animated: true)
 
-            // 필요한 경우, 선택된 날짜에 대한 추가 작업을 여기에 추가합니다.
+            delegate?.dateSelectionView(self, didSelectDateAtIndex: label.tag)
         }
     }
     
@@ -122,3 +123,9 @@ class CustomDateSelectionView: UIView {
         selectedLabel.layer.addBorder([.bottom], color: .white, width: 2.0)
     }
 }
+
+protocol CustomDateSelectionViewDelegate: AnyObject {
+    func dateSelectionView(_ view: CustomDateSelectionView, didSelectDateAtIndex index: Int)
+}
+
+

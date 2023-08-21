@@ -9,35 +9,23 @@ import UIKit
 
 class ScrapSectionCell: UITableViewCell {
     static let cellID = "ScrapSectionCell"
+    weak var delegate: ScrapSectionCellDelegate?
     
     let layout_main = UIView()
     
-    let label_info = UILabel()
-    let label_topic = UILabel()
-    let label_sub = UILabel()
-    let label_context = UILabel()
-    
-    let label_related = UILabel()
-    
-    let layout_news1 = UIView()
-    let label_press1 = UILabel()
-    let label_news_title1 = UILabel()
-    let button_details1 = UIButton()
-    
-    let layout_news2 = UIView()
-    let label_press2 = UILabel()
-    let label_news_title2 = UILabel()
-    let button_details2 = UIButton()
-    
-    let layout_news3 = UIView()
-    let label_press3 = UILabel()
-    let label_news_title3 = UILabel()
-    let button_details3 = UIButton()
-    
+    let label_date = UILabel()
+    let layout_scraps_table = UITableView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
+        
+        layout_scraps_table.register(ScrapDetailCell.self, forCellReuseIdentifier: ScrapDetailCell.cellID)
+        layout_scraps_table.reloadData()
+
+        layout_scraps_table.dataSource = self
+        layout_scraps_table.delegate = self
+        
         setLayout()
     }
     
@@ -46,213 +34,94 @@ class ScrapSectionCell: UITableViewCell {
     }
     
     private func setLayout() {
-        self.backgroundColor = .secondBlue
+        self.backgroundColor = .mainGray
         self.addSubview(layout_main)
         
         layout_main.snp.makeConstraints{ make in
             make.top.equalToSuperview()
             make.bottom.equalToSuperview().inset(10)
-            make.leading.equalToSuperview().offset(self.frame.width * 0.043)
-            make.trailing.equalToSuperview().inset(self.frame.width * 0.043)
+//            make.leading.equalToSuperview().offset(self.frame.width * 0.043)
+//            make.trailing.equalToSuperview().inset(self.frame.width * 0.043)
+            make.leading.equalToSuperview().offset(24)
+            make.trailing.equalToSuperview().inset(24)
         }
         
-        layout_main.backgroundColor = .white
-        layout_main.layer.cornerRadius = 20
-        layout_main.addShadow(offset: CGSize(width: 0, height: 5),
-                              color: .black,
-                              radius: 5,
-                              opacity: 0.1)
+        layout_main.backgroundColor = .mainGray
         
-        layout_main.addSubviews(label_info, label_topic, label_sub, label_context, label_related)
+        layout_main.addSubviews(label_date, layout_scraps_table)
         
-        label_info.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(11)
-            make.trailing.equalToSuperview().inset(12)
+        label_date.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
         }
         
-//        label_info.text = "00.00.00 Briefing #1"
-        label_info.font = UIFont(name: "ProductSans-Regular", size: 14)
-        label_info.textColor = .thirdBlue
-        label_info.textAlignment = .right
+        label_date.font = UIFont(name: "ProductSans-Regular", size: 15)
+        label_date.textAlignment = .left
+        label_date.textColor = .mainBlue
         
-        label_topic.snp.makeConstraints{ make in
-            make.top.equalTo(label_info.snp.bottom).offset(13)
-            make.leading.equalToSuperview().offset(self.frame.width * 0.064)
-            make.trailing.equalToSuperview().inset(self.frame.width * 0.064)
+        layout_scraps_table.snp.makeConstraints{ make in
+            make.top.equalTo(label_date.snp.bottom).offset(5)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(25)
+            make.height.equalTo(totalHeightForScrapDetails())
         }
         
-        label_topic.textColor = .mainBlue
-        label_topic.textAlignment = .left
-        label_topic.font = UIFont(name: "ProductSans-Bold", size: 30)
-        label_topic.numberOfLines = 1
+        layout_scraps_table.layer.masksToBounds = true
+        layout_scraps_table.layer.cornerRadius = 5
         
-        label_sub.snp.makeConstraints{ make in
-            make.top.equalTo(label_topic.snp.bottom).offset(12)
-            make.leading.trailing.equalTo(label_topic)
-        }
-        
-        label_sub.textColor = .mainBlue
-        label_sub.textAlignment = .left
-        label_sub.font = UIFont(name: "ProductSans-Bold", size: 15)
-        label_sub.numberOfLines = 1
-        
-        label_context.snp.makeConstraints{ make in
-            make.top.equalTo(label_sub.snp.bottom).offset(12)
-            make.leading.trailing.equalTo(label_topic)
-        }
-        
-        label_context.textColor = .mainBlue
-        label_context.textAlignment = .left
-        label_context.font = UIFont(name: "ProductSans-Regular", size: 13)
-        label_context.numberOfLines = 0
-        label_context.lineBreakMode = .byCharWrapping
-    
-        label_related.snp.makeConstraints{ make in
-            make.top.equalTo(label_context.snp.bottom).offset(30)
-            make.leading.trailing.equalTo(label_topic)
-        }
-        
-        label_related.text = "관련 기사"
-        label_related.textColor = .mainBlue
-        label_related.textAlignment = .left
-        label_related.font = UIFont(name: "ProductSans-Bold", size: 15)
-        label_related.numberOfLines = 1
-
-        layout_main.addSubviews(layout_news1, layout_news2, layout_news3)
-        
-        layout_news1.snp.makeConstraints{ make in
-            make.top.equalTo(label_related.snp.bottom).offset(11)
-            make.leading.trailing.equalTo(label_topic)
-            make.height.equalTo(60)
-        }
-        
-        layout_news1.layer.masksToBounds = true
-        layout_news1.layer.cornerRadius = 10
-        layout_news1.layer.borderWidth = 1
-        layout_news1.layer.borderColor = UIColor.mainBlue.cgColor
-        
-        layout_news2.snp.makeConstraints{ make in
-            make.top.equalTo(layout_news1.snp.bottom).offset(8)
-            make.leading.trailing.equalTo(label_topic)
-            make.height.equalTo(60)
-        }
-        
-        layout_news2.layer.masksToBounds = true
-        layout_news2.layer.cornerRadius = 10
-        layout_news2.layer.borderWidth = 1
-        layout_news2.layer.borderColor = UIColor.mainBlue.cgColor
-        
-        layout_news3.snp.makeConstraints{ make in
-            make.top.equalTo(layout_news2.snp.bottom).offset(8)
-            make.leading.trailing.equalTo(label_topic)
-            make.height.equalTo(60)
-        }
-        
-        layout_news3.layer.masksToBounds = true
-        layout_news3.layer.cornerRadius = 10
-        layout_news3.layer.borderWidth = 1
-        layout_news3.layer.borderColor = UIColor.mainBlue.cgColor
-        
-        layout_news1.addSubviews(label_press1, label_news_title1, button_details1)
-        
-        label_press1.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(9)
-            make.leading.equalToSuperview().offset(13)
-            make.trailing.equalToSuperview().inset(100)
-        }
-        
-        label_press1.textAlignment = .left
-        label_press1.font = UIFont(name: "ProductSans-Bold", size: 13)
-        label_press1.textColor = .mainBlue
-        label_press1.numberOfLines = 1
-        label_press1.lineBreakMode = .byTruncatingTail
-        
-        label_news_title1.snp.makeConstraints{ make in
-            make.top.equalTo(label_press1.snp.bottom).offset(6)
-            make.leading.equalTo(label_press1)
-            make.trailing.equalToSuperview().inset(100)
-        }
-        
-        label_news_title1.textAlignment = .left
-        label_news_title1.font = UIFont(name: "ProductSans-Regular", size: 15)
-        label_news_title1.textColor = .mainBlue
-        label_news_title1.numberOfLines = 1
-        label_news_title1.lineBreakMode = .byTruncatingTail
-        
-        button_details1.snp.makeConstraints{ make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(7)
-            make.width.height.equalTo(27)
-        }
-        
-        button_details1.setImage(UIImage(named: "details"), for: .normal)
-        
-        layout_news2.addSubviews(label_press2, label_news_title2, button_details2)
-        
-        label_press2.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(9)
-            make.leading.equalToSuperview().offset(13)
-            make.trailing.equalToSuperview().inset(100)
-        }
-        
-        label_press2.textAlignment = .left
-        label_press2.font = UIFont(name: "ProductSans-Bold", size: 13)
-        label_press2.textColor = .mainBlue
-        label_press2.numberOfLines = 1
-        label_press2.lineBreakMode = .byTruncatingTail
-        
-        label_news_title2.snp.makeConstraints{ make in
-            make.top.equalTo(label_press2.snp.bottom).offset(6)
-            make.leading.equalTo(label_press2)
-            make.trailing.equalToSuperview().inset(100)
-        }
-        
-        label_news_title2.textAlignment = .left
-        label_news_title2.font = UIFont(name: "ProductSans-Regular", size: 15)
-        label_news_title2.textColor = .mainBlue
-        label_news_title2.numberOfLines = 1
-        label_news_title2.lineBreakMode = .byTruncatingTail
-        
-        button_details2.snp.makeConstraints{ make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(7)
-            make.width.height.equalTo(27)
-        }
-        
-        button_details2.setImage(UIImage(named: "details"), for: .normal)
-        
-        layout_news3.addSubviews(label_press3, label_news_title3, button_details3)
-        
-        label_press3.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(9)
-            make.leading.equalToSuperview().offset(13)
-            make.trailing.equalToSuperview().inset(100)
-        }
-        
-        label_press3.textAlignment = .left
-        label_press3.font = UIFont(name: "ProductSans-Bold", size: 13)
-        label_press3.textColor = .mainBlue
-        label_press3.numberOfLines = 1
-        label_press3.lineBreakMode = .byTruncatingTail
-        
-        label_news_title3.snp.makeConstraints{ make in
-            make.top.equalTo(label_press3.snp.bottom).offset(6)
-            make.leading.equalTo(label_press3)
-            make.trailing.equalToSuperview().inset(100)
-        }
-        
-        label_news_title3.textAlignment = .left
-        label_news_title3.font = UIFont(name: "ProductSans-Regular", size: 15)
-        label_news_title3.textColor = .mainBlue
-        label_news_title3.numberOfLines = 1
-        label_news_title3.lineBreakMode = .byTruncatingTail
-        
-        button_details3.snp.makeConstraints{ make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(7)
-            make.width.height.equalTo(27)
-        }
-        
-        button_details3.setImage(UIImage(named: "details"), for: .normal)
+        layout_scraps_table.rowHeight = UITableView.automaticDimension
+        layout_scraps_table.rowHeight = 55
     }
+    
+    func totalHeightForScrapDetails() -> CGFloat {
+        let numberOfRows = self.tableView(layout_scraps_table, numberOfRowsInSection: 0)
+            
+        // 마지막 가짜 셀의 높이를 1로 가정
+        let totalHeight = CGFloat(numberOfRows - 1) * ScrapDetailCell.cellHeight - 1
+            
+        return totalHeight
+    }
+
 }
+
+extension ScrapSectionCell: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+//        return delegate?.numberOfItems(for: self) ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        if indexPath.row == delegate?.numberOfItems(for: self) {  // 가짜의 셀을 반환
+        if indexPath.row == 4 {
+            let cell = UITableViewCell()
+            cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.bounds.size.width, bottom: 0, right: 0)
+            cell.backgroundColor = .clear
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: ScrapDetailCell.cellID, for: indexPath) as! ScrapDetailCell
+        
+        cell.label_topic.text = "잼버리 행사"
+        cell.label_sub.text = "잼버리 행사 관련 논란 및 정부와의 갈등"
+        cell.label_date_info.text = "23.08.07 #1"
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 4 {
+//        if indexPath.row == delegate?.numberOfItems(for: self) {
+            return 1
+        }
+        
+        return ScrapDetailCell.cellHeight
+    }
+
+    
+    
+}
+
+protocol ScrapSectionCellDelegate: AnyObject {
+    func numberOfItems(for cell: ScrapSectionCell) -> Int
+}
+

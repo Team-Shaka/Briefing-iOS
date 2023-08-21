@@ -13,6 +13,8 @@ class BriefingTab: UIViewController {
     let layout_mid = UIView()
     let layout_main = UIView()
     
+    let label_descrip = UILabel()
+    
     var ranks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     var topics: [String] = [""]
     var descrips: [String] = [""]
@@ -21,6 +23,8 @@ class BriefingTab: UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = .secondBlue
+        
+//        tabBarController?.tabBar.isHidden = false
         
         self.view.addSubviews(layout_nav, layout_dates, layout_mid, layout_main)
         
@@ -74,6 +78,7 @@ class BriefingTab: UIViewController {
         }
         
         button_storage.setImage(UIImage(named: "storage"), for: .normal)
+        button_storage.addTarget(self, action: #selector(scrapbookButtonTapped), for: .touchUpInside)
     }
     
     private func setDates() {
@@ -83,9 +88,8 @@ class BriefingTab: UIViewController {
             make.height.equalTo(self.view.frame.height * 0.058)
         }
         
-//        layout_dates.backgroundColor = .systemPink
-        
         let dateSelectionView = CustomDateSelectionView(dates: ["00.00.01", "00.00.02", "00.00.03", "00.00.04", "00.00.05", "00.00.06", "00.00.07", "", ""])
+        dateSelectionView.delegate = self
         
         layout_dates.addSubview(dateSelectionView)
         
@@ -97,7 +101,6 @@ class BriefingTab: UIViewController {
     
     private func setMid() {
         let label_today = UILabel()
-        let label_descrip = UILabel()
         
         layout_mid.snp.makeConstraints{ make in
             make.leading.trailing.equalToSuperview()
@@ -135,7 +138,7 @@ class BriefingTab: UIViewController {
         
         layout_main.snp.makeConstraints{ make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(layout_mid.snp.bottom)
+            make.top.equalTo(layout_mid.snp.bottom).offset(25)
         }
         
         layout_main.backgroundColor = .mainGray
@@ -197,6 +200,20 @@ class BriefingTab: UIViewController {
     }
 }
 
+extension BriefingTab {
+    @objc func scrapbookButtonTapped() {
+        
+        print("scrapbook tapped")
+        let nextVC = Scrapbook()
+        nextVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    @objc func settingButtonTapped() {
+        
+    }
+}
+
 extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         10
@@ -224,11 +241,26 @@ extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
 
 extension BriefingTab: BriefingTableViewCellDelegate {
     func didTapLayoutMain(in cell: BriefingTableViewCell) {
-//        if let indexPath = layout_table.indexPath(for: cell) {
-//            // indexPath.row를 사용하여 해당 셀의 인덱스를 가져와 원하는 액션 수행
-//            print(indexPath.row)
-//        }
-        print("tapped")
+        let nextVC = BriefingCard()
+        
+        if let indexPath = layout_table.indexPath(for: cell) {
+            nextVC.order_num = indexPath.row + 1
+        }
+        
+        nextVC.hidesBottomBarWhenPushed = true
+
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+}
+
+extension BriefingTab: CustomDateSelectionViewDelegate {
+    func dateSelectionView(_ view: CustomDateSelectionView, didSelectDateAtIndex index: Int) {
+        // 가장 최근 날짜가 아닌 경우
+        if index != view.dates.count - 3 {
+            label_descrip.text = "그날의 키워드 브리핑"
+        } else {
+            label_descrip.text = "오늘의 키워드 브리핑"
+        }
     }
 }
 
