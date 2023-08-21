@@ -85,7 +85,7 @@ class BriefingTab: UIViewController {
         
 //        layout_dates.backgroundColor = .systemPink
         
-        let dateSelectionView = DateSelectionView(dates: ["00.00.01", "00.00.02", "00.00.03", "00.00.04", "00.00.05", "00.00.06", "00.00.07", ])
+        let dateSelectionView = CustomDateSelectionView(dates: ["00.00.01", "00.00.02", "00.00.03", "00.00.04", "00.00.05", "00.00.06", "00.00.07", "", ""])
         
         layout_dates.addSubview(dateSelectionView)
         
