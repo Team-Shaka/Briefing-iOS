@@ -10,6 +10,8 @@ import UIKit
 class BriefingTableViewCell: UITableViewCell {
     static let cellID = "BrefingTableViewCell"
     
+    weak var delegate: BriefingTableViewCellDelegate?
+    
     let layout_main = UIView()
     
     let label_order = UILabel()
@@ -89,6 +91,26 @@ class BriefingTableViewCell: UITableViewCell {
         }
         
         button_details.setImage(UIImage(named: "details"), for: .normal)
+        
+        let layout_touch = UIView()
+        
+        self.addSubview(layout_touch)
+        
+        layout_touch.snp.makeConstraints{ make in
+            make.top.leading.bottom.trailing.equalTo(layout_main)
+        }
+        
+        layout_touch.backgroundColor = .systemPink
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(layoutMainTapped))
+        tapGesture.delegate = self
+        layout_touch.addGestureRecognizer(tapGesture)
+        layout_touch.isUserInteractionEnabled = true
+    }
+    
+    @objc private func layoutMainTapped() {
+        print("ssibal")
+        delegate?.didTapLayoutMain(in: self)
     }
     
     func configureOrderLabel(forIndex index: Int) {
@@ -109,3 +131,8 @@ class BriefingTableViewCell: UITableViewCell {
     }
 
 }
+
+protocol BriefingTableViewCellDelegate: AnyObject {
+    func didTapLayoutMain(in cell: BriefingTableViewCell)
+}
+

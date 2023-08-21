@@ -205,12 +205,13 @@ extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BriefingTableViewCell.cellID, for: indexPath) as! BriefingTableViewCell
         
+        cell.delegate = self
+        
         cell.label_order.text = ranks[indexPath.row]
         cell.label_topic.text = "배터리 혁명"
         cell.label_descript.text = "2차 전지 혁명으로 인한 놀라운 발전과..."
         
         cell.configureOrderLabel(forIndex: indexPath.row)
-        
         
         return cell
     }
@@ -220,3 +221,14 @@ extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+extension BriefingTab: BriefingTableViewCellDelegate {
+    func didTapLayoutMain(in cell: BriefingTableViewCell) {
+//        if let indexPath = layout_table.indexPath(for: cell) {
+//            // indexPath.row를 사용하여 해당 셀의 인덱스를 가져와 원하는 액션 수행
+//            print(indexPath.row)
+//        }
+        print("tapped")
+    }
+}
+
