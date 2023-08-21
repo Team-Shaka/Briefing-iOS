@@ -172,6 +172,7 @@ extension Setting: UITableViewDelegate, UITableViewDataSource {
                 if let detailsCell = tableView.dequeueReusableCell(withIdentifier: "SettingDetailCell", for: indexPath) as? SettingDetailCell {
                     detailsCell.layout_image.image = UIImage(named: "setting_version_note")
                     detailsCell.label_title.text = "버전 노트"
+                    detailsCell.button_details.addTarget(self, action: #selector(openVersionNotes), for: .touchUpInside)
                     return detailsCell
                 }
             } else {
@@ -182,12 +183,14 @@ extension Setting: UITableViewDelegate, UITableViewDataSource {
                 if let detailsCell = tableView.dequeueReusableCell(withIdentifier: "SettingDetailCell", for: indexPath) as? SettingDetailCell {
                     detailsCell.layout_image.image = UIImage(named: "setting_policy")
                     detailsCell.label_title.text = "이용 약관"
+                    detailsCell.button_details.addTarget(self, action: #selector(openUserPolicies), for: .touchUpInside)
                     return detailsCell
                 }
             } else if indexPath.row == 1 {
                 if let detailsCell = tableView.dequeueReusableCell(withIdentifier: "SettingDetailCell", for: indexPath) as? SettingDetailCell {
                     detailsCell.layout_image.image = UIImage(named: "setting_policy")
                     detailsCell.label_title.text = "개인정보처리방침"
+                    detailsCell.button_details.addTarget(self, action: #selector(openPrivacyPolicies), for: .touchUpInside)
                     return detailsCell
                 }
             } else if indexPath.row == 2 {

@@ -298,7 +298,7 @@ extension BriefingTab {
                 }
                 
             default:
-                print("failed get post detail data")
+                print("failed get keywords data")
             }
             
             self.layout_table.reloadData()
