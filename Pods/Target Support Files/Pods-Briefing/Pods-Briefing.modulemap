@@ -1,0 +1,6 @@
+framework module Pods_Briefing {
+  umbrella header "Pods-Briefing-umbrella.h"
+
+  export *
+  module * { export * }
+}
