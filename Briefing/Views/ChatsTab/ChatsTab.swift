@@ -6,14 +6,31 @@
 //
 
 import UIKit
+import WebKit
 
 class ChatsTab: UIViewController {
     let layout_nav = UIView()
+    let layout_chat = UIView()
+    let layout_bottom = UIView()
+    
+    var webChatView: WKWebView!
     
     override func viewDidLoad() {
         self.view.backgroundColor = .secondBlue
+//        self.view.setGradient(color1: .secondBlue, color2: .mainBlue)
         
         setNav()
+        setBottom()
+        setChat()
+    }
+    
+    private func setUpWebView() {
+        self.webChatView = WKWebView()
+        
+        if let url = URL(string: "https://briefing-web.vercel.app/briefChat") {
+            let request = URLRequest(url: url)
+            webChatView.load(request)
+        }
     }
     
     private func setNav() {
@@ -49,6 +66,35 @@ class ChatsTab: UIViewController {
         
         button_storage.setImage(UIImage(named: "storage"), for: .normal)
         button_storage.addTarget(self, action: #selector(chatscrapButtonTapped), for: .touchUpInside)
+    }
+    
+    private func setChat() {
+        setUpWebView()
+        
+        self.view.addSubview(layout_chat)
+        
+        layout_chat.snp.makeConstraints{ make in
+            make.top.equalTo(layout_nav.snp.bottom)
+            make.bottom.equalTo(layout_bottom.snp.top)
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        layout_chat.addSubview(webChatView)
+        
+        webChatView.snp.makeConstraints{ make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func setBottom() {
+        self.view.addSubview(layout_bottom)
+        
+        layout_bottom.snp.makeConstraints{ make in
+            make.bottom.leading.trailing.equalToSuperview()
+            make.height.equalTo(self.view.frame.height * 0.123)
+        }
+        
+        layout_bottom.backgroundColor = .mainGray
     }
 }
 

@@ -23,3 +23,4 @@ struct Briefing: Codable {
     let id, rank: Int
     let title, subtitle: String
 }
+

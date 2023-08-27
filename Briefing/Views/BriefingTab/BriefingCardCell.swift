@@ -46,8 +46,9 @@ class BriefingCardCell: UITableViewCell {
     }
     
     private func setLayout() {
-        self.backgroundColor = .secondBlue
-        self.addSubview(layout_main)
+        self.backgroundColor = .clear
+//        self.contentView.setGradient(color1: .secondBlue, color2: .mainBlue)
+        self.contentView.addSubview(layout_main)
         
         layout_main.snp.makeConstraints{ make in
             make.top.equalToSuperview()

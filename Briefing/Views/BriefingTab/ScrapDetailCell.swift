@@ -28,7 +28,7 @@ class ScrapDetailCell: UITableViewCell {
     
     private func setLayout() {
         self.backgroundColor = .white
-        self.addSubview(layout_main)
+        self.contentView.addSubview(layout_main)
         
         layout_main.snp.makeConstraints{ make in
             make.top.leading.bottom.trailing.equalToSuperview()

@@ -27,6 +27,8 @@ class ScrapSectionCell: UITableViewCell {
         layout_scraps_table.delegate = self
         
         setLayout()
+        
+        updateTableViewHeight()
     }
     
     required init?(coder: NSCoder) {
@@ -35,7 +37,7 @@ class ScrapSectionCell: UITableViewCell {
     
     private func setLayout() {
         self.backgroundColor = .mainGray
-        self.addSubview(layout_main)
+        self.contentView.addSubview(layout_main)
         
         layout_main.snp.makeConstraints{ make in
             make.top.equalToSuperview()
@@ -63,36 +65,49 @@ class ScrapSectionCell: UITableViewCell {
             make.top.equalTo(label_date.snp.bottom).offset(5)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(25)
-            make.height.equalTo(totalHeightForScrapDetails())
+            make.height.equalTo(500)
         }
         
         layout_scraps_table.layer.masksToBounds = true
         layout_scraps_table.layer.cornerRadius = 5
         
-        layout_scraps_table.rowHeight = UITableView.automaticDimension
-        layout_scraps_table.rowHeight = 55
+        layout_scraps_table.backgroundColor = .mainGray
+        layout_scraps_table.separatorColor = .mainGray
+        layout_scraps_table.separatorStyle = .singleLine
+        
+//        layout_scraps_table.rowHeight = UITableView.automaticDimension
+//        layout_scraps_table.rowHeight = 55
     }
     
-    func totalHeightForScrapDetails() -> CGFloat {
-        let numberOfRows = self.tableView(layout_scraps_table, numberOfRowsInSection: 0)
-            
-        // 마지막 가짜 셀의 높이를 1로 가정
-        let totalHeight = CGFloat(numberOfRows - 1) * ScrapDetailCell.cellHeight - 1
-            
-        return totalHeight
+    func updateTableViewHeight() {
+        let rows = delegate?.numberOfItems(for: self) ?? 0
+        let height = (CGFloat(rows) * 55) - 1
+        layout_scraps_table.snp.updateConstraints { make in
+            make.height.equalTo(height)
+        }
+    }
+    
+    func configure(withDelegate delegate: ScrapSectionCellDelegate?) {
+        self.delegate = delegate
+        layout_scraps_table.reloadData()
+        updateTableViewHeight()
     }
 
 }
 
 extension ScrapSectionCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-//        return delegate?.numberOfItems(for: self) ?? 0
+//        let rowCount = (delegate?.numberOfItems(for: self) ?? 0) + 1
+        let rowCount = (delegate?.numberOfItems(for: self) ?? 0)
+        updateTableViewHeight()
+        return rowCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.row == delegate?.numberOfItems(for: self) {  // 가짜의 셀을 반환
-        if indexPath.row == 4 {
+        let totalRows = delegate?.numberOfItems(for: self) ?? 0
+        
+        // 가짜의 셀을 반환
+        if indexPath.row == totalRows {
             let cell = UITableViewCell()
             cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.bounds.size.width, bottom: 0, right: 0)
             cell.backgroundColor = .clear
@@ -101,9 +116,11 @@ extension ScrapSectionCell: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ScrapDetailCell.cellID, for: indexPath) as! ScrapDetailCell
         
-        cell.label_topic.text = "잼버리 행사"
-        cell.label_sub.text = "잼버리 행사 관련 논란 및 정부와의 갈등"
-        cell.label_date_info.text = "23.08.07 #1"
+        if let scrap = delegate?.scrapItem(for: self, at: indexPath.row) {
+            cell.label_topic.text = scrap.title
+            cell.label_sub.text = scrap.subtitle
+            cell.label_date_info.text = "\(scrap.date) #\(scrap.rank)"
+        }
         
         return cell
     }
@@ -117,11 +134,10 @@ extension ScrapSectionCell: UITableViewDelegate, UITableViewDataSource {
         return ScrapDetailCell.cellHeight
     }
 
-    
-    
 }
 
 protocol ScrapSectionCellDelegate: AnyObject {
     func numberOfItems(for cell: ScrapSectionCell) -> Int
+    func scrapItem(for cell: ScrapSectionCell, at index: Int) -> Scrap?
 }
 

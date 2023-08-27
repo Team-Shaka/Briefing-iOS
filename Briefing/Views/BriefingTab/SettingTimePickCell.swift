@@ -16,10 +16,19 @@ class SettingTimePickCell: UITableViewCell {
     let label_title = UILabel()
     let label_timePick = UILabel()
     
+    let picker_time: UIPickerView = {
+        let picker = UIPickerView()
+        return picker
+    }()
+    
+    let hours = Array(5...12)
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        self.selectionStyle = .none
         setLayout()
+        
+        picker_time.delegate = self
+        picker_time.dataSource = self
     }
     
     required init?(coder: NSCoder) {
@@ -35,9 +44,8 @@ class SettingTimePickCell: UITableViewCell {
         }
         
         layout_main.backgroundColor = .white
-//        layout_main.layer.cornerRadius = self.frame.width * 0.11
         
-        layout_main.addSubviews(layout_image, label_title, label_timePick)
+        layout_main.addSubviews(layout_image, label_title, picker_time)
         
         layout_image.snp.makeConstraints{ make in
             make.centerY.equalToSuperview()
@@ -58,25 +66,55 @@ class SettingTimePickCell: UITableViewCell {
         label_title.font = UIFont(name: "ProductSans-Regular", size: 17)
         label_title.numberOfLines = 1
         
-        label_timePick.snp.makeConstraints{ make in
+        picker_time.snp.makeConstraints{ make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(15)
+            make.trailing.equalToSuperview().inset(5)
+            make.width.equalTo(self.contentView.frame.width * 0.3)
         }
-        
-        label_timePick.text = "오전 9시"
-        label_timePick.textAlignment = .right
-        label_timePick.textColor = .thirdBlue
-        label_timePick.font = UIFont(name: "ProductSans-Regular", size: 17)
-        label_timePick.numberOfLines = 1
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(timePickTapped))
-        tapGesture.delegate = self
-        label_timePick.addGestureRecognizer(tapGesture)
-        label_timePick.isUserInteractionEnabled = true
+
+    }
+
+}
+
+extension SettingTimePickCell: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-    @objc func timePickTapped() {
-        print("timePick tapped")
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return hours.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        if (hours[row] == 12) {
+            return "오후 \(hours[row])시"
+        } else {
+            return "오전 \(hours[row])시"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedHour = hours[row]
+        print("Selected hour: \(selectedHour)")
+        scheduleNotification(at: selectedHour)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        
+        if (hours[row] == 12) {
+            pickerLabel.text = "오후 \(hours[row])시"
+        } else {
+            pickerLabel.text = "오전 \(hours[row])시"
+        }
+        
+        pickerLabel.textAlignment = .center
+        pickerLabel.backgroundColor = .clear
+        pickerLabel.textColor = .thirdBlue
+        pickerLabel.font = UIFont(name: "ProductSans-Regular", size: 17) // 글꼴 및 크기
+
+        return pickerLabel
     }
 }
 

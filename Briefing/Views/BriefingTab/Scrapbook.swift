@@ -7,14 +7,22 @@
 
 import UIKit
 
-var scrapCounts: [Int] = [4, 5]
-
 class Scrapbook: UIViewController {
+    var scraps: [Scrap] = []
+    var scrapsByDate: [String: [Scrap]] = [:]
+    
     let layout_nav = UIView()
     let layout_section_table = UITableView()
       
     override func viewDidLoad() {
         self.view.backgroundColor = .mainGray
+        
+        self.scraps = readAllScraps()
+        classifyScrapsByDate()
+        
+        print("Number of scraps: \(scraps.count)")
+        print("Number of sections: \(scrapsByDate.keys.count)")
+
         
         self.view.addSubviews(layout_nav, layout_section_table)
         
@@ -78,6 +86,18 @@ class Scrapbook: UIViewController {
 }
 
 extension Scrapbook {
+    private func classifyScrapsByDate() {
+        for scrap in scraps {
+            let date = scrap.date
+            if scrapsByDate[date] == nil {
+                scrapsByDate[date] = []
+            }
+            scrapsByDate[date]?.append(scrap)
+        }
+    }
+}
+
+extension Scrapbook {
     @objc func backButtonTapped() {
         print("scrapbook -> home")
         self.navigationController?.popViewController(animated: true)
@@ -85,21 +105,42 @@ extension Scrapbook {
 }
 
 extension Scrapbook: UITableViewDelegate, UITableViewDataSource, ScrapSectionCellDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        let count = Array(scrapsByDate.keys).count
+        return count
+    }
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return scrapCounts.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: ScrapSectionCell.cellID, for: indexPath) as! ScrapSectionCell
+//
+//        cell.delegate = self
+//        cell.tag = indexPath.row
+//        cell.label_date.text = "23.08.07"
+//
+//        return cell
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: ScrapSectionCell.cellID, for: indexPath) as! ScrapSectionCell
+        let dateKey = Array(scrapsByDate.keys).sorted()[indexPath.section]
         
         cell.delegate = self
-        cell.tag = indexPath.row
-        cell.label_date.text = "23.08.07"
+        cell.tag = indexPath.section
+        cell.label_date.text = dateKey
         
         return cell
     }
     
     func numberOfItems(for cell: ScrapSectionCell) -> Int {
-        return scrapCounts[cell.tag]
+        let dateKey = Array(scrapsByDate.keys).sorted()[cell.tag]
+        return scrapsByDate[dateKey]?.count ?? 0
+    }
+    
+    func scrapItem(for cell: ScrapSectionCell, at index: Int) -> Scrap? {
+        let dateKey = Array(scrapsByDate.keys).sorted()[cell.tag]
+        return scrapsByDate[dateKey]?[index]
     }
 }

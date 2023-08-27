@@ -8,26 +8,35 @@
 import UIKit
 import SafariServices
 
-extension Setting {
-    func openURLInSafari(_ urlString: String) {
-        guard let url = URL(string: urlString) else { return }
-        
-        let safariViewController = SFSafariViewController(url: url)
-        present(safariViewController, animated: true, completion: nil)
-    }
-    
-    func openURLInExternalSafari(_ urlString: String) {
-        guard let url = URL(string: urlString) else { return }
-        
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-    }
-}
+//extension Setting {
+//    func openURLInSafari(_ urlString: String) {
+//        guard let url = URL(string: urlString) else { return }
+//        
+//        let safariViewController = SFSafariViewController(url: url)
+//        safariViewController.modalPresentationStyle = .pageSheet
+//        present(safariViewController, animated: true, completion: nil)
+//    }
+//    
+//    func openURLInExternalSafari(_ urlString: String) {
+//        guard let url = URL(string: urlString) else { return }
+//        
+//        if UIApplication.shared.canOpenURL(url) {
+//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        }
+//    }
+//}
 
 extension Setting {
-    @objc func openFeedback() {
+    @objc func openTimePicker() {
+        print("Time Pick Tapped")
         
+        let timePickVC = TimePickViewController()
+        timePickVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(timePickVC, animated: true)
+    }
+    
+    @objc func openFeedback() {
+        openURLInSafari("https://forms.gle/HQXmEBkQ6wyW9jiw7")
     }
     
     @objc func openVersionNotes() {
@@ -44,6 +53,6 @@ extension Setting {
     }
     
     @objc func openWarnings() {
-        
+        openURLInSafari("https://onve.notion.site/Briefing-e1cb17e2e7c54d3b9a7036b29ee9b11a?pvs=4")
     }
 }

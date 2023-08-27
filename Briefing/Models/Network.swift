@@ -9,10 +9,11 @@ import Foundation
 import Alamofire
 
 class Network {
-    let baseURL = "https://7ab7c6c1-9228-4cb2-b19c-774d9cd8b73d.mock.pstmn.io"
+    let baseURL = "https://breifing.info"
     
     // 키워드 전달 GET
     func getKeywords(date: String, type: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        //MARK: Edit Date
         let URL = baseURL + "/briefings?date=\(date)&type=\(type)"
         let datarequest = AF.request(URL, method: .get, encoding: JSONEncoding.default)
         

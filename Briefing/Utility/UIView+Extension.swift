@@ -28,6 +28,32 @@ extension UIView {
         // layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
     }
     
+    func setGradient(color1: UIColor, color2: UIColor) {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.colors = [color1.cgColor, color2.cgColor]
+        gradient.locations = [0.0 , 1.0]
+
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.0)  // 상단 시작
+        gradient.endPoint = CGPoint(x: 0.0, y: 1.0)    // 하단 끝
+
+        gradient.frame = bounds
+        layer.addSublayer(gradient)
+    }
+    
+    func blinkBackgroundColor(color: UIColor, duration: TimeInterval) {
+        let originalColor = self.backgroundColor
+        
+        UIView.animate(withDuration: duration / 2, animations: {
+            self.backgroundColor = color
+        }) { (finished) in
+            if finished {
+                UIView.animate(withDuration: duration / 2) {
+                    self.backgroundColor = originalColor
+                }
+            }
+        }
+    }
+    
 }
 
 extension CALayer {

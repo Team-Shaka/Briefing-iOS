@@ -84,7 +84,6 @@ class CustomDateSelectionView: UIView {
             isInitialPositionSet = true
         }
         
-        
     }
     
     @objc private func dateTapped(sender: UITapGestureRecognizer) {
@@ -103,14 +102,14 @@ class CustomDateSelectionView: UIView {
         for (index, label) in dateLabels.enumerated() {
             if index == selectedDateIndex {
                 label.textColor = .white
-                label.layer.addBorder([.bottom], color: .white, width: 2.0)
+//                label.layer.addBorder([.bottom], color: .white, width: 2.0)
                 
                 // 선택된 레이블이 중앙에 오도록 조정
                 let targetOffsetX = label.center.x - scrollView.bounds.width / 2
                 scrollView.setContentOffset(CGPoint(x: targetOffsetX, y: 0), animated: true)
             } else {
                 label.textColor = .thirdBlue
-                label.layer.addBorder([.bottom], color: .secondBlue, width: 2.0)
+//                label.layer.addBorder([.bottom], color: .clear, width: 2.0)
             }
         }
     }
@@ -120,7 +119,7 @@ class CustomDateSelectionView: UIView {
         let targetOffsetX = selectedLabel.frame.origin.x - (scrollView.bounds.width / 2) + (selectedLabel.frame.width / 2)
         let adjustedOffsetX = max(0, min(targetOffsetX, scrollView.contentSize.width - scrollView.bounds.width))
         scrollView.setContentOffset(CGPoint(x: adjustedOffsetX, y: 0), animated: false)
-        selectedLabel.layer.addBorder([.bottom], color: .white, width: 2.0)
+//        selectedLabel.layer.addBorder([.bottom], color: .white, width: 2.0)
     }
 }
 

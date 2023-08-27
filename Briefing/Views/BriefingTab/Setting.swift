@@ -156,7 +156,9 @@ extension Setting: UITableViewDelegate, UITableViewDataSource {
         let timePickCell = tableView.dequeueReusableCell(withIdentifier: "SettingTimePickCell", for: indexPath)
         let textInfoCell = tableView.dequeueReusableCell(withIdentifier: "SettingTextInfoCell", for: indexPath)
         
-            
+//        let tapGestureTimePick = UITapGestureRecognizer(target: self, action: #selector(openTimePicker))
+//        timePickCell.contentView.addGestureRecognizer(tapGestureTimePick)
+        
         if indexPath.section == 0 {
             return timePickCell
         } else if indexPath.section == 1 {
@@ -166,13 +168,21 @@ extension Setting: UITableViewDelegate, UITableViewDataSource {
                 if let detailsCell = tableView.dequeueReusableCell(withIdentifier: "SettingDetailCell", for: indexPath) as? SettingDetailCell {
                     detailsCell.layout_image.image = UIImage(named: "setting_feedback")
                     detailsCell.label_title.text = "피드백 및 문의하기"
+       
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openFeedback))
+                    detailsCell.contentView.addGestureRecognizer(tapGesture)
+                    
                     return detailsCell
                 }
             } else if indexPath.row == 2 {
                 if let detailsCell = tableView.dequeueReusableCell(withIdentifier: "SettingDetailCell", for: indexPath) as? SettingDetailCell {
                     detailsCell.layout_image.image = UIImage(named: "setting_version_note")
                     detailsCell.label_title.text = "버전 노트"
-                    detailsCell.button_details.addTarget(self, action: #selector(openVersionNotes), for: .touchUpInside)
+//                    detailsCell.button_details.addTarget(self, action: #selector(openVersionNotes), for: .touchUpInside)
+                    
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openVersionNotes))
+                    detailsCell.contentView.addGestureRecognizer(tapGesture)
+                    
                     return detailsCell
                 }
             } else {
@@ -183,20 +193,32 @@ extension Setting: UITableViewDelegate, UITableViewDataSource {
                 if let detailsCell = tableView.dequeueReusableCell(withIdentifier: "SettingDetailCell", for: indexPath) as? SettingDetailCell {
                     detailsCell.layout_image.image = UIImage(named: "setting_policy")
                     detailsCell.label_title.text = "이용 약관"
-                    detailsCell.button_details.addTarget(self, action: #selector(openUserPolicies), for: .touchUpInside)
+//                    detailsCell.button_details.addTarget(self, action: #selector(openUserPolicies), for: .touchUpInside)
+                    
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openUserPolicies))
+                    detailsCell.contentView.addGestureRecognizer(tapGesture)
+                    
                     return detailsCell
                 }
             } else if indexPath.row == 1 {
                 if let detailsCell = tableView.dequeueReusableCell(withIdentifier: "SettingDetailCell", for: indexPath) as? SettingDetailCell {
                     detailsCell.layout_image.image = UIImage(named: "setting_policy")
                     detailsCell.label_title.text = "개인정보처리방침"
-                    detailsCell.button_details.addTarget(self, action: #selector(openPrivacyPolicies), for: .touchUpInside)
+//                    detailsCell.button_details.addTarget(self, action: #selector(openPrivacyPolicies), for: .touchUpInside)
+                    
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openPrivacyPolicies))
+                    detailsCell.contentView.addGestureRecognizer(tapGesture)
+                    
                     return detailsCell
                 }
             } else if indexPath.row == 2 {
                 if let detailsCell = tableView.dequeueReusableCell(withIdentifier: "SettingDetailCell", for: indexPath) as? SettingDetailCell {
                     detailsCell.layout_image.image = UIImage(named: "setting_caution")
                     detailsCell.label_title.text = "유의사항"
+                    
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openWarnings))
+                    detailsCell.contentView.addGestureRecognizer(tapGesture)
+                    
                     return detailsCell
                 }
             } else {

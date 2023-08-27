@@ -10,7 +10,7 @@ import Foundation
 // MARK: - BriefingCardData
 struct BriefingCardData: Codable {
     let id, rank: Int
-    let title, subtitle, content: String
+    let title, subtitle, content, date: String
     let articles: [Article]
 }
 
@@ -20,3 +20,4 @@ struct Article: Codable {
     let press, title: String
     let url: String
 }
+

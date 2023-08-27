@@ -18,20 +18,37 @@ class BriefingTab: UIViewController {
     let layout_mid = UIView()
     let layout_main = UIView()
     
+    let pickBarView = UIView()
+    
+    let label_update = UILabel()
     let label_descrip = UILabel()
+    let label_today = UILabel()
+    
+    let button_toggle = CustomToggleButton(onTitle: "Korea", offTitle: "Global")
+    
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     
     var ranks = [""]
+    var IDs = [""]
     var topics: [String] = [""]
     var descrips: [String] = [""]
     
     let layout_table = UITableView()
     
     override func viewDidLoad() {
-        self.view.backgroundColor = .secondBlue
+        self.view.setGradient(color1: .secondBlue, color2: .mainBlue)
         
-        getKeywordsData()
+        //MARK: GET Keywords Call
+        getKeywordsDataKorea(date: currentDateToYMD())
+//        if (self.button_toggle.isOn) {
+//            getKeywordsDataGlobal(date: currentDateToYMD())
+//        } else {
+//            getKeywordsDataKorea(date: currentDateToYMD())
+//        }
         
 //        tabBarController?.tabBar.isHidden = false
+        
+        activityIndicator.center = self.view.center
         
         self.view.addSubviews(layout_nav, layout_dates, layout_mid, layout_main)
         
@@ -45,6 +62,10 @@ class BriefingTab: UIViewController {
         
         layout_table.dataSource = self
         layout_table.delegate = self
+        
+        button_toggle.delegate = self
+        
+        print(currentDateToYMD())
         
     }
     
@@ -97,20 +118,27 @@ class BriefingTab: UIViewController {
             make.height.equalTo(self.view.frame.height * 0.058)
         }
         
-        let dateSelectionView = CustomDateSelectionView(dates: ["00.00.01", "00.00.02", "00.00.03", "00.00.04", "00.00.05", "00.00.06", "00.00.07", "", ""])
+        let dateSelectionView = CustomDateSelectionView(dates: getLastWeekDates())
         dateSelectionView.delegate = self
         
-        layout_dates.addSubview(dateSelectionView)
+        layout_dates.addSubviews(dateSelectionView, pickBarView)
         
         dateSelectionView.snp.makeConstraints{ make in
             make.leading.trailing.equalToSuperview()
             make.top.bottom.equalToSuperview()
         }
+        
+        pickBarView.snp.makeConstraints{ make in
+            make.bottom.equalTo(dateSelectionView).inset(15)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(2)
+            make.width.equalTo(65)
+        }
+        
+        pickBarView.backgroundColor = .white
     }
     
     private func setMid() {
-        let label_today = UILabel()
-        
         layout_mid.snp.makeConstraints{ make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(layout_dates.snp.bottom)
@@ -124,7 +152,7 @@ class BriefingTab: UIViewController {
             make.top.equalToSuperview().offset(10)
         }
         
-        label_today.text = "2023년 8월 7일"
+        label_today.text = getCurrentDateinKor()
         label_today.textColor = .white
         label_today.font = UIFont(name: "ProductSans-Bold", size: 15)
         label_today.textAlignment = .center
@@ -161,8 +189,6 @@ class BriefingTab: UIViewController {
             make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(self.view.frame.height * 0.067)
         }
-                
-        let button_toggle = CustomToggleButton(onTitle: "Korea", offTitle: "Global")
         
         layout_info.addSubview(button_toggle)
         
@@ -180,8 +206,6 @@ class BriefingTab: UIViewController {
                                 color: .black,
                                 radius: 5,
                                 opacity: 0.1)
-        
-        let label_update = UILabel()
         
         layout_info.addSubview(label_update)
         
@@ -257,9 +281,27 @@ extension BriefingTab: BriefingTableViewCellDelegate {
         
         if let indexPath = layout_table.indexPath(for: cell) {
             nextVC.order_num = indexPath.row + 1
+            nextVC.brief_rank = ranks[indexPath.row + 1]
+            nextVC.brief_date = slashToDotWithOutTime(date: self.update_timestamp) ?? "Invalid date format"
+            nextVC.brief_id = IDs[indexPath.row + 1]
+            nextVC.brief_title = topics[indexPath.row + 1]
+            nextVC.brief_sub = descrips[indexPath.row + 1]
+        }
+        
+        // 파일 존재 여부 확인
+        print("Finding : \(dotToSlash(dotDate: nextVC.brief_date))#\(nextVC.brief_rank).txt")
+        
+        let fileName = "\(dotToSlash(dotDate: nextVC.brief_date))#\(nextVC.brief_rank).txt"
+        print(fileExists(withName: fileName))
+        if fileExists(withName: fileName) {
+            nextVC.isScrapped = true
+        } else {
+            nextVC.isScrapped = false
         }
         
         nextVC.hidesBottomBarWhenPushed = true
+        
+//        nextVC.get
 
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
@@ -267,7 +309,15 @@ extension BriefingTab: BriefingTableViewCellDelegate {
 
 extension BriefingTab: CustomDateSelectionViewDelegate {
     func dateSelectionView(_ view: CustomDateSelectionView, didSelectDateAtIndex index: Int) {
-        // 가장 최근 날짜가 아닌 경우
+        pickBarView.blinkBackgroundColor(color: .clear, duration: 0.4)
+        self.label_today.text = getDateBeforeDaysinKor(6-index)
+        
+        let dateArray = getLastWeekDates()
+        let selectedDate = dotToSlashAdd20(dotDate: dateArray[index])
+        
+        print("Selected: ", selectedDate)
+        getKeywordsDataKorea(date: selectedDate)
+        
         if index != view.dates.count - 3 {
             label_descrip.text = "그날의 키워드 브리핑"
         } else {
@@ -276,12 +326,41 @@ extension BriefingTab: CustomDateSelectionViewDelegate {
     }
 }
 
+extension BriefingTab: CustomToggleButtonDelegate {
+    func didToggle(isOn: Bool) {
+//        if isOn {
+//            getKeywordsDataGlobal(date: currentDateToYMD())
+//        } else {
+//            getKeywordsDataKorea(date: currentDateToYMD())
+//        }
+        
+        //MARK: Toggle Button 비활성화
+        
+        let alertController = UIAlertController(title: "아직 준비 중인 기능입니다.", message: "다음 업데이트를 기다려 주세요!", preferredStyle: .alert)
+        
+        // OK 버튼을 추가
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        
+        // 알림창을 띄우기
+        self.present(alertController, animated: true, completion: nil)
+    }
+}
+
+
 //MARK: - Extension for Network
 extension BriefingTab {
-    
-    
-    func getKeywordsData() {
-        network.getKeywords(date: "2023-08-21", type: "korea", completion: { response in
+    func getKeywordsDataKorea(date: String) {
+        
+        activityIndicator.startAnimating()
+        
+        self.ranks = [""]
+        self.topics = [""]
+        self.descrips = [""]
+        self.IDs = [""]
+
+        
+        network.getKeywords(date: date, type: "Korea", completion: { response in
             switch response {
             case .success(let data):
                 guard let keywords = (data as? KeywordsData), let briefing = (data as? KeywordsData)?.briefings else { return }
@@ -289,16 +368,68 @@ extension BriefingTab {
                 self.rank_counts = briefing.count
                 self.update_timestamp = keywords.createdAt
                 
-                print("created at : ", keywords.createdAt)
+                briefing.forEach{ item in
+                    self.ranks.append(String(item.rank))
+                    self.topics.append(item.title)
+                    self.descrips.append(item.subtitle)
+                    self.IDs.append(String(item.id))
+                }
+                
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.label_update.text = "Updated: \(slashToDotAddTime(date: self.update_timestamp) ?? "Invalid date format")"
+                    self.layout_table.reloadData()
+                }
+                
+            case .networkFail:
+                print("network failed - keywords")
+                
+            case .badRequest:
+                print("bad request - keywords")
+                
+            case .decodeFail:
+                print("decode fail - keywords")
+                
+            default:
+                print("failed to get keywords data")
+            }
+            
+        })
+    }
+    
+    func getKeywordsDataGlobal(date: String) {
+        
+        self.ranks = [""]
+        self.topics = [""]
+        self.descrips = [""]
+        self.IDs = [""]
+        
+        network.getKeywords(date: date, type: "Global", completion: { response in
+            switch response {
+            case .success(let data):
+                guard let keywords = (data as? KeywordsData), let briefing = (data as? KeywordsData)?.briefings else { return }
+                
+                self.rank_counts = briefing.count
+                self.update_timestamp = keywords.createdAt
                 
                 briefing.forEach{ item in
                     self.ranks.append(String(item.rank))
                     self.topics.append(item.title)
                     self.descrips.append(item.subtitle)
+                    self.IDs.append(String(item.id))
                 }
                 
+            case .networkFail:
+                print("network failed - keywords")
+                
+            case .badRequest:
+                print("bad request - keywords")
+                
+            case .decodeFail:
+                print("decode fail - keywords")
+                
             default:
-                print("failed get keywords data")
+                print("failed to get keywords data")
             }
             
             self.layout_table.reloadData()

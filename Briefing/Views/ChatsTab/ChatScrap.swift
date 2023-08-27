@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import WebKit
 
 class ChatScrap: UIViewController {
     let layout_nav = UIView()
+    let layout_web = UIView()
+    
+    var webChatScrapView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +21,16 @@ class ChatScrap: UIViewController {
         navigationController?.isNavigationBarHidden = true
         
         setNav()
-        setBottom()
+        setChatScrapWebView()
+    }
+    
+    private func setUpWebView() {
+        self.webChatScrapView = WKWebView()
+        
+        if let url = URL(string: "https://briefing-web.vercel.app/storage") {
+            let request = URLRequest(url: url)
+            webChatScrapView.load(request)
+        }
     }
     
     private func setNav() {
@@ -28,7 +41,8 @@ class ChatScrap: UIViewController {
         
         layout_nav.snp.makeConstraints{ make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(self.view.frame.height * 0.159)
+//            make.height.equalTo(self.view.frame.height * 0.159)
+            make.height.equalTo(100)
         }
         
         layout_nav.addSubviews(label_title, button_back)
@@ -54,18 +68,23 @@ class ChatScrap: UIViewController {
         button_back.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
-    private func setBottom() {
-        let layout_bottom = UIView()
+    private func setChatScrapWebView() {
+        setUpWebView()
         
-        self.view.addSubview(layout_bottom)
+        self.view.addSubview(layout_web)
         
-        layout_bottom.snp.makeConstraints{ make in
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(self.view.frame.height * 0.123)
+        layout_web.snp.makeConstraints{ make in
+            make.top.equalTo(layout_nav.snp.bottom)
+            make.leading.bottom.trailing.equalToSuperview()
         }
         
-        layout_bottom.backgroundColor = .mainGray
+        layout_web.addSubview(webChatScrapView)
+        
+        webChatScrapView.snp.makeConstraints{ make in
+            make.edges.equalToSuperview()
+        }
     }
+
 }
 
 extension ChatScrap {
