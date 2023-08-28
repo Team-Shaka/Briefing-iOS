@@ -29,6 +29,11 @@ class SettingTimePickCell: UITableViewCell {
         
         picker_time.delegate = self
         picker_time.dataSource = self
+        
+        if let savedHour = UserDefaults.standard.value(forKey: "selectedHour") as? Int,
+           let index = hours.firstIndex(of: savedHour) {
+            picker_time.selectRow(index, inComponent: 0, animated: false)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -98,6 +103,7 @@ extension SettingTimePickCell: UIPickerViewDelegate, UIPickerViewDataSource {
         let selectedHour = hours[row]
         print("Selected hour: \(selectedHour)")
         scheduleNotification(at: selectedHour)
+        UserDefaults.standard.set(selectedHour, forKey: "selectedHour")
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

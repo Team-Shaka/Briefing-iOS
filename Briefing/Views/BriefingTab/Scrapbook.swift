@@ -79,6 +79,9 @@ class Scrapbook: UIViewController {
         
         layout_section_table.backgroundColor = .mainGray
         layout_section_table.separatorStyle = .none
+        
+        layout_section_table.isUserInteractionEnabled = true
+
         //MARK: Todo: 개수에 따라 변경해야 함
 //        layout_section_table.rowHeight = UITableView.automaticDimension
 //        layout_section_table.rowHeight = 300
@@ -131,8 +134,27 @@ extension Scrapbook: UITableViewDelegate, UITableViewDataSource, ScrapSectionCel
         cell.tag = indexPath.section
         cell.label_date.text = dateKey
         
+        cell.isUserInteractionEnabled = true
+        
         return cell
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+////        tableView.deselectRow(at: indexPath, animated: true)
+//        
+//        print("Cell Selected")
+//        
+//        let detailVC = BriefingCard()
+//
+//        let dateKey = Array(scrapsByDate.keys).sorted()[indexPath.section]
+////        detailVC.selectedData = scrapsByDate[dateKey]
+//        detailVC.brief_id = scrapsByDate[dateKey]?[indexPath.row].id ?? ""
+//        detailVC.brief_title = scrapsByDate[dateKey]?[indexPath.row].title ?? ""
+//        detailVC.brief_sub = scrapsByDate[dateKey]?[indexPath.row].subtitle ?? ""
+//        detailVC.brief_date = scrapsByDate[dateKey]?[indexPath.row].date ?? ""
+//
+//        self.navigationController?.pushViewController(detailVC, animated: true)
+//    }
     
     func numberOfItems(for cell: ScrapSectionCell) -> Int {
         let dateKey = Array(scrapsByDate.keys).sorted()[cell.tag]

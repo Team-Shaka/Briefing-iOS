@@ -310,9 +310,11 @@ extension BriefingTab: BriefingTableViewCellDelegate {
 extension BriefingTab: CustomDateSelectionViewDelegate {
     func dateSelectionView(_ view: CustomDateSelectionView, didSelectDateAtIndex index: Int) {
         pickBarView.blinkBackgroundColor(color: .clear, duration: 0.4)
-        self.label_today.text = getDateBeforeDaysinKor(6-index)
+//        self.label_today.text = getDateBeforeDaysinKor(6-index)
+        
         
         let dateArray = getLastWeekDates()
+        self.label_today.text = dotToKorAdd20(dotDate: dateArray[index])
         let selectedDate = dotToSlashAdd20(dotDate: dateArray[index])
         
         print("Selected: ", selectedDate)

@@ -46,7 +46,7 @@ class BriefingCard: UIViewController {
         
         layout_table.dataSource = self
         layout_table.delegate = self
-        
+                
         setNav()
         setCard()
     }
@@ -160,15 +160,17 @@ extension BriefingCard: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BriefingCardCell.cellID, for: indexPath) as! BriefingCardCell
         
+//        print("Here: ", article_titles)
+        cell.newsArray = article_titles
+        
+        cell.controlNewsCount(news: article_titles)
+        
         cell.label_info.text = "\(self.brief_date) Briefing #\(brief_rank)"
         cell.label_topic.text = self.brief_title
         cell.label_sub.text = self.brief_sub
-//        cell.label_context.text = "배터리 혁명은 현대 산업과 일상 생활에 혁명적인 변화를 가져왔다. 전기 자동차 및 이동식 장치들은 더 큰 용량과 효율성을 가진 배터리로 긴 주행거리와 높은 성능을 실현하였다. 또한 재생 에너지 저장 시스템으로 활용되어 전력 그리드 안정성을 증진시키고 친환경 에너지 전환을 촉진하고 있다. 연구의 진보로 배터리 수명과 충전 시간이 개선되며, 이는 모바일 기기부터 심지어 대규모 에너지 저장까지 다양한 분야에서 혁신을 이뤄내고 있다."
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.4
-        
-//        cell.label_context.attributedText = NSMutableAttributedString(string: "배터리 혁명은 현대 산업과 일상 생활에 혁명적인 변화를 가져왔다. 전기 자동차 및 이동식 장치들은 더 큰 용량과 효율성을 가진 배터리로 긴 주행거리와 높은 성능을 실현하였다. 또한 재생 에너지 저장 시스템으로 활용되어 전력 그리드 안정성을 증진시키고 친환경 에너지 전환을 촉진하고 있다. 연구의 진보로 배터리 수명과 충전 시간이 개선되며, 이는 모바일 기기부터 심지어 대규모 에너지 저장까지 다양한 분야에서 혁신을 이뤄내고 있다. 배터리 혁명은 현대 산업과 일상 생활에 혁명적인 변화를 가져왔다. 전기 자동차 및 이동식 장치들은 더 큰 용량과 효율성을 가진 배터리로 긴 주행거리와 높은 성능을 실현하였다. 또한 재생 에너지 저장 시스템으로 활용되어 전력 그리드 안정성을 증진시키고 친환경 에너지 전환을 촉진하고 있다. 연구의 진보로 배터리 수명과 충전 시간이 개선되며, 이는 모바일 기기부터 심지어 대규모 에너지 저장까지 다양한 분야에서 혁신을 이뤄내고 있다. 배터리 혁명은 현대 산업과 일상 생활에 혁명적인 변화를 가져왔다. 전기 자동차 및 이동식 장치들은 더 큰 용량과 효율성을 가진 배터리로 긴 주행거리와 높은 성능을 실현하였다. 또한 재생 에너지 저장 시스템으로 활용되어 전력 그리드 안정성을 증진시키고 친환경 에너지 전환을 촉진하고 있다. 연구의 진보로 배터리 수명과 충전 시간이 개선되며, 이는 모바일 기기부터 심지어 대규모 에너지 저장까지 다양한 분야에서 혁신을 이뤄내고 있다. 배터리 혁명은 현대 산업과 일상 생활에 혁명적인 변화를 가져왔다. 전기 자동차 및 이동식 장치들은 더 큰 용량과 효율성을 가진 배터리로 긴 주행거리와 높은 성능을 실현하였다. 또한 재생 에너지 저장 시스템으로 활용되어 전력 그리드 안정성을 증진시키고 친환경 에너지 전환을 촉진하고 있다. 연구의 진보로 배터리 수명과 충전 시간이 개선되며, 이는 모바일 기기부터 심지어 대규모 에너지 저장까지 다양한 분야에서 혁신을 이뤄내고 있다.", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         
         
         cell.label_context.attributedText = NSMutableAttributedString(string: brief_content, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
@@ -176,24 +178,28 @@ extension BriefingCard: UITableViewDelegate, UITableViewDataSource {
         
         cell.label_press1.text = self.article_press[0]
         cell.label_news_title1.text = self.article_titles[0]
-        
+
         let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(openNews1))
         cell.layout_news1.addGestureRecognizer(tapGesture1)
         cell.layout_news1.isUserInteractionEnabled = true
-        
+
         cell.label_press2.text = self.article_press[1]
         cell.label_news_title2.text = self.article_titles[1]
-        
+
         let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(openNews2))
         cell.layout_news2.addGestureRecognizer(tapGesture2)
         cell.layout_news2.isUserInteractionEnabled = true
-        
+
         cell.label_press3.text = self.article_press[2]
         cell.label_news_title3.text = self.article_titles[2]
-        
+
         let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(openNews3))
         cell.layout_news3.addGestureRecognizer(tapGesture3)
         cell.layout_news3.isUserInteractionEnabled = true
+        
+//        cell.layout_news2.isUserInteractionEnabled = !cell.layout_news2.isHidden
+//        cell.layout_news3.isUserInteractionEnabled = !cell.layout_news3.isHidden
+
         
         return cell
     }

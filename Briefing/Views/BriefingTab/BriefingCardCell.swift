@@ -19,6 +19,8 @@ class BriefingCardCell: UITableViewCell {
     
     let label_related = UILabel()
     
+    var newsArray = ["", "", ""]
+    
     let layout_news1 = UIView()
     let label_press1 = UILabel()
     let label_news_title1 = UILabel()
@@ -39,6 +41,7 @@ class BriefingCardCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         setLayout()
+//        controlNewsCount(news: newsArray)
     }
     
     required init?(coder: NSCoder) {
@@ -259,5 +262,42 @@ class BriefingCardCell: UITableViewCell {
         }
         
         button_details3.setImage(UIImage(named: "details"), for: .normal)
+    }
+    
+    func controlNewsCount(news: [String]) {
+        if news[1] == "" {
+            layout_news2.isHidden = true
+            layout_news3.isHidden = true
+            layout_main.snp.remakeConstraints { make in
+                make.top.equalToSuperview()
+                make.leading.equalToSuperview().offset(self.frame.width * 0.043)
+                make.trailing.equalToSuperview().inset(self.frame.width * 0.043)
+                make.bottom.equalTo(layout_news1.snp.bottom).offset(25)
+            }
+        } else if news[2] == "" {
+            layout_news2.isHidden = false
+            layout_news3.isHidden = true
+            layout_main.snp.remakeConstraints { make in
+                make.top.equalToSuperview()
+                make.leading.equalToSuperview().offset(self.frame.width * 0.043)
+                make.trailing.equalToSuperview().inset(self.frame.width * 0.043)
+                make.bottom.equalTo(layout_news2.snp.bottom).offset(25)
+            }
+        } else {
+            layout_news2.isHidden = false
+            layout_news3.isHidden = false
+            layout_main.snp.remakeConstraints { make in
+                make.top.equalToSuperview()
+                make.leading.equalToSuperview().offset(self.frame.width * 0.043)
+                make.trailing.equalToSuperview().inset(self.frame.width * 0.043)
+                make.bottom.equalTo(layout_news3.snp.bottom).offset(25)
+            }
+        }
+        
+        layout_news2.isUserInteractionEnabled = !layout_news2.isHidden
+        layout_news3.isUserInteractionEnabled = !layout_news3.isHidden
+        
+        self.layoutIfNeeded()
+
     }
 }

@@ -45,7 +45,7 @@ func getCurrentDateinKor() -> String {
 func getDateBeforeDaysinKor(_ days: Int) -> String {
     let currentDate = Date()
     var dateComponents = DateComponents()
-    dateComponents.day = -days // 빼고자 하는 날짜만큼 음수로 설정
+    dateComponents.day = -days
     
     if let newDate = Calendar.current.date(byAdding: dateComponents, to: currentDate) {
         let formatter = DateFormatter()
@@ -119,6 +119,22 @@ func dotToSlashAdd20(dotDate: String) -> String {
     return "20" + slashedDate
 }
 
+func dotToKorAdd20(dotDate: String) -> String? {
+
+    let inputFormatter = DateFormatter()
+    inputFormatter.dateFormat = "yy.MM.dd"
+    
+    if let date = inputFormatter.date(from: dotDate) {
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "yyyy년 M월 d일"
+        
+        let outputString = outputFormatter.string(from: date)
+        return outputString
+    }
+    
+    return nil
+}
+
 
 //func getLastWeekDates() -> [String] {
 //    var dates: [String] = []
@@ -149,6 +165,7 @@ func getLastWeekDates() -> [String] {
 
     dates.append("")
     dates.append("")
+    
 
     let currentDate = Date()
     let targetDate = dateFormatter.date(from: "2023.08.27")!
