@@ -52,6 +52,7 @@ class BriefingCardCell: UITableViewCell {
         self.backgroundColor = .clear
 //        self.contentView.setGradient(color1: .secondBlue, color2: .mainBlue)
         self.contentView.addSubview(layout_main)
+//        self.addSubview(layout_main)
         
         layout_main.snp.makeConstraints{ make in
             make.top.equalToSuperview()
@@ -266,6 +267,7 @@ class BriefingCardCell: UITableViewCell {
     
     func controlNewsCount(news: [String]) {
         if news[1] == "" {
+            print("one")
             layout_news2.isHidden = true
             layout_news3.isHidden = true
             layout_main.snp.remakeConstraints { make in
@@ -275,6 +277,7 @@ class BriefingCardCell: UITableViewCell {
                 make.bottom.equalTo(layout_news1.snp.bottom).offset(25)
             }
         } else if news[2] == "" {
+            print("two")
             layout_news2.isHidden = false
             layout_news3.isHidden = true
             layout_main.snp.remakeConstraints { make in
@@ -284,6 +287,7 @@ class BriefingCardCell: UITableViewCell {
                 make.bottom.equalTo(layout_news2.snp.bottom).offset(25)
             }
         } else {
+            print("three")
             layout_news2.isHidden = false
             layout_news3.isHidden = false
             layout_main.snp.remakeConstraints { make in
@@ -294,8 +298,8 @@ class BriefingCardCell: UITableViewCell {
             }
         }
         
-        layout_news2.isUserInteractionEnabled = !layout_news2.isHidden
-        layout_news3.isUserInteractionEnabled = !layout_news3.isHidden
+//        layout_news2.isUserInteractionEnabled = !layout_news2.isHidden
+//        layout_news3.isUserInteractionEnabled = !layout_news3.isHidden
         
         self.layoutIfNeeded()
 

@@ -11,9 +11,10 @@ class Setting: UIViewController {
     private let section_noti: [String] = ["알림 시간 설정"]
     private let section_info: [String] = ["앱 버전", "피드백 및 문의하기", "버전 노트"]
     private let section_warning: [String] = ["이용 약관", "개인정보처리방침", "유의사항"]
-    private let section_user: [String] = ["로그아웃", "회원 탈퇴"]
+//    private let section_user: [String] = ["로그아웃", "회원 탈퇴"]
     
-    private let sections: [String] = ["noti", "info", "warn", "user"]
+//    private let sections: [String] = ["noti", "info", "warn", "user"]
+    private let sections: [String] = ["noti", "info", "warn"]
     
     let layout_nav = UIView()
     
@@ -126,9 +127,11 @@ extension Setting: UITableViewDelegate, UITableViewDataSource {
             print("Value: \(section_info[indexPath.row])")
         } else if indexPath.section == 2 {
             print("Value: \(section_warning[indexPath.row])")
-        } else if indexPath.section == 2 {
-            print("Value: \(section_user[indexPath.row])")
-        } else {
+        }
+//        else if indexPath.section == 2 {
+//            print("Value: \(section_user[indexPath.row])")
+//        }
+        else {
             return
         }
     }
@@ -141,9 +144,11 @@ extension Setting: UITableViewDelegate, UITableViewDataSource {
             return section_info.count
         } else if section == 2 {
             return section_warning.count
-        } else if section == 3 {
-            return section_user.count
-        } else {
+        }
+//        else if section == 3 {
+//            return section_user.count
+//        }
+        else {
             return 0
         }
     }
@@ -224,12 +229,14 @@ extension Setting: UITableViewDelegate, UITableViewDataSource {
             } else {
                 return cell
             }
-        } else if indexPath.section == 3 {
-            cell.textLabel?.text = "\(section_user[indexPath.row])"
-            cell.textLabel?.textColor = .textGray
-            cell.isUserInteractionEnabled = false
-            return cell
-        } else {
+        }
+//        else if indexPath.section == 3 {
+//            cell.textLabel?.text = "\(section_user[indexPath.row])"
+//            cell.textLabel?.textColor = .textGray
+//            cell.isUserInteractionEnabled = false
+//            return cell
+//        }
+        else {
             return UITableViewCell()
         }
             

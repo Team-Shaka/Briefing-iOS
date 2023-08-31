@@ -24,14 +24,15 @@ class BriefingTab: UIViewController {
     let label_descrip = UILabel()
     let label_today = UILabel()
     
+    let dateSelectionView = CustomDateSelectionView(dates: getLastWeekDates())
     let button_toggle = CustomToggleButton(onTitle: "Korea", offTitle: "Global")
     
     let activityIndicator = UIActivityIndicatorView(style: .large)
     
-    var ranks = [""]
-    var IDs = [""]
-    var topics: [String] = [""]
-    var descrips: [String] = [""]
+    var ranks = ["", "", "", "", "", "", "", "", "", ""]
+    var IDs = ["", "", "", "", "", "", "", "", "", "", ""]
+    var topics: [String] = ["", "", "", "", "", "", "", "", "", ""]
+    var descrips: [String] = ["", "", "", "", "", "", "", "", "", ""]
     
     let layout_table = UITableView()
     
@@ -67,6 +68,10 @@ class BriefingTab: UIViewController {
         
         print(currentDateToYMD())
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        dateSelectionView.setInitialPosition()
     }
     
     private func setNav() {
@@ -118,7 +123,6 @@ class BriefingTab: UIViewController {
             make.height.equalTo(self.view.frame.height * 0.058)
         }
         
-        let dateSelectionView = CustomDateSelectionView(dates: getLastWeekDates())
         dateSelectionView.delegate = self
         
         layout_dates.addSubviews(dateSelectionView, pickBarView)
@@ -260,9 +264,13 @@ extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
         
         cell.delegate = self
         
-        cell.label_order.text = ranks[indexPath.row+1]
-        cell.label_topic.text = topics[indexPath.row+1]
-        cell.label_descript.text = descrips[indexPath.row+1]
+//        cell.label_order.text = ranks[indexPath.row+1]
+//        cell.label_topic.text = topics[indexPath.row+1]
+//        cell.label_descript.text = descrips[indexPath.row+1]
+        
+        cell.label_order.text = ranks[indexPath.row]
+        cell.label_topic.text = topics[indexPath.row]
+        cell.label_descript.text = descrips[indexPath.row]
         
         cell.configureOrderLabel(forIndex: indexPath.row)
         
@@ -280,12 +288,19 @@ extension BriefingTab: BriefingTableViewCellDelegate {
         let nextVC = BriefingCard()
         
         if let indexPath = layout_table.indexPath(for: cell) {
-            nextVC.order_num = indexPath.row + 1
-            nextVC.brief_rank = ranks[indexPath.row + 1]
+//            nextVC.order_num = indexPath.row + 1
+//            nextVC.brief_rank = ranks[indexPath.row + 1]
+//            nextVC.brief_date = slashToDotWithOutTime(date: self.update_timestamp) ?? "Invalid date format"
+//            nextVC.brief_id = IDs[indexPath.row + 1]
+//            nextVC.brief_title = topics[indexPath.row + 1]
+//            nextVC.brief_sub = descrips[indexPath.row + 1]
+            
+            nextVC.order_num = indexPath.row+1
+            nextVC.brief_rank = ranks[indexPath.row]
             nextVC.brief_date = slashToDotWithOutTime(date: self.update_timestamp) ?? "Invalid date format"
-            nextVC.brief_id = IDs[indexPath.row + 1]
-            nextVC.brief_title = topics[indexPath.row + 1]
-            nextVC.brief_sub = descrips[indexPath.row + 1]
+            nextVC.brief_id = IDs[indexPath.row]
+            nextVC.brief_title = topics[indexPath.row]
+            nextVC.brief_sub = descrips[indexPath.row]
         }
         
         // 파일 존재 여부 확인
@@ -368,13 +383,30 @@ extension BriefingTab {
                 guard let keywords = (data as? KeywordsData), let briefing = (data as? KeywordsData)?.briefings else { return }
                 
                 self.rank_counts = briefing.count
+                
+                if self.rank_counts > 0 {
+                    for _ in 0...(self.rank_counts-1) {
+                        self.ranks.append("")
+                        self.topics.append("")
+                        self.descrips.append("")
+                        self.IDs.append("")
+                    }
+                }
+                
                 self.update_timestamp = keywords.createdAt
                 
-                briefing.forEach{ item in
-                    self.ranks.append(String(item.rank))
-                    self.topics.append(item.title)
-                    self.descrips.append(item.subtitle)
-                    self.IDs.append(String(item.id))
+//                briefing.forEach{ index, item in
+//                    self.ranks.append(String(item.rank))
+//                    self.topics.append(item.title)
+//                    self.descrips.append(item.subtitle)
+//                    self.IDs.append(String(item.id))
+//                }
+                
+                briefing.enumerated().forEach{ index, item in
+                    self.ranks[index] = String(item.rank)
+                    self.topics[index] = String(item.title)
+                    self.descrips[index] = String(item.subtitle)
+                    self.IDs[index] = String(item.id)
                 }
                 
                 DispatchQueue.main.async {

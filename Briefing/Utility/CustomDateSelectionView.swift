@@ -27,7 +27,8 @@ class CustomDateSelectionView: UIView {
     
     init(dates: [String]) {
         self.dates = dates
-        self.selectedDateIndex = dates.count - 3  // 마지막 인덱스로 설정
+        //MARK: Set Last Index
+        self.selectedDateIndex = dates.count - 1  // 마지막 인덱스로 설정
         super.init(frame: .zero)
         
         scrollView.showsHorizontalScrollIndicator = false
@@ -79,8 +80,15 @@ class CustomDateSelectionView: UIView {
         
         scrollView.contentSize = CGSize(width: labelWidth * CGFloat(dates.count), height: frame.height)
         
+//        if !isInitialPositionSet {
+//            setInitialPosition()
+//            isInitialPositionSet = true
+//        }
+        
         if !isInitialPositionSet {
-            setInitialPosition()
+//            DispatchQueue.main.async {
+//                self.setInitialPosition()
+//            }
             isInitialPositionSet = true
         }
         
@@ -91,6 +99,7 @@ class CustomDateSelectionView: UIView {
             selectedDateIndex = label.tag
 
             // 선택된 레이블이 중앙에 오도록 조정
+            print("Middle")
             let targetOffsetX = label.center.x - scrollView.bounds.width / 2
             scrollView.setContentOffset(CGPoint(x: targetOffsetX, y: 0), animated: true)
 
@@ -114,11 +123,18 @@ class CustomDateSelectionView: UIView {
         }
     }
     
-    private func setInitialPosition() {
+    func setInitialPosition() {
+        print("Middle First")
         let selectedLabel = dateLabels[selectedDateIndex]
-        let targetOffsetX = selectedLabel.frame.origin.x - (scrollView.bounds.width / 2) + (selectedLabel.frame.width / 2)
-        let adjustedOffsetX = max(0, min(targetOffsetX, scrollView.contentSize.width - scrollView.bounds.width))
-        scrollView.setContentOffset(CGPoint(x: adjustedOffsetX, y: 0), animated: false)
+//        let targetOffsetX = selectedLabel.frame.origin.x - (scrollView.bounds.width / 2) + (selectedLabel.frame.width / 2)
+//        let adjustedOffsetX = max(0, min(targetOffsetX, scrollView.contentSize.width - scrollView.bounds.width))
+//        scrollView.setContentOffset(CGPoint(x: adjustedOffsetX, y: 0), animated: false)
+        
+        
+        let targetOffsetX = selectedLabel.center.x - (scrollView.bounds.width / 2)
+        scrollView.setContentOffset(CGPoint(x: targetOffsetX, y: 0), animated: true)
+        
+        
 //        selectedLabel.layer.addBorder([.bottom], color: .white, width: 2.0)
     }
 }

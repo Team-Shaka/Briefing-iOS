@@ -163,8 +163,8 @@ func getLastWeekDates() -> [String] {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy.MM.dd"
 
-    dates.append("")
-    dates.append("")
+//    dates.append("")
+//    dates.append("")
     
 
     let currentDate = Date()
@@ -186,8 +186,8 @@ func getLastWeekDates() -> [String] {
     }
 
     // 두 개의 빈 문자열을 추가
-    dates.append("")
-    dates.append("")
+//    dates.append("")
+//    dates.append("")
 
     return dates
 }

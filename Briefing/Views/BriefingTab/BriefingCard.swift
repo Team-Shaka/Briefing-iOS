@@ -105,12 +105,15 @@ class BriefingCard: UIViewController {
         
 //        layout_table.backgroundColor = .secondBlue
 //        layout_table.setGradient(color1: .secondBlue, color2: .mainBlue)
+        
+        
         layout_table.backgroundColor = .clear
         
         layout_table.separatorStyle = .none
-        //MARK: Todo: 개수에 따라 변경해야 함
+
         layout_table.rowHeight = UITableView.automaticDimension
 //        layout_table.rowHeight = 520
+        layout_table.estimatedRowHeight = self.view.frame.height
     }
 }
 
@@ -160,6 +163,7 @@ extension BriefingCard: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BriefingCardCell.cellID, for: indexPath) as! BriefingCardCell
         
+//        self.view.bringSubviewToFront(layout_table)
 //        print("Here: ", article_titles)
         cell.newsArray = article_titles
         
@@ -178,10 +182,15 @@ extension BriefingCard: UITableViewDelegate, UITableViewDataSource {
         
         cell.label_press1.text = self.article_press[0]
         cell.label_news_title1.text = self.article_titles[0]
+        
+//        let testTapGesture = UITapGestureRecognizer(target: self, action: #selector(openNews1))
+//        cell.contentView.addGestureRecognizer(testTapGesture)
+//        cell.contentView.isUserInteractionEnabled = true
 
         let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(openNews1))
         cell.layout_news1.addGestureRecognizer(tapGesture1)
         cell.layout_news1.isUserInteractionEnabled = true
+//        cell.button_details1.addTarget(self, action: #selector(openNews1), for: .touchUpInside)
 
         cell.label_press2.text = self.article_press[1]
         cell.label_news_title2.text = self.article_titles[1]
@@ -189,6 +198,7 @@ extension BriefingCard: UITableViewDelegate, UITableViewDataSource {
         let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(openNews2))
         cell.layout_news2.addGestureRecognizer(tapGesture2)
         cell.layout_news2.isUserInteractionEnabled = true
+//        cell.button_details2.addTarget(self, action: #selector(openNews2), for: .touchUpInside)
 
         cell.label_press3.text = self.article_press[2]
         cell.label_news_title3.text = self.article_titles[2]
@@ -196,11 +206,16 @@ extension BriefingCard: UITableViewDelegate, UITableViewDataSource {
         let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(openNews3))
         cell.layout_news3.addGestureRecognizer(tapGesture3)
         cell.layout_news3.isUserInteractionEnabled = true
+//        cell.button_details3.addTarget(self, action: #selector(openNews3), for: .touchUpInside)
         
 //        cell.layout_news2.isUserInteractionEnabled = !cell.layout_news2.isHidden
 //        cell.layout_news3.isUserInteractionEnabled = !cell.layout_news3.isHidden
 
-        
+        cell.snp.makeConstraints{ make in
+            make.height.equalTo(self.view.frame.height)
+            make.width.equalTo(self.view.frame.width)
+        }
+                
         return cell
     }
     
@@ -230,7 +245,7 @@ extension BriefingCard {
                     self.article_press[index] = item.press
                     self.article_titles[index] = item.title
                     self.article_urls[index] = item.url
-                    print(item.url)
+//                    print(item.url)
                 }
                 
                 
