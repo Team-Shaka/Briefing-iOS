@@ -17,6 +17,7 @@ class BriefingTab: UIViewController {
     let layout_dates = UIView()
     let layout_mid = UIView()
     let layout_main = UIView()
+    let layout_cover = UIView()
     
     let pickBarView = UIView()
     
@@ -39,8 +40,7 @@ class BriefingTab: UIViewController {
     override func viewDidLoad() {
         self.view.setGradient(color1: .secondBlue, color2: .mainBlue)
         
-        //MARK: GET Keywords Call
-        getKeywordsDataKorea(date: currentDateToYMD())
+        
 //        if (self.button_toggle.isOn) {
 //            getKeywordsDataGlobal(date: currentDateToYMD())
 //        } else {
@@ -50,12 +50,34 @@ class BriefingTab: UIViewController {
 //        tabBarController?.tabBar.isHidden = false
         
         activityIndicator.center = self.view.center
-        
+
         self.view.addSubviews(layout_nav, layout_dates, layout_mid, layout_main)
-        
+
         setNav()
         setMid()
         setDates()
+//        setMain()
+//
+//        layout_table.register(BriefingTableViewCell.self, forCellReuseIdentifier: BriefingTableViewCell.cellID)
+//        layout_table.reloadData()
+//
+//        layout_table.dataSource = self
+//        layout_table.delegate = self
+//
+//        button_toggle.delegate = self
+//
+//        print(currentDateToYMD())
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //MARK: GET Keywords Call
+        getKeywordsDataKorea(date: currentDateToYMD())
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        activityIndicator.center = self.view.center
+        
         setMain()
         
         layout_table.register(BriefingTableViewCell.self, forCellReuseIdentifier: BriefingTableViewCell.cellID)
@@ -68,9 +90,6 @@ class BriefingTab: UIViewController {
         
         print(currentDateToYMD())
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         dateSelectionView.setInitialPosition()
     }
     
@@ -234,6 +253,13 @@ class BriefingTab: UIViewController {
         layout_table.separatorStyle = .none
         layout_table.backgroundColor = .mainGray
         
+//        layout_table.addSubview(layout_cover)
+//
+//        layout_cover.snp.makeConstraints{ make in
+//            make.leading.top.trailing.bottom.equalToSuperview()
+//        }
+//
+//        layout_cover.backgroundColor = .mainGray
     }
 }
 
@@ -256,7 +282,7 @@ extension BriefingTab {
 
 extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ranks.count - 1
+        return rank_counts
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -267,13 +293,28 @@ extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
 //        cell.label_order.text = ranks[indexPath.row+1]
 //        cell.label_topic.text = topics[indexPath.row+1]
 //        cell.label_descript.text = descrips[indexPath.row+1]
+//        self.layout_cover.isHidden = false
         
-        cell.label_order.text = ranks[indexPath.row]
-        cell.label_topic.text = topics[indexPath.row]
-        cell.label_descript.text = descrips[indexPath.row]
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            print("RANKS HERE: ", self.ranks)
+            
+            cell.label_order.text = self.ranks[indexPath.row]
+            cell.label_topic.text = self.topics[indexPath.row]
+            cell.label_descript.text = self.descrips[indexPath.row]
+            
+            cell.configureOrderLabel(forIndex: indexPath.row)
+            
+//            self.layout_cover.isHidden = true
+        }
         
-        cell.configureOrderLabel(forIndex: indexPath.row)
-        
+//        print("RANKS HERE: ", ranks)
+//
+//        cell.label_order.text = ranks[indexPath.row]
+//        cell.label_topic.text = topics[indexPath.row]
+//        cell.label_descript.text = descrips[indexPath.row]
+//
+//        cell.configureOrderLabel(forIndex: indexPath.row)
+//
         return cell
     }
     
