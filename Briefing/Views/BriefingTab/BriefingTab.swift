@@ -56,17 +56,17 @@ class BriefingTab: UIViewController {
         setNav()
         setMid()
         setDates()
-//        setMain()
-//
-//        layout_table.register(BriefingTableViewCell.self, forCellReuseIdentifier: BriefingTableViewCell.cellID)
-//        layout_table.reloadData()
-//
-//        layout_table.dataSource = self
-//        layout_table.delegate = self
-//
-//        button_toggle.delegate = self
-//
-//        print(currentDateToYMD())
+        setMain()
+
+        layout_table.register(BriefingTableViewCell.self, forCellReuseIdentifier: BriefingTableViewCell.cellID)
+        layout_table.reloadData()
+
+        layout_table.dataSource = self
+        layout_table.delegate = self
+
+        button_toggle.delegate = self
+
+        print(currentDateToYMD())
         
     }
     
@@ -78,17 +78,17 @@ class BriefingTab: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         activityIndicator.center = self.view.center
         
-        setMain()
-        
-        layout_table.register(BriefingTableViewCell.self, forCellReuseIdentifier: BriefingTableViewCell.cellID)
-        layout_table.reloadData()
-        
-        layout_table.dataSource = self
-        layout_table.delegate = self
-        
-        button_toggle.delegate = self
-        
-        print(currentDateToYMD())
+//        setMain()
+//
+//        layout_table.register(BriefingTableViewCell.self, forCellReuseIdentifier: BriefingTableViewCell.cellID)
+//        layout_table.reloadData()
+//
+//        layout_table.dataSource = self
+//        layout_table.delegate = self
+//
+//        button_toggle.delegate = self
+//
+//        print(currentDateToYMD())
         
         dateSelectionView.setInitialPosition()
     }
@@ -296,7 +296,7 @@ extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
 //        self.layout_cover.isHidden = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            print("RANKS HERE: ", self.ranks)
+//            print("RANKS HERE: ", self.ranks)
             
             cell.label_order.text = self.ranks[indexPath.row]
             cell.label_topic.text = self.topics[indexPath.row]
@@ -376,7 +376,7 @@ extension BriefingTab: CustomDateSelectionViewDelegate {
         print("Selected: ", selectedDate)
         getKeywordsDataKorea(date: selectedDate)
         
-        if index != view.dates.count - 3 {
+        if index != view.dates.count - 1 {
             label_descrip.text = "그날의 키워드 브리핑"
         } else {
             label_descrip.text = "오늘의 키워드 브리핑"
