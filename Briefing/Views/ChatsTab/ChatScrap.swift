@@ -22,6 +22,8 @@ class ChatScrap: UIViewController {
         
         setNav()
         setChatScrapWebView()
+        
+        addSwipeGestureToDismiss()
     }
     
     private func setUpWebView() {

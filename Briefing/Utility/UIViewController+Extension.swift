@@ -129,3 +129,19 @@ extension UIViewController {
     }
 }
 
+extension UIViewController {
+    
+    func addSwipeGestureToDismiss() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        swipeGesture.direction = .right
+        self.view.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc private func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
+        if gesture.direction == .right {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+}
+
+

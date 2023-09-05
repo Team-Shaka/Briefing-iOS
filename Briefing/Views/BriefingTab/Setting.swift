@@ -55,6 +55,8 @@ class Setting: UIViewController {
         
         setNav()
         setTable()
+        
+        addSwipeGestureToDismiss()
     }
     
     private func setNav() {

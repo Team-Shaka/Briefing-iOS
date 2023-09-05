@@ -49,6 +49,8 @@ class BriefingCard: UIViewController {
                 
         setNav()
         setCard()
+        
+        addSwipeGestureToDismiss()
     }
     
     private func setNav() {

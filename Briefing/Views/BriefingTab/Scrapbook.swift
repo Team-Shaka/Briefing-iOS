@@ -8,6 +8,7 @@
 import UIKit
 
 class Scrapbook: UIViewController {
+    var dates: [String] = []
     var scraps: [Scrap] = []
     var scrapsByDate: [String: [Scrap]] = [:]
     
@@ -37,6 +38,8 @@ class Scrapbook: UIViewController {
         
         setNav()
         setSections()
+        
+        addSwipeGestureToDismiss()
     }
     
     private func setNav() {
@@ -164,5 +167,27 @@ extension Scrapbook: UITableViewDelegate, UITableViewDataSource, ScrapSectionCel
     func scrapItem(for cell: ScrapSectionCell, at index: Int) -> Scrap? {
         let dateKey = Array(scrapsByDate.keys).sorted()[cell.tag]
         return scrapsByDate[dateKey]?[index]
+    }
+}
+
+extension Scrapbook: ScrapDetailCellDelegate {
+    func didTapScrapDetail(in cell: ScrapDetailCell) {
+        //        let nextVC = BriefingCard()
+                
+        //        if let indexPath = layout_table.indexPath(for: cell) {
+        //
+        //            nextVC.order_num = indexPath.row+1
+        //            nextVC.brief_rank = ranks[indexPath.row]
+        //            nextVC.brief_date = slashToDotWithOutTime(date: self.update_timestamp) ?? "Invalid date format"
+        //            nextVC.brief_id = IDs[indexPath.row]
+        //            nextVC.brief_title = topics[indexPath.row]
+        //            nextVC.brief_sub = descrips[indexPath.row]
+        //        }
+                
+        print("Tapped")
+                
+        //        nextVC.hidesBottomBarWhenPushed = true
+
+        //        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

@@ -20,6 +20,18 @@ import Foundation
 //    }
 //}
 
+func isBefore3AM() -> Bool {
+    let now = Date()
+    let calendar = Calendar.current
+    
+    let components = calendar.dateComponents([.hour], from: now)
+    if let hour = components.hour {
+        return hour < 3
+    }
+    
+    return false
+}
+
 func currentDateToYMD() -> String {
     let currentDate = Date()
     let formatter = DateFormatter()
@@ -27,6 +39,22 @@ func currentDateToYMD() -> String {
     formatter.dateFormat = "yyyy-MM-dd"
     
     let dateString = formatter.string(from: currentDate)
+    
+    return dateString
+}
+
+func yesterdayDateToYMD() -> String {
+    let currentDate = Date()
+    let calendar = Calendar.current
+    
+    guard let yesterday = calendar.date(byAdding: .day, value: -1, to: currentDate) else {
+        return "날짜 계산 실패"
+    }
+    
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    
+    let dateString = formatter.string(from: yesterday)
     
     return dateString
 }
@@ -163,17 +191,11 @@ func getLastWeekDates() -> [String] {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy.MM.dd"
 
-//    dates.append("")
-//    dates.append("")
-    
-
     let currentDate = Date()
     let targetDate = dateFormatter.date(from: "2023.08.27")!
 
-    // 두 날짜 중 늦은 날짜를 기준으로 하여 7일간의 날짜를 구함
     let baseDate = max(currentDate, targetDate)
 
-    // 다시 원래의 형식으로 설정
     dateFormatter.dateFormat = "yy.MM.dd"
 
     for i in -6...0 {
@@ -184,11 +206,36 @@ func getLastWeekDates() -> [String] {
             }
         }
     }
+    
+    return dates
+}
 
-    // 두 개의 빈 문자열을 추가
-//    dates.append("")
-//    dates.append("")
+func getLastWeekDatesFromYesterday() -> [String] {
+    var dates: [String] = []
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy.MM.dd"
 
+    let currentDate = Date()
+    let targetDate = dateFormatter.date(from: "2023.08.27")!
+
+    // 어제의 날짜를 계산합니다.
+    guard let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) else {
+        return ["날짜 계산 실패"] // 더 정확한 에러 처리가 필요할 수 있습니다.
+    }
+
+    let baseDate = max(yesterday, targetDate)
+
+    dateFormatter.dateFormat = "yy.MM.dd"
+
+    for i in -6...0 {
+        if let date = Calendar.current.date(byAdding: .day, value: i, to: baseDate) {
+            let formattedDate = dateFormatter.string(from: date)
+            if date >= targetDate {
+                dates.append(formattedDate)
+            }
+        }
+    }
+    
     return dates
 }
 

@@ -9,6 +9,9 @@ import UIKit
 
 class ScrapDetailCell: UITableViewCell {
     static let cellID = "ScrapDetailCell"
+    
+    weak var delegate: ScrapDetailCellDelegate?
+    
     static let cellHeight: CGFloat = 55.0
     
     let layout_main = UIView()
@@ -67,4 +70,12 @@ class ScrapDetailCell: UITableViewCell {
         label_date_info.textColor = .textGray
         
     }
+    
+    @objc private func scrapDetailTapped() {
+        delegate?.didTapScrapDetail(in: self)
+    }
+}
+
+protocol ScrapDetailCellDelegate: AnyObject {
+    func didTapScrapDetail(in cell: ScrapDetailCell)
 }

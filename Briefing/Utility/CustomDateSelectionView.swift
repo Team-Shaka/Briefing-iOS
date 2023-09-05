@@ -32,6 +32,7 @@ class CustomDateSelectionView: UIView {
         super.init(frame: .zero)
         
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isScrollEnabled = false
         addSubview(scrollView)
         
         configureDates()

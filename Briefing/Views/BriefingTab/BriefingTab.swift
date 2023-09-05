@@ -19,18 +19,19 @@ class BriefingTab: UIViewController {
     let layout_main = UIView()
     let layout_cover = UIView()
     
-    let pickBarView = UIView()
+//    let pickBarView = UIView()
     
     let label_update = UILabel()
     let label_descrip = UILabel()
     let label_today = UILabel()
     
-    let dateSelectionView = CustomDateSelectionView(dates: getLastWeekDates())
+    var dateSelectionView = CustomDateSelectionView(dates: getLastWeekDates())
+    
     let button_toggle = CustomToggleButton(onTitle: "Korea", offTitle: "Global")
     
     let activityIndicator = UIActivityIndicatorView(style: .large)
     
-    var ranks = ["", "", "", "", "", "", "", "", "", ""]
+    var ranks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     var IDs = ["", "", "", "", "", "", "", "", "", "", ""]
     var topics: [String] = ["", "", "", "", "", "", "", "", "", ""]
     var descrips: [String] = ["", "", "", "", "", "", "", "", "", ""]
@@ -39,6 +40,10 @@ class BriefingTab: UIViewController {
     
     override func viewDidLoad() {
         self.view.setGradient(color1: .secondBlue, color2: .mainBlue)
+        
+        if isBefore3AM() {
+            dateSelectionView = CustomDateSelectionView(dates: getLastWeekDatesFromYesterday())
+        }
         
         
 //        if (self.button_toggle.isOn) {
@@ -72,7 +77,12 @@ class BriefingTab: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         //MARK: GET Keywords Call
-        getKeywordsDataKorea(date: currentDateToYMD())
+//        getKeywordsDataKorea(date: currentDateToYMD())
+        if isBefore3AM() {
+            getKeywordsDataKorea(date: yesterdayDateToYMD())
+        } else {
+            getKeywordsDataKorea(date: currentDateToYMD())
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -144,21 +154,21 @@ class BriefingTab: UIViewController {
         
         dateSelectionView.delegate = self
         
-        layout_dates.addSubviews(dateSelectionView, pickBarView)
+        layout_dates.addSubviews(dateSelectionView) //PickBarView
         
         dateSelectionView.snp.makeConstraints{ make in
             make.leading.trailing.equalToSuperview()
             make.top.bottom.equalToSuperview()
         }
         
-        pickBarView.snp.makeConstraints{ make in
-            make.bottom.equalTo(dateSelectionView).inset(15)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(2)
-            make.width.equalTo(65)
-        }
-        
-        pickBarView.backgroundColor = .white
+//        pickBarView.snp.makeConstraints{ make in
+//            make.bottom.equalTo(dateSelectionView).inset(15)
+//            make.centerX.equalToSuperview()
+//            make.height.equalTo(2)
+//            make.width.equalTo(65)
+//        }
+//
+//        pickBarView.backgroundColor = .white
     }
     
     private func setMid() {
@@ -293,27 +303,24 @@ extension BriefingTab: UITableViewDelegate, UITableViewDataSource {
 //        cell.label_order.text = ranks[indexPath.row+1]
 //        cell.label_topic.text = topics[indexPath.row+1]
 //        cell.label_descript.text = descrips[indexPath.row+1]
-//        self.layout_cover.isHidden = false
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-//            print("RANKS HERE: ", self.ranks)
-            
-            cell.label_order.text = self.ranks[indexPath.row]
-            cell.label_topic.text = self.topics[indexPath.row]
-            cell.label_descript.text = self.descrips[indexPath.row]
-            
-            cell.configureOrderLabel(forIndex: indexPath.row)
-            
-//            self.layout_cover.isHidden = true
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+//
+//            cell.label_order.text = self.ranks[indexPath.row]
+//            cell.label_topic.text = self.topics[indexPath.row]
+//            cell.label_descript.text = self.descrips[indexPath.row]
+//
+//            cell.configureOrderLabel(forIndex: indexPath.row)
+//
+//        }
         
 //        print("RANKS HERE: ", ranks)
 //
-//        cell.label_order.text = ranks[indexPath.row]
-//        cell.label_topic.text = topics[indexPath.row]
-//        cell.label_descript.text = descrips[indexPath.row]
-//
-//        cell.configureOrderLabel(forIndex: indexPath.row)
+        cell.label_order.text = ranks[indexPath.row]
+        cell.label_topic.text = topics[indexPath.row]
+        cell.label_descript.text = descrips[indexPath.row]
+
+        cell.configureOrderLabel(forIndex: indexPath.row)
 //
         return cell
     }
@@ -365,11 +372,15 @@ extension BriefingTab: BriefingTableViewCellDelegate {
 
 extension BriefingTab: CustomDateSelectionViewDelegate {
     func dateSelectionView(_ view: CustomDateSelectionView, didSelectDateAtIndex index: Int) {
-        pickBarView.blinkBackgroundColor(color: .clear, duration: 0.4)
+//        pickBarView.blinkBackgroundColor(color: .clear, duration: 0.4)
 //        self.label_today.text = getDateBeforeDaysinKor(6-index)
         
+        var dateArray = getLastWeekDates()
         
-        let dateArray = getLastWeekDates()
+        if isBefore3AM() {
+            dateArray = getLastWeekDatesFromYesterday()
+        }
+        
         self.label_today.text = dotToKorAdd20(dotDate: dateArray[index])
         let selectedDate = dotToSlashAdd20(dotDate: dateArray[index])
         
@@ -412,10 +423,10 @@ extension BriefingTab {
         
         activityIndicator.startAnimating()
         
-        self.ranks = [""]
-        self.topics = [""]
-        self.descrips = [""]
-        self.IDs = [""]
+//        self.ranks = [""]
+        self.topics = ["", "", "", "", "", "", "", "", "", ""]
+        self.descrips = ["", "", "", "", "", "", "", "", "", ""]
+        self.IDs = ["", "", "", "", "", "", "", "", "", ""]
 
         
         network.getKeywords(date: date, type: "Korea", completion: { response in
@@ -425,14 +436,14 @@ extension BriefingTab {
                 
                 self.rank_counts = briefing.count
                 
-                if self.rank_counts > 0 {
-                    for _ in 0...(self.rank_counts-1) {
-                        self.ranks.append("")
-                        self.topics.append("")
-                        self.descrips.append("")
-                        self.IDs.append("")
-                    }
-                }
+//                if self.rank_counts > 0 {
+//                    for _ in 0...(self.rank_counts-1) {
+////                        self.ranks.append("")
+//                        self.topics.append("")
+//                        self.descrips.append("")
+//                        self.IDs.append("")
+//                    }
+//                }
                 
                 self.update_timestamp = keywords.createdAt
                 
@@ -444,7 +455,7 @@ extension BriefingTab {
 //                }
                 
                 briefing.enumerated().forEach{ index, item in
-                    self.ranks[index] = String(item.rank)
+//                    self.ranks[index] = String(item.rank)
                     self.topics[index] = String(item.title)
                     self.descrips[index] = String(item.subtitle)
                     self.IDs[index] = String(item.id)
