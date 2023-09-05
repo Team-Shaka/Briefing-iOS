@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2430A94C2A9BC9DE0051B454 /* landing.png in Resources */ = {isa = PBXBuildFile; fileRef = 2430A94B2A9BC9DE0051B454 /* landing.png */; };
 		2430A94E2A9BD21B0051B454 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2430A94D2A9BD21A0051B454 /* UserNotification.swift */; };
+		2430A9522AA722CC0051B454 /* landingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2430A9512AA722CC0051B454 /* landingScreen.png */; };
 		2443C5542A8FE88B009586C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5532A8FE88B009586C7 /* AppDelegate.swift */; };
 		2443C5562A8FE88B009586C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5552A8FE88B009586C7 /* SceneDelegate.swift */; };
 		2443C55B2A8FE88B009586C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2443C5592A8FE88B009586C7 /* Main.storyboard */; };
@@ -49,8 +49,8 @@
 
 /* Begin PBXFileReference section */
 		026F2B92F7F7F910F5214518 /* Pods-Briefing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.debug.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.debug.xcconfig"; sourceTree = "<group>"; };
-		2430A94B2A9BC9DE0051B454 /* landing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landing.png; sourceTree = "<group>"; };
 		2430A94D2A9BD21A0051B454 /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
+		2430A9512AA722CC0051B454 /* landingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landingScreen.png; sourceTree = "<group>"; };
 		2443C5502A8FE88B009586C7 /* Briefing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Briefing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2443C5532A8FE88B009586C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2443C5552A8FE88B009586C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 				2443C5592A8FE88B009586C7 /* Main.storyboard */,
 				2443C55C2A8FE88D009586C7 /* Assets.xcassets */,
 				2443C55E2A8FE88D009586C7 /* LaunchScreen.storyboard */,
-				2430A94B2A9BC9DE0051B454 /* landing.png */,
+				2430A9512AA722CC0051B454 /* landingScreen.png */,
 				2443C5612A8FE88D009586C7 /* Info.plist */,
 				2443C56E2A8FECD0009586C7 /* MainTab.swift */,
 			);
@@ -293,9 +293,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2443C57D2A925B6F009586C7 /* ProductSans-Bold-Italic.ttf in Resources */,
+				2430A9522AA722CC0051B454 /* landingScreen.png in Resources */,
 				2443C57B2A925B6F009586C7 /* ProductSans-Regular.ttf in Resources */,
 				2443C5602A8FE88D009586C7 /* LaunchScreen.storyboard in Resources */,
-				2430A94C2A9BC9DE0051B454 /* landing.png in Resources */,
 				2443C55D2A8FE88D009586C7 /* Assets.xcassets in Resources */,
 				2443C57C2A925B6F009586C7 /* ProductSans-Italic.ttf in Resources */,
 				2443C57E2A925B6F009586C7 /* ProductSans-Bold.ttf in Resources */,
