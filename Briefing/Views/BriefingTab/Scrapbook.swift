@@ -8,12 +8,29 @@
 import UIKit
 
 class Scrapbook: UIViewController {
-    var dates: [String] = []
+    var sectionDates: [String] = []
     var scraps: [Scrap] = []
     var scrapsByDate: [String: [Scrap]] = [:]
+    var scrapsByDateList: [(String, [Scrap])] = []
     
     let layout_nav = UIView()
-    let layout_section_table = UITableView()
+    
+    lazy var layout_table: UITableView = {
+        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
+            
+        let displayWidth: CGFloat = self.view.frame.width
+        let displayHeight: CGFloat = self.view.frame.height
+            
+        let tableView: UITableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight), style: .insetGrouped)
+            
+        tableView.register(ScrapDetailCell.self, forCellReuseIdentifier: ScrapDetailCell.cellID)
+            
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .singleLine
+                    
+        return tableView
+    }()
       
     override func viewDidLoad() {
         self.view.backgroundColor = .mainGray
@@ -21,20 +38,16 @@ class Scrapbook: UIViewController {
         self.scraps = readAllScraps()
         classifyScrapsByDate()
         
-        print("Number of scraps: \(scraps.count)")
-        print("Number of sections: \(scrapsByDate.keys.count)")
-
-        
-        self.view.addSubviews(layout_nav, layout_section_table)
+        self.view.addSubviews(layout_nav, layout_table)
         
         navigationController?.isNavigationBarHidden = true
         tabBarController?.tabBar.isHidden = true
         
-        layout_section_table.register(ScrapSectionCell.self, forCellReuseIdentifier: ScrapSectionCell.cellID)
-        layout_section_table.reloadData()
+        layout_table.register(ScrapDetailCell.self, forCellReuseIdentifier: ScrapDetailCell.cellID)
+        layout_table.reloadData()
 
-        layout_section_table.dataSource = self
-        layout_section_table.delegate = self
+        layout_table.dataSource = self
+        layout_table.delegate = self
         
         setNav()
         setSections()
@@ -75,119 +88,123 @@ class Scrapbook: UIViewController {
     }
     
     private func setSections() {
-        layout_section_table.snp.makeConstraints{ make in
+        layout_table.snp.makeConstraints{ make in
             make.top.equalTo(layout_nav.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
-        layout_section_table.backgroundColor = .mainGray
-        layout_section_table.separatorStyle = .none
+        layout_table.backgroundColor = .mainGray
+        layout_table.separatorStyle = .none
         
-        layout_section_table.isUserInteractionEnabled = true
-
-        //MARK: Todo: 개수에 따라 변경해야 함
-//        layout_section_table.rowHeight = UITableView.automaticDimension
-//        layout_section_table.rowHeight = 300
+        layout_table.isUserInteractionEnabled = true
     }
 }
 
 extension Scrapbook {
     private func classifyScrapsByDate() {
+        scrapsByDateList.removeAll()
         for scrap in scraps {
             let date = scrap.date
             if scrapsByDate[date] == nil {
                 scrapsByDate[date] = []
             }
+            sectionDates.append(date)
             scrapsByDate[date]?.append(scrap)
+            print("array append check:", scrapsByDate)
         }
+                
+        print("\n\n", sectionDates, "\n\n")
+        
+        let sectionDatesSet = Array(Set(sectionDates))
+        
+        print("\n\n", sectionDatesSet, "\n\n")
+        
+        for date in sectionDatesSet {
+            if let scrapsForDate = scrapsByDate[date] {
+                scrapsByDateList.append((date, scrapsForDate))
+                print("appending check:", scrapsByDateList)
+            }
+        }
+        
+        scrapsByDateList.sort { $0.0 < $1.0 }
+        
+        sectionDates = sectionDatesSet
+        sectionDates.sort()
+        
+        print("\n\n", sectionDates, "\n\n")
     }
+    
 }
 
 extension Scrapbook {
     @objc func backButtonTapped() {
-        print("scrapbook -> home")
         self.navigationController?.popViewController(animated: true)
     }
 }
 
-extension Scrapbook: UITableViewDelegate, UITableViewDataSource, ScrapSectionCellDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        let count = Array(scrapsByDate.keys).count
-        return count
+extension Scrapbook: UITableViewDelegate, UITableViewDataSource, ScrapDetailCellDelegate {
+    func didTapScrapDetail(in cell: ScrapDetailCell) {
+        print("Tapped")
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionDates[section]
     }
 
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return scrapsByDateList.count
     }
-    
+
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return scrapsByDateList[section].1.count
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: ScrapSectionCell.cellID, for: indexPath) as! ScrapSectionCell
-//
-//        cell.delegate = self
-//        cell.tag = indexPath.row
-//        cell.label_date.text = "23.08.07"
-//
-//        return cell
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: ScrapSectionCell.cellID, for: indexPath) as! ScrapSectionCell
-        let dateKey = Array(scrapsByDate.keys).sorted()[indexPath.section]
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: ScrapDetailCell.cellID, for: indexPath) as! ScrapDetailCell
+
         cell.delegate = self
         cell.tag = indexPath.section
-        cell.label_date.text = dateKey
-        
+
+        let date = scrapsByDateList[indexPath.section].0
+        let rank = scrapsByDateList[indexPath.section].1[indexPath.row].rank
+        let topics = scrapsByDateList[indexPath.section].1[indexPath.row].title
+        let subtopic = scrapsByDateList[indexPath.section].1[indexPath.row].subtitle
+
+        cell.label_topic.text = topics
+        cell.label_sub.text = subtopic
+        cell.label_date_info.text = "\(date) #\(rank)"
+
         cell.isUserInteractionEnabled = true
-        
+
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-////        tableView.deselectRow(at: indexPath, animated: true)
-//        
-//        print("Cell Selected")
-//        
-//        let detailVC = BriefingCard()
-//
-//        let dateKey = Array(scrapsByDate.keys).sorted()[indexPath.section]
-////        detailVC.selectedData = scrapsByDate[dateKey]
-//        detailVC.brief_id = scrapsByDate[dateKey]?[indexPath.row].id ?? ""
-//        detailVC.brief_title = scrapsByDate[dateKey]?[indexPath.row].title ?? ""
-//        detailVC.brief_sub = scrapsByDate[dateKey]?[indexPath.row].subtitle ?? ""
-//        detailVC.brief_date = scrapsByDate[dateKey]?[indexPath.row].date ?? ""
-//
-//        self.navigationController?.pushViewController(detailVC, animated: true)
-//    }
-    
-    func numberOfItems(for cell: ScrapSectionCell) -> Int {
-        let dateKey = Array(scrapsByDate.keys).sorted()[cell.tag]
-        return scrapsByDate[dateKey]?.count ?? 0
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
     }
     
-    func scrapItem(for cell: ScrapSectionCell, at index: Int) -> Scrap? {
-        let dateKey = Array(scrapsByDate.keys).sorted()[cell.tag]
-        return scrapsByDate[dateKey]?[index]
-    }
-}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextVC = BriefingCard()
+        
+        nextVC.brief_rank = scrapsByDateList[indexPath.section].1[indexPath.row].rank
+        nextVC.brief_date = scrapsByDateList[indexPath.section].0
+        nextVC.brief_id = scrapsByDateList[indexPath.section].1[indexPath.row].id
+        nextVC.brief_title = scrapsByDateList[indexPath.section].1[indexPath.row].title
+        nextVC.brief_sub = scrapsByDateList[indexPath.section].1[indexPath.row].subtitle
+        
+        print("Finding : \(dotToSlash(dotDate: nextVC.brief_date))#\(nextVC.brief_rank).txt")
+        
+        let fileName = "\(dotToSlash(dotDate: nextVC.brief_date))#\(nextVC.brief_rank).txt"
+        print(fileExists(withName: fileName))
+        if fileExists(withName: fileName) {
+            nextVC.isScrapped = true
+        } else {
+            nextVC.isScrapped = false
+        }
+        
+        nextVC.hidesBottomBarWhenPushed = true
 
-extension Scrapbook: ScrapDetailCellDelegate {
-    func didTapScrapDetail(in cell: ScrapDetailCell) {
-        //        let nextVC = BriefingCard()
-                
-        //        if let indexPath = layout_table.indexPath(for: cell) {
-        //
-        //            nextVC.order_num = indexPath.row+1
-        //            nextVC.brief_rank = ranks[indexPath.row]
-        //            nextVC.brief_date = slashToDotWithOutTime(date: self.update_timestamp) ?? "Invalid date format"
-        //            nextVC.brief_id = IDs[indexPath.row]
-        //            nextVC.brief_title = topics[indexPath.row]
-        //            nextVC.brief_sub = descrips[indexPath.row]
-        //        }
-                
-        print("Tapped")
-                
-        //        nextVC.hidesBottomBarWhenPushed = true
-
-        //        self.navigationController?.pushViewController(nextVC, animated: true)
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

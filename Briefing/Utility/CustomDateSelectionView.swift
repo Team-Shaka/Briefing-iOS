@@ -12,7 +12,7 @@ class CustomDateSelectionView: UIView {
     
     private var isInitialPositionSet = false
     private var dateLabels: [UILabel] = []
-    private var selectedDateIndex: Int = 0 {
+    public var selectedDateIndex: Int = 0 {
         didSet {
             updateDateColors()
         }
@@ -125,7 +125,6 @@ class CustomDateSelectionView: UIView {
     }
     
     func setInitialPosition() {
-        print("Middle First")
         let selectedLabel = dateLabels[selectedDateIndex]
 //        let targetOffsetX = selectedLabel.frame.origin.x - (scrollView.bounds.width / 2) + (selectedLabel.frame.width / 2)
 //        let adjustedOffsetX = max(0, min(targetOffsetX, scrollView.contentSize.width - scrollView.bounds.width))

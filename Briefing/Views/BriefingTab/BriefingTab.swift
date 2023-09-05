@@ -35,6 +35,7 @@ class BriefingTab: UIViewController {
     var IDs = ["", "", "", "", "", "", "", "", "", "", ""]
     var topics: [String] = ["", "", "", "", "", "", "", "", "", ""]
     var descrips: [String] = ["", "", "", "", "", "", "", "", "", ""]
+    var currentPickedDate = ""
     
     let layout_table = UITableView()
     
@@ -71,8 +72,7 @@ class BriefingTab: UIViewController {
 
         button_toggle.delegate = self
 
-        print(currentDateToYMD())
-        
+        swipeToChangeDates()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -385,6 +385,7 @@ extension BriefingTab: CustomDateSelectionViewDelegate {
         let selectedDate = dotToSlashAdd20(dotDate: dateArray[index])
         
         print("Selected: ", selectedDate)
+        currentPickedDate = selectedDate
         getKeywordsDataKorea(date: selectedDate)
         
         if index != view.dates.count - 1 {
@@ -523,3 +524,58 @@ extension BriefingTab {
     }
 }
 
+//MARK: Extension for Swipe
+extension BriefingTab {
+    func swipeToChangeDates() {
+        changeDatesBySwipeRight()
+        changeDatesBySwipeLeft()
+    }
+    
+    func changeDatesBySwipeRight() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleChangeDateRight(_:)))
+        swipeGesture.direction = .right
+        self.view.addGestureRecognizer(swipeGesture)
+    }
+    
+    func changeDatesBySwipeLeft() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleChangeDateLeft(_:)))
+        swipeGesture.direction = .left
+        self.view.addGestureRecognizer(swipeGesture)
+    }
+    
+    // 스와이프로 오른쪽으로 이동했을 때 (과거 날짜로 이동)
+    @objc private func handleChangeDateRight(_ gesture: UISwipeGestureRecognizer) {
+        if dateSelectionView.selectedDateIndex > 0 {
+            dateSelectionView.selectedDateIndex -= 1
+            let newDate = dateSelectionView.dates[dateSelectionView.selectedDateIndex]
+            updateUIForSelectedDate(newDate: newDate)
+        }
+    }
+
+    // 스와이프로 왼쪽으로 이동했을 때 (미래 날짜로 이동)
+    @objc private func handleChangeDateLeft(_ gesture: UISwipeGestureRecognizer) {
+        if dateSelectionView.selectedDateIndex < dateSelectionView.dates.count - 1 {
+            dateSelectionView.selectedDateIndex += 1
+            let newDate = dateSelectionView.dates[dateSelectionView.selectedDateIndex]
+            updateUIForSelectedDate(newDate: newDate)
+        }
+    }
+    
+    // 선택된 날짜에 대한 UI 업데이트
+    private func updateUIForSelectedDate(newDate: String) {
+        if let newIndex = dateSelectionView.dates.firstIndex(of: newDate) {
+            dateSelectionView.selectedDateIndex = newIndex
+            self.label_today.text = dotToKorAdd20(dotDate: dateSelectionView.dates[newIndex])
+        }
+        
+        if isTodayDot(newDate) {
+            label_descrip.text = "오늘의 키워드 브리핑"
+        } else {
+            label_descrip.text = "그날의 키워드 브리핑"
+        }
+        
+        
+        print(newDate)
+        getKeywordsDataKorea(date: dotToSlashAdd20(dotDate: newDate))
+    }
+}

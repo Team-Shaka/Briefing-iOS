@@ -32,6 +32,28 @@ func isBefore3AM() -> Bool {
     return false
 }
 
+func isTodaySlash(_ date: String) -> Bool {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    if let selectedDate = formatter.date(from: date) {
+        let today = Date()
+        let calendar = Calendar.current
+        return calendar.isDate(selectedDate, inSameDayAs: today)
+    }
+    return false
+}
+
+func isTodayDot(_ date: String) -> Bool {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yy.MM.dd"
+    if let selectedDate = formatter.date(from: date) {
+        let today = Date()
+        let calendar = Calendar.current
+        return calendar.isDate(selectedDate, inSameDayAs: today)
+    }
+    return false
+}
+
 func currentDateToYMD() -> String {
     let currentDate = Date()
     let formatter = DateFormatter()
@@ -238,4 +260,31 @@ func getLastWeekDatesFromYesterday() -> [String] {
     
     return dates
 }
+
+func addOneDay(to dateString: String) -> String? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    
+    if let date = dateFormatter.date(from: dateString) {
+        if let newDate = Calendar.current.date(byAdding: .day, value: 1, to: date) {
+            return dateFormatter.string(from: newDate)
+        }
+    }
+    
+    return nil
+}
+
+func subtractOneDay(from dateString: String) -> String? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    
+    if let date = dateFormatter.date(from: dateString) {
+        if let newDate = Calendar.current.date(byAdding: .day, value: -1, to: date) {
+            return dateFormatter.string(from: newDate)
+        }
+    }
+    
+    return nil
+}
+
 

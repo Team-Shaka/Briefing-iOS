@@ -110,7 +110,6 @@ class Setting: UIViewController {
 
 extension Setting {
     @objc func backButtonTapped() {
-        print("setting -> home")
         self.navigationController?.popViewController(animated: true)
     }
 }

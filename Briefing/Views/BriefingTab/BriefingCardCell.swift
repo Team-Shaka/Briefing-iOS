@@ -41,6 +41,7 @@ class BriefingCardCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         setLayout()
+        print("CARD HEIGHT:", self.contentView.frame.height)
 //        controlNewsCount(news: newsArray)
     }
     
@@ -56,7 +57,7 @@ class BriefingCardCell: UITableViewCell {
         
         layout_main.snp.makeConstraints{ make in
             make.top.equalToSuperview()
-            make.bottom.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview()
             make.leading.equalToSuperview().offset(self.frame.width * 0.043)
             make.trailing.equalToSuperview().inset(self.frame.width * 0.043)
         }
@@ -154,7 +155,6 @@ class BriefingCardCell: UITableViewCell {
             make.top.equalTo(layout_news2.snp.bottom).offset(8)
             make.leading.trailing.equalTo(label_topic)
             make.height.equalTo(60)
-            make.bottom.equalTo(layout_main.snp.bottom).inset(25)
         }
         
         layout_news3.layer.masksToBounds = true
@@ -270,26 +270,67 @@ class BriefingCardCell: UITableViewCell {
             print("one")
             layout_news2.isHidden = true
             layout_news3.isHidden = true
+
+//            layout_news1.snp.remakeConstraints{ make in
+//                make.top.equalTo(label_related.snp.bottom).offset(11)
+//                make.leading.trailing.equalTo(label_topic)
+//                make.height.equalTo(60)
+//            }
+            
             layout_main.snp.remakeConstraints { make in
                 make.top.equalToSuperview()
                 make.leading.equalToSuperview().offset(self.frame.width * 0.043)
                 make.trailing.equalToSuperview().inset(self.frame.width * 0.043)
                 make.bottom.equalTo(layout_news1.snp.bottom).offset(25)
             }
+            
         } else if news[2] == "" {
             print("two")
             layout_news2.isHidden = false
             layout_news3.isHidden = true
+            
+//            layout_news1.snp.remakeConstraints{ make in
+//                make.top.equalTo(label_related.snp.bottom).offset(11)
+//                make.leading.trailing.equalTo(label_topic)
+//                make.height.equalTo(60)
+//            }
+//
+//            layout_news2.snp.remakeConstraints{ make in
+//                make.top.equalTo(layout_news1.snp.bottom).offset(8)
+//                make.leading.trailing.equalTo(label_topic)
+//                make.height.equalTo(60)
+//            }
+            
             layout_main.snp.remakeConstraints { make in
                 make.top.equalToSuperview()
                 make.leading.equalToSuperview().offset(self.frame.width * 0.043)
                 make.trailing.equalToSuperview().inset(self.frame.width * 0.043)
                 make.bottom.equalTo(layout_news2.snp.bottom).offset(25)
             }
+            
         } else {
             print("three")
             layout_news2.isHidden = false
             layout_news3.isHidden = false
+            
+//            layout_news1.snp.remakeConstraints{ make in
+//                make.top.equalTo(label_related.snp.bottom).offset(11)
+//                make.leading.trailing.equalTo(label_topic)
+//                make.height.equalTo(60)
+//            }
+//
+//            layout_news2.snp.remakeConstraints{ make in
+//                make.top.equalTo(layout_news1.snp.bottom).offset(8)
+//                make.leading.trailing.equalTo(label_topic)
+//                make.height.equalTo(60)
+//            }
+//
+//            layout_news3.snp.remakeConstraints{ make in
+//                make.top.equalTo(layout_news2.snp.bottom).offset(8)
+//                make.leading.trailing.equalTo(label_topic)
+//                make.height.equalTo(60)
+//            }
+            
             layout_main.snp.remakeConstraints { make in
                 make.top.equalToSuperview()
                 make.leading.equalToSuperview().offset(self.frame.width * 0.043)
@@ -297,10 +338,7 @@ class BriefingCardCell: UITableViewCell {
                 make.bottom.equalTo(layout_news3.snp.bottom).offset(25)
             }
         }
-        
-//        layout_news2.isUserInteractionEnabled = !layout_news2.isHidden
-//        layout_news3.isUserInteractionEnabled = !layout_news3.isHidden
-        
+
         self.layoutIfNeeded()
 
     }
