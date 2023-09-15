@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="0RL-Gw-S7b">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppSymbol.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Jy-xV-h6A">
+                                <rect key="frame" x="76" y="244.66666666666663" width="241" height="241"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6Jy-xV-h6A" secondAttribute="height" multiplier="1:1" id="H6q-GR-bXt"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChatGPTBI.png" translatesAutoresizingMaskIntoConstraints="NO" id="2sh-hf-scf">
+                                <rect key="frame" x="120" y="792" width="153" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="lF6-cw-tqr"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchSreenTitle.png" translatesAutoresizingMaskIntoConstraints="NO" id="yWG-sT-W55">
+                                <rect key="frame" x="78" y="515.66666666666663" width="237" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="Yu1-hz-WBI"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="2sh-hf-scf" secondAttribute="bottom" constant="43" id="1AN-Im-Tuu"/>
+                            <constraint firstAttribute="bottom" secondItem="0RL-Gw-S7b" secondAttribute="bottom" id="2Rd-2v-42q"/>
+                            <constraint firstItem="6Jy-xV-h6A" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Caa-0o-hOP"/>
+                            <constraint firstItem="yWG-sT-W55" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GLF-Xy-jNe"/>
+                            <constraint firstItem="6Jy-xV-h6A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="76" id="Uf2-4D-kf2"/>
+                            <constraint firstItem="yWG-sT-W55" firstAttribute="top" secondItem="6Jy-xV-h6A" secondAttribute="bottom" constant="30" id="WgI-OT-ZzX"/>
+                            <constraint firstAttribute="trailing" secondItem="0RL-Gw-S7b" secondAttribute="trailing" id="XvJ-HV-aAW"/>
+                            <constraint firstItem="yWG-sT-W55" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ZcR-6y-HRq"/>
+                            <constraint firstItem="0RL-Gw-S7b" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="dRr-Re-B3o"/>
+                            <constraint firstItem="2sh-hf-scf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="kbQ-Eg-ZXE"/>
+                            <constraint firstItem="0RL-Gw-S7b" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ngZ-Op-Qfa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6Jy-xV-h6A" secondAttribute="trailing" constant="76" id="nnh-vU-pht"/>
+                            <constraint firstItem="6Jy-xV-h6A" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-61" id="rHX-gi-sRg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yWG-sT-W55" secondAttribute="trailing" constant="20" id="ttJ-HY-FDc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2sh-hf-scf" secondAttribute="trailing" constant="20" id="wyv-2k-f3Y"/>
+                            <constraint firstItem="2sh-hf-scf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="y6f-DG-sqL"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="AppSymbol.png" width="240" height="240"/>
+        <image name="ChatGPTBI.png" width="153" height="17"/>
+        <image name="LaunchScreenBackground.png" width="393" height="852"/>
+        <image name="LaunchSreenTitle.png" width="237" height="90"/>
+    </resources>
+</document>
