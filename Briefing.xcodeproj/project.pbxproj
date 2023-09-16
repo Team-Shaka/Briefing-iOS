@@ -42,6 +42,8 @@
 		2443C5AC2A9BA10A009586C7 /* TimePickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5AB2A9BA10A009586C7 /* TimePickViewController.swift */; };
 		2443C5AE2A9BAF4B009586C7 /* ScrapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5AD2A9BAF4B009586C7 /* ScrapData.swift */; };
 		2443C5B42A9BBF99009586C7 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5B32A9BBF99009586C7 /* LaunchView.swift */; };
+		A52AF27D2AB5CA3600457E4E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF27C2AB5CA3600457E4E /* MainViewController.swift */; };
+		A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF27E2AB5D2F500457E4E /* Date+.swift */; };
 		A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */; };
 		A57C384E2AB49B9800FD0B0A /* LaunchScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */; };
 		A58E0E0A2AB4A0AB0041F19B /* ChatGPTBI.png in Resources */ = {isa = PBXBuildFile; fileRef = A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */; };
@@ -89,6 +91,8 @@
 		2443C5AD2A9BAF4B009586C7 /* ScrapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapData.swift; sourceTree = "<group>"; };
 		2443C5B32A9BBF99009586C7 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Briefing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A52AF27C2AB5CA3600457E4E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A52AF27E2AB5D2F500457E4E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppSymbol.png; sourceTree = "<group>"; };
 		A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreenBackground.png; sourceTree = "<group>"; };
 		A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatGPTBI.png; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				2443C56E2A8FECD0009586C7 /* MainTab.swift */,
 				2443C5532A8FE88B009586C7 /* AppDelegate.swift */,
 				2443C5552A8FE88B009586C7 /* SceneDelegate.swift */,
+				A52AF27C2AB5CA3600457E4E /* MainViewController.swift */,
 				2443C55C2A8FE88D009586C7 /* Assets.xcassets */,
 				2443C5612A8FE88D009586C7 /* Info.plist */,
 				A57C38472AB49AC700FD0B0A /* Resources */,
@@ -155,6 +160,7 @@
 				2443C5AD2A9BAF4B009586C7 /* ScrapData.swift */,
 				2443C5B32A9BBF99009586C7 /* LaunchView.swift */,
 				2430A94D2A9BD21A0051B454 /* UserNotification.swift */,
+				A52AF27E2AB5D2F500457E4E /* Date+.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -373,10 +379,12 @@
 				2443C5872A9379E7009586C7 /* Network.swift in Sources */,
 				2430A94E2A9BD21B0051B454 /* UserNotification.swift in Sources */,
 				2443C5AA2A9760A2009586C7 /* DateParser.swift in Sources */,
+				A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */,
 				2443C5712A8FEE37009586C7 /* BriefingTab.swift in Sources */,
 				2443C5822A935755009586C7 /* CustomDateSelectionView.swift in Sources */,
 				2443C59E2A93DA43009586C7 /* BriefingCardData.swift in Sources */,
 				2443C58E2A9398D9009586C7 /* BriefingCardCell.swift in Sources */,
+				A52AF27D2AB5CA3600457E4E /* MainViewController.swift in Sources */,
 				2443C59A2A93D8C2009586C7 /* KeywordsData.swift in Sources */,
 				2443C5802A93337F009586C7 /* CustomToggleButton.swift in Sources */,
 				2443C5AC2A9BA10A009586C7 /* TimePickViewController.swift in Sources */,

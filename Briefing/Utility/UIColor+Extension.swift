@@ -14,4 +14,7 @@ extension UIColor {
     
     static let mainGray = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1)
     static let textGray = UIColor(red: 0.712, green: 0.712, blue: 0.712, alpha: 1)
+    
+    // MARK: - New Color (v1.1)
+    static let briefingBlue: UIColor = UIColor(red: 70/255, green: 134/255, blue: 205/255, alpha: 1)
 }
