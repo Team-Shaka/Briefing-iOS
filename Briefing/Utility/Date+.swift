@@ -13,4 +13,11 @@ extension Date {
     var dayOfWeek: Int {
         Calendar.current.component(.weekday, from: self) - 1
     }
+    
+    static func date(year: Int, month: Int, day: Int) -> Date? {
+        let dateStr = "\(year)-\(month)-\(day)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.date(from: dateStr)
+    }
 }

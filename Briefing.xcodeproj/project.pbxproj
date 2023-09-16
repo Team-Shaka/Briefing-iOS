@@ -44,6 +44,8 @@
 		2443C5B42A9BBF99009586C7 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5B32A9BBF99009586C7 /* LaunchView.swift */; };
 		A52AF27D2AB5CA3600457E4E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF27C2AB5CA3600457E4E /* MainViewController.swift */; };
 		A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF27E2AB5D2F500457E4E /* Date+.swift */; };
+		A52AF2812AB5F2E000457E4E /* MainCalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2802AB5F2E000457E4E /* MainCalendarViewCell.swift */; };
+		A52AF2832AB6043600457E4E /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2822AB6043600457E4E /* UIFont+.swift */; };
 		A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */; };
 		A57C384E2AB49B9800FD0B0A /* LaunchScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */; };
 		A58E0E0A2AB4A0AB0041F19B /* ChatGPTBI.png in Resources */ = {isa = PBXBuildFile; fileRef = A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */; };
@@ -95,6 +97,8 @@
 		4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Briefing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A52AF27C2AB5CA3600457E4E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A52AF27E2AB5D2F500457E4E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		A52AF2802AB5F2E000457E4E /* MainCalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarViewCell.swift; sourceTree = "<group>"; };
+		A52AF2822AB6043600457E4E /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppSymbol.png; sourceTree = "<group>"; };
 		A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreenBackground.png; sourceTree = "<group>"; };
 		A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatGPTBI.png; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 				2443C5532A8FE88B009586C7 /* AppDelegate.swift */,
 				2443C5552A8FE88B009586C7 /* SceneDelegate.swift */,
 				A52AF27C2AB5CA3600457E4E /* MainViewController.swift */,
+				A52AF2802AB5F2E000457E4E /* MainCalendarViewCell.swift */,
 				2443C55C2A8FE88D009586C7 /* Assets.xcassets */,
 				2443C5612A8FE88D009586C7 /* Info.plist */,
 				A57C38472AB49AC700FD0B0A /* Resources */,
@@ -167,6 +172,7 @@
 				EE10B4582AB57E90002604C2 /* CustomPopUpViewController.swift */,
 				EE10B45A2AB57EEC002604C2 /* CustomPopUpViewController+Style.swift */,
 				A52AF27E2AB5D2F500457E4E /* Date+.swift */,
+				A52AF2822AB6043600457E4E /* UIFont+.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -397,10 +403,12 @@
 				2443C5542A8FE88B009586C7 /* AppDelegate.swift in Sources */,
 				2443C5A42A93F3B9009586C7 /* SettingTimePickCell.swift in Sources */,
 				2443C5962A93C3A0009586C7 /* Setting.swift in Sources */,
+				A52AF2812AB5F2E000457E4E /* MainCalendarViewCell.swift in Sources */,
 				2443C58C2A937C9C009586C7 /* BriefingCard.swift in Sources */,
 				2443C59C2A93D92C009586C7 /* NetworkResult.swift in Sources */,
 				2443C5752A8FEF57009586C7 /* BriefingTableViewCell.swift in Sources */,
 				2443C5B42A9BBF99009586C7 /* LaunchView.swift in Sources */,
+				A52AF2832AB6043600457E4E /* UIFont+.swift in Sources */,
 				2443C5A62A940EE6009586C7 /* SettingWeb.swift in Sources */,
 				2443C5562A8FE88B009586C7 /* SceneDelegate.swift in Sources */,
 				2443C5902A93A928009586C7 /* Scrapbook.swift in Sources */,
