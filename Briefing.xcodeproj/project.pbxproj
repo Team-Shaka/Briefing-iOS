@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2430A94E2A9BD21B0051B454 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2430A94D2A9BD21A0051B454 /* UserNotification.swift */; };
-		2430A9522AA722CC0051B454 /* landingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2430A9512AA722CC0051B454 /* landingScreen.png */; };
 		2443C5542A8FE88B009586C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5532A8FE88B009586C7 /* AppDelegate.swift */; };
 		2443C5562A8FE88B009586C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5552A8FE88B009586C7 /* SceneDelegate.swift */; };
 		2443C55D2A8FE88D009586C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2443C55C2A8FE88D009586C7 /* Assets.xcassets */; };
@@ -43,13 +42,16 @@
 		2443C5AC2A9BA10A009586C7 /* TimePickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5AB2A9BA10A009586C7 /* TimePickViewController.swift */; };
 		2443C5AE2A9BAF4B009586C7 /* ScrapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5AD2A9BAF4B009586C7 /* ScrapData.swift */; };
 		2443C5B42A9BBF99009586C7 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5B32A9BBF99009586C7 /* LaunchView.swift */; };
+		A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */; };
+		A57C384E2AB49B9800FD0B0A /* LaunchScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */; };
+		A58E0E0A2AB4A0AB0041F19B /* ChatGPTBI.png in Resources */ = {isa = PBXBuildFile; fileRef = A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */; };
+		A58E0E0E2AB4A3A30041F19B /* LaunchSreenTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = A58E0E0D2AB4A3A30041F19B /* LaunchSreenTitle.png */; };
 		DBB4CC6C614E20F93FD89172 /* Pods_Briefing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		026F2B92F7F7F910F5214518 /* Pods-Briefing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.debug.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.debug.xcconfig"; sourceTree = "<group>"; };
 		2430A94D2A9BD21A0051B454 /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
-		2430A9512AA722CC0051B454 /* landingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landingScreen.png; sourceTree = "<group>"; };
 		2443C5502A8FE88B009586C7 /* Briefing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Briefing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2443C5532A8FE88B009586C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2443C5552A8FE88B009586C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,10 @@
 		2443C5AD2A9BAF4B009586C7 /* ScrapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapData.swift; sourceTree = "<group>"; };
 		2443C5B32A9BBF99009586C7 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Briefing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppSymbol.png; sourceTree = "<group>"; };
+		A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreenBackground.png; sourceTree = "<group>"; };
+		A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatGPTBI.png; sourceTree = "<group>"; };
+		A58E0E0D2AB4A3A30041F19B /* LaunchSreenTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchSreenTitle.png; sourceTree = "<group>"; };
 		E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.release.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,13 +133,12 @@
 				2443C5842A9379A6009586C7 /* Views */,
 				2443C5762A925ABA009586C7 /* Fonts */,
 				2443C5672A8FEB0D009586C7 /* Utility */,
+				2443C56E2A8FECD0009586C7 /* MainTab.swift */,
 				2443C5532A8FE88B009586C7 /* AppDelegate.swift */,
 				2443C5552A8FE88B009586C7 /* SceneDelegate.swift */,
 				2443C55C2A8FE88D009586C7 /* Assets.xcassets */,
-				2443C55E2A8FE88D009586C7 /* LaunchScreen.storyboard */,
-				2430A9512AA722CC0051B454 /* landingScreen.png */,
 				2443C5612A8FE88D009586C7 /* Info.plist */,
-				2443C56E2A8FECD0009586C7 /* MainTab.swift */,
+				A57C38472AB49AC700FD0B0A /* Resources */,
 			);
 			path = Briefing;
 			sourceTree = "<group>";
@@ -220,6 +225,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A57C38472AB49AC700FD0B0A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A58E0E0D2AB4A3A30041F19B /* LaunchSreenTitle.png */,
+				A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */,
+				A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */,
+				A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */,
+				2443C55E2A8FE88D009586C7 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C557BFB202DA26D74051831E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,9 +306,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A57C384E2AB49B9800FD0B0A /* LaunchScreenBackground.png in Resources */,
+				A58E0E0E2AB4A3A30041F19B /* LaunchSreenTitle.png in Resources */,
 				2443C57D2A925B6F009586C7 /* ProductSans-Bold-Italic.ttf in Resources */,
-				2430A9522AA722CC0051B454 /* landingScreen.png in Resources */,
+				A58E0E0A2AB4A0AB0041F19B /* ChatGPTBI.png in Resources */,
 				2443C57B2A925B6F009586C7 /* ProductSans-Regular.ttf in Resources */,
+				A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */,
 				2443C5602A8FE88D009586C7 /* LaunchScreen.storyboard in Resources */,
 				2443C55D2A8FE88D009586C7 /* Assets.xcassets in Resources */,
 				2443C57C2A925B6F009586C7 /* ProductSans-Italic.ttf in Resources */,
