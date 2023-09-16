@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+extension CustomPopUpViewController {
+    class Style {
+//        init
+    }
+}
