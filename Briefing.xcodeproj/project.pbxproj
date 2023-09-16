@@ -46,6 +46,8 @@
 		A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF27E2AB5D2F500457E4E /* Date+.swift */; };
 		A52AF2812AB5F2E000457E4E /* MainCalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2802AB5F2E000457E4E /* MainCalendarViewCell.swift */; };
 		A52AF2832AB6043600457E4E /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2822AB6043600457E4E /* UIFont+.swift */; };
+		A52AF2872AB6262100457E4E /* MainBriefingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2862AB6262100457E4E /* MainBriefingViewController.swift */; };
+		A52AF2892AB6275500457E4E /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2882AB6275500457E4E /* Array+.swift */; };
 		A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */; };
 		A57C384E2AB49B9800FD0B0A /* LaunchScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */; };
 		A58E0E0A2AB4A0AB0041F19B /* ChatGPTBI.png in Resources */ = {isa = PBXBuildFile; fileRef = A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */; };
@@ -99,6 +101,8 @@
 		A52AF27E2AB5D2F500457E4E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A52AF2802AB5F2E000457E4E /* MainCalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarViewCell.swift; sourceTree = "<group>"; };
 		A52AF2822AB6043600457E4E /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		A52AF2862AB6262100457E4E /* MainBriefingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBriefingViewController.swift; sourceTree = "<group>"; };
+		A52AF2882AB6275500457E4E /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppSymbol.png; sourceTree = "<group>"; };
 		A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreenBackground.png; sourceTree = "<group>"; };
 		A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatGPTBI.png; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				2443C5552A8FE88B009586C7 /* SceneDelegate.swift */,
 				A52AF27C2AB5CA3600457E4E /* MainViewController.swift */,
 				A52AF2802AB5F2E000457E4E /* MainCalendarViewCell.swift */,
+				A52AF2862AB6262100457E4E /* MainBriefingViewController.swift */,
 				2443C55C2A8FE88D009586C7 /* Assets.xcassets */,
 				2443C5612A8FE88D009586C7 /* Info.plist */,
 				A57C38472AB49AC700FD0B0A /* Resources */,
@@ -173,6 +178,7 @@
 				EE10B45A2AB57EEC002604C2 /* CustomPopUpViewController+Style.swift */,
 				A52AF27E2AB5D2F500457E4E /* Date+.swift */,
 				A52AF2822AB6043600457E4E /* UIFont+.swift */,
+				A52AF2882AB6275500457E4E /* Array+.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -390,6 +396,7 @@
 				2443C56D2A8FEC5A009586C7 /* UIView+Extension.swift in Sources */,
 				2443C5872A9379E7009586C7 /* Network.swift in Sources */,
 				2430A94E2A9BD21B0051B454 /* UserNotification.swift in Sources */,
+				A52AF2892AB6275500457E4E /* Array+.swift in Sources */,
 				2443C5AA2A9760A2009586C7 /* DateParser.swift in Sources */,
 				A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */,
 				2443C5712A8FEE37009586C7 /* BriefingTab.swift in Sources */,
@@ -402,6 +409,7 @@
 				2443C5AC2A9BA10A009586C7 /* TimePickViewController.swift in Sources */,
 				2443C5542A8FE88B009586C7 /* AppDelegate.swift in Sources */,
 				2443C5A42A93F3B9009586C7 /* SettingTimePickCell.swift in Sources */,
+				A52AF2872AB6262100457E4E /* MainBriefingViewController.swift in Sources */,
 				2443C5962A93C3A0009586C7 /* Setting.swift in Sources */,
 				A52AF2812AB5F2E000457E4E /* MainCalendarViewCell.swift in Sources */,
 				2443C58C2A937C9C009586C7 /* BriefingCard.swift in Sources */,
