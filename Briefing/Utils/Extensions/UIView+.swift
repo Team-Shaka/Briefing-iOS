@@ -1,5 +1,5 @@
 //
-//  UIView+Extension.swift
+//  UIView+.swift
 //  Briefing
 //
 //  Created by BoMin on 2023/08/19.

@@ -108,6 +108,8 @@ extension SettingTimePickCell: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
+
+        
         
         if (hours[row] == 12) {
             pickerLabel.text = "오후 \(hours[row])시"
