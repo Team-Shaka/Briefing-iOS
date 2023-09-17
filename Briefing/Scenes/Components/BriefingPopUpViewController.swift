@@ -1,5 +1,5 @@
 //
-//  CustomPopUpViewController.swift
+//  BriefingPopUpViewController.swift
 //  Briefing
 //
 //  Created by BoMin Lee on 2023/09/16.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class CustomPopUpViewController: UIViewController {
-    var style: CustomPopUpViewController.Style
+class BriefingPopUpViewController: UIViewController {
+    var style: BriefingPopUpViewController.Style
     
     private var mainContainer: UIView = {
         let view = UIView()
@@ -57,7 +57,7 @@ class CustomPopUpViewController: UIViewController {
     }
     
     private func addSubviews() {
-        self.view.addSubviews(<#T##views: UIView...##UIView#>)
+        // self.view.addSubviews(UIView)
     }
     
     private func makeConstraint() {

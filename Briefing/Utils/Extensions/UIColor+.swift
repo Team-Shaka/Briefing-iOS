@@ -1,5 +1,5 @@
 //
-//  UIColor+Extension.swift
+//  UIColor+.swift
 //  Briefing
 //
 //  Created by BoMin on 2023/08/19.
@@ -19,4 +19,8 @@ extension UIColor {
     
     // MARK: - New Color (v1.1)
     static let briefingBlue: UIColor = UIColor(red: 70/255, green: 134/255, blue: 205/255, alpha: 1)
+    static let briefingNavy: UIColor = UIColor(red: 19/255, green: 77/255, blue: 128/255, alpha: 1)
+    static let briefingWhite: UIColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+    static let briefingLightBlue: UIColor = #colorLiteral(red: 0.6411961317, green: 0.7200552821, blue: 0.8509947658, alpha: 1) // <- #colorLiteral()
+    
 }
