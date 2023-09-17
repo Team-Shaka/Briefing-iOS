@@ -14,8 +14,7 @@ class BriefingPopUpViewController: UIViewController {
     var popUpDescription: String
     var cancelButtonText: String
     var confirmButtonText: String
-    
-    var style: BriefingPopUpViewController.Style
+    var style: Style
     
     private var mainContainerView: UIView = {
         let view = UIView()
@@ -68,6 +67,8 @@ class BriefingPopUpViewController: UIViewController {
         return button
     }()
     
+    
+    
     private var confirmButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .secondBlue
@@ -94,14 +95,21 @@ class BriefingPopUpViewController: UIViewController {
     init(title: String,
          description: String,
          buttonTitles: [String],
-         style: Style=Style()) {
-//        self.url = url
-//        self.metadata = metadata
-        self.style = style
+         style: Style) {
         self.popUpTitle = title
         self.popUpDescription = description
-        self.cancelButtonText = buttonTitles[0]
-        self.confirmButtonText = buttonTitles[1]
+        
+        if style == .normal {
+            self.cancelButtonText = buttonTitles[0]
+            self.confirmButtonText = buttonTitles[0]
+        }
+        
+        else {
+            self.cancelButtonText = buttonTitles[0]
+            self.confirmButtonText = buttonTitles[1]
+        }
+        
+        self.style = style
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -122,21 +130,49 @@ class BriefingPopUpViewController: UIViewController {
         self.descriptionLabel.text = self.popUpDescription
         self.cancelButton.setTitle(self.cancelButtonText, for: .normal)
         self.confirmButton.setTitle(self.confirmButtonText, for: .normal)
+        
+        // style에 따라 분리
+        if (self.style == .normal) {
+            self.mainContainerView.addSubviews(cancelButton)
+        }
+        
+        else {
+            self.mainContainerView.addSubviews(buttonStackView)
+            [self.cancelButton, self.confirmButton].forEach { buttonStackView.addArrangedSubview($0) }
+        }
+        
+        if (self.style == .twoButtonsDestructive) {
+            self.confirmButton.backgroundColor = .briefingRed
+        }
+        
     }
     
     private func addSubviews() {
         self.view.addSubviews(mainContainerView)
-        self.mainContainerView.addSubviews(labelStackView, buttonStackView)
+        self.mainContainerView.addSubviews(labelStackView)
+        self.mainContainerView.addSubviews(buttonStackView)
         
         [self.titleLabel, self.descriptionLabel].forEach { labelStackView.addArrangedSubview($0) }
-        [self.cancelButton, self.confirmButton].forEach { buttonStackView.addArrangedSubview($0) }
+        
+        // style에 따라 분리
+        if (self.style == .normal) {
+            [self.cancelButton].forEach { buttonStackView.addArrangedSubview($0) }
+        }
+        
+        else if (self.style == .twoButtonsDefault) {
+            [self.cancelButton, self.confirmButton].forEach { buttonStackView.addArrangedSubview($0) }
+        }
+        
+        else if (self.style == .twoButtonsDestructive) {
+            [self.cancelButton, self.confirmButton].forEach { buttonStackView.addArrangedSubview($0) }
+        }
+        
     }
     
     private func makeConstraint() {
         mainContainerView.snp.makeConstraints{ make in
             make.centerX.centerY.equalToSuperview()
             make.width.equalTo(307)
-//            make.height.equalTo(185)
         }
         
         labelStackView.snp.makeConstraints{ make in
@@ -147,13 +183,11 @@ class BriefingPopUpViewController: UIViewController {
         }
 
         titleLabel.snp.makeConstraints{ make in
-//            make.centerX.equalToSuperview()
         }
         
         descriptionLabel.snp.makeConstraints{ make in
-//            make.leading.equalToSuperview().offset(24)
-//            make.trailing.equalToSuperview().inset(24)
         }
+        
         
         buttonStackView.snp.makeConstraints{ make in
             make.centerX.equalToSuperview()
@@ -161,14 +195,22 @@ class BriefingPopUpViewController: UIViewController {
             make.bottom.lessThanOrEqualToSuperview().inset(16)
         }
         
-        cancelButton.snp.makeConstraints{ make in
-//            make.top.equalTo(self.descriptionLabel).offset(22)
-            make.width.equalTo(125)
-            make.height.equalTo(45)
+        // style에 따라 분리
+        if self.style == .normal {
+            cancelButton.snp.makeConstraints{ make in
+                make.width.equalTo(265)
+                make.height.equalTo(45)
+            }
+        }
+        
+        else {
+            cancelButton.snp.makeConstraints{ make in
+                make.width.equalTo(125)
+                make.height.equalTo(45)
+            }
         }
         
         confirmButton.snp.makeConstraints{ make in
-//            make.top.equalTo(self.cancelButton)
             make.width.equalTo(125)
             make.height.equalTo(45)
         }
@@ -181,5 +223,15 @@ class BriefingPopUpViewController: UIViewController {
         }
     }
     
+}
+
+extension BriefingPopUpViewController {
+    enum Style: String {
+        // button 1개인 경우
+        case normal
+        // button 2개인 경우
+        case twoButtonsDefault
+        case twoButtonsDestructive
+    }
 }
 
