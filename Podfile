@@ -8,5 +8,5 @@ target 'Briefing' do
   # Pods for Briefing
   pod 'SnapKit', '~> 5.0.0'
   pod 'Alamofire', '~> 5.0.0'
-
+  pod 'FSCalendar', '~> 2.8.4'
 end
