@@ -16,6 +16,8 @@ class BriefingPopUpViewController: UIViewController {
     var confirmButtonText: String
     var style: Style
     
+    weak var delegate: BriefingPopUpDelegate?
+    
     private var mainContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -235,3 +237,7 @@ extension BriefingPopUpViewController {
     }
 }
 
+protocol BriefingPopUpDelegate: AnyObject {
+    func cancelButtonTapped()
+    func confirmButtonTapped()
+}
