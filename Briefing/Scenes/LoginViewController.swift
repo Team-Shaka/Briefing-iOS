@@ -10,14 +10,9 @@ import SnapKit
 
 class LoginViewController: UIViewController {
     
-    var briefingText: String = "Briefing"
-    var descriptionText: String = "Your Keyword Newskeeper."
-    var appleText: String = "Log in with Apple"
-    var googleText: String = "Log in with Google"
-    var chatGPTBIImage: UIImage = #imageLiteral(resourceName: "login_chatGPTBI")
-    
     private var briefingLabel: UILabel = {
         let label = UILabel()
+        label.text = "Briefing"
         label.backgroundColor = .clear
         label.textColor = .white
         label.textAlignment = .center
@@ -28,6 +23,7 @@ class LoginViewController: UIViewController {
     
     private var descriptionLabel: UILabel = {
         let label = UILabel()
+        label.text = "Your Keyword Newskeeper."
         label.backgroundColor = .clear
         label.textColor = .white
         label.textAlignment = .center
@@ -39,6 +35,7 @@ class LoginViewController: UIViewController {
     private var chatGPTImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.image = #imageLiteral(resourceName: "login_chatGPTBI")
         
         return imageView
     }()
@@ -56,8 +53,9 @@ class LoginViewController: UIViewController {
     private var appleLoginButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
+        button.setTitle("Log in with Apple", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.textAlignment = .left
         button.titleLabel?.font = .productSans(size: 15, weight: .bold)
         button.clipsToBounds = true
         button.layer.cornerRadius = 25
@@ -68,6 +66,7 @@ class LoginViewController: UIViewController {
     private var appleImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.image = #imageLiteral(resourceName: "login_apple")
         
         return imageView
     }()
@@ -75,9 +74,9 @@ class LoginViewController: UIViewController {
     private var googleLoginButon: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
-        //MARK: ToDo : Add Color to UIColor+
-        button.setTitleColor(UIColor(red: 124 / 255, green: 124 / 255, blue: 124 / 255, alpha: 1), for: .normal)
-        button.titleLabel?.textAlignment = .center
+        button.setTitle("Log in with Google", for: .normal)
+        button.setTitleColor(.googleGray, for: .normal)
+        button.titleLabel?.textAlignment = .left
         button.titleLabel?.font = .productSans(size: 15, weight: .bold)
         button.clipsToBounds = true
         button.layer.cornerRadius = 25
@@ -88,6 +87,7 @@ class LoginViewController: UIViewController {
     private var googleImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.image = #imageLiteral(resourceName: "login_google")
         
         return imageView
     }()
@@ -100,16 +100,7 @@ class LoginViewController: UIViewController {
     }
     
     private func configure() {
-        //MARK: ToDo : Add Color to UIColor+
-        self.view.setGradient(color1: .briefingBlue, color2: UIColor(red: 48/255, green: 109/255, blue: 171/255, alpha: 1))
-        
-        
-        self.briefingLabel.text = self.briefingText
-        self.descriptionLabel.text = self.descriptionText
-        self.chatGPTImageView.image = self.chatGPTBIImage
-        
-        self.appleLoginButton.setTitle(self.appleText, for: .normal)
-        self.googleLoginButon.setTitle(self.googleText, for: .normal)
+        self.view.setGradient(color1: .briefingBlue, color2: .briefingDarkBlue)
     }
     
     private func addSubviews() {
@@ -148,9 +139,19 @@ class LoginViewController: UIViewController {
             make.height.equalTo(50)
         }
         
+        appleImageView.snp.makeConstraints{ make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(self.appleLoginButton.snp.leading).offset(72)
+        }
+        
         googleLoginButon.snp.makeConstraints{ make in
             make.width.equalTo(322)
             make.height.equalTo(50)
+        }
+        
+        googleImageView.snp.makeConstraints{ make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(self.googleLoginButon.snp.leading).offset(68)
         }
     }
 }
