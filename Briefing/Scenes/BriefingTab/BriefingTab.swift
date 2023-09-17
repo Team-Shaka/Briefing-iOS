@@ -25,9 +25,9 @@ class BriefingTab: UIViewController {
     let label_descrip = UILabel()
     let label_today = UILabel()
     
-    var dateSelectionView = CustomDateSelectionView(dates: getLastWeekDates())
+    var dateSelectionView = BriefingDateSelectionView(dates: getLastWeekDates())
     
-    let button_toggle = CustomToggleButton(onTitle: "Korea", offTitle: "Global")
+    let button_toggle = BriefingToggleButton(onTitle: "Korea", offTitle: "Global")
     
     let activityIndicator = UIActivityIndicatorView(style: .large)
     
@@ -43,7 +43,7 @@ class BriefingTab: UIViewController {
         self.view.setGradient(color1: .secondBlue, color2: .mainBlue)
         
         if isBefore3AM() {
-            dateSelectionView = CustomDateSelectionView(dates: getLastWeekDatesFromYesterday())
+            dateSelectionView = BriefingDateSelectionView(dates: getLastWeekDatesFromYesterday())
         }
         
         
@@ -370,8 +370,8 @@ extension BriefingTab: BriefingTableViewCellDelegate {
     }
 }
 
-extension BriefingTab: CustomDateSelectionViewDelegate {
-    func dateSelectionView(_ view: CustomDateSelectionView, didSelectDateAtIndex index: Int) {
+extension BriefingTab: BriefingDateSelectionViewDelegate {
+    func dateSelectionView(_ view: BriefingDateSelectionView, didSelectDateAtIndex index: Int) {
 //        pickBarView.blinkBackgroundColor(color: .clear, duration: 0.4)
 //        self.label_today.text = getDateBeforeDaysinKor(6-index)
         
@@ -396,7 +396,7 @@ extension BriefingTab: CustomDateSelectionViewDelegate {
     }
 }
 
-extension BriefingTab: CustomToggleButtonDelegate {
+extension BriefingTab: BriefingToggleButtonDelegate {
     func didToggle(isOn: Bool) {
 //        if isOn {
 //            getKeywordsDataGlobal(date: currentDateToYMD())

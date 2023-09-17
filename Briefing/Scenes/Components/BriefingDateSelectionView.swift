@@ -1,5 +1,5 @@
 //
-//  CustomDateSelectionView.swift
+//  BriefingDateSelectionView.swift
 //  Briefing
 //
 //  Created by BoMin on 2023/08/21.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class CustomDateSelectionView: UIView {
-    weak var delegate: CustomDateSelectionViewDelegate?
+class BriefingDateSelectionView: UIView {
+    weak var delegate: BriefingDateSelectionViewDelegate?
     
     private var isInitialPositionSet = false
     private var dateLabels: [UILabel] = []
@@ -139,8 +139,8 @@ class CustomDateSelectionView: UIView {
     }
 }
 
-protocol CustomDateSelectionViewDelegate: AnyObject {
-    func dateSelectionView(_ view: CustomDateSelectionView, didSelectDateAtIndex index: Int)
+protocol BriefingDateSelectionViewDelegate: AnyObject {
+    func dateSelectionView(_ view: BriefingDateSelectionView, didSelectDateAtIndex index: Int)
 }
 
 
