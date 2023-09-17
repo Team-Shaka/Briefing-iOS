@@ -263,7 +263,6 @@
 				2443C57F2A93337F009586C7 /* BriefingToggleButton.swift */,
 				2443C5812A935755009586C7 /* BriefingDateSelectionView.swift */,
 				EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */,
-				EE10B45A2AB57EEC002604C2 /* BriefingPopUpViewController+Style.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -456,7 +455,6 @@
 				2443C56B2A8FEC21009586C7 /* UIViewController+.swift in Sources */,
 				EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */,
 				2443C5A82A9412D1009586C7 /* ChatScrap.swift in Sources */,
-				EE10B45B2AB57EEC002604C2 /* BriefingPopUpViewController+Style.swift in Sources */,
 				2443C5692A8FEB1B009586C7 /* UIColor+.swift in Sources */,
 				2443C56F2A8FECD0009586C7 /* MainTab.swift in Sources */,
 				2443C5922A93AB24009586C7 /* ScrapSectionCell.swift in Sources */,
