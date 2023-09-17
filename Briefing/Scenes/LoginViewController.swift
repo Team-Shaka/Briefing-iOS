@@ -76,7 +76,7 @@ class LoginViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .white
         //MARK: ToDo : Add Color to UIColor+
-        button.setTitleColor(UIColor(red: 124 / 255, green: 124 / 255, blue: 124 / 255, alpha: 1), for: .normal)
+        button.setTitleColor(.googleGray, for: .normal)
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = .productSans(size: 15, weight: .bold)
         button.clipsToBounds = true
@@ -100,8 +100,7 @@ class LoginViewController: UIViewController {
     }
     
     private func configure() {
-        //MARK: ToDo : Add Color to UIColor+
-        self.view.setGradient(color1: .briefingBlue, color2: UIColor(red: 48/255, green: 109/255, blue: 171/255, alpha: 1))
+        self.view.setGradient(color1: .briefingBlue, color2: .briefingDarkBlue)
         
         
         self.briefingLabel.text = self.briefingText
