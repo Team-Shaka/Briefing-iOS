@@ -1,5 +1,5 @@
 //
-//  CustomToggleButton.swift
+//  BriefingToggleButton.swift
 //  Briefing
 //
 //  Created by BoMin on 2023/08/21.
@@ -7,9 +7,9 @@
 
 //import UIKit
 //
-//class CustomToggleButton: UIControl {
+//class BriefingToggleButton: UIControl {
 //
-//    var delegate: CustomToggleButtonDelegate?
+//    var delegate: BriefingToggleButtonDelegate?
 //
 //    var isOn: Bool = false {
 //        didSet {
@@ -99,15 +99,15 @@
 //    }
 //}
 //
-//protocol CustomToggleButtonDelegate: AnyObject {
+//protocol BriefingToggleButtonDelegate: AnyObject {
 //    func didToggle(isOn: Bool)
 //}
 
 import UIKit
 
-class CustomToggleButton: UIControl {
+class BriefingToggleButton: UIControl {
     
-    var delegate: CustomToggleButtonDelegate?
+    var delegate: BriefingToggleButtonDelegate?
     
     var isOn: Bool = false {
         didSet {
@@ -233,7 +233,7 @@ class CustomToggleButton: UIControl {
     // }
 }
 
-protocol CustomToggleButtonDelegate: AnyObject {
+protocol BriefingToggleButtonDelegate: AnyObject {
     func didToggle(isOn: Bool)
 }
 
