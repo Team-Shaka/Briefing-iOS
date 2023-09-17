@@ -45,7 +45,4 @@ extension Date {
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.string(from: self)
     }
-    Date()
-        .date(byAdding: .day, value: -1)?
-        .dateToString()
 }
