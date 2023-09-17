@@ -22,6 +22,12 @@ extension Date {
         return (year: year, month: month, day: day)
     }
     
+    static func date(_ dateStr: String, dateFormat: String="yyyy-MM-dd") -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.date(from: dateStr)
+    }
+    
     static func date(year: Int, month: Int, day: Int) -> Date? {
         let dateStr = "\(year)-\(month)-\(day)"
         let dateFormatter = DateFormatter()
@@ -34,9 +40,12 @@ extension Date {
         return calendar.date(byAdding: byAdding, value: value, to: self)
     }
     
-    func dateToString(_ dateFormat: String = "yyyy.MM.dd") -> String {
+    func dateToString(_ dateFormat: String = "yyyy-MM-dd") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.string(from: self)
     }
+    Date()
+        .date(byAdding: .day, value: -1)?
+        .dateToString()
 }
