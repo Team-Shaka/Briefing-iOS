@@ -260,31 +260,3 @@ func getLastWeekDatesFromYesterday() -> [String] {
     
     return dates
 }
-
-func addOneDay(to dateString: String) -> String? {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    
-    if let date = dateFormatter.date(from: dateString) {
-        if let newDate = Calendar.current.date(byAdding: .day, value: 1, to: date) {
-            return dateFormatter.string(from: newDate)
-        }
-    }
-    
-    return nil
-}
-
-func subtractOneDay(from dateString: String) -> String? {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    
-    if let date = dateFormatter.date(from: dateString) {
-        if let newDate = Calendar.current.date(byAdding: .day, value: -1, to: date) {
-            return dateFormatter.string(from: newDate)
-        }
-    }
-    
-    return nil
-}
-
-
