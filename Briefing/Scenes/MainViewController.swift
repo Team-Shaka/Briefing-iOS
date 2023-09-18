@@ -18,7 +18,7 @@ final class MainViewController: UIViewController {
     
     private var titleLabel: UIView = {
         let label = UILabel()
-        label.text = "Briefing"
+        label.text = BriefingStringCollection.appName
         label.font = .productSans(size: 24)
         label.textColor = .briefingWhite
         return label
@@ -26,14 +26,14 @@ final class MainViewController: UIViewController {
     
     private var storageButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "storage"), for: .normal)
+        button.setImage(BriefingImageCollection.storageImage, for: .normal)
         button.contentMode = .scaleAspectFit
         return button
     }()
     
     private var settingButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "setting"), for: .normal)
+        button.setImage(BriefingImageCollection.settingImage, for: .normal)
         button.contentMode = .scaleAspectFit
         return button
     }()
@@ -80,7 +80,7 @@ final class MainViewController: UIViewController {
     
     private func configure() {
         view.backgroundColor = .briefingBlue
-        navigationItem.title = "Briefing"
+        navigationItem.title = BriefingStringCollection.appName
         navigationController?.isNavigationBarHidden = true
         
         

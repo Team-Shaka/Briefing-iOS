@@ -49,13 +49,14 @@
 		A52AF2892AB6275500457E4E /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2882AB6275500457E4E /* Array+.swift */; };
 		A5334CD92AB881E10041F5BA /* MainViewController+FSCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5334CD82AB881E10041F5BA /* MainViewController+FSCalendar.swift */; };
 		A5334CDB2AB8821C0041F5BA /* MainViewController+PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5334CDA2AB8821C0041F5BA /* MainViewController+PageViewController.swift */; };
+		A5334CDD2AB8917F0041F5BA /* BriefingStringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5334CDC2AB8917F0041F5BA /* BriefingStringCollection.swift */; };
+		A5334CE02AB892660041F5BA /* BriefingImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5334CDF2AB892660041F5BA /* BriefingImageCollection.swift */; };
 		A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */; };
 		A57C384E2AB49B9800FD0B0A /* LaunchScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */; };
 		A58E0E0A2AB4A0AB0041F19B /* ChatGPTBI.png in Resources */ = {isa = PBXBuildFile; fileRef = A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */; };
 		A58E0E0E2AB4A3A30041F19B /* LaunchSreenTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = A58E0E0D2AB4A3A30041F19B /* LaunchSreenTitle.png */; };
 		DBB4CC6C614E20F93FD89172 /* Pods_Briefing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */; };
 		EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */; };
-		EE10B45B2AB57EEC002604C2 /* BriefingPopUpViewController+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10B45A2AB57EEC002604C2 /* BriefingPopUpViewController+Style.swift */; };
 		EE7ED40B2AB6E75400FC49C9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7ED40A2AB6E75400FC49C9 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,13 +107,14 @@
 		A52AF2882AB6275500457E4E /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		A5334CD82AB881E10041F5BA /* MainViewController+FSCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+FSCalendar.swift"; sourceTree = "<group>"; };
 		A5334CDA2AB8821C0041F5BA /* MainViewController+PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+PageViewController.swift"; sourceTree = "<group>"; };
+		A5334CDC2AB8917F0041F5BA /* BriefingStringCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingStringCollection.swift; sourceTree = "<group>"; };
+		A5334CDF2AB892660041F5BA /* BriefingImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingImageCollection.swift; sourceTree = "<group>"; };
 		A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppSymbol.png; sourceTree = "<group>"; };
 		A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreenBackground.png; sourceTree = "<group>"; };
 		A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatGPTBI.png; sourceTree = "<group>"; };
 		A58E0E0D2AB4A3A30041F19B /* LaunchSreenTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchSreenTitle.png; sourceTree = "<group>"; };
 		E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.release.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.release.xcconfig"; sourceTree = "<group>"; };
 		EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingPopUpViewController.swift; sourceTree = "<group>"; };
-		EE10B45A2AB57EEC002604C2 /* BriefingPopUpViewController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BriefingPopUpViewController+Style.swift"; sourceTree = "<group>"; };
 		EE7ED40A2AB6E75400FC49C9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +163,7 @@
 		2443C5672A8FEB0D009586C7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A5334CDE2AB892560041F5BA /* BriefingCollections */,
 				2430A94D2A9BD21A0051B454 /* UserNotification.swift */,
 				2443C5A92A9760A2009586C7 /* DateParser.swift */,
 				A51DC4932AB6B5530055928C /* Extensions */,
@@ -292,6 +295,15 @@
 				A5334CDA2AB8821C0041F5BA /* MainViewController+PageViewController.swift */,
 			);
 			path = MainViewControllerDelegates;
+			sourceTree = "<group>";
+		};
+		A5334CDE2AB892560041F5BA /* BriefingCollections */ = {
+			isa = PBXGroup;
+			children = (
+				A5334CDC2AB8917F0041F5BA /* BriefingStringCollection.swift */,
+				A5334CDF2AB892660041F5BA /* BriefingImageCollection.swift */,
+			);
+			path = BriefingCollections;
 			sourceTree = "<group>";
 		};
 		A57C38472AB49AC700FD0B0A /* Resources */ = {
@@ -444,6 +456,7 @@
 				A52AF2892AB6275500457E4E /* Array+.swift in Sources */,
 				2443C5AA2A9760A2009586C7 /* DateParser.swift in Sources */,
 				A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */,
+				A5334CDD2AB8917F0041F5BA /* BriefingStringCollection.swift in Sources */,
 				2443C5712A8FEE37009586C7 /* BriefingTab.swift in Sources */,
 				2443C5822A935755009586C7 /* BriefingDateSelectionView.swift in Sources */,
 				2443C59E2A93DA43009586C7 /* BriefingCardData.swift in Sources */,
@@ -473,6 +486,7 @@
 				A5334CD92AB881E10041F5BA /* MainViewController+FSCalendar.swift in Sources */,
 				2443C56F2A8FECD0009586C7 /* MainTab.swift in Sources */,
 				A5334CDB2AB8821C0041F5BA /* MainViewController+PageViewController.swift in Sources */,
+				A5334CE02AB892660041F5BA /* BriefingImageCollection.swift in Sources */,
 				2443C5922A93AB24009586C7 /* ScrapSectionCell.swift in Sources */,
 				2443C5942A93ABFF009586C7 /* ScrapDetailCell.swift in Sources */,
 			);

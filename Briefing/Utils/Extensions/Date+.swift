@@ -50,8 +50,10 @@ extension Date {
         return calendar.date(byAdding: byAdding, value: value, to: self)
     }
 
-    func dateToString(_ dateFormat: String = "yyyy-MM-dd") -> String {
+    func dateToString(_ dateFormat: String = "yyyy-MM-dd",
+                      localeIdentifier: String = "ko_KR") -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: localeIdentifier)
         dateFormatter.timeZone = .current
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.string(from: self)

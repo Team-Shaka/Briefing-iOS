@@ -80,7 +80,7 @@ class MainCalendarCell: FSCalendarCell {
     func setDate(_ date: Date) {
         self.date = date
         self.dayOfWeekLabel.text = date.formatted(Date.FormatStyle()
-            .locale(.init(identifier: "en-US"))
+            .locale(.init(identifier: BriefingStringCollection.Locale.en))
             .weekday(.abbreviated))
         if let day = self.calendar?.gregorian.component(.day, from: date) {
             self.dayLabel.text = "\(day)"
@@ -94,7 +94,6 @@ class MainCalendarCell: FSCalendarCell {
             guard let self = self else { return }
             if self.isSelected {
                 self.selectedConfigure()
-                print("celllll \(date)")
             } else {
                 self.deselectedConfigure()
             }
