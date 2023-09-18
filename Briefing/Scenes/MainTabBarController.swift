@@ -16,10 +16,11 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        tabBarController?.tabBar.isHidden = false
-        setView()
+        setTabBarItemViewControllers()
+        configure()
     }
     
-    private func setView() {
+    private func setTabBarItemViewControllers(){
         let viewControllers = tabBarItemViewControllers.enumerated().compactMap { idx, tabBarItemViewController in
             let tabBarItem =  UITabBarItem(title: nil,
                                            image: tabBarItemViewController.tabBarIcon,
@@ -30,6 +31,9 @@ class MainTabBarController: UITabBarController {
         }
         
         self.viewControllers = viewControllers
+    }
+    
+    private func configure() {
         self.selectedIndex = 0
         self.tabBar.backgroundColor = .mainGray
         self.tabBar.tintColor = .mainBlue
