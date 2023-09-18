@@ -54,6 +54,7 @@
 		DBB4CC6C614E20F93FD89172 /* Pods_Briefing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */; };
 		EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */; };
 		EE10B45B2AB57EEC002604C2 /* BriefingPopUpViewController+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10B45A2AB57EEC002604C2 /* BriefingPopUpViewController+Style.swift */; };
+		EE7ED40B2AB6E75400FC49C9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7ED40A2AB6E75400FC49C9 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.release.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.release.xcconfig"; sourceTree = "<group>"; };
 		EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingPopUpViewController.swift; sourceTree = "<group>"; };
 		EE10B45A2AB57EEC002604C2 /* BriefingPopUpViewController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BriefingPopUpViewController+Style.swift"; sourceTree = "<group>"; };
+		EE7ED40A2AB6E75400FC49C9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 				A51DC4922AB6B4E60055928C /* Components */,
 				2443C5892A937C76009586C7 /* BriefingTab */,
 				2443C58A2A937C87009586C7 /* ChatsTab */,
+				EE7ED40A2AB6E75400FC49C9 /* LoginViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -260,7 +263,6 @@
 				2443C57F2A93337F009586C7 /* BriefingToggleButton.swift */,
 				2443C5812A935755009586C7 /* BriefingDateSelectionView.swift */,
 				EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */,
-				EE10B45A2AB57EEC002604C2 /* BriefingPopUpViewController+Style.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -445,6 +447,7 @@
 				2443C59C2A93D92C009586C7 /* NetworkResult.swift in Sources */,
 				2443C5752A8FEF57009586C7 /* BriefingTableViewCell.swift in Sources */,
 				A52AF2832AB6043600457E4E /* UIFont+.swift in Sources */,
+				EE7ED40B2AB6E75400FC49C9 /* LoginViewController.swift in Sources */,
 				2443C5A62A940EE6009586C7 /* SettingWeb.swift in Sources */,
 				2443C5562A8FE88B009586C7 /* SceneDelegate.swift in Sources */,
 				2443C5902A93A928009586C7 /* Scrapbook.swift in Sources */,
@@ -452,7 +455,6 @@
 				2443C56B2A8FEC21009586C7 /* UIViewController+.swift in Sources */,
 				EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */,
 				2443C5A82A9412D1009586C7 /* ChatScrap.swift in Sources */,
-				EE10B45B2AB57EEC002604C2 /* BriefingPopUpViewController+Style.swift in Sources */,
 				2443C5692A8FEB1B009586C7 /* UIColor+.swift in Sources */,
 				2443C56F2A8FECD0009586C7 /* MainTab.swift in Sources */,
 				2443C5922A93AB24009586C7 /* ScrapSectionCell.swift in Sources */,
