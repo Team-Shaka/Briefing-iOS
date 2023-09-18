@@ -46,8 +46,16 @@ final class MainBriefingViewController: UIViewController {
         view.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
         view.backgroundColor = .briefingWhite
         
-        briefingTitleLabel.text = "\(briefingDate.dateToString("yyyy.MM.dd")) 키워드 브리핑"
-        briefingUpdateTimeLabel.text = "Updated: 00.00.00 0AM"
+        let dateFormat = BriefingStringCollection.Format.dateDotFormat
+        let dateString = briefingDate.dateToString(dateFormat)
+        let titleLabelText = "\(dateString) \(BriefingStringCollection.keywordBriefing)"
+        briefingTitleLabel.text = titleLabelText
+        
+        let updateTimeDateFormat = BriefingStringCollection.Format.dateDetailDotFormat
+        let updateTimeString = Date().dateToString(updateTimeDateFormat,
+                                                   localeIdentifier: BriefingStringCollection.Locale.en)
+        let updateTimeLabelText = "\(BriefingStringCollection.updated): \(updateTimeString)"
+        briefingUpdateTimeLabel.text = updateTimeLabelText
     }
     
     private func addSubviews() {

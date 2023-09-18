@@ -31,6 +31,7 @@ extension MainViewController: FSCalendarDelegate,
     }
     
     func minimumDate(for calendar: FSCalendar) -> Date {
+        // MARK: - 전체 날짜 선택 가능시
         // return Date.date(year: 2000, month: 01, day: 01) ?? Date(timeIntervalSince1970: 0)
         return Date().date(byAdding: .day, value: -6) ?? Date()
     }
