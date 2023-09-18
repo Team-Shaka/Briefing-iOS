@@ -22,5 +22,9 @@ extension UIColor {
     static let briefingNavy: UIColor = UIColor(red: 19/255, green: 77/255, blue: 128/255, alpha: 1)
     static let briefingWhite: UIColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
     static let briefingLightBlue: UIColor = #colorLiteral(red: 0.6411961317, green: 0.7200552821, blue: 0.8509947658, alpha: 1) // <- #colorLiteral()
+    static let briefingRed: UIColor = #colorLiteral(red: 1, green: 0.4675375223, blue: 0.4462637901, alpha: 1)
+    static let briefingDarkBlue: UIColor = #colorLiteral(red: 0.2364489436, green: 0.5086593032, blue: 0.7275724411, alpha: 1)
+    
+    static let googleGray: UIColor = UIColor(red: 124 / 255, green: 124 / 255, blue: 124 / 255, alpha: 1)
     
 }
