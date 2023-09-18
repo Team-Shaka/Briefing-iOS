@@ -1,5 +1,5 @@
 //
-//  MainViewController+FSCalendar.swift
+//  HomeViewController+FSCalendar.swift
 //  Briefing
 //
 //  Created by 이전희 on 2023/09/18.
@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-extension MainViewController: FSCalendarDelegate,
+extension HomeViewController: FSCalendarDelegate,
                               FSCalendarDataSource,
                               FSCalendarDelegateAppearance {
     
@@ -49,9 +49,9 @@ extension MainViewController: FSCalendarDelegate,
     func calendar(_ calendar: FSCalendar,
                   cellFor date: Date,
                   at position: FSCalendarMonthPosition) -> FSCalendarCell {
-        guard let cell: MainCalendarCell = calendar.dequeueReusableCell(withIdentifier: MainCalendarCell.identifier,
+        guard let cell: HomeCalendarCell = calendar.dequeueReusableCell(withIdentifier: HomeCalendarCell.identifier,
                                                                         for: date,
-                                                                        at: position) as? MainCalendarCell else {
+                                                                        at: position) as? HomeCalendarCell else {
             return FSCalendarCell()
         }
         cell.setDate(date)

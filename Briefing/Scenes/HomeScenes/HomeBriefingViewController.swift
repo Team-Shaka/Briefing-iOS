@@ -1,5 +1,5 @@
 //
-//  MainBriefingViewController.swift
+//  HomeBriefingViewController.swift
 //  Briefing
 //
 //  Created by 이전희 on 2023/09/17.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainBriefingViewController: UIViewController {
+final class HomeBriefingViewController: UIViewController {
     var briefingDate: Date
     
     var briefingTitleLabel: UILabel = {
