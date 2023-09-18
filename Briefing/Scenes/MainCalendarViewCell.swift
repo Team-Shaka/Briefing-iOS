@@ -94,6 +94,7 @@ class MainCalendarCell: FSCalendarCell {
             guard let self = self else { return }
             if self.isSelected {
                 self.selectedConfigure()
+                print("celllll \(date)")
             } else {
                 self.deselectedConfigure()
             }

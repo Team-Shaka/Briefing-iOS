@@ -9,7 +9,7 @@ import UIKit
 import FSCalendar
 
 final class MainViewController: UIViewController {
-    var selectedDate = Date()
+    var selectedDate = Date().midnight
     
     private var navigationView: UIView = {
         let view = UIView()
@@ -44,8 +44,9 @@ final class MainViewController: UIViewController {
         return view
     }()
     
-    private lazy var calendarView: FSCalendar = {
+    lazy var calendarView: FSCalendar = {
         let calendarView = FSCalendar()
+        calendarView.locale = .current
         calendarView.scope = .week
         calendarView.headerHeight = .zero
         calendarView.weekdayHeight = .zero
@@ -55,6 +56,7 @@ final class MainViewController: UIViewController {
         calendarView.select(selectedDate)
         calendarView.today = nil
         calendarView.appearance.selectionColor = .clear
+        calendarView.allowsMultipleSelection = false
         
         calendarView.firstWeekday = UInt((7 + Date().dayOfWeek - 5)%7)
         // MARK: - 전체 날짜 선택 가능시 true
@@ -67,19 +69,6 @@ final class MainViewController: UIViewController {
                                                       navigationOrientation: .horizontal)
         
         return pageViewController
-    }()
-    
-    private var briefingViewControllers: [UIViewController] = {
-        let today = Date()
-        return [
-            MainBriefingViewController(briefingDate: today.date(byAdding: .day, value: -6) ?? today),
-            MainBriefingViewController(briefingDate: today.date(byAdding: .day, value: -5) ?? today),
-            MainBriefingViewController(briefingDate: today.date(byAdding: .day, value: -4) ?? today),
-            MainBriefingViewController(briefingDate: today.date(byAdding: .day, value: -3) ?? today),
-            MainBriefingViewController(briefingDate: today.date(byAdding: .day, value: -2) ?? today),
-            MainBriefingViewController(briefingDate: today.date(byAdding: .day, value: -1) ?? today),
-            MainBriefingViewController(briefingDate: today)
-        ]
     }()
     
     override func viewDidLoad() {
@@ -103,11 +92,9 @@ final class MainViewController: UIViewController {
         pageViewController.delegate = self
         pageViewController.dataSource = self
         addChild(pageViewController)
-        if let currentBriefingViewController = briefingViewControllers.last {
-            pageViewController.setViewControllers([currentBriefingViewController],
-                                                  direction: .forward,
-                                                  animated: true)
-        }
+        pageViewController.setViewControllers([MainBriefingViewController(briefingDate: selectedDate)],
+                                              direction: .forward,
+                                              animated: true)
     }
     
     private func addSubviews() {
@@ -177,101 +164,20 @@ final class MainViewController: UIViewController {
     
     // FIXME: - PageViewController & Calendar Sync
     func changeSelectedDateAction(_ date: Date) {
-        selectedDate = date
-        if calendarView.selectedDate != selectedDate {
+        self.selectedDate = date
+        if let prevSelectedDate = calendarView.selectedDate,
+           prevSelectedDate != date {
+            calendarView.cell(for: prevSelectedDate, at: .current)?.isSelected = false
             calendarView.select(selectedDate)
         }
-        if let viewController = pageViewController.viewControllers?.first,
-           let breifingViewController = viewController as? MainBriefingViewController {
-            
-            if breifingViewController.briefingDate != selectedDate,
-               let currentBreifingViewController = briefingViewControllers.filter({ vc in
-                   print(vc, selectedDate)
-                   return (vc as? MainBriefingViewController)?.briefingDate == selectedDate
-               }).first {
-                let direction: UIPageViewController.NavigationDirection = breifingViewController.briefingDate > selectedDate ? .reverse : .forward
-                pageViewController.setViewControllers([currentBreifingViewController],
+        if let prevSelectedViewDate = (pageViewController.viewControllers?.first
+                               as? MainBriefingViewController)?.briefingDate {
+            let direction: UIPageViewController.NavigationDirection = date > prevSelectedViewDate ? .forward : .reverse
+            if prevSelectedViewDate != date {
+                pageViewController.setViewControllers([MainBriefingViewController(briefingDate: date)],
                                                       direction: direction,
                                                       animated: true)
             }
         }
-    }
-}
-
-extension MainViewController: FSCalendarDelegate,
-                              FSCalendarDataSource,
-                              FSCalendarDelegateAppearance {
-    
-    func calendar(_ calendar: FSCalendar,
-                  didSelect date: Date,
-                  at monthPosition: FSCalendarMonthPosition) {
-        // MARK: - 전체 날짜 선택 가능시 calendarScrollDateToCenter
-        // calendarScrollDateToCenter(calendar, selectedDate: date)
-        changeSelectedDateAction(date)
-    }
-    
-    func calendarScrollDateToCenter(_ calendar: FSCalendar,
-                                    selectedDate: Date) {
-        guard let indexPath = calendar.collectionView.indexPathsForSelectedItems?.first else { return }
-        let numOfDays = (indexPath.section * 7 + indexPath.row - 3)
-        let section = Int(numOfDays / 7)
-        let row = Int(numOfDays % 7)
-        let newIndexPath = IndexPath(row: row, section: section)
-        calendar.collectionView.scrollToItem(at: newIndexPath, at: .left, animated: true)
-    }
-    
-    func minimumDate(for calendar: FSCalendar) -> Date {
-        return Date.date(year: 2000, month: 01, day: 01) ?? Date(timeIntervalSince1970: 0)
-    }
-    
-    func maximumDate(for calendar: FSCalendar) -> Date {
-        return Date()
-    }
-    
-    func calendar(_ calendar: FSCalendar,
-                  shouldDeselect date: Date,
-                  at monthPosition: FSCalendarMonthPosition) -> Bool {
-        return false
-    }
-    
-    func calendar(_ calendar: FSCalendar,
-                  cellFor date: Date,
-                  at position: FSCalendarMonthPosition) -> FSCalendarCell {
-        guard let cell: MainCalendarCell = calendar.dequeueReusableCell(withIdentifier: MainCalendarCell.identifier,
-                                                                        for: date,
-                                                                        at: position) as? MainCalendarCell else {
-            return FSCalendarCell()
-        }
-        cell.setDate(date)
-        cell.isUserInteractionEnabled = true
-        return cell
-    }
-}
-
-extension MainViewController: UIPageViewControllerDelegate,
-                              UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let index = briefingViewControllers.firstIndex(of: viewController),
-              let viewController = briefingViewControllers[safe: index - 1] else { return nil }
-        return viewController
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let index = briefingViewControllers.firstIndex(of: viewController),
-              let viewController = briefingViewControllers[safe: index - 1] else { return nil }
-        return viewController
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            didFinishAnimating finished: Bool,
-                            previousViewControllers: [UIViewController],
-                            transitionCompleted completed: Bool) {
-        guard let selectdBriefingViewController = pageViewController.viewControllers?.first
-                as? MainBriefingViewController else {
-            return
-        }
-        self.changeSelectedDateAction(selectdBriefingViewController.briefingDate)
     }
 }

@@ -46,7 +46,7 @@ final class MainBriefingViewController: UIViewController {
         view.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
         view.backgroundColor = .briefingWhite
         
-        briefingTitleLabel.text = "\(briefingDate.dateToString()) 키워드 브리핑"
+        briefingTitleLabel.text = "\(briefingDate.dateToString("yyyy.MM.dd")) 키워드 브리핑"
         briefingUpdateTimeLabel.text = "Updated: 00.00.00 0AM"
     }
     
