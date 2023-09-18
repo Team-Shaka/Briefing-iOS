@@ -1,5 +1,5 @@
 //
-//  MainViewController+PageViewController.swift
+//  HomeViewController+PageViewController.swift
 //  Briefing
 //
 //  Created by 이전희 on 2023/09/18.
@@ -7,26 +7,26 @@
 
 import UIKit
 
-extension MainViewController: UIPageViewControllerDelegate,
+extension HomeViewController: UIPageViewControllerDelegate,
                               UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let briefingViewController = viewController as? MainBriefingViewController,
+        guard let briefingViewController = viewController as? HomeBriefingViewController,
               let date = briefingViewController.briefingDate.date(byAdding: .day, value: -1) else {
             return nil
         }
         guard date >= calendarView.minimumDate else { return nil }
-        return MainBriefingViewController(briefingDate: date)
+        return HomeBriefingViewController(briefingDate: date)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let briefingViewController = viewController as? MainBriefingViewController,
+        guard let briefingViewController = viewController as? HomeBriefingViewController,
               let date = briefingViewController.briefingDate.date(byAdding: .day, value: 1) else {
             return nil
         }
         guard date < calendarView.maximumDate else { return nil }
-        return MainBriefingViewController(briefingDate: date)
+        return HomeBriefingViewController(briefingDate: date)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
@@ -34,7 +34,7 @@ extension MainViewController: UIPageViewControllerDelegate,
                             previousViewControllers: [UIViewController],
                             transitionCompleted completed: Bool) {
         guard let selectdBriefingViewController = pageViewController.viewControllers?.first
-                as? MainBriefingViewController else {
+                as? HomeBriefingViewController else {
             return
         }
         print(selectdBriefingViewController.briefingDate)

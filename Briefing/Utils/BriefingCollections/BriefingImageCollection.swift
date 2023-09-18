@@ -12,4 +12,8 @@ final class BriefingImageCollection {
     
     static let storageImage: UIImage = #imageLiteral(resourceName: "storage")
     static let settingImage: UIImage = #imageLiteral(resourceName: "setting")
+    static let briefingTabBarNormalIconImage: UIImage = #imageLiteral(resourceName: "briefing_normal")
+    static let briefingTabBarSelectedIconImage: UIImage = #imageLiteral(resourceName: "briefing_selected")
+    static let chatTabBarNormalIconImage: UIImage = #imageLiteral(resourceName: "chat_normal")
+    static let chatTabBarSelectedIconImage: UIImage = #imageLiteral(resourceName: "chat_selelcted")
 }

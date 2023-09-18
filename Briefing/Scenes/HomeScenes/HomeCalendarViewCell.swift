@@ -1,5 +1,5 @@
 //
-//  MainCalendarCell.swift
+//  HomeCalendarCell.swift
 //  Briefing
 //
 //  Created by 이전희 on 2023/09/16.
@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 import FSCalendar
 
-class MainCalendarCell: FSCalendarCell {
-    static let identifier: String = String(describing: MainCalendarCell.self)
+class HomeCalendarCell: FSCalendarCell {
+    static let identifier: String = String(describing: HomeCalendarCell.self)
     var date: Date = Date()
     
     var dayOfWeekLabel: UILabel = {

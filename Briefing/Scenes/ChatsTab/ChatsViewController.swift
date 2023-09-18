@@ -1,5 +1,5 @@
 //
-//  ChatsTab.swift
+//  ChatsViewController.swift
 //  Briefing
 //
 //  Created by BoMin on 2023/08/19.
@@ -8,7 +8,10 @@
 import UIKit
 import WebKit
 
-class ChatsTab: UIViewController {
+class ChatsViewController: UIViewController, TabBarItemViewController {
+    let tabBarIcon: UIImage = BriefingImageCollection.chatTabBarNormalIconImage
+    let tabBarSelectedIcon: UIImage = BriefingImageCollection.chatTabBarSelectedIconImage
+
     let layout_nav = UIView()
     let layout_chat = UIView()
     let layout_bottom = UIView()
@@ -98,7 +101,7 @@ class ChatsTab: UIViewController {
     }
 }
 
-extension ChatsTab {
+extension ChatsViewController {
     @objc func chatscrapButtonTapped() {
         print("chatscrap tapped")
         let nextVC = ChatScrap()

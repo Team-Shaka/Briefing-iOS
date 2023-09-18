@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  HomeViewController.swift
 //  Briefing
 //
 //  Created by 이전희 on 2023/09/16.
@@ -8,7 +8,9 @@
 import UIKit
 import FSCalendar
 
-final class MainViewController: UIViewController {
+final class HomeViewController: UIViewController, TabBarItemViewController {
+    let tabBarIcon: UIImage = BriefingImageCollection.briefingTabBarNormalIconImage
+    let tabBarSelectedIcon: UIImage = BriefingImageCollection.briefingTabBarSelectedIconImage
     var selectedDate = Date().midnight
     
     private var navigationView: UIView = {
@@ -86,13 +88,13 @@ final class MainViewController: UIViewController {
         
         calendarView.delegate = self
         calendarView.dataSource = self
-        calendarView.register(MainCalendarCell.self,
-                              forCellReuseIdentifier: MainCalendarCell.identifier)
+        calendarView.register(HomeCalendarCell.self,
+                              forCellReuseIdentifier: HomeCalendarCell.identifier)
         
         pageViewController.delegate = self
         pageViewController.dataSource = self
         addChild(pageViewController)
-        pageViewController.setViewControllers([MainBriefingViewController(briefingDate: selectedDate)],
+        pageViewController.setViewControllers([HomeBriefingViewController(briefingDate: selectedDate)],
                                               direction: .forward,
                                               animated: true)
     }
@@ -171,10 +173,10 @@ final class MainViewController: UIViewController {
             calendarView.select(selectedDate)
         }
         if let prevSelectedViewDate = (pageViewController.viewControllers?.first
-                               as? MainBriefingViewController)?.briefingDate {
+                               as? HomeBriefingViewController)?.briefingDate {
             let direction: UIPageViewController.NavigationDirection = date > prevSelectedViewDate ? .forward : .reverse
             if prevSelectedViewDate != date {
-                pageViewController.setViewControllers([MainBriefingViewController(briefingDate: date)],
+                pageViewController.setViewControllers([HomeBriefingViewController(briefingDate: date)],
                                                       direction: direction,
                                                       animated: true)
             }
