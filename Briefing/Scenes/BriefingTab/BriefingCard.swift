@@ -39,7 +39,7 @@ class BriefingCard: UIViewController {
         
         self.view.addSubviews(layout_nav, layout_table)
         
-        layout_table.register(BriefingCardCell.self, forCellReuseIdentifier: BriefingCardCell.cellID)
+        layout_table.register(BriefingCardCell.self, forCellReuseIdentifier: BriefingCardCell.identifier)
         layout_table.reloadData()
         
         layout_table.dataSource = self
@@ -159,7 +159,7 @@ extension BriefingCard: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: BriefingCardCell.cellID, for: indexPath) as! BriefingCardCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: BriefingCardCell.identifier, for: indexPath) as! BriefingCardCell
 
         cell.newsArray = article_titles
         

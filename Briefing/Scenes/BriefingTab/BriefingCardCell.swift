@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SnapKit
 
 class BriefingCardCell: UITableViewCell {
-    static let cellID = "BrefingCardCell"
+    static let identifier = "BrefingCardCell"
     
     let layout_main = UIView()
     
@@ -77,7 +78,7 @@ class BriefingCardCell: UITableViewCell {
         }
         
 //        label_info.text = "00.00.00 Briefing #1"
-        label_info.font = UIFont(name: "ProductSans-Regular", size: 14)
+        label_info.font = .productSans(size: 14)
         label_info.textColor = .thirdBlue
         label_info.textAlignment = .right
         
@@ -89,7 +90,7 @@ class BriefingCardCell: UITableViewCell {
         
         label_topic.textColor = .mainBlue
         label_topic.textAlignment = .left
-        label_topic.font = UIFont(name: "ProductSans-Bold", size: 30)
+        label_topic.font = .productSans(size: 30, weight: .bold)
         label_topic.numberOfLines = 1
         
         label_sub.snp.makeConstraints{ make in
@@ -99,7 +100,7 @@ class BriefingCardCell: UITableViewCell {
         
         label_sub.textColor = .mainBlue
         label_sub.textAlignment = .left
-        label_sub.font = UIFont(name: "ProductSans-Bold", size: 15)
+        label_sub.font = .productSans(size: 15, weight: .bold)
         label_sub.numberOfLines = 1
         
         label_context.snp.makeConstraints{ make in
@@ -109,10 +110,10 @@ class BriefingCardCell: UITableViewCell {
         
         label_context.textColor = .mainBlue
         label_context.textAlignment = .left
-        label_context.font = UIFont(name: "ProductSans-Regular", size: 13)
+        label_context.font = .productSans(size: 13)
         label_context.numberOfLines = 0
         label_context.lineBreakMode = .byCharWrapping
-        var paragraphStyle = NSMutableParagraphStyle()
+        let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.4
         label_context.attributedText = NSMutableAttributedString(string: "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
     
@@ -124,7 +125,7 @@ class BriefingCardCell: UITableViewCell {
         label_related.text = "관련 기사"
         label_related.textColor = .mainBlue
         label_related.textAlignment = .left
-        label_related.font = UIFont(name: "ProductSans-Bold", size: 15)
+        label_related.font = .productSans(size: 15, weight: .bold)
         label_related.numberOfLines = 1
 
         layout_main.addSubviews(layout_news1, layout_news2, layout_news3)
@@ -171,7 +172,7 @@ class BriefingCardCell: UITableViewCell {
         }
         
         label_press1.textAlignment = .left
-        label_press1.font = UIFont(name: "ProductSans-Bold", size: 13)
+        label_press1.font = .productSans(size: 13, weight: .bold)
         label_press1.textColor = .mainBlue
         label_press1.numberOfLines = 1
         label_press1.lineBreakMode = .byTruncatingTail
@@ -183,7 +184,7 @@ class BriefingCardCell: UITableViewCell {
         }
         
         label_news_title1.textAlignment = .left
-        label_news_title1.font = UIFont(name: "ProductSans-Regular", size: 15)
+        label_news_title1.font = .productSans(size: 15)
         label_news_title1.textColor = .mainBlue
         label_news_title1.numberOfLines = 1
         label_news_title1.lineBreakMode = .byTruncatingTail
@@ -205,7 +206,7 @@ class BriefingCardCell: UITableViewCell {
         }
         
         label_press2.textAlignment = .left
-        label_press2.font = UIFont(name: "ProductSans-Bold", size: 13)
+        label_press2.font = .productSans(size: 13, weight: .bold)
         label_press2.textColor = .mainBlue
         label_press2.numberOfLines = 1
         label_press2.lineBreakMode = .byTruncatingTail
@@ -217,7 +218,7 @@ class BriefingCardCell: UITableViewCell {
         }
         
         label_news_title2.textAlignment = .left
-        label_news_title2.font = UIFont(name: "ProductSans-Regular", size: 15)
+        label_news_title2.font = .productSans(size: 15)
         label_news_title2.textColor = .mainBlue
         label_news_title2.numberOfLines = 1
         label_news_title2.lineBreakMode = .byTruncatingTail
@@ -239,7 +240,7 @@ class BriefingCardCell: UITableViewCell {
         }
         
         label_press3.textAlignment = .left
-        label_press3.font = UIFont(name: "ProductSans-Bold", size: 13)
+        label_press3.font = .productSans(size: 13, weight: .bold)
         label_press3.textColor = .mainBlue
         label_press3.numberOfLines = 1
         label_press3.lineBreakMode = .byTruncatingTail
@@ -251,7 +252,7 @@ class BriefingCardCell: UITableViewCell {
         }
         
         label_news_title3.textAlignment = .left
-        label_news_title3.font = UIFont(name: "ProductSans-Regular", size: 15)
+        label_news_title3.font = .productSans(size: 15)
         label_news_title3.textColor = .mainBlue
         label_news_title3.numberOfLines = 1
         label_news_title3.lineBreakMode = .byTruncatingTail
