@@ -1,5 +1,5 @@
 //
-//  MainCalendarCell.swift
+//  HomeCalendarCell.swift
 //  Briefing
 //
 //  Created by 이전희 on 2023/09/16.
@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 import FSCalendar
 
-class MainCalendarCell: FSCalendarCell {
-    static let identifier: String = String(describing: MainCalendarCell.self)
+class HomeCalendarCell: FSCalendarCell {
+    static let identifier: String = String(describing: HomeCalendarCell.self)
     var date: Date = Date()
     
     var dayOfWeekLabel: UILabel = {
@@ -80,7 +80,7 @@ class MainCalendarCell: FSCalendarCell {
     func setDate(_ date: Date) {
         self.date = date
         self.dayOfWeekLabel.text = date.formatted(Date.FormatStyle()
-            .locale(.init(identifier: "en-US"))
+            .locale(.init(identifier: BriefingStringCollection.Locale.en))
             .weekday(.abbreviated))
         if let day = self.calendar?.gregorian.component(.day, from: date) {
             self.dayLabel.text = "\(day)"
