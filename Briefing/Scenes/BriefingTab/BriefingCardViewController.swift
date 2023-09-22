@@ -38,8 +38,16 @@ class BriefingCardViewController: UIViewController {
     }()
     
     private var cardView: UIView = {
-        let view = UIView()
+        let view = UIView()        
         return view
+    }()
+    
+    private var cardTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        
+        return tableView
     }()
     
     override func viewDidLoad() {
@@ -51,14 +59,17 @@ class BriefingCardViewController: UIViewController {
     
     private func configure() {
         self.view.backgroundColor = .briefingBlue
+        cardTableView.register(BriefingCardCell.self, forCellReuseIdentifier: BriefingCardCell.identifier)
+        cardTableView.dataSource = self
+        cardTableView.delegate = self
     }
     
     private func addSubviews() {
-        self.view.addSubviews(navigationView)
+        self.view.addSubviews(navigationView, cardView)
         
         self.navigationView.addSubviews(backButton, titleLabel, scrapButton)
         
-        
+        self.cardView.addSubviews(cardTableView)
     }
     
     private func makeConstraint() {
@@ -89,5 +100,34 @@ class BriefingCardViewController: UIViewController {
             make.width.equalTo(scrapButton.snp.height)
             make.trailing.equalTo(navigationView).inset(18)
         }
+        
+        cardView.snp.makeConstraints{ make in
+            make.top.equalTo(navigationView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.view.snp.bottom)
+        }
+        
+        cardTableView.snp.makeConstraints{ make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
+}
+
+extension BriefingCardViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: BriefingCardCell.identifier, for: indexPath) as! BriefingCardCell
+        
+        
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cardTableView.bounds.height
+    }
+    
 }
