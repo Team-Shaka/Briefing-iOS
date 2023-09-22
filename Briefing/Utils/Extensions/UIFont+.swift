@@ -15,11 +15,11 @@ extension UIFont {
         case boldItalic = "bold-Italic"
         
         var value: String {
-            self.rawValue.uppercased()
+            self.rawValue.capitalized
         }
     }
     
     static func productSans(size:CGFloat, weight: FontWeight = .regular) -> UIFont {
-        UIFont(name: "ProductSans-\(weight.value)", size: size)!
+        return UIFont(name: "ProductSans-\(weight.value)", size: size)!
     }
 }
