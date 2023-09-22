@@ -39,7 +39,7 @@ class BriefingCard: UIViewController {
         
         self.view.addSubviews(layout_nav, layout_table)
         
-        layout_table.register(BriefingCardCell.self, forCellReuseIdentifier: BriefingCardCell.cellID)
+        layout_table.register(BriefingCardCell.self, forCellReuseIdentifier: BriefingCardCell.identifier)
         layout_table.reloadData()
         
         layout_table.dataSource = self
@@ -159,48 +159,48 @@ extension BriefingCard: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: BriefingCardCell.cellID, for: indexPath) as! BriefingCardCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: BriefingCardCell.identifier, for: indexPath) as! BriefingCardCell
 
-        cell.newsArray = article_titles
-        
-        cell.controlNewsCount(news: article_titles)
-        
-        cell.label_info.text = "\(self.brief_date) Briefing #\(brief_rank)"
-        cell.label_topic.text = self.brief_title
-        cell.label_sub.text = self.brief_sub
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.4
-        
-        
-        cell.label_context.attributedText = NSMutableAttributedString(string: brief_content, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        
-        
-        cell.label_press1.text = self.article_press[0]
-        cell.label_news_title1.text = self.article_titles[0]
-
-        let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(openNews1))
-        cell.layout_news1.addGestureRecognizer(tapGesture1)
-        cell.layout_news1.isUserInteractionEnabled = true
-
-        cell.label_press2.text = self.article_press[1]
-        cell.label_news_title2.text = self.article_titles[1]
-
-        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(openNews2))
-        cell.layout_news2.addGestureRecognizer(tapGesture2)
-        cell.layout_news2.isUserInteractionEnabled = true
-
-        cell.label_press3.text = self.article_press[2]
-        cell.label_news_title3.text = self.article_titles[2]
-
-        let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(openNews3))
-        cell.layout_news3.addGestureRecognizer(tapGesture3)
-        cell.layout_news3.isUserInteractionEnabled = true
-
-        cell.snp.makeConstraints{ make in
-            make.height.equalTo(self.view.frame.height)
-            make.width.equalTo(self.view.frame.width)
-        }
+//        cell.newsArray = article_titles
+//        
+//        cell.controlNewsCount(news: article_titles)
+//        
+//        cell.label_info.text = "\(self.brief_date) Briefing #\(brief_rank)"
+//        cell.label_topic.text = self.brief_title
+//        cell.label_sub.text = self.brief_sub
+//        
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.lineHeightMultiple = 1.4
+//        
+//        
+//        cell.label_context.attributedText = NSMutableAttributedString(string: brief_content, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+//        
+//        
+//        cell.label_press1.text = self.article_press[0]
+//        cell.label_news_title1.text = self.article_titles[0]
+//
+//        let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(openNews1))
+//        cell.layout_news1.addGestureRecognizer(tapGesture1)
+//        cell.layout_news1.isUserInteractionEnabled = true
+//
+//        cell.label_press2.text = self.article_press[1]
+//        cell.label_news_title2.text = self.article_titles[1]
+//
+//        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(openNews2))
+//        cell.layout_news2.addGestureRecognizer(tapGesture2)
+//        cell.layout_news2.isUserInteractionEnabled = true
+//
+//        cell.label_press3.text = self.article_press[2]
+//        cell.label_news_title3.text = self.article_titles[2]
+//
+//        let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(openNews3))
+//        cell.layout_news3.addGestureRecognizer(tapGesture3)
+//        cell.layout_news3.isUserInteractionEnabled = true
+//
+//        cell.snp.makeConstraints{ make in
+//            make.height.equalTo(self.view.frame.height)
+//            make.width.equalTo(self.view.frame.width)
+//        }
                 
         return cell
     }
