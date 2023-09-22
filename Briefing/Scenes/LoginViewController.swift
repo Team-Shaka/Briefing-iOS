@@ -94,6 +94,7 @@ class LoginViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         configure()
         addSubviews()
         makeConstraint()
