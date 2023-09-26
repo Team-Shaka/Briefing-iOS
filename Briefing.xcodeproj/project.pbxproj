@@ -67,7 +67,6 @@
 		EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */; };
 		EE7ED40B2AB6E75400FC49C9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7ED40A2AB6E75400FC49C9 /* LoginViewController.swift */; };
 		EE7ED4642AB9641200FC49C9 /* BriefingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7ED4632AB9641200FC49C9 /* BriefingCardViewController.swift */; };
-		EE7ED4662ABD935D00FC49C9 /* brief_chat_beta.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7ED4652ABD935D00FC49C9 /* brief_chat_beta.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,7 +134,6 @@
 		EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingPopUpViewController.swift; sourceTree = "<group>"; };
 		EE7ED40A2AB6E75400FC49C9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EE7ED4632AB9641200FC49C9 /* BriefingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingCardViewController.swift; sourceTree = "<group>"; };
-		EE7ED4652ABD935D00FC49C9 /* brief_chat_beta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brief_chat_beta.png; path = ../../../../../Desktop/brief_chat_beta.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,7 +221,6 @@
 				EE7ED4632AB9641200FC49C9 /* BriefingCardViewController.swift */,
 				2443C58B2A937C9C009586C7 /* BriefingCard.swift */,
 				2443C58D2A9398D9009586C7 /* BriefingCardCell.swift */,
-				EE7ED4652ABD935D00FC49C9 /* brief_chat_beta.png */,
 				2443C58F2A93A928009586C7 /* Scrapbook.swift */,
 				2443C5912A93AB24009586C7 /* ScrapSectionCell.swift */,
 				2443C5932A93ABFF009586C7 /* ScrapDetailCell.swift */,
@@ -446,7 +443,6 @@
 				2443C57D2A925B6F009586C7 /* ProductSans-Bold-Italic.ttf in Resources */,
 				A58E0E0A2AB4A0AB0041F19B /* ChatGPTBI.png in Resources */,
 				2443C57B2A925B6F009586C7 /* ProductSans-Regular.ttf in Resources */,
-				EE7ED4662ABD935D00FC49C9 /* brief_chat_beta.png in Resources */,
 				A595F0352ABDAC09006543B2 /* url.plist in Resources */,
 				A595F0372ABDAC2D006543B2 /* url-debug.plist in Resources */,
 				A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */,

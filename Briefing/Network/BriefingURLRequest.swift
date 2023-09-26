@@ -63,7 +63,7 @@ public struct BriefingURLRequest: URLRequestConvertible {
         default: break
         }
         urlRequest.timeoutInterval = timeoutInterval
-        let appendedUrl = urlRequest.url?.appendingPathComponent(path.path, conformingTo: .url)
+        let appendedUrl = urlRequest.url?.appendingPathExtension(path.path)
         urlRequest.url = appendedUrl
         urlRequest.url?.append(queryItems: queryItem ?? [])
         return urlRequest
