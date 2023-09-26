@@ -18,11 +18,11 @@ enum BriefingNetworkError {
 extension BriefingNetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case .badRequestError: NSLocalizedString("Bad Request Error", comment: "")
-        case .forbiddenError: NSLocalizedString("Forbidden Error", comment: "")
-        case .notFoundError: NSLocalizedString("Not Found Error", comment: "")
-        case .internalServerError: NSLocalizedString("Internal Server Error", comment: "")
-        case let .networkError(statusCode): NSLocalizedString("Network Error(status code: \(statusCode)", comment: "")
+        case .badRequestError: return NSLocalizedString("Bad Request Error", comment: "")
+        case .forbiddenError: return NSLocalizedString("Forbidden Error", comment: "")
+        case .notFoundError: return NSLocalizedString("Not Found Error", comment: "")
+        case .internalServerError: return NSLocalizedString("Internal Server Error", comment: "")
+        case let .networkError(statusCode): return NSLocalizedString("Network Error(status code: \(statusCode)", comment: "")
         }
     }
 }
