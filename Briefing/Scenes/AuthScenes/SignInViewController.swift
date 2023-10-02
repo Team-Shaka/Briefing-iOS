@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  SignInViewController.swift
 //  Briefing
 //
 //  Created by BoMin Lee on 2023/09/17.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class LoginViewController: UIViewController {
+class SignInViewController: UIViewController {
     
     private var briefingLabel: UILabel = {
         let label = UILabel()
@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
         return imageView
     }()
     
-    private var loginButtonStackView: UIStackView = {
+    private var signInButtonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -50,13 +50,13 @@ class LoginViewController: UIViewController {
         return stackView
     }()
     
-    private var appleLoginButton: UIButton = {
+    private var appleSignInButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
         button.setTitle("Log in with Apple", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.textAlignment = .left
-        button.titleLabel?.font = .productSans(size: 15, weight: .bold)
+        button.titleLabel?.font = .productSans(size: 16, weight: .bold)
         button.clipsToBounds = true
         button.layer.cornerRadius = 25
         
@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
         return imageView
     }()
     
-    private var googleLoginButon: UIButton = {
+    private var googleSignInButon: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
         button.setTitle("Log in with Google", for: .normal)
@@ -105,12 +105,14 @@ class LoginViewController: UIViewController {
     }
     
     private func addSubviews() {
-        self.view.addSubviews(briefingLabel, descriptionLabel, chatGPTImageView, loginButtonStackView)
+        self.view.addSubviews(briefingLabel, descriptionLabel, chatGPTImageView, signInButtonStackView)
         
-        [self.appleLoginButton, self.googleLoginButon].forEach { loginButtonStackView.addArrangedSubview($0) }
+        [self.appleSignInButton, self.googleSignInButon].forEach { button in
+            signInButtonStackView.addArrangedSubview(button)
+        }
         
-        self.appleLoginButton.addSubviews(appleImageView)
-        self.googleLoginButon.addSubviews(googleImageView)
+        self.appleSignInButton.addSubviews(appleImageView)
+        self.googleSignInButon.addSubviews(googleImageView)
     }
     
     private func makeConstraint() {
@@ -129,30 +131,30 @@ class LoginViewController: UIViewController {
             make.top.equalTo(self.descriptionLabel.snp.bottom).offset(19)
         }
         
-        loginButtonStackView.snp.makeConstraints{ make in
+        signInButtonStackView.snp.makeConstraints{ make in
             make.centerX.equalToSuperview()
             make.top.equalTo(self.chatGPTImageView.snp.bottom).offset(self.view.bounds.height * 0.271)
             
         }
         
-        appleLoginButton.snp.makeConstraints{ make in
+        appleSignInButton.snp.makeConstraints{ make in
             make.width.equalTo(322)
             make.height.equalTo(50)
         }
         
         appleImageView.snp.makeConstraints{ make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(self.appleLoginButton.snp.leading).offset(72)
+            make.leading.equalTo(self.appleSignInButton.snp.leading).offset(72)
         }
         
-        googleLoginButon.snp.makeConstraints{ make in
+        googleSignInButon.snp.makeConstraints{ make in
             make.width.equalTo(322)
             make.height.equalTo(50)
         }
         
         googleImageView.snp.makeConstraints{ make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(self.googleLoginButon.snp.leading).offset(68)
+            make.leading.equalTo(self.googleSignInButon.snp.leading).offset(68)
         }
     }
 }
