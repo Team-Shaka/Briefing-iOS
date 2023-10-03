@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GoogleSignIn
 
 final class BriefingAuthManager {
     static let shared: BriefingAuthManager = BriefingAuthManager()
@@ -14,8 +15,20 @@ final class BriefingAuthManager {
 }
 
 extension BriefingAuthManager {
-    func googleSignIn() {
-        
+    func googleSignIn(withPresenting viewController: UIViewController) {
+        GIDSignIn.sharedInstance.signIn(withPresenting: viewController) { signInResult, error in
+            print("🍎 \(signInResult) \(error)")
+            guard error == nil else { return }
+            guard let signInResult = signInResult else { return }
+
+            signInResult.user.refreshTokensIfNeeded { user, error in
+                guard error == nil else { return }
+                guard let user = user else { return }
+
+                let idToken = user.idToken
+                print(idToken)
+            }
+        }
     }
     
     func appleSignIn() {

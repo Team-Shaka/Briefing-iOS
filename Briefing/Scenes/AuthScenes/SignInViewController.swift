@@ -9,10 +9,11 @@ import UIKit
 import SnapKit
 
 class SignInViewController: UIViewController {
+    private let authManager: BriefingAuthManager = BriefingAuthManager.shared
     
     private var briefingLabel: UILabel = {
         let label = UILabel()
-        label.text = "Briefing"
+        label.text = BriefingStringCollection.appName
         label.backgroundColor = .clear
         label.textColor = .white
         label.textAlignment = .center
@@ -23,7 +24,7 @@ class SignInViewController: UIViewController {
     
     private var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Your Keyword Newskeeper."
+        label.text = BriefingStringCollection.appDescription
         label.backgroundColor = .clear
         label.textColor = .white
         label.textAlignment = .center
@@ -50,10 +51,10 @@ class SignInViewController: UIViewController {
         return stackView
     }()
     
-    private var appleSignInButton: UIButton = {
+    private lazy var appleSignInButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
-        button.setTitle("Log in with Apple", for: .normal)
+        button.setTitle(BriefingStringCollection.Auth.signInWithApple, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.textAlignment = .left
         button.titleLabel?.font = .productSans(size: 16, weight: .bold)
@@ -71,16 +72,16 @@ class SignInViewController: UIViewController {
         return imageView
     }()
     
-    private var googleSignInButon: UIButton = {
+    private lazy var googleSignInButon: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
-        button.setTitle("Log in with Google", for: .normal)
+        button.setTitle(BriefingStringCollection.Auth.signInWithGoogle, for: .normal)
         button.setTitleColor(.googleGray, for: .normal)
         button.titleLabel?.textAlignment = .left
         button.titleLabel?.font = .productSans(size: 15, weight: .bold)
         button.clipsToBounds = true
         button.layer.cornerRadius = 25
-        
+        button.addTarget(self, action: #selector(googleSignIn), for: .touchUpInside)
         return button
     }()
     
@@ -157,4 +158,9 @@ class SignInViewController: UIViewController {
             make.leading.equalTo(self.googleSignInButon.snp.leading).offset(68)
         }
     }
+    
+    @objc func googleSignIn(){
+        authManager.googleSignIn(withPresenting: self)
+    }
 }
+
