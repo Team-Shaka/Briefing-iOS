@@ -8,6 +8,7 @@
 import UIKit
 
 final class HomeBriefingViewController: UIViewController {
+    private let networkManager = BriefingNetworkManager.shared
     var briefingDate: Date
     
     var briefingTitleLabel: UILabel = {
@@ -38,6 +39,7 @@ final class HomeBriefingViewController: UIViewController {
         configure()
         addSubviews()
         makeConstraints()
+        fetchKeywords()
     }
     
     private func configure() {
@@ -76,6 +78,15 @@ final class HomeBriefingViewController: UIViewController {
             make.top.equalTo(briefingTitleLabel.snp.bottom)
             make.leading.equalToSuperview().offset(22)
             make.trailing.lessThanOrEqualToSuperview().offset(22)
+        }
+    }
+    
+    private func fetchKeywords(){
+        print(briefingDate.dateToString())
+        networkManager.fetchKeywords(date: briefingDate,
+                                     type: .korea) { value, error in
+           
+            print(value, error)
         }
     }
     
