@@ -9,4 +9,5 @@ target 'Briefing' do
   pod 'SnapKit', '~> 5.0.0'
   pod 'Alamofire', '~> 5.0.0'
   pod 'FSCalendar', '~> 2.8.4'
+  pod 'GoogleSignIn'
 end
