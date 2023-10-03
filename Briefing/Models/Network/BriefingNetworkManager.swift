@@ -35,8 +35,9 @@ extension BriefingNetworkManager {
             completion(nil, BriefingNetworkError.wrongURLRequestError)
             return
         }
+        
         response(briefingURLRequest,
-                 type: BriefingNetworkResult<Keywords>.self,
+                 type: Keywords.self,
                  completion: completion)
     }
     
@@ -50,18 +51,29 @@ extension BriefingNetworkManager {
             return
         }
         response(briefingURLRequest,
-                 type: BriefingNetworkResult<BriefingData>.self,
+                 type: BriefingData.self,
                  completion: completion)
     }
+    
+    // func scrapBriefingCard(id: String,
+    //                        completion: @escaping (_ value: ScrapResult?, _ error: Error?) -> Void) {
+    //     let url = BriefingURLManager.url(key: .baseUrl)
+    //     guard let briefingURLRequest = BriefingURLRequest(url: url,
+    //                                                       method: .post,
+    //                                                       path: .scrap,
+    //                                                       httpBody: <#T##String?#>) else {
+    //         
+    //     }
+    // }
 }
 
 // MARK: - Networking
 private extension BriefingNetworkManager {
-    func response<D: Decodable>(_ briefingURLRequest: BriefingURLRequest,
-                                type: BriefingNetworkResult<D>.Type,
+    func response<D: Codable>(_ briefingURLRequest: BriefingURLRequest,
+                                type: D.Type,
                                 completion: @escaping (_ value: D?, _ error: Error?) -> Void) {
         AF.request(briefingURLRequest)
-            .responseDecodable(of: type) { response in
+            .responseDecodable(of: BriefingNetworkResult<D>.self) { response in
                 do {
                     if let statusCode =  response.response?.statusCode {
                         switch statusCode {

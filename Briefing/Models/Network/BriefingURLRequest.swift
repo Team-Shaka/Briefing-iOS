@@ -23,7 +23,7 @@ public struct BriefingURLRequest: URLRequestConvertible {
          httpBody: String? = nil,
          query: [QueryKey : String]? = nil,
          timeoutInterval: TimeInterval = 10) {
-        guard !path.available.contains(method) else { return nil }
+        guard path.available.contains(method) else { return nil }
         self.urlRequest = urlRequest
         self.httpMethod = method
         self.path = path
