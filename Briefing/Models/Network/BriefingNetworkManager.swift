@@ -13,36 +13,52 @@ final class BriefingNetworkManager {
     private init() { }
 }
 
+// MARK: - StringQueryValue
 extension BriefingNetworkManager {
-    func fetchKeywords(date: String,
-                       type: String,
-                       completion: @escaping (_ value: KeywordsData?, _ error: Error?) -> Void) {
+    enum KeywordsType: String {
+        case korea = "KOREA"
+        case global = "GLOBAL"
+    }
+}
+
+// MARK: - fetch Functions
+extension BriefingNetworkManager {
+    func fetchKeywords(date: Date,
+                       type: KeywordsType,
+                       completion: @escaping (_ value: Keywords?, _ error: Error?) -> Void) {
         let url = BriefingURLManager.url(key: .baseUrl)
-        let briefingURLRequest = BriefingURLRequest(url: url,
-                                                    method: .get,
-                                                    path: .keywords,
-                                                    query: [.date: date,
-                                                            .type: type])
+        guard let briefingURLRequest = BriefingURLRequest(url: url,
+                                                          method: .get,
+                                                          path: .keywords,
+                                                          query: [.date: date.dateToString(),
+                                                                  .type: type.rawValue]) else {
+            completion(nil, BriefingNetworkError.wrongURLRequestError)
+            return
+        }
         response(briefingURLRequest,
-                 type: KeywordsData.self,
+                 type: BriefingNetworkResult<Keywords>.self,
                  completion: completion)
     }
     
     func fetchBriefingCard(id: String,
-                           completion: @escaping (_ value: BriefingCardData?, _ error: Error?) -> Void) {
+                           completion: @escaping (_ value: BriefingData?, _ error: Error?) -> Void) {
         let url = BriefingURLManager.url(key: .baseUrl)
-        let briefingURLRequest = BriefingURLRequest(url: url,
-                                                    method: .get,
-                                                    path: .briefingCard(id: id))
+        guard let briefingURLRequest = BriefingURLRequest(url: url,
+                                                          method: .get,
+                                                          path: .briefingCard(id: id)) else {
+            completion(nil, BriefingNetworkError.wrongURLRequestError)
+            return
+        }
         response(briefingURLRequest,
-                 type: BriefingCardData.self,
+                 type: BriefingNetworkResult<BriefingData>.self,
                  completion: completion)
     }
 }
 
+// MARK: - Networking
 private extension BriefingNetworkManager {
     func response<D: Decodable>(_ briefingURLRequest: BriefingURLRequest,
-                                type: D.Type,
+                                type: BriefingNetworkResult<D>.Type,
                                 completion: @escaping (_ value: D?, _ error: Error?) -> Void) {
         AF.request(briefingURLRequest)
             .responseDecodable(of: type) { response in
@@ -57,7 +73,7 @@ private extension BriefingNetworkManager {
                         default: throw BriefingNetworkError.networkError(statusCode: statusCode)
                         }
                     }
-                    completion(response.value, response.error)
+                    completion(response.value?.result, response.error)
                 } catch {
                     completion(nil, error)
                 }
