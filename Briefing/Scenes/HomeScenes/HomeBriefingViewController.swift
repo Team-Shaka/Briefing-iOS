@@ -30,7 +30,7 @@ final class HomeBriefingViewController: UIViewController {
         let tableView = UITableView()
         tableView.rowHeight = 86
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
+        // tableView.allowsSelection = false
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.sectionHeaderHeight = 14
@@ -114,27 +114,32 @@ final class HomeBriefingViewController: UIViewController {
     private func fetchKeywords() {
         networkManager.fetchKeywords(date: briefingDate,
                                      type: .korea) { [weak self] value, error in
+            if let error = error {
+                self?.errorHandling(error)
+                return
+            }
             self?.keywords = value
             self?.tableViewHeaderView.layer.sublayers?.first?.frame = self?.tableViewHeaderView.bounds ?? .zero
             self?.keywordBriefingTableView.reloadData()
         }
     }
+    
+    private func errorHandling(_ error: Error) {
+        print("error: \(error)")
+    }
 }
 
 extension HomeBriefingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // return self.keywords?.briefings.count ?? 0
-        return 10
+        return self.keywords?.briefings.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeBriefingTableViewCell.identifier) as? HomeBriefingTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeBriefingTableViewCell.identifier) as? HomeBriefingTableViewCell,
+              let keywordBriefing = keywords?.briefings[safe: indexPath.row] else {
             return UITableViewCell()
         }
-        cell.updateKeywordBriefing(KeywordBriefing(id: indexPath.row,
-                                                   ranks: indexPath.row + 1,
-                                                   title: "Title \(indexPath.row)",
-                                                   subTitle: "SubTitle \(indexPath.row)"))
+        cell.updateKeywordBriefing(keywordBriefing)
         return cell
     }
     
@@ -150,7 +155,7 @@ extension HomeBriefingViewController: UITableViewDelegate, UITableViewDataSource
         return tableViewHeaderView
     }
     
-    // func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    //     return 8
-    // }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }

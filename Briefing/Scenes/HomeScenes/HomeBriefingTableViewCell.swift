@@ -54,6 +54,14 @@ class HomeBriefingTableViewCell: UITableViewCell {
         return label
     }()
     
+    private var nextIconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = BriefingImageCollection.nextIconImage
+        imageView.tintColor = .briefingNavy
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
@@ -78,7 +86,7 @@ class HomeBriefingTableViewCell: UITableViewCell {
             textContainer.addSubview(view)
         }
         
-        let subViews: [UIView] = [rankLabel, textContainer]
+        let subViews: [UIView] = [rankLabel, textContainer, nextIconImageView]
         subViews.forEach { subView in
             mainContainerView.addSubview(subView)
         }
@@ -98,11 +106,18 @@ class HomeBriefingTableViewCell: UITableViewCell {
             make.width.height.equalTo(46)
         }
         
+        nextIconImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(18)
+            make.width.height.equalTo(28)
+        }
+        
         textContainer.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(rankLabel.snp.trailing).offset(12)
             make.top.equalTo(titleLabel.snp.top)
             make.bottom.equalTo(descriptionLabel.snp.bottom)
+            make.trailing.equalTo(nextIconImageView.snp.leading).offset(12)
         }
         
         titleLabel.snp.makeConstraints{ make in
@@ -111,7 +126,7 @@ class HomeBriefingTableViewCell: UITableViewCell {
         
         descriptionLabel.snp.makeConstraints{ make in
             make.leading.trailing.equalTo(textContainer)
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
+            make.top.equalTo(titleLabel.snp.bottom)
         }
     }
     
@@ -135,5 +150,17 @@ class HomeBriefingTableViewCell: UITableViewCell {
         titleLabel.text = keywordBriefing.title
         descriptionLabel.text = keywordBriefing.subTitle
         layoutIfNeeded()
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        self.backgroundColor = .clear
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            mainContainerView.backgroundColor = .briefingLightBlue.withAlphaComponent(0.3)
+        } else {
+            mainContainerView.backgroundColor = .white
+        }
     }
 }
