@@ -54,7 +54,7 @@ class SignInViewController: UIViewController {
     private lazy var appleSignInButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
-        button.setTitle(BriefingStringCollection.Auth.signInWithApple, for: .normal)
+        button.setTitle(BriefingStringCollection.Auth.signInWithApple.localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.textAlignment = .left
         button.titleLabel?.font = .productSans(size: 16, weight: .bold)
@@ -75,7 +75,7 @@ class SignInViewController: UIViewController {
     private lazy var googleSignInButon: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
-        button.setTitle(BriefingStringCollection.Auth.signInWithGoogle, for: .normal)
+        button.setTitle(BriefingStringCollection.Auth.signInWithGoogle.localized, for: .normal)
         button.setTitleColor(.googleGray, for: .normal)
         button.titleLabel?.textAlignment = .left
         button.titleLabel?.font = .productSans(size: 15, weight: .bold)
