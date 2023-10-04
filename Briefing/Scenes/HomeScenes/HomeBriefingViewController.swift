@@ -156,6 +156,7 @@ extension HomeBriefingViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        guard let id = self.keywords?.briefings[safe: indexPath.row]?.id else { return }
+        self.navigationController?.pushViewController(BriefingCardViewController(id: id), animated: true)
     }
 }
