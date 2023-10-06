@@ -14,3 +14,12 @@
 "signInWithApple" = "Log in with Apple";
 "signInWithGoogle" = "Log in with Google";
 
+"notiTimeSetting" = "set notification time";
+"appVersionTitle" = "App Version";
+"feedbackAndInquiry" = "Feedback & Inquiry";
+"versionNote" = "Version Note";
+"termsOfService" = "Terms Of Service";
+"privacyPolicy" = "Privacy Policy";
+"caution" = "Caution";
+"signOut" = "Sign out";
+"withdrawal" = "Withdrawal";

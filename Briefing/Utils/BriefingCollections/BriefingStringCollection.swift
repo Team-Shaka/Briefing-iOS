@@ -18,12 +18,12 @@ extension EnumeratedLocalized {
 }
 
 final class BriefingStringCollection {
-    private init() { }
-    
     static let appName: String = NSLocalizedString("appName", comment: "")
+    static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
     static let appDescription: String = NSLocalizedString("appDescription", comment: "")
     static let keywordBriefing: String = NSLocalizedString("keywordBriefing", comment: "")
     static let updated: String = NSLocalizedString("updated", comment: "")
+
     
     final class Format {
         private init() { }
@@ -34,6 +34,7 @@ final class BriefingStringCollection {
     }
     
     final class Locale {
+        private init() { }
         static let ko = "ko_KR"
         static let en = "en_US"
     }
@@ -41,5 +42,17 @@ final class BriefingStringCollection {
     enum Auth: String, EnumeratedLocalized {
         case signInWithApple
         case signInWithGoogle
+    }
+    
+    enum Setting: String, EnumeratedLocalized {
+        case notiTimeSetting
+        case appVersionTitle
+        case feedbackAndInquiry
+        case versionNote
+        case termsOfService
+        case privacyPolicy
+        case caution
+        case signOut
+        case withdrawal
     }
 }

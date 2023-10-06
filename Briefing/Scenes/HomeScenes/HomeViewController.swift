@@ -28,7 +28,7 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
     
     private lazy var scrapButton: UIButton = {
         let button = UIButton()
-        button.setImage(BriefingImageCollection.storageImage, for: .normal)
+        button.setImage(BriefingImageCollection.scrapImage, for: .normal)
         button.contentMode = .scaleAspectFit
         button.addTarget(self, action: #selector(showScrapViewController), for: .touchUpInside)
         return button

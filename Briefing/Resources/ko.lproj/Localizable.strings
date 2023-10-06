@@ -13,3 +13,13 @@
 
 "signInWithApple" = "Log in with Apple";
 "signInWithGoogle" = "Log in with Google";
+
+"notiTimeSetting" = "알림 시간 설정";
+"appVersionTitle" = "앱 버전";
+"feedbackAndInquiry" = "피드백 및 문의하기";
+"versionNote" = "버전 노트";
+"termsOfService" = "이용 약관";
+"privacyPolicy" = "개인정보처리방침";
+"caution" = "유의사항";
+"signOut" = "로그아웃";
+"withdrawal" = "회원 탈퇴";
