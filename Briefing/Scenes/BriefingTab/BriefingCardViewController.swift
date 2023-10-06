@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class BriefingCardViewController: UIViewController {
+    private var id: Int
     
     private var navigationView: UIView = {
         let view = UIView()
@@ -55,6 +56,15 @@ class BriefingCardViewController: UIViewController {
         configure()
         addSubviews()
         makeConstraint()
+    }
+    
+    init(id: Int){
+        self.id = id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func configure() {

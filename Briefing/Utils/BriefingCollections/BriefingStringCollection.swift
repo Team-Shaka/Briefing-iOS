@@ -7,31 +7,52 @@
 
 import Foundation
 
+protocol EnumeratedLocalized {
+    var rawValue: String { get }
+}
+
+extension EnumeratedLocalized {
+    var localized: String {
+        NSLocalizedString(self.rawValue, comment: "")
+    }
+}
+
 final class BriefingStringCollection {
-    private init() { }
-    
-    static let appName: String = "Briefing"
-    static let appDescription: String = "Your Keyword Newskeeper."
-    static let keywordBriefing: String = "키워드 브리핑"
-    static let updated: String = "Updated"
+    static let appName: String = NSLocalizedString("appName", comment: "")
+    static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+    static let appDescription: String = NSLocalizedString("appDescription", comment: "")
+    static let keywordBriefing: String = NSLocalizedString("keywordBriefing", comment: "")
+    static let updated: String = NSLocalizedString("updated", comment: "")
+
     
     final class Format {
         private init() { }
-        static let dateDotFormat: String = "yyyy.MM.dd"
-        static let dateDashFormat: String = "yyyy-MM-dd"
-        static let dateDetailDotFormat: String = "yyyy.MM.dd hha"
-        static let dateDetailDashFormat: String = "yyyy-MM-dd hha"
+        static let dateDotFormat = "yyyy.MM.dd";
+        static let dateDashFormat = "yyyy-MM-dd";
+        static let dateDetailDotFormat = "yyyy.MM.dd hha";
+        static let dateDetailDashFormat = "yyyy-MM-dd hha";
     }
     
     final class Locale {
         private init() { }
-        static let ko: String = "ko_KR"
-        static let en: String = "en_US"
+        static let ko = "ko_KR"
+        static let en = "en_US"
     }
     
-    final class Auth {
-        private init() { }
-        static let signInWithApple: String = "Log in with Apple"
-        static let signInWithGoogle: String = "Log in with Google"
+    enum Auth: String, EnumeratedLocalized {
+        case signInWithApple
+        case signInWithGoogle
+    }
+    
+    enum Setting: String, EnumeratedLocalized {
+        case notiTimeSetting
+        case appVersionTitle
+        case feedbackAndInquiry
+        case versionNote
+        case termsOfService
+        case privacyPolicy
+        case caution
+        case signOut
+        case withdrawal
     }
 }
