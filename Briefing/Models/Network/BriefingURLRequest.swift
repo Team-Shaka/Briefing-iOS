@@ -17,12 +17,13 @@ public struct BriefingURLRequest: URLRequestConvertible {
     private let query: [String: String]?
     private let timeoutInterval: TimeInterval
     
-    init(urlRequest: URLRequest,
+    init?(urlRequest: URLRequest,
          method: HTTPMethod = .get,
          path: Path,
          httpBody: String? = nil,
          query: [QueryKey : String]? = nil,
          timeoutInterval: TimeInterval = 10) {
+        guard path.available.contains(method) else { return nil }
         self.urlRequest = urlRequest
         self.httpMethod = method
         self.path = path
@@ -31,7 +32,7 @@ public struct BriefingURLRequest: URLRequestConvertible {
         self.timeoutInterval = timeoutInterval
     }
     
-    init(url: URL,
+    init?(url: URL,
          method: HTTPMethod = .get,
          path: Path,
          httpBody: String? = nil,
@@ -63,7 +64,7 @@ public struct BriefingURLRequest: URLRequestConvertible {
         default: break
         }
         urlRequest.timeoutInterval = timeoutInterval
-        let appendedUrl = urlRequest.url?.appendingPathExtension(path.path)
+        let appendedUrl = urlRequest.url?.appending(component: path.path)
         urlRequest.url = appendedUrl
         urlRequest.url?.append(queryItems: queryItem ?? [])
         return urlRequest
@@ -81,13 +82,37 @@ extension BriefingURLRequest {
     
     // MARK: - Briefing Path Management
     enum Path {
+        case root
         case keywords
         case briefingCard(id: String)
+        case chattings(id: String?=nil)
+        case scrap
+        case deleteScrap(id: String)
+        case fetchScrap(memberId: String)
         
         var path: String {
             switch self {
+            case .root: return ""
             case .keywords: return "briefings"
-            case let.briefingCard(id): return "briefings/\(id)"
+            case let .briefingCard(id): return "briefings/\(id)"
+            case let .chattings(id):
+                guard let id = id else { return "chattings" }
+                return "chattings/\(id)"
+            case .scrap: return "scraps/briefings"
+            case let .fetchScrap(memberId): return "scraps/briefings/members\(memberId)"
+            case let .deleteScrap(id): return "scraps/\(id)"
+            }
+        }
+        
+        var available: [HTTPMethod] {
+            switch self {
+            case .root: return [.get]
+            case .keywords: return [.get, .post]
+            case .briefingCard: return [.get]
+            case .chattings: return [.get, .post]
+            case .scrap: return [.post]
+            case .fetchScrap: return [.get]
+            case .deleteScrap: return [.delete]
             }
         }
     }

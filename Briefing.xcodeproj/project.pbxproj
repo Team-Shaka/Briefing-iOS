@@ -56,6 +56,8 @@
 		A5334CDD2AB8917F0041F5BA /* BriefingStringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5334CDC2AB8917F0041F5BA /* BriefingStringCollection.swift */; };
 		A5334CE02AB892660041F5BA /* BriefingImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5334CDF2AB892660041F5BA /* BriefingImageCollection.swift */; };
 		A5334CE22AB897D20041F5BA /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5334CE12AB897D20041F5BA /* UIImage+.swift */; };
+		A54AE66D2ACD60070096CDB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A54AE66F2ACD60070096CDB4 /* Localizable.strings */; };
+		A54AE6722ACD60FE0096CDB4 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54AE6712ACD60FE0096CDB4 /* String+.swift */; };
 		A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */; };
 		A57C384E2AB49B9800FD0B0A /* LaunchScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */; };
 		A58E0E0A2AB4A0AB0041F19B /* ChatGPTBI.png in Resources */ = {isa = PBXBuildFile; fileRef = A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */; };
@@ -63,6 +65,15 @@
 		A595F0352ABDAC09006543B2 /* url.plist in Resources */ = {isa = PBXBuildFile; fileRef = A595F0342ABDAC09006543B2 /* url.plist */; };
 		A595F0372ABDAC2D006543B2 /* url-debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = A595F0362ABDAC2D006543B2 /* url-debug.plist */; };
 		A5B3A7A62AB89D4700E1E2B6 /* TabBarItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3A7A52AB89D4700E1E2B6 /* TabBarItemViewController.swift */; };
+		A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7842ACE357E0053E434 /* SettingViewController.swift */; };
+		A5C5E7872ACE36760053E434 /* SettingTableViewButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7862ACE36760053E434 /* SettingTableViewButtonCell.swift */; };
+		A5C5E7892ACE36910053E434 /* SettingTableViewDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7882ACE36910053E434 /* SettingTableViewDefaultCell.swift */; };
+		A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */; };
+		A5DA2F1A2ACBF32F00EFACB5 /* BriefingNetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */; };
+		A5DA2F1C2ACBF4CA00EFACB5 /* BriefingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */; };
+		A5DA2F1E2ACBFE2200EFACB5 /* ScrapResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F1D2ACBFE2200EFACB5 /* ScrapResult.swift */; };
+		A5DA2F202ACBFE9800EFACB5 /* Scrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F1F2ACBFE9800EFACB5 /* Scrap.swift */; };
+		A5DA2F242ACC423C00EFACB5 /* HomeBriefingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F232ACC423C00EFACB5 /* HomeBriefingTableViewCell.swift */; };
 		A5E6134F2ACADC29004ACC6A /* BriefingAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E6134E2ACADC29004ACC6A /* BriefingAuthManager.swift */; };
 		DBB4CC6C614E20F93FD89172 /* Pods_Briefing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */; };
 		EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */; };
@@ -113,6 +124,7 @@
 		A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingURLManager.swift; sourceTree = "<group>"; };
 		A51E56DE2ABE097100BD3837 /* BriefingURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingURLRequest.swift; sourceTree = "<group>"; };
 		A51E56E22ABE156C00BD3837 /* BriefingNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkError.swift; sourceTree = "<group>"; };
+		A51F631A2ACE437B00F00515 /* Briefing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Briefing.entitlements; sourceTree = "<group>"; };
 		A52AF27C2AB5CA3600457E4E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A52AF27E2AB5D2F500457E4E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A52AF2802AB5F2E000457E4E /* HomeCalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarViewCell.swift; sourceTree = "<group>"; };
@@ -124,6 +136,9 @@
 		A5334CDC2AB8917F0041F5BA /* BriefingStringCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingStringCollection.swift; sourceTree = "<group>"; };
 		A5334CDF2AB892660041F5BA /* BriefingImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingImageCollection.swift; sourceTree = "<group>"; };
 		A5334CE12AB897D20041F5BA /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		A54AE66E2ACD60070096CDB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A54AE6702ACD60240096CDB4 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A54AE6712ACD60FE0096CDB4 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppSymbol.png; sourceTree = "<group>"; };
 		A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreenBackground.png; sourceTree = "<group>"; };
 		A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatGPTBI.png; sourceTree = "<group>"; };
@@ -131,6 +146,15 @@
 		A595F0342ABDAC09006543B2 /* url.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = url.plist; sourceTree = "<group>"; };
 		A595F0362ABDAC2D006543B2 /* url-debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "url-debug.plist"; sourceTree = "<group>"; };
 		A5B3A7A52AB89D4700E1E2B6 /* TabBarItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemViewController.swift; sourceTree = "<group>"; };
+		A5C5E7842ACE357E0053E434 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		A5C5E7862ACE36760053E434 /* SettingTableViewButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewButtonCell.swift; sourceTree = "<group>"; };
+		A5C5E7882ACE36910053E434 /* SettingTableViewDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewDefaultCell.swift; sourceTree = "<group>"; };
+		A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keywords.swift; sourceTree = "<group>"; };
+		A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkResult.swift; sourceTree = "<group>"; };
+		A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingData.swift; sourceTree = "<group>"; };
+		A5DA2F1D2ACBFE2200EFACB5 /* ScrapResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapResult.swift; sourceTree = "<group>"; };
+		A5DA2F1F2ACBFE9800EFACB5 /* Scrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scrap.swift; sourceTree = "<group>"; };
+		A5DA2F232ACC423C00EFACB5 /* HomeBriefingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBriefingTableViewCell.swift; sourceTree = "<group>"; };
 		A5E6134E2ACADC29004ACC6A /* BriefingAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingAuthManager.swift; sourceTree = "<group>"; };
 		E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.release.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.release.xcconfig"; sourceTree = "<group>"; };
 		EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingPopUpViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +195,7 @@
 		2443C5522A8FE88B009586C7 /* Briefing */ = {
 			isa = PBXGroup;
 			children = (
+				A51F631A2ACE437B00F00515 /* Briefing.entitlements */,
 				A51DC48C2AB6B31A0055928C /* App */,
 				2443C5852A9379DB009586C7 /* Models */,
 				A51DC48F2AB6B3B50055928C /* Scenes */,
@@ -207,6 +232,7 @@
 			children = (
 				A5E6134D2ACADC1D004ACC6A /* Auth */,
 				A51E56D42ABE022D00BD3837 /* Network */,
+				A5DA2F162ACBF0C200EFACB5 /* Structure */,
 				2443C5AD2A9BAF4B009586C7 /* ScrapData.swift */,
 				2443C5862A9379E7009586C7 /* Network.swift */,
 				2443C59B2A93D92C009586C7 /* NetworkResult.swift */,
@@ -277,6 +303,7 @@
 			children = (
 				A5B3A7A42AB89BFA00E1E2B6 /* HomeScenes */,
 				A52B67652AC6A34400785F4A /* AuthScenes */,
+				A5C5E7832ACE35610053E434 /* SettingScenes */,
 				A51DC4922AB6B4E60055928C /* Components */,
 				2443C5892A937C76009586C7 /* BriefingTab */,
 				2443C58A2A937C87009586C7 /* ChatsTab */,
@@ -305,6 +332,7 @@
 				2443C56A2A8FEC21009586C7 /* UIViewController+.swift */,
 				2443C56C2A8FEC5A009586C7 /* UIView+.swift */,
 				A5334CE12AB897D20041F5BA /* UIImage+.swift */,
+				A54AE6712ACD60FE0096CDB4 /* String+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -355,6 +383,7 @@
 				2443C55E2A8FE88D009586C7 /* LaunchScreen.storyboard */,
 				2443C55C2A8FE88D009586C7 /* Assets.xcassets */,
 				2443C5612A8FE88D009586C7 /* Info.plist */,
+				A54AE66F2ACD60070096CDB4 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -374,9 +403,32 @@
 				A52AF27C2AB5CA3600457E4E /* HomeViewController.swift */,
 				A52AF2802AB5F2E000457E4E /* HomeCalendarViewCell.swift */,
 				A52AF2862AB6262100457E4E /* HomeBriefingViewController.swift */,
+				A5DA2F232ACC423C00EFACB5 /* HomeBriefingTableViewCell.swift */,
 				A5334CD72AB881C90041F5BA /* HomeViewControllerDelegates */,
 			);
 			path = HomeScenes;
+			sourceTree = "<group>";
+		};
+		A5C5E7832ACE35610053E434 /* SettingScenes */ = {
+			isa = PBXGroup;
+			children = (
+				A5C5E7842ACE357E0053E434 /* SettingViewController.swift */,
+				A5C5E7882ACE36910053E434 /* SettingTableViewDefaultCell.swift */,
+				A5C5E7862ACE36760053E434 /* SettingTableViewButtonCell.swift */,
+			);
+			path = SettingScenes;
+			sourceTree = "<group>";
+		};
+		A5DA2F162ACBF0C200EFACB5 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */,
+				A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */,
+				A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */,
+				A5DA2F1F2ACBFE9800EFACB5 /* Scrap.swift */,
+				A5DA2F1D2ACBFE2200EFACB5 /* ScrapResult.swift */,
+			);
+			path = Structure;
 			sourceTree = "<group>";
 		};
 		A5E6134C2ACADA5C004ACC6A /* Deprecated */ = {
@@ -444,11 +496,12 @@
 			};
 			buildConfigurationList = 2443C54B2A8FE88B009586C7 /* Build configuration list for PBXProject "Briefing" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 2443C5472A8FE88B009586C7;
 			productRefGroup = 2443C5512A8FE88B009586C7 /* Products */;
@@ -474,6 +527,7 @@
 				A595F0372ABDAC2D006543B2 /* url-debug.plist in Resources */,
 				A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */,
 				2443C5602A8FE88D009586C7 /* LaunchScreen.storyboard in Resources */,
+				A54AE66D2ACD60070096CDB4 /* Localizable.strings in Resources */,
 				2443C55D2A8FE88D009586C7 /* Assets.xcassets in Resources */,
 				2443C57C2A925B6F009586C7 /* ProductSans-Italic.ttf in Resources */,
 				2443C57E2A925B6F009586C7 /* ProductSans-Bold.ttf in Resources */,
@@ -539,6 +593,7 @@
 				A51E56D82ABE037100BD3837 /* BriefingNetworkManager.swift in Sources */,
 				A5334CDD2AB8917F0041F5BA /* BriefingStringCollection.swift in Sources */,
 				2443C5712A8FEE37009586C7 /* BriefingTab.swift in Sources */,
+				A5DA2F1E2ACBFE2200EFACB5 /* ScrapResult.swift in Sources */,
 				2443C5822A935755009586C7 /* BriefingDateSelectionView.swift in Sources */,
 				2443C59E2A93DA43009586C7 /* BriefingCardData.swift in Sources */,
 				A5B3A7A62AB89D4700E1E2B6 /* TabBarItemViewController.swift in Sources */,
@@ -554,15 +609,22 @@
 				A51E56DD2ABE057500BD3837 /* BriefingURLManager.swift in Sources */,
 				A51E56DF2ABE097100BD3837 /* BriefingURLRequest.swift in Sources */,
 				2443C5962A93C3A0009586C7 /* Setting.swift in Sources */,
+				A54AE6722ACD60FE0096CDB4 /* String+.swift in Sources */,
+				A5C5E7892ACE36910053E434 /* SettingTableViewDefaultCell.swift in Sources */,
 				A52AF2812AB5F2E000457E4E /* HomeCalendarViewCell.swift in Sources */,
 				EE7ED4642AB9641200FC49C9 /* BriefingCardViewController.swift in Sources */,
 				A52AF2812AB5F2E000457E4E /* HomeCalendarViewCell.swift in Sources */,
+				A5DA2F1C2ACBF4CA00EFACB5 /* BriefingData.swift in Sources */,
 				2443C58C2A937C9C009586C7 /* BriefingCard.swift in Sources */,
+				A5DA2F202ACBFE9800EFACB5 /* Scrap.swift in Sources */,
 				2443C59C2A93D92C009586C7 /* NetworkResult.swift in Sources */,
 				2443C5752A8FEF57009586C7 /* BriefingTableViewCell.swift in Sources */,
+				A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */,
 				A52AF2832AB6043600457E4E /* UIFont+.swift in Sources */,
 				EE7ED40B2AB6E75400FC49C9 /* SignInViewController.swift in Sources */,
+				A5DA2F1A2ACBF32F00EFACB5 /* BriefingNetworkResult.swift in Sources */,
 				2443C5A62A940EE6009586C7 /* SettingWeb.swift in Sources */,
+				A5DA2F242ACC423C00EFACB5 /* HomeBriefingTableViewCell.swift in Sources */,
 				2443C5562A8FE88B009586C7 /* SceneDelegate.swift in Sources */,
 				2443C5902A93A928009586C7 /* Scrapbook.swift in Sources */,
 				A5334CE22AB897D20041F5BA /* UIImage+.swift in Sources */,
@@ -572,11 +634,13 @@
 				2443C5A82A9412D1009586C7 /* ChatScrap.swift in Sources */,
 				2443C5692A8FEB1B009586C7 /* UIColor+.swift in Sources */,
 				A5334CD92AB881E10041F5BA /* HomeViewController+FSCalendar.swift in Sources */,
+				A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */,
 				2443C56F2A8FECD0009586C7 /* MainTabBarController.swift in Sources */,
 				A5334CDB2AB8821C0041F5BA /* HomeViewController+PageViewController.swift in Sources */,
 				A5334CE02AB892660041F5BA /* BriefingImageCollection.swift in Sources */,
 				2443C5922A93AB24009586C7 /* ScrapSectionCell.swift in Sources */,
 				2443C5942A93ABFF009586C7 /* ScrapDetailCell.swift in Sources */,
+				A5C5E7872ACE36760053E434 /* SettingTableViewButtonCell.swift in Sources */,
 				A51E56E32ABE156C00BD3837 /* BriefingNetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +656,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		A54AE66F2ACD60070096CDB4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A54AE66E2ACD60070096CDB4 /* en */,
+				A54AE6702ACD60240096CDB4 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -599,6 +672,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -659,6 +733,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -715,9 +790,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Briefing/Briefing.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = B2XR5545F7;
+				DEVELOPMENT_TEAM = XB6KV776A2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Briefing/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.magazines-and-newspapers";
@@ -747,9 +823,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Briefing/Briefing.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = B2XR5545F7;
+				DEVELOPMENT_TEAM = XB6KV776A2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Briefing/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.magazines-and-newspapers";

@@ -26,17 +26,19 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
         return label
     }()
     
-    private var storageButton: UIButton = {
+    private lazy var scrapButton: UIButton = {
         let button = UIButton()
-        button.setImage(BriefingImageCollection.storageImage, for: .normal)
+        button.setImage(BriefingImageCollection.scrapImage, for: .normal)
         button.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(showScrapViewController), for: .touchUpInside)
         return button
     }()
     
-    private var settingButton: UIButton = {
+    private lazy var settingButton: UIButton = {
         let button = UIButton()
         button.setImage(BriefingImageCollection.settingImage, for: .normal)
         button.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(showSettingViewController), for: .touchUpInside)
         return button
     }()
     
@@ -103,7 +105,7 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
         calendarGuideView.addSubview(calendarView)
         
         let navigationSubviews: [UIView] = [titleLabel,
-                                            storageButton,
+                                            scrapButton,
                                             settingButton]
         navigationSubviews.forEach { subView in
             navigationView.addSubview(subView)
@@ -128,12 +130,12 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
             make.top.equalTo(navigationView).offset(6)
             make.centerY.equalTo(navigationView)
             make.leading.equalTo(navigationView).inset(28)
-            make.trailing.lessThanOrEqualTo(storageButton)
+            make.trailing.lessThanOrEqualTo(scrapButton)
         }
         
-        storageButton.snp.makeConstraints { make in
+        scrapButton.snp.makeConstraints { make in
             make.height.equalTo(navigationView)
-            make.width.equalTo(storageButton.snp.height)
+            make.width.equalTo(scrapButton.snp.height)
             make.trailing.equalTo(settingButton.snp.leading).offset(-2)
             make.centerY.equalTo(navigationView)
         }
@@ -162,6 +164,14 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view)
         }
+    }
+    
+    @objc func showScrapViewController() {
+        self.navigationController?.pushViewController(Scrapbook(), animated: true)
+    }
+    
+    @objc func showSettingViewController() {
+        self.navigationController?.pushViewController(Setting(), animated: true)
     }
     
     // FIXME: - PageViewController & Calendar Sync

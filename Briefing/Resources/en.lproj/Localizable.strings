@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Briefing
+
+  Created by 이전희 on 2023/10/04.
+  
+*/
+
+"appName" = "Briefing";
+"appDescription" = "Your Keyword Newskeeper.";
+"keywordBriefing" = "Keyword Briefing";
+"updated" = "Updated";
+
+"signInWithApple" = "Log in with Apple";
+"signInWithGoogle" = "Log in with Google";
+
+"notiTimeSetting" = "set notification time";
+"appVersionTitle" = "App Version";
+"feedbackAndInquiry" = "Feedback & Inquiry";
+"versionNote" = "Version Note";
+"termsOfService" = "Terms Of Service";
+"privacyPolicy" = "Privacy Policy";
+"caution" = "Caution";
+"signOut" = "Sign out";
+"withdrawal" = "Withdrawal";
