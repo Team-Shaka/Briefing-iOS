@@ -16,14 +16,14 @@ class SettingViewController: UIViewController {
     let cellData: [[SettingTableViewCellType]] = [
         [],
         [
-            .default(symbol: BriefingImageCollection.Setting.appVersion,
-                     title: BriefingStringCollection.Setting.appVersionTitle.localized,
-                     subTitle: BriefingStringCollection.appVersion),
-         .default(symbol: BriefingImageCollection.Setting.feedback,
-                  title: BriefingStringCollection.Setting.feedbackAndInquiry.localized,
-                  urlString: ""),
-         .default(symbol: <#T##UIImage#>, title: , urlString: <#T##String?#>),
-         .default(symbol: <#T##UIImage#>, title: , urlString: <#T##String?#>),
+         //    .default(symbol: BriefingImageCollection.Setting.appVersion,
+         //             title: BriefingStringCollection.Setting.appVersionTitle.localized,
+         //             subTitle: BriefingStringCollection.appVersion),
+         // .default(symbol: BriefingImageCollection.Setting.feedback,
+         //          title: BriefingStringCollection.Setting.feedbackAndInquiry.localized,
+         //          urlString: ""),
+         // .default(symbol: <#T##UIImage#>, title: , urlString: <#T##String?#>),
+         // .default(symbol: <#T##UIImage#>, title: , urlString: <#T##String?#>),
         ]
     ]
     
