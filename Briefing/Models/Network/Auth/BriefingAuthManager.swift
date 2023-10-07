@@ -15,6 +15,9 @@ final class BriefingAuthManager: NSObject, BFNetworkManager {
     weak var presentationAnchorViewController: UIViewController?
     private var signInCompletion: ((_ member: Member?, _ error: Error?) -> Void)? = nil
     
+    @UserDefaultWrapper(key: .member, defaultValue: nil)
+    var member: Member?
+    
     var appleSignInController: ASAuthorizationController {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = []
@@ -45,7 +48,7 @@ extension BriefingAuthManager: ASAuthorizationControllerDelegate,
                                  didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
            let idTokenData = appleIDCredential.identityToken,
-           let idToken = String(data: idTokenData, encoding: .utf8){
+           let idToken = String(data: idTokenData, encoding: .utf8) {
             signIn(idToken: idToken, socialType: .apple)
         } else {
             authorizationController(controller: controller,
@@ -69,13 +72,14 @@ extension BriefingAuthManager {
                 if let error = error { throw error }
                 guard let googleUser = signInResult?.user else { throw BriefingAuthError.noDataError }
                 self.googleRefreshTokensIfNeeded(user: googleUser)
+                
             } catch {
                 self.signInResultHandle(nil, error)
             }
         }
     }
     
-    func googleRefreshTokensIfNeeded(user: GIDGoogleUser?){
+    private func googleRefreshTokensIfNeeded(user: GIDGoogleUser?){
         user?.refreshTokensIfNeeded { user, error in
             do {
                 if let error = error { throw error }
@@ -93,8 +97,8 @@ extension BriefingAuthManager {
 
 // MARK: - SignIn with Briefing Server
 private extension BriefingAuthManager {
-     func signIn(idToken: String,
-                        socialType: BriefingAuthURLRequest.SocialType) {
+    func signIn(idToken: String,
+                socialType: BriefingAuthURLRequest.SocialType) {
         let url = BriefingURLManager.url(key: .baseUrl)
         guard let urlRequest = BriefingAuthURLRequest(url: url,
                                                       method: .post,
@@ -105,13 +109,43 @@ private extension BriefingAuthManager {
         }
         
         response(urlRequest,
-                 type: Member.self) { value, error in
-            self.signInResultHandle(value, error)
+                 type: Member.self) { member, error in
+            self.signInResultHandle(member, error)
         }
     }
     
     func signInResultHandle(_ member: Member?, _ error: Error?){
+        if let member = member {
+            self.member = member
+        }
+        
         signInCompletion?(member, error)
         signInCompletion = nil
+    }
+}
+
+extension BriefingAuthManager {
+    func refreshToken(_ completion: ((_ isMember: Bool, _ member: Member?, _ error: Error?) -> Void)?) {
+        guard let member = member else {
+            completion?(false, nil, nil)
+            return
+        }
+        
+        let url = BriefingURLManager.url(key: .baseUrl)
+        guard let urlRequest = BriefingAuthURLRequest(url: url,
+                                                      method: .post,
+                                                      path: .refresh,
+                                                      httpBody: [.refreshToken: member.refreshToken]) else {
+            completion?(true, nil, BriefingAuthError.wrongURLReqeustError)
+            return
+        }
+        
+        response(urlRequest,
+                 type: Member.self) { member, error in
+            if let member = member {
+                self.member = member
+            }
+            completion?(true, member, error)
+        }
     }
 }
