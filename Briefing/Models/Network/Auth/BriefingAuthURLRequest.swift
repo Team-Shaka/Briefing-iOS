@@ -66,6 +66,6 @@ extension BriefingAuthURLRequest {
     }
     
     enum HTTPBodyKey: String, BFHTTPBodyKey {
-        case none
+        case idToken = "identityToken"
     }
 }

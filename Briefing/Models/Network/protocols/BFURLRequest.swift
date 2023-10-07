@@ -105,25 +105,18 @@ extension BFURLRequest {
         })
     }
     
-    
     /// URLRequestConvertible protocol function
     /// - Returns: URL Request
     public func asURLRequest() throws -> URLRequest {
         var urlRequest = urlRequest
         urlRequest.httpMethod = httpMethod.rawValue
-        switch httpMethod {
-        case .get:
-            urlRequest.headers = ["Content-Type":"application/json",
-                                  "Accept":"application/json"]
-        case .post:
-            urlRequest.setValue("application/json",
-                                forHTTPHeaderField: "Content-Type")
-            urlRequest.httpBody = httpBody
-        default: break
-        }
+        urlRequest.setValue("application/json",
+                            forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/json",
+                            forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = httpBody
         urlRequest.timeoutInterval = timeoutInterval
-        let appendedUrl = urlRequest.url?.appending(component: path.path)
-        urlRequest.url = appendedUrl
+        urlRequest.url?.append(path: path.path)
         urlRequest.url?.append(queryItems: queryItem ?? [])
         return urlRequest
     }

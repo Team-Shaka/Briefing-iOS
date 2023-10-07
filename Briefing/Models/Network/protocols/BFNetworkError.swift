@@ -1,5 +1,5 @@
 //
-//  BriefingNetworkError.swift
+//  BFNetworkError.swift
 //  Briefing
 //
 //  Created by 이전희 on 2023/09/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum BriefingNetworkError {
+enum BFNetworkError {
     case wrongURLRequestError
     case badRequestError
     case forbiddenError
@@ -16,7 +16,7 @@ enum BriefingNetworkError {
     case networkError(statusCode: Int)
 }
 
-extension BriefingNetworkError: LocalizedError {
+extension BFNetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .wrongURLRequestError: return NSLocalizedString("Wrong URL Request Error", comment: "")

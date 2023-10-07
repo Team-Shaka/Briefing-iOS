@@ -45,7 +45,7 @@ extension BriefingNetworkURLRequest {
         case briefingCard(id: String)
         case chattings(id: String?=nil)
         case scrap
-        case deleteScrap(id: String)
+        case deleteScrap(id: String, memberId: String)
         case fetchScrap(memberId: String)
         
         var path: String {
@@ -57,8 +57,9 @@ extension BriefingNetworkURLRequest {
                 guard let id = id else { return "chattings" }
                 return "chattings/\(id)"
             case .scrap: return "scraps/briefings"
-            case let .fetchScrap(memberId): return "scraps/briefings/members\(memberId)"
-            case let .deleteScrap(id): return "scraps/\(id)"
+            case let .fetchScrap(memberId): return "scraps/briefings/members/\(memberId)"
+            case let .deleteScrap(id, memberId):
+                return "scraps/briefings/\(id)/members/\(memberId)"
             }
         }
         
