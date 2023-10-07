@@ -24,7 +24,7 @@ extension BriefingNetworkManager {
                                                           path: .keywords,
                                                           query: [.date: date.dateToString(),
                                                                   .type: type.rawValue]) else {
-            completion(nil, BriefingNetworkError.wrongURLRequestError)
+            completion(nil, BFNetworkError.wrongURLRequestError)
             return
         }
         
@@ -39,7 +39,7 @@ extension BriefingNetworkManager {
         guard let urlRequest = BriefingNetworkURLRequest(url: url,
                                                           method: .get,
                                                           path: .briefingCard(id: id)) else {
-            completion(nil, BriefingNetworkError.wrongURLRequestError)
+            completion(nil, BFNetworkError.wrongURLRequestError)
             return
         }
         response(urlRequest,

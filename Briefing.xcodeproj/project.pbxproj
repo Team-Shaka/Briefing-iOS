@@ -44,7 +44,7 @@
 		A51E56D82ABE037100BD3837 /* BriefingNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56D72ABE037100BD3837 /* BriefingNetworkManager.swift */; };
 		A51E56DD2ABE057500BD3837 /* BriefingURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */; };
 		A51E56DF2ABE097100BD3837 /* BriefingNetworkURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */; };
-		A51E56E32ABE156C00BD3837 /* BriefingNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56E22ABE156C00BD3837 /* BriefingNetworkError.swift */; };
+		A51E56E32ABE156C00BD3837 /* BFNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */; };
 		A52AF27D2AB5CA3600457E4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF27C2AB5CA3600457E4E /* HomeViewController.swift */; };
 		A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF27E2AB5D2F500457E4E /* Date+.swift */; };
 		A52AF2812AB5F2E000457E4E /* HomeCalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2802AB5F2E000457E4E /* HomeCalendarViewCell.swift */; };
@@ -70,6 +70,8 @@
 		A5C5E7892ACE36910053E434 /* SettingTableViewDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7882ACE36910053E434 /* SettingTableViewDefaultCell.swift */; };
 		A5CD89C12AD1134D00568F9D /* BFNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C02AD1134D00568F9D /* BFNetworkManager.swift */; };
 		A5CD89C32AD11C3300568F9D /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C22AD11C3300568F9D /* Dictionary+.swift */; };
+		A5CD89C52AD122AC00568F9D /* BriefingAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C42AD122AC00568F9D /* BriefingAuthError.swift */; };
+		A5CD89C72AD1243F00568F9D /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C62AD1243F00568F9D /* Member.swift */; };
 		A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */; };
 		A5DA2F1A2ACBF32F00EFACB5 /* BriefingNetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */; };
 		A5DA2F1C2ACBF4CA00EFACB5 /* BriefingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */; };
@@ -127,7 +129,7 @@
 		A51E56D72ABE037100BD3837 /* BriefingNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkManager.swift; sourceTree = "<group>"; };
 		A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingURLManager.swift; sourceTree = "<group>"; };
 		A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkURLRequest.swift; sourceTree = "<group>"; };
-		A51E56E22ABE156C00BD3837 /* BriefingNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkError.swift; sourceTree = "<group>"; };
+		A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFNetworkError.swift; sourceTree = "<group>"; };
 		A51F631A2ACE437B00F00515 /* Briefing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Briefing.entitlements; sourceTree = "<group>"; };
 		A52AF27C2AB5CA3600457E4E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A52AF27E2AB5D2F500457E4E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -155,6 +157,8 @@
 		A5C5E7882ACE36910053E434 /* SettingTableViewDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewDefaultCell.swift; sourceTree = "<group>"; };
 		A5CD89C02AD1134D00568F9D /* BFNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFNetworkManager.swift; sourceTree = "<group>"; };
 		A5CD89C22AD11C3300568F9D /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
+		A5CD89C42AD122AC00568F9D /* BriefingAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingAuthError.swift; sourceTree = "<group>"; };
+		A5CD89C62AD1243F00568F9D /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keywords.swift; sourceTree = "<group>"; };
 		A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkResult.swift; sourceTree = "<group>"; };
 		A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingData.swift; sourceTree = "<group>"; };
@@ -352,7 +356,6 @@
 				A5FD1E7D2ACFFC2A0048272D /* Auth */,
 				A5CD89BF2AD111A600568F9D /* Briefing */,
 				A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */,
-				A51E56E22ABE156C00BD3837 /* BriefingNetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */,
 				A5DA2F1F2ACBFE9800EFACB5 /* Scrap.swift */,
 				A5DA2F1D2ACBFE2200EFACB5 /* ScrapResult.swift */,
+				A5CD89C62AD1243F00568F9D /* Member.swift */,
 			);
 			path = Structure;
 			sourceTree = "<group>";
@@ -463,6 +467,7 @@
 			children = (
 				A5E6134E2ACADC29004ACC6A /* BriefingAuthManager.swift */,
 				A5FD1E7B2ACFF3990048272D /* BriefingAuthURLRequest.swift */,
+				A5CD89C42AD122AC00568F9D /* BriefingAuthError.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 			children = (
 				A5CD89C02AD1134D00568F9D /* BFNetworkManager.swift */,
 				A5FD1E7F2ACFFC630048272D /* BFURLRequest.swift */,
+				A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -666,13 +672,15 @@
 				2443C5692A8FEB1B009586C7 /* UIColor+.swift in Sources */,
 				A5334CD92AB881E10041F5BA /* HomeViewController+FSCalendar.swift in Sources */,
 				A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */,
+				A5CD89C72AD1243F00568F9D /* Member.swift in Sources */,
 				2443C56F2A8FECD0009586C7 /* MainTabBarController.swift in Sources */,
 				A5334CDB2AB8821C0041F5BA /* HomeViewController+PageViewController.swift in Sources */,
 				A5334CE02AB892660041F5BA /* BriefingImageCollection.swift in Sources */,
 				2443C5922A93AB24009586C7 /* ScrapSectionCell.swift in Sources */,
+				A5CD89C52AD122AC00568F9D /* BriefingAuthError.swift in Sources */,
 				2443C5942A93ABFF009586C7 /* ScrapDetailCell.swift in Sources */,
 				A5C5E7872ACE36760053E434 /* SettingTableViewButtonCell.swift in Sources */,
-				A51E56E32ABE156C00BD3837 /* BriefingNetworkError.swift in Sources */,
+				A51E56E32ABE156C00BD3837 /* BFNetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
