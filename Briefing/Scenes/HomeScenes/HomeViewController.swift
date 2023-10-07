@@ -82,11 +82,17 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
         makeConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     private func configure() {
         view.backgroundColor = .briefingBlue
         navigationItem.title = BriefingStringCollection.appName
-        navigationController?.isNavigationBarHidden = true
-        
         
         calendarView.delegate = self
         calendarView.dataSource = self

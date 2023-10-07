@@ -154,13 +154,14 @@ class HomeBriefingTableViewCell: UITableViewCell {
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         self.backgroundColor = .clear
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        if selected {
+        if highlighted {
             mainContainerView.backgroundColor = .briefingLightBlue.withAlphaComponent(0.3)
         } else {
             mainContainerView.backgroundColor = .white
         }
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        self.backgroundColor = .clear
     }
 }
