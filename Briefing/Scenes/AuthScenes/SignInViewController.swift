@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import AuthenticationServices
 
 class SignInViewController: UIViewController {
     private let authManager: BriefingAuthManager = BriefingAuthManager.shared
@@ -29,7 +30,7 @@ class SignInViewController: UIViewController {
         label.textColor = .white
         label.textAlignment = .center
         label.font = .productSans(size: 25)
-        
+
         return label
     }()
     
@@ -72,7 +73,7 @@ class SignInViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var googleSignInButon: UIButton = {
+    private var googleSignInButon: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
         button.setTitle(BriefingStringCollection.Auth.signInWithGoogle.localized, for: .normal)
@@ -81,7 +82,6 @@ class SignInViewController: UIViewController {
         button.titleLabel?.font = .productSans(size: 15, weight: .bold)
         button.clipsToBounds = true
         button.layer.cornerRadius = 25
-        button.addTarget(self, action: #selector(googleSignIn), for: .touchUpInside)
         return button
     }()
     
@@ -89,7 +89,6 @@ class SignInViewController: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = #imageLiteral(resourceName: "login_google")
-        
         return imageView
     }()
     
@@ -103,6 +102,8 @@ class SignInViewController: UIViewController {
     
     private func configure() {
         self.view.setGradient(color1: .briefingBlue, color2: .briefingDarkBlue)
+        appleSignInButton.addTarget(self, action: #selector(appleSignIn), for: .touchUpInside)
+        googleSignInButon.addTarget(self, action: #selector(googleSignIn), for: .touchUpInside)
     }
     
     private func addSubviews() {
@@ -159,8 +160,16 @@ class SignInViewController: UIViewController {
         }
     }
     
-    @objc func googleSignIn(){
-        authManager.googleSignIn(withPresenting: self)
+    @objc func appleSignIn() {
+        authManager.appleSignIn(withPresentation: self) { [weak self] member, error in
+            self?.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @objc func googleSignIn() {
+        authManager.googleSignIn(withPresentation: self) { [weak self] member, error in
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
