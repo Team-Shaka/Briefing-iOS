@@ -16,16 +16,16 @@ class BriefingCardViewController: UIViewController {
         return view
     }()
     
-    private var backButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "arrow_left"), for: .normal)
         button.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(goBackToHomeViewController), for: .touchUpInside)
         return button
     }()
     
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Briefing #()"
         label.font = .productSans(size: 24)
         label.textColor = .briefingWhite
         return label
@@ -38,18 +38,30 @@ class BriefingCardViewController: UIViewController {
         return button
     }()
     
-    private var cardView: UIView = {
-        let view = UIView()        
-        return view
+    private var cardScrollView: UIView = {
+        let scrollView = UIScrollView()
+        return scrollView
     }()
     
-    private var cardTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
-        
-        return tableView
+    private var cardView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 20
+        view.addShadow(offset: CGSize(width: 0, height: 4),
+                       color: .black,
+                       radius: 5,
+                       opacity: 0.1)
+        return view
     }()
+//
+//    private var cardTableView: UITableView = {
+//        let tableView = UITableView()
+//        tableView.backgroundColor = .clear
+//        tableView.separatorStyle = .none
+//
+//        return tableView
+//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,23 +81,26 @@ class BriefingCardViewController: UIViewController {
     
     private func configure() {
         self.view.backgroundColor = .briefingBlue
-        cardTableView.register(BriefingCardCell.self, forCellReuseIdentifier: BriefingCardCell.identifier)
-        cardTableView.dataSource = self
-        cardTableView.delegate = self
+//        cardTableView.register(BriefingCardCell.self, forCellReuseIdentifier: BriefingCardCell.identifier)
+//        cardTableView.dataSource = self
+//        cardTableView.delegate = self
+        self.titleLabel.text = "\(BriefingStringCollection.appName) #\(self.id)"
     }
     
     private func addSubviews() {
-        self.view.addSubviews(navigationView, cardView)
+        self.view.addSubviews(navigationView, cardScrollView)
         
         self.navigationView.addSubviews(backButton, titleLabel, scrapButton)
         
-        self.cardView.addSubviews(cardTableView)
+        self.cardScrollView.addSubview(cardView)
+        
+//        self.cardView.addSubviews(cardTableView)
     }
     
     private func makeConstraint() {
         navigationView.snp.makeConstraints{ make in
 //            make.top.equalTo(view).offset(50)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(-50)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(titleLabel).offset(25)
             make.leading.trailing.equalTo(view)
         }
@@ -111,33 +126,49 @@ class BriefingCardViewController: UIViewController {
             make.trailing.equalTo(navigationView).inset(18)
         }
         
-        cardView.snp.makeConstraints{ make in
+        cardScrollView.snp.makeConstraints{ make in
             make.top.equalTo(navigationView.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(self.view.snp.bottom)
+            make.bottom.equalToSuperview().inset(50)
         }
         
-        cardTableView.snp.makeConstraints{ make in
-            make.top.leading.trailing.bottom.equalToSuperview()
+        cardView.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(17)
+            make.trailing.equalToSuperview().inset(17)
+//            make.bottom
+            
+//            make.height.equalTo(1000)
         }
+//
+//        cardTableView.snp.makeConstraints{ make in
+//            make.top.leading.trailing.bottom.equalToSuperview()
+//        }
+        
+        
+    }
+    
+    @objc func goBackToHomeViewController() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
-extension BriefingCardViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: BriefingCardCell.identifier, for: indexPath) as! BriefingCardCell
-        
-        
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cardTableView.bounds.height
-    }
-    
-}
+//extension BriefingCardViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        1
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: BriefingCardCell.identifier, for: indexPath) as! BriefingCardCell
+//
+//
+//
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return cardTableView.bounds.height
+//    }
+//
+//}
