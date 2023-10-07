@@ -90,8 +90,9 @@ class SettingViewController: UIViewController {
         return tableView
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        settingTableView.reloadData()
+    override func viewDidAppear(_ animated: Bool) {
+        settingTableView.reloadSections(IndexSet(integer: authCellSectionInsertIndex),
+                                        with: .fade)
     }
     
     override func viewDidLoad() {
@@ -133,7 +134,8 @@ class SettingViewController: UIViewController {
     func selectSignOut() {
         // FIXME: - Alert View
         authManager.signOut()
-        settingTableView.reloadData()
+        settingTableView.reloadSections(IndexSet(integer: authCellSectionInsertIndex),
+                                        with: .fade)
     }
     
     func selectWithdrawal() {

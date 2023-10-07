@@ -67,7 +67,7 @@ class SettingTableViewDefaultCell: UITableViewCell, SettingTableViewCell {
     func addSubviews() {
         self.contentView.addSubview(mainContainerView)
         
-        let subViews: [UIView] = [symbolImageView, titleLabel, valueLabel, nextIconImageView]
+        let subViews: [UIView] = [symbolImageView, titleLabel]
         subViews.forEach { subView in
             mainContainerView.addSubview(subView)
         }
@@ -89,17 +89,6 @@ class SettingTableViewDefaultCell: UITableViewCell, SettingTableViewCell {
             make.centerY.equalToSuperview()
             make.leading.equalTo(symbolImageView.snp.trailing).offset(12)
         }
-        
-        valueLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(18)
-        }
-        
-        nextIconImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(18)
-            make.width.height.equalTo(20)
-        }
     }
     
     func setCellData(symbol: UIImage,
@@ -109,20 +98,36 @@ class SettingTableViewDefaultCell: UITableViewCell, SettingTableViewCell {
                      cornerMaskEdge: UIRectEdge?) {
         symbolImageView.image = symbol
         titleLabel.text = title
-        if urlString != nil {
-            self.isUrlType = true
-            valueLabel.isHidden = true
+        valueLabel.text = value
+        isUrlType = value == nil && urlString != nil
+        cellLayoutSetting()
+        mainContainerView.setCornerMask(cornerMaskEdge)
+    }
+    
+    func cellLayoutSetting(){
+        if isUrlType {
+            mainContainerView.addSubview(nextIconImageView)
             titleLabel.snp.makeConstraints { make in
                 make.trailing.lessThanOrEqualTo(nextIconImageView.snp.leading)
             }
+            
+            nextIconImageView.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.trailing.equalToSuperview().inset(18)
+                make.width.height.equalTo(20)
+            }
         } else {
-            valueLabel.text = value
+            mainContainerView.addSubview(valueLabel)
             nextIconImageView.isHidden = true
             titleLabel.snp.makeConstraints { make in
                 make.trailing.lessThanOrEqualTo(valueLabel.snp.leading)
             }
+            
+            valueLabel.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.trailing.equalToSuperview().inset(18)
+            }
         }
-        mainContainerView.setCornerMask(cornerMaskEdge)
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
