@@ -48,7 +48,7 @@ extension BriefingAuthURLRequest {
             switch self {
             case let .signIn(socialType): return "members/auth/\(socialType)"
             case .test: return ""
-            case .refresh: return ""
+            case .refresh: return "members/auth/token"
             }
         }
         
@@ -67,5 +67,6 @@ extension BriefingAuthURLRequest {
     
     enum HTTPBodyKey: String, BFHTTPBodyKey {
         case idToken = "identityToken"
+        case refreshToken
     }
 }

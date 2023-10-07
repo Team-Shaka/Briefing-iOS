@@ -72,6 +72,8 @@
 		A5CD89C32AD11C3300568F9D /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C22AD11C3300568F9D /* Dictionary+.swift */; };
 		A5CD89C52AD122AC00568F9D /* BriefingAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C42AD122AC00568F9D /* BriefingAuthError.swift */; };
 		A5CD89C72AD1243F00568F9D /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C62AD1243F00568F9D /* Member.swift */; };
+		A5CD89CB2AD1682700568F9D /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89CA2AD1682700568F9D /* UserDefaultsWrapper.swift */; };
+		A5CD89CE2AD168D400568F9D /* UserDefaultsWrapperKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89CD2AD168D400568F9D /* UserDefaultsWrapperKey.swift */; };
 		A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */; };
 		A5DA2F1A2ACBF32F00EFACB5 /* BriefingNetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */; };
 		A5DA2F1C2ACBF4CA00EFACB5 /* BriefingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */; };
@@ -159,6 +161,8 @@
 		A5CD89C22AD11C3300568F9D /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
 		A5CD89C42AD122AC00568F9D /* BriefingAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingAuthError.swift; sourceTree = "<group>"; };
 		A5CD89C62AD1243F00568F9D /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		A5CD89CA2AD1682700568F9D /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
+		A5CD89CD2AD168D400568F9D /* UserDefaultsWrapperKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapperKey.swift; sourceTree = "<group>"; };
 		A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keywords.swift; sourceTree = "<group>"; };
 		A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkResult.swift; sourceTree = "<group>"; };
 		A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingData.swift; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 		2443C5672A8FEB0D009586C7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A5CD89CC2AD168C400568F9D /* UserDefaultsWrapper */,
 				A5334CDE2AB892560041F5BA /* BriefingCollections */,
 				2430A94D2A9BD21A0051B454 /* UserNotification.swift */,
 				2443C5A92A9760A2009586C7 /* DateParser.swift */,
@@ -440,6 +445,15 @@
 			path = Briefing;
 			sourceTree = "<group>";
 		};
+		A5CD89CC2AD168C400568F9D /* UserDefaultsWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				A5CD89CD2AD168D400568F9D /* UserDefaultsWrapperKey.swift */,
+				A5CD89CA2AD1682700568F9D /* UserDefaultsWrapper.swift */,
+			);
+			path = UserDefaultsWrapper;
+			sourceTree = "<group>";
+		};
 		A5DA2F162ACBF0C200EFACB5 /* Structure */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,12 +642,14 @@
 				A5334CDD2AB8917F0041F5BA /* BriefingStringCollection.swift in Sources */,
 				2443C5712A8FEE37009586C7 /* BriefingTab.swift in Sources */,
 				A5DA2F1E2ACBFE2200EFACB5 /* ScrapResult.swift in Sources */,
+				A5CD89CB2AD1682700568F9D /* UserDefaultsWrapper.swift in Sources */,
 				2443C5822A935755009586C7 /* BriefingDateSelectionView.swift in Sources */,
 				2443C59E2A93DA43009586C7 /* BriefingCardData.swift in Sources */,
 				A5FD1E7C2ACFF3990048272D /* BriefingAuthURLRequest.swift in Sources */,
 				A5B3A7A62AB89D4700E1E2B6 /* TabBarItemViewController.swift in Sources */,
 				2443C58E2A9398D9009586C7 /* BriefingCardCell.swift in Sources */,
 				A52AF27D2AB5CA3600457E4E /* HomeViewController.swift in Sources */,
+				A5CD89CE2AD168D400568F9D /* UserDefaultsWrapperKey.swift in Sources */,
 				A5FD1E802ACFFC630048272D /* BFURLRequest.swift in Sources */,
 				A5E6134F2ACADC29004ACC6A /* BriefingAuthManager.swift in Sources */,
 				2443C59A2A93D8C2009586C7 /* KeywordsData.swift in Sources */,
