@@ -162,13 +162,13 @@ class SignInViewController: UIViewController {
     
     @objc func appleSignIn() {
         authManager.appleSignIn(withPresentation: self) { member, error in
-            print("member: \(member)\nerror: \(error)")
+            
         }
     }
     
     @objc func googleSignIn() {
         authManager.googleSignIn(withPresentation: self) { member, error in
-            print("member: \(member)\nerror: \(error)")
+            
         }
     }
 }
