@@ -12,13 +12,13 @@ import Alamofire
 
 final class BriefingAuthManager: NSObject, BFNetworkManager {
     static let shared: BriefingAuthManager = BriefingAuthManager()
-    weak var presentationAnchorViewController: UIViewController?
+    private weak var presentationAnchorViewController: UIViewController?
     private var signInCompletion: ((_ member: Member?, _ error: Error?) -> Void)? = nil
     
     @UserDefaultWrapper(key: .member, defaultValue: nil)
     var member: Member?
     
-    var appleSignInController: ASAuthorizationController {
+    private var appleSignInController: ASAuthorizationController {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = []
         let controller = ASAuthorizationController(authorizationRequests: [request])
