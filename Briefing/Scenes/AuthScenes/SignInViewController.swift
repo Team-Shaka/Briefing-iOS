@@ -161,14 +161,14 @@ class SignInViewController: UIViewController {
     }
     
     @objc func appleSignIn() {
-        authManager.appleSignIn(withPresentation: self) { member, error in
-            
+        authManager.appleSignIn(withPresentation: self) { [weak self] member, error in
+            self?.navigationController?.popViewController(animated: true)
         }
     }
     
     @objc func googleSignIn() {
-        authManager.googleSignIn(withPresentation: self) { member, error in
-            
+        authManager.googleSignIn(withPresentation: self) { [weak self] member, error in
+            self?.navigationController?.popViewController(animated: true)
         }
     }
 }

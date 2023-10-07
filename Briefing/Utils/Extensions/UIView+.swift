@@ -54,6 +54,10 @@ extension UIView {
         }
     }
     
+    func setCornerMask(_ edge: UIRectEdge?) {
+        self.clipsToBounds = true
+        self.layer.maskedCorners = CACornerMask(edge?.options ?? [])
+    }
 }
 
 extension CALayer {

@@ -52,6 +52,7 @@ final class BriefingStringCollection {
         case termsOfService
         case privacyPolicy
         case caution
+        case signInAndRegister
         case signOut
         case withdrawal
     }

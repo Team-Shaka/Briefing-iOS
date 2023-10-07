@@ -21,5 +21,6 @@
 "termsOfService" = "Terms Of Service";
 "privacyPolicy" = "Privacy Policy";
 "caution" = "Caution";
-"signOut" = "Sign out";
+"signInAndRegister" = "SignIn Or Register ";
+"signOut" = "SignOut";
 "withdrawal" = "Withdrawal";
