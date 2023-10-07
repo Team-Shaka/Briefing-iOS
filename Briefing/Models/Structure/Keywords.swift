@@ -8,8 +8,15 @@
 import Foundation
 
 struct Keywords: Codable {
-    let createdAt: String
+    let createdAt: Date
     let briefings: [KeywordBriefing]
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let dateString = try container.decode(String.self, forKey: .createdAt)
+        self.createdAt = dateString.toDate(dataFormat: "yyyy-MM-dd'T'HH:mm:ss") ?? Date()
+        self.briefings = try container.decode([KeywordBriefing].self, forKey: .briefings)
+    }
 }
 
 struct KeywordBriefing: Codable {

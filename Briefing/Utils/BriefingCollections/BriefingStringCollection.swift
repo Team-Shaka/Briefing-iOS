@@ -57,4 +57,12 @@ final class BriefingStringCollection {
         case signOut
         case withdrawal
     }
+    
+    enum Link: String, EnumeratedLocalized {
+        case feedBack = "feedBackLink"
+        case versionNote = "versionNoteLink"
+        case termsOfService = "termsOfServiceLink"
+        case privacyPolicy = "privacyPolicyLink"
+        case caution = "cautionLink"
+    }
 }

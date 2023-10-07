@@ -24,3 +24,9 @@
 "signInAndRegister" = "SignIn Or Register ";
 "signOut" = "SignOut";
 "withdrawal" = "Withdrawal";
+
+"feedBackLink" = "https://forms.gle/HQXmEBkQ6wyW9jiw7";
+"versionNoteLink" = "https://onve.notion.site/Briefing-8af692ff041c4fc6931b2fc897411e6d?pvs=4";
+"termsOfServiceLink" = "https://sites.google.com/view/brieifinguse/%ED%99%88";
+"privacyPolicyLink" = "https://sites.google.com/view/briefing-private/%ED%99%88";
+"cautionLink" = "https://onve.notion.site/Briefing-e1cb17e2e7c54d3b9a7036b29ee9b11a?pvs=4";
