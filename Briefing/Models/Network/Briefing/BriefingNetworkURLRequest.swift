@@ -42,11 +42,11 @@ extension BriefingNetworkURLRequest {
     enum Path: BFPath {
         case root
         case keywords
-        case briefingCard(id: String)
-        case chattings(id: String?=nil)
+        case briefingCard(id: Int)
+        case chattings(id: Int?=nil)
         case scrap
-        case deleteScrap(id: String, memberId: String)
-        case fetchScrap(memberId: String)
+        case deleteScrap(id: Int, memberId: Int)
+        case fetchScrap(memberId: Int)
         
         var path: String {
             switch self {
@@ -82,6 +82,7 @@ extension BriefingNetworkURLRequest {
     }
     
     enum HTTPBodyKey: String, BFHTTPBodyKey {
-        case none
+        case memberId
+        case briefingId
     }
 }

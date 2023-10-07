@@ -13,17 +13,17 @@ final class BriefingNetworkManager: BFNetworkManager {
     private init() { }
 }
 
-// MARK: - functions for Briefing API
+// MARK: - functions for Briefing
 extension BriefingNetworkManager {
     func fetchKeywords(date: Date,
                        type: BriefingNetworkURLRequest.KeywordsType,
                        completion: @escaping (_ value: Keywords?, _ error: Error?) -> Void) {
         let url = BriefingURLManager.url(key: .baseUrl)
         guard let urlRequest = BriefingNetworkURLRequest(url: url,
-                                                          method: .get,
-                                                          path: .keywords,
-                                                          query: [.date: date.dateToString(),
-                                                                  .type: type.rawValue]) else {
+                                                         method: .get,
+                                                         path: .keywords,
+                                                         query: [.date: date.dateToString(),
+                                                                 .type: type.rawValue]) else {
             completion(nil, BFNetworkError.wrongURLRequestError)
             return
         }
@@ -33,12 +33,12 @@ extension BriefingNetworkManager {
                  completion: completion)
     }
     
-    func fetchBriefingCard(id: String,
+    func fetchBriefingCard(id: Int,
                            completion: @escaping (_ value: BriefingData?, _ error: Error?) -> Void) {
         let url = BriefingURLManager.url(key: .baseUrl)
         guard let urlRequest = BriefingNetworkURLRequest(url: url,
-                                                          method: .get,
-                                                          path: .briefingCard(id: id)) else {
+                                                         method: .get,
+                                                         path: .briefingCard(id: id)) else {
             completion(nil, BFNetworkError.wrongURLRequestError)
             return
         }
@@ -46,15 +46,76 @@ extension BriefingNetworkManager {
                  type: BriefingData.self,
                  completion: completion)
     }
+}
+
+// MARK: - functions for Scrap
+extension BriefingNetworkManager {
     
-    // func scrapBriefingCard(id: String,
-    //                        completion: @escaping (_ value: ScrapResult?, _ error: Error?) -> Void) {
-    //     let url = BriefingURLManager.url(key: .baseUrl)
-    //     guard let urlRequest = BriefingURLRequest(url: url,
-    //                                                       method: .post,
-    //                                                       path: .scrap,
-    //                                                       httpBody: <#T##String?#>) else {
-    //         
-    //     }
-    // }
+    func fetchScrapBrifings(completion: @escaping (_ value: [(Date, [ScrapData])]?, _ error: Error?) -> Void) {
+        let url = BriefingURLManager.url(key: .baseUrl)
+        guard let memberId = BriefingAuthManager.shared.member?.memberId else {
+            completion(nil, BriefingNetworkError.noAuthError)
+            return
+        }
+        guard let urlRequest = BriefingNetworkURLRequest(url: url,
+                                                         method: .post,
+                                                         path: .fetchScrap(memberId: memberId)) else {
+            completion(nil, BFNetworkError.wrongURLRequestError)
+            return
+        }
+        
+        response(urlRequest,
+                 type: [ScrapData].self,
+                 completion: { value, error in
+            let value = value?.reduce(Dictionary<Date,[ScrapData]>(), { partialResult, scrapData in
+                var partialResult = partialResult
+                partialResult[scrapData.date, default: []].append(scrapData)
+                return partialResult
+            })
+                .map { return ($0, $1) }
+                .sorted(by: { $0.0 < $1.0 })
+            completion(value, error)
+        })
+    }
+    
+    func scrapBriefing(id: Int,
+                           completion: @escaping (_ value: ScrapResult?, _ error: Error?) -> Void) {
+        let url = BriefingURLManager.url(key: .baseUrl)
+        guard let memberId = BriefingAuthManager.shared.member?.memberId else {
+            completion(nil, BriefingNetworkError.noAuthError)
+            return
+        }
+        guard let urlRequest = BriefingNetworkURLRequest(url: url,
+                                                         method: .post,
+                                                         path: .scrap,
+                                                         httpBody: [.memberId: memberId,
+                                                                    .briefingId: id]) else {
+            completion(nil, BFNetworkError.wrongURLRequestError)
+            return
+        }
+        
+        response(urlRequest,
+                 type: ScrapResult.self,
+                 completion: completion)
+    }
+    
+    func deleteScrapBriefing(id: Int,
+                                    completion: @escaping (_ value: ScrapResult?, _ error: Error?) -> Void) {
+        let url = BriefingURLManager.url(key: .baseUrl)
+        guard let memberId = BriefingAuthManager.shared.member?.memberId else {
+            completion(nil, BriefingNetworkError.noAuthError)
+            return
+        }
+        
+        guard let urlRequest = BriefingNetworkURLRequest(url: url,
+                                                         method: .delete,
+                                                         path: .deleteScrap(id: id, memberId: memberId)) else {
+            completion(nil, BFNetworkError.wrongURLRequestError)
+            return
+        }
+        
+        response(urlRequest,
+                 type: ScrapResult.self,
+                 completion: completion)
+    }
 }

@@ -121,8 +121,8 @@ final class HomeBriefingViewController: UIViewController {
             self?.keywords = value
             self?.tableViewHeaderView.layer.sublayers?.first?.frame = self?.tableViewHeaderView.bounds ?? .zero
             self?.keywordBriefingTableView.reloadData()
-            
-            if let updateDate = value?.createdAt.toDate(dataFormat: BriefingStringCollection.Format.briefingServerTime) {
+
+            if let updateDate = value?.createdAt {
                 let updateTimeDateFormat = BriefingStringCollection.Format.dateDetailDotFormat
                 let updateTimeString = updateDate.dateToString(updateTimeDateFormat,
                                                                localeIdentifier: BriefingStringCollection.Locale.en)

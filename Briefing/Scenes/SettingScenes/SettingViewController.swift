@@ -43,21 +43,21 @@ class SettingViewController: UIViewController {
                      value: BriefingStringCollection.appVersion),
             .default(symbol: BriefingImageCollection.Setting.feedback,
                      title: BriefingStringCollection.Setting.feedbackAndInquiry.localized,
-                     urlString: "https://www.naver.com"),
+                     urlString: BriefingStringCollection.Link.feedBack.localized),
             .default(symbol: BriefingImageCollection.Setting.versionNote,
                      title: BriefingStringCollection.Setting.versionNote.localized,
-                     urlString: "https://www.naver.com")
+                     urlString: BriefingStringCollection.Link.versionNote.localized)
         ],
         [
             .default(symbol: BriefingImageCollection.Setting.termsOfService,
                      title: BriefingStringCollection.Setting.termsOfService.localized,
-                     urlString: "https://www.naver.com"),
+                     urlString: BriefingStringCollection.Link.termsOfService.localized),
             .default(symbol: BriefingImageCollection.Setting.privacyPolicy,
                      title: BriefingStringCollection.Setting.privacyPolicy.localized,
-                     urlString: "https://www.naver.com"),
+                     urlString: BriefingStringCollection.Link.privacyPolicy.localized),
             .default(symbol: BriefingImageCollection.Setting.caution,
                      title: BriefingStringCollection.Setting.caution.localized,
-                     urlString: "https://www.naver.com")
+                     urlString: BriefingStringCollection.Link.caution.localized)
         ],
         []
     ]
