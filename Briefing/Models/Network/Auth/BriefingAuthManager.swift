@@ -124,6 +124,7 @@ private extension BriefingAuthManager {
     }
 }
 
+// MARK: - Refresh Token
 extension BriefingAuthManager {
     func refreshToken(_ completion: ((_ isMember: Bool, _ member: Member?, _ error: Error?) -> Void)?) {
         guard let member = member else {
@@ -146,6 +147,24 @@ extension BriefingAuthManager {
                 self.member = member
             }
             completion?(true, member, error)
+        }
+    }
+}
+
+// MARK: Test Token
+extension BriefingAuthManager {
+    func testToken(_ completion: ((_ member: Member?, _ error: Error?) -> Void)?) {
+        let url = BriefingURLManager.url(key: .baseUrl)
+        guard let urlRequest = BriefingAuthURLRequest(url: url,
+                                                      method: .get,
+                                                      path: .test) else {
+            completion?(nil, BriefingAuthError.wrongURLReqeustError)
+            return
+        }
+        
+        response(urlRequest,
+                 type: Member.self) { testMember, error in
+            completion?(testMember, error)
         }
     }
 }
