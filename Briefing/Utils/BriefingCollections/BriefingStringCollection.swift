@@ -27,10 +27,11 @@ final class BriefingStringCollection {
     
     final class Format {
         private init() { }
-        static let dateDotFormat = "yyyy.MM.dd";
-        static let dateDashFormat = "yyyy-MM-dd";
-        static let dateDetailDotFormat = "yyyy.MM.dd hha";
-        static let dateDetailDashFormat = "yyyy-MM-dd hha";
+        static let dateDotFormat = "yyyy.MM.dd"
+        static let dateDashFormat = "yyyy-MM-dd"
+        static let dateDetailDotFormat = "yyyy.MM.dd hha"
+        static let dateDetailDashFormat = "yyyy-MM-dd hha"
+        static let briefingServerTime = "yyyy-MM-dd'T'HH:mm:ss"
     }
     
     final class Locale {
