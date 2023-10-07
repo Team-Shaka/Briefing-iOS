@@ -171,7 +171,7 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
     }
     
     @objc func showSettingViewController() {
-        self.navigationController?.pushViewController(SignInViewController(), animated: true)
+        self.navigationController?.pushViewController(SettingViewController(), animated: true)
     }
     
     // FIXME: - PageViewController & Calendar Sync
