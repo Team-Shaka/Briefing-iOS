@@ -10,7 +10,7 @@ import AuthenticationServices
 import GoogleSignIn
 import Alamofire
 
-final class BriefingAuthManager: NSObject {
+final class BriefingAuthManager: NSObject, BFNetworkManager {
     static let shared: BriefingAuthManager = BriefingAuthManager()
     weak var presentationAnchorViewController: UIViewController?
     
@@ -65,8 +65,26 @@ extension BriefingAuthManager {
             signInResult.user.refreshTokensIfNeeded { user, error in
                 guard error == nil else { return }
                 guard let user = user else { return }
-                let idToken = user.idToken
+                let idToken = user.idToken?.tokenString
             }
         }
+    }
+}
+
+// MARK: - SignIn with Briefing Server
+extension BriefingAuthManager {
+    func signIn(idToken: String,
+                socialType: BriefingAuthURLRequest.SocialType) {
+        let url = BriefingURLManager.url(key: .baseUrl)
+        
+        // guard let urlRequest = BriefingAuthURLRequest(urlRequest: <#T##URLRequest#>,
+        //                                               method: .post,
+        //                                               path: <#T##BriefingAuthURLRequest.Path#>,
+        //                                               httpBody: <#T##String?#>,
+        //                                               query: <#T##[BriefingAuthURLRequest.QueryKey : String]?#>)
+        
+        // response(<#T##briefingURLRequest: BriefingNetworkURLRequest##BriefingNetworkURLRequest#>,
+        //          type: <#T##(Decodable & Encodable).Protocol#>,
+        //          completion: <#T##((Decodable & Encodable)?, Error?) -> Void##((Decodable & Encodable)?, Error?) -> Void##(_ value: (Decodable & Encodable)?, _ error: Error?) -> Void#>)
     }
 }
