@@ -65,23 +65,35 @@ extension BriefingAuthManager {
                       completion: @escaping (_ member: Member?, _ error: Error?) -> Void) {
         signInCompletion = completion
         GIDSignIn.sharedInstance.signIn(withPresenting: viewController) { signInResult, error in
-            guard error == nil else { return }
-            guard let signInResult = signInResult else { return }
-            
-            signInResult.user.refreshTokensIfNeeded { user, error in
-                guard error == nil else { return }
-                guard let user = user else { return }
-                if let idToken = user.idToken?.tokenString {
-                    self.signIn(idToken: idToken, socialType: .google)
+            do {
+                if let error = error { throw error }
+                guard let googleUser = signInResult?.user else { throw BriefingAuthError.noDataError }
+                self.googleRefreshTokensIfNeeded(user: googleUser)
+            } catch {
+                self.signInResultHandle(nil, error)
+            }
+        }
+    }
+    
+    func googleRefreshTokensIfNeeded(user: GIDGoogleUser?){
+        user?.refreshTokensIfNeeded { user, error in
+            do {
+                if let error = error { throw error }
+                guard let idToken = user?.idToken?.tokenString else {
+                    throw BriefingAuthError.noDataError
                 }
+                self.signIn(idToken: idToken, socialType: .google)
+            }
+            catch {
+                self.signInResultHandle(nil, error)
             }
         }
     }
 }
 
 // MARK: - SignIn with Briefing Server
-extension BriefingAuthManager {
-    private func signIn(idToken: String,
+private extension BriefingAuthManager {
+     func signIn(idToken: String,
                         socialType: BriefingAuthURLRequest.SocialType) {
         let url = BriefingURLManager.url(key: .baseUrl)
         guard let urlRequest = BriefingAuthURLRequest(url: url,
@@ -96,10 +108,9 @@ extension BriefingAuthManager {
                  type: Member.self) { value, error in
             self.signInResultHandle(value, error)
         }
-        
     }
     
-    private func signInResultHandle(_ member: Member?, _ error: Error?){
+    func signInResultHandle(_ member: Member?, _ error: Error?){
         signInCompletion?(member, error)
         signInCompletion = nil
     }
