@@ -16,8 +16,9 @@ final class BriefingImageCollection {
     static let briefingTabBarSelectedIconImage: UIImage = #imageLiteral(resourceName: "briefing_selected")
     static let chatTabBarNormalIconImage: UIImage = #imageLiteral(resourceName: "chat_normal")
     static let chatTabBarSelectedIconImage: UIImage = #imageLiteral(resourceName: "chat_selelcted")
-    static let nextIconImage: UIImage = UIImage(systemName: "chevron.forward")!
-
+//    static let nextIconImage: UIImage = UIImage(systemName: "chevron.forward")!
+    static let nextIconImage: UIImage = #imageLiteral(resourceName: "details")
+    
     final class Setting {
         private init() { }
         static let caution: UIImage = UIImage(named: "setting_caution")!
@@ -27,6 +28,11 @@ final class BriefingImageCollection {
         static let privacyPolicy: UIImage = UIImage(named: "setting_policy")!
         static let versionNote: UIImage = UIImage(named: "setting_version_note")!
         static let appVersion: UIImage = UIImage(named: "setting_version")!
+    }
+    
+    final class Card {
+        private init() { }
+        static let briefChatBeta: UIImage = UIImage(named: "brief_chat_beta")!
     }
 
 }
