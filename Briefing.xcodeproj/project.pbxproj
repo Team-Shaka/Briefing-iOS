@@ -267,7 +267,6 @@
 			children = (
 				2443C5702A8FEE37009586C7 /* BriefingTab.swift */,
 				2443C5742A8FEF57009586C7 /* BriefingTableViewCell.swift */,
-				EE7ED4632AB9641200FC49C9 /* BriefingCardViewController.swift */,
 				2443C58B2A937C9C009586C7 /* BriefingCard.swift */,
 				2443C58D2A9398D9009586C7 /* BriefingCardCell.swift */,
 				2443C58F2A93A928009586C7 /* Scrapbook.swift */,
@@ -321,6 +320,7 @@
 		A51DC48F2AB6B3B50055928C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				EE5560BB2AD26C6C0024ABBA /* BriefingCardScenes */,
 				A5B3A7A42AB89BFA00E1E2B6 /* HomeScenes */,
 				A52B67652AC6A34400785F4A /* AuthScenes */,
 				A5C5E7832ACE35610053E434 /* SettingScenes */,
@@ -509,6 +509,14 @@
 				E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EE5560BB2AD26C6C0024ABBA /* BriefingCardScenes */ = {
+			isa = PBXGroup;
+			children = (
+				EE7ED4632AB9641200FC49C9 /* BriefingCardViewController.swift */,
+			);
+			path = BriefingCardScenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
