@@ -23,7 +23,7 @@ final class BriefingStringCollection {
     static let appDescription: String = NSLocalizedString("appDescription", comment: "")
     static let keywordBriefing: String = NSLocalizedString("keywordBriefing", comment: "")
     static let updated: String = NSLocalizedString("updated", comment: "")
-
+    
     
     final class Format {
         private init() { }
@@ -38,6 +38,12 @@ final class BriefingStringCollection {
         private init() { }
         static let ko = "ko_KR"
         static let en = "en_US"
+    }
+    
+    enum Card: String, EnumeratedLocalized {
+        case askBrief
+        case beta
+        case relatedArticles
     }
     
     enum Auth: String, EnumeratedLocalized {
