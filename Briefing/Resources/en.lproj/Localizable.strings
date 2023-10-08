@@ -11,10 +11,14 @@
 "keywordBriefing" = "Keyword Briefing";
 "updated" = "Updated";
 
+"askBrief" = "Ask Brief";
+"beta" = "BETA";
+"relatedArticles" = "Related Articles";
+
 "signInWithApple" = "Log in with Apple";
 "signInWithGoogle" = "Log in with Google";
 
-"notiTimeSetting" = "set notification time";
+"notiTimeSetting" = "Set notification time";
 "appVersionTitle" = "App Version";
 "feedbackAndInquiry" = "Feedback & Inquiry";
 "versionNote" = "Version Note";
