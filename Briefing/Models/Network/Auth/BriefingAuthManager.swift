@@ -122,7 +122,6 @@ private extension BriefingAuthManager {
         if let member = member {
             self.member = member
         }
-        print("signInCompletion \(signInCompletion != nil)")
         signInCompletion?(member, error)
         signInCompletion = nil
     }
