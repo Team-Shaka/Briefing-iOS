@@ -8,15 +8,9 @@
 import UIKit
 
 enum SettingTableViewCellType {
+    case timePicker(symbol: UIImage, title: String)
     case `default`(symbol: UIImage, title: String, value: String?=nil, urlString: String?=nil)
     case button(title: String, color: UIColor = .briefingBlue, authType: SettingAuthType?)
-    
-    var cellType: SettingTableViewCell.Type {
-        switch self {
-        case .default: return SettingTableViewDefaultCell.self
-        case .button: return SettingTableViewButtonCell.self
-        }
-    }
 }
 
 protocol SettingTableViewCell: UITableViewCell {
@@ -34,8 +28,8 @@ class SettingViewController: UIViewController {
     
     private lazy var settingCellData: [[SettingTableViewCellType]] = [
         [
-            .default(symbol: BriefingImageCollection.Setting.clock,
-                     title: BriefingStringCollection.Setting.notiTimeSetting.localized)
+            .timePicker(symbol: BriefingImageCollection.Setting.clock,
+                        title: BriefingStringCollection.Setting.notiTimeSetting.localized)
         ],
         [
             .default(symbol: BriefingImageCollection.Setting.appVersion,
@@ -107,6 +101,8 @@ class SettingViewController: UIViewController {
         
         self.settingTableView.delegate = self
         self.settingTableView.dataSource = self
+        self.settingTableView.register(SettingTableViewTimePickerCell.self,
+                                       forCellReuseIdentifier: SettingTableViewTimePickerCell.identifier)
         self.settingTableView.register(SettingTableViewDefaultCell.self,
                                        forCellReuseIdentifier: SettingTableViewDefaultCell.identifier)
         self.settingTableView.register(SettingTableViewButtonCell.self,
@@ -166,6 +162,16 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 { cornerMaskEdge = cornerMaskEdge == .bottom ? .all : .top }
         
         switch cellSectionData[indexPath.row] {
+        case let .timePicker(symbol, title):
+            guard let cell = tableView
+                .dequeueReusableCell(withIdentifier: SettingTableViewTimePickerCell.identifier) as? SettingTableViewTimePickerCell else {
+                return UITableViewCell()
+            }
+            cell.setCellData(symbol: symbol,
+                             title: title,
+                             delegate: self,
+                             cornerMaskEdge: cornerMaskEdge)
+            return cell
         case let .default(symbol, title, value, urlString):
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: SettingTableViewDefaultCell.identifier) as? SettingTableViewDefaultCell else {
@@ -206,6 +212,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             case .signOut: selectSignOut()
             case .withdrawal: selectWithdrawal()
             }
+        default: break
         }
     }
     
@@ -214,4 +221,16 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         view.backgroundColor = .clear
         return view
     }
+}
+
+extension SettingViewController: SettingTableViewTimePickerCellDelegate {
+    func isAvailableTimePicker() -> Bool {
+        return true
+    }
+    
+    func changeTimePickerValue() {
+        
+    }
+    
+    
 }

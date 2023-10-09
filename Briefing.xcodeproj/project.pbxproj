@@ -67,6 +67,7 @@
 		A595F0352ABDAC09006543B2 /* url.plist in Resources */ = {isa = PBXBuildFile; fileRef = A595F0342ABDAC09006543B2 /* url.plist */; };
 		A595F0372ABDAC2D006543B2 /* url-debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = A595F0362ABDAC2D006543B2 /* url-debug.plist */; };
 		A5B3A7A62AB89D4700E1E2B6 /* TabBarItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3A7A52AB89D4700E1E2B6 /* TabBarItemViewController.swift */; };
+		A5BA061E2AD3CBBA00BC6693 /* SettingTableViewTimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA061D2AD3CBBA00BC6693 /* SettingTableViewTimePickerCell.swift */; };
 		A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7842ACE357E0053E434 /* SettingViewController.swift */; };
 		A5CA5EAF2AD17CE9003FBD99 /* SettingTableViewButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewButtonCell.swift */; };
 		A5CA5EB12AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */; };
@@ -158,6 +159,7 @@
 		A595F0342ABDAC09006543B2 /* url.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = url.plist; sourceTree = "<group>"; };
 		A595F0362ABDAC2D006543B2 /* url-debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "url-debug.plist"; sourceTree = "<group>"; };
 		A5B3A7A52AB89D4700E1E2B6 /* TabBarItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemViewController.swift; sourceTree = "<group>"; };
+		A5BA061D2AD3CBBA00BC6693 /* SettingTableViewTimePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewTimePickerCell.swift; sourceTree = "<group>"; };
 		A5C5E7842ACE357E0053E434 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewButtonCell.swift; sourceTree = "<group>"; };
 		A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewDefaultCell.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				A5C5E7842ACE357E0053E434 /* SettingViewController.swift */,
+				A5BA061D2AD3CBBA00BC6693 /* SettingTableViewTimePickerCell.swift */,
 				A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */,
 				A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewButtonCell.swift */,
 			);
@@ -711,6 +714,7 @@
 				A5334CE02AB892660041F5BA /* BriefingImageCollection.swift in Sources */,
 				2443C5922A93AB24009586C7 /* ScrapSectionCell.swift in Sources */,
 				A5CD89C52AD122AC00568F9D /* BriefingAuthError.swift in Sources */,
+				A5BA061E2AD3CBBA00BC6693 /* SettingTableViewTimePickerCell.swift in Sources */,
 				2443C5942A93ABFF009586C7 /* ScrapDetailCell.swift in Sources */,
 				A51E56E32ABE156C00BD3837 /* BFNetworkError.swift in Sources */,
 			);
