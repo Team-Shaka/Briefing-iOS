@@ -283,9 +283,7 @@ class BriefingCardViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.leading.equalToSuperview().offset(17)
             make.trailing.equalToSuperview().inset(17)
-            
-//            make.height.equalTo(1000)
-            make.height.greaterThanOrEqualTo(cardScrollView).offset(1)
+            make.bottom.equalToSuperview()
         }
         
         dateInformationLabel.snp.makeConstraints{ make in
@@ -314,6 +312,7 @@ class BriefingCardViewController: UIViewController {
             make.leading.equalToSuperview().offset(23)
             make.trailing.equalToSuperview().inset(23)
             make.height.equalTo(60)
+            
         }
         
         chatImageView.snp.makeConstraints{ make in
@@ -347,7 +346,7 @@ class BriefingCardViewController: UIViewController {
             make.top.equalTo(relatedLabel.snp.bottom).offset(11)
             make.leading.equalToSuperview().offset(23)
             make.trailing.equalToSuperview().inset(23)
-            make.bottom.lessThanOrEqualToSuperview().inset(25)
+            make.bottom.equalToSuperview().inset(25)
         }
         
         firstArticleView.snp.makeConstraints{ make in
@@ -365,13 +364,6 @@ class BriefingCardViewController: UIViewController {
             make.height.equalTo(60)
         }
         
-        cardView.snp.remakeConstraints{ make in
-            make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.leading.equalToSuperview().offset(17)
-            make.trailing.equalToSuperview().inset(17)
-            make.bottom.equalTo(articleStackView).offset(25)
-        }
     }
     
     @objc func goBackToHomeViewController() {
