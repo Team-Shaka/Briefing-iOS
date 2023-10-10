@@ -23,6 +23,7 @@ final class BriefingStringCollection {
     static let appDescription: String = NSLocalizedString("appDescription", comment: "")
     static let keywordBriefing: String = NSLocalizedString("keywordBriefing", comment: "")
     static let updated: String = NSLocalizedString("updated", comment: "")
+    static let cancel: String = NSLocalizedString("cancel", comment: "")
     
     
     final class Format {
@@ -68,6 +69,8 @@ final class BriefingStringCollection {
         case setting
         case setNotification
         case removeNotification
+        case signOutDescription
+        case withdrawalDescription
     }
     
     enum Link: String, EnumeratedLocalized {
