@@ -10,6 +10,7 @@
 "appDescription" = "Your Keyword Newskeeper.";
 "keywordBriefing" = "키워드 브리핑";
 "updated" = "Updated";
+"cancel" = "취소";
 
 "askBrief" = "Brief에게 물어보기";
 "beta" = "베타";
@@ -33,7 +34,9 @@
 "caution" = "유의사항";
 "signInAndRegister" = "로그인 또는 회원가입";
 "signOut" = "로그아웃";
+"signOutDescription" = "정말 로그아웃 하시겠습니까?\n일부 기능 이용이 제한됩니다.";
 "withdrawal" = "회원 탈퇴";
+"withdrawalDescription" = "정말 회원탈퇴 하시겠습니까?\n해당 계정은 사용이 불가해집니다.";
 
 "feedBackLink" = "https://forms.gle/HQXmEBkQ6wyW9jiw7";
 "versionNoteLink" = "https://onve.notion.site/Briefing-8af692ff041c4fc6931b2fc897411e6d?pvs=4";

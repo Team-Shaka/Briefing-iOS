@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class BriefingPopUpViewController: UIViewController {
-    
+    var index: Int
     var popUpTitle: String
     var popUpDescription: String
     var cancelButtonText: String
@@ -69,8 +69,6 @@ class BriefingPopUpViewController: UIViewController {
         return button
     }()
     
-    
-    
     private var confirmButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .secondBlue
@@ -94,10 +92,12 @@ class BriefingPopUpViewController: UIViewController {
     }()
     
     
-    init(title: String,
+    init(index: Int = 0,
+         title: String,
          description: String,
          buttonTitles: [String],
          style: Style) {
+        self.index = index
         self.popUpTitle = title
         self.popUpDescription = description
         
@@ -136,11 +136,14 @@ class BriefingPopUpViewController: UIViewController {
         // style에 따라 분리
         if (self.style == .normal) {
             self.mainContainerView.addSubviews(cancelButton)
+            cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
         }
         
         else {
             self.mainContainerView.addSubviews(buttonStackView)
             [self.cancelButton, self.confirmButton].forEach { buttonStackView.addArrangedSubview($0) }
+            cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
+            confirmButton.addTarget(self, action: #selector(confirmButtonAction), for: .touchUpInside)
         }
         
         if (self.style == .twoButtonsDestructive) {
@@ -225,6 +228,15 @@ class BriefingPopUpViewController: UIViewController {
         }
     }
     
+    @objc func confirmButtonAction() {
+        self.delegate?.confirmButtonTapped(self)
+        self.dismiss(animated: false)
+    }
+    
+    @objc func cancelButtonAction() {
+        self.delegate?.cancelButtonTapped(self)
+        self.dismiss(animated: false)
+    }
 }
 
 extension BriefingPopUpViewController {
@@ -238,6 +250,6 @@ extension BriefingPopUpViewController {
 }
 
 protocol BriefingPopUpDelegate: AnyObject {
-    func cancelButtonTapped()
-    func confirmButtonTapped()
+    func cancelButtonTapped(_ popupViewController: BriefingPopUpViewController)
+    func confirmButtonTapped(_ popupViewController: BriefingPopUpViewController)
 }

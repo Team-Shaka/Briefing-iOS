@@ -101,7 +101,6 @@ class SettingViewController: UIViewController {
         return label
     }()
     
-    
     private var settingTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
@@ -188,14 +187,31 @@ class SettingViewController: UIViewController {
     }
     
     func selectSignOut() {
-        // FIXME: - Alert View
-        authManager.signOut()
-        settingTableView.reloadSections(IndexSet(integer: authCellSectionInsertIndex),
-                                        with: .fade)
+        let title = BriefingStringCollection.Setting.signOut.localized
+        let description = BriefingStringCollection.Setting.signOutDescription.localized
+        let cancel = BriefingStringCollection.cancel
+        let popupViewController = BriefingPopUpViewController(index: 0,
+                                                              title: title,
+                                                              description: description,
+                                                              buttonTitles:[cancel, title],
+                                                              style: .twoButtonsDestructive)
+        popupViewController.modalPresentationStyle = .overFullScreen
+        popupViewController.delegate = self
+        self.present(popupViewController, animated: false)
     }
     
     func selectWithdrawal() {
-        // FIXME: - Alert View
+        let title = BriefingStringCollection.Setting.withdrawal.localized
+        let description = BriefingStringCollection.Setting.withdrawalDescription.localized
+        let cancel = BriefingStringCollection.cancel
+        let popupViewController = BriefingPopUpViewController(index: 1,
+                                                              title: title,
+                                                              description: description,
+                                                              buttonTitles:[cancel, title],
+                                                              style: .twoButtonsDestructive)
+        popupViewController.modalPresentationStyle = .overFullScreen
+        popupViewController.delegate = self
+        self.present(popupViewController, animated: false)
     }
     
     @objc func goBackToHomeViewController() {
@@ -294,5 +310,23 @@ extension SettingViewController: SettingTimePickerViewControllerDelegate {
         self.notificationTime = nil
         let notificationTime = self.notificationTime?.toString() ?? BriefingStringCollection.Setting.setting.localized
         self.notificationTimePickerButton.setTitle(notificationTime, for: .normal)
+    }
+}
+
+extension SettingViewController: BriefingPopUpDelegate {
+    func cancelButtonTapped(_ popupViewController: BriefingPopUpViewController) { }
+    
+    func confirmButtonTapped(_ popupViewController: BriefingPopUpViewController) {
+        switch popupViewController.index {
+        case 0:
+            authManager.signOut()
+            settingTableView.reloadSections(IndexSet(integer: authCellSectionInsertIndex),
+                                            with: .fade)
+        case 1:
+            // FIXME: - Withdrawal Action
+            print("withdrawal Action")
+            break
+        default: break
+        }
     }
 }
