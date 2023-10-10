@@ -23,7 +23,8 @@ final class BriefingStringCollection {
     static let appDescription: String = NSLocalizedString("appDescription", comment: "")
     static let keywordBriefing: String = NSLocalizedString("keywordBriefing", comment: "")
     static let updated: String = NSLocalizedString("updated", comment: "")
-
+    static let cancel: String = NSLocalizedString("cancel", comment: "")
+    
     
     final class Format {
         private init() { }
@@ -32,6 +33,7 @@ final class BriefingStringCollection {
         static let dateDetailDotFormat = "yyyy.MM.dd hha"
         static let dateDetailDashFormat = "yyyy-MM-dd hha"
         static let briefingServerTime = "yyyy-MM-dd'T'HH:mm:ss"
+        static let briefingNotificationTime = "ahh:mm"
     }
     
     final class Locale {
@@ -40,13 +42,21 @@ final class BriefingStringCollection {
         static let en = "en_US"
     }
     
+    enum Card: String, EnumeratedLocalized {
+        case askBrief
+        case beta
+        case relatedArticles
+    }
+    
     enum Auth: String, EnumeratedLocalized {
         case signInWithApple
         case signInWithGoogle
+        case signInLater
     }
     
     enum Setting: String, EnumeratedLocalized {
-        case notiTimeSetting
+        case settings
+        case notificationTimeSetting
         case appVersionTitle
         case feedbackAndInquiry
         case versionNote
@@ -56,6 +66,11 @@ final class BriefingStringCollection {
         case signInAndRegister
         case signOut
         case withdrawal
+        case setting
+        case setNotification
+        case removeNotification
+        case signOutDescription
+        case withdrawalDescription
     }
     
     enum Link: String, EnumeratedLocalized {

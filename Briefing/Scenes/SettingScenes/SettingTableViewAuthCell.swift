@@ -7,8 +7,8 @@
 
 import UIKit
 
-class SettingTableViewButtonCell: UITableViewCell, SettingTableViewCell {
-    static let identifier: String = String(describing: SettingTableViewButtonCell.self)
+class SettingTableViewAuthCell: UITableViewCell {
+    static let identifier: String = String(describing: SettingTableViewAuthCell.self)
 
     private var mainContainerView: UIView = {
         let view = UIView()

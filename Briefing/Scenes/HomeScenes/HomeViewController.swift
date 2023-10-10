@@ -87,7 +87,7 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        // navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     private func configure() {

@@ -50,6 +50,7 @@ class HomeBriefingTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .briefingLightBlue
         label.font = .productSans(size: 12)
+        label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 1
         return label
     }()
@@ -117,7 +118,7 @@ class HomeBriefingTableViewCell: UITableViewCell {
             make.leading.equalTo(rankLabel.snp.trailing).offset(12)
             make.top.equalTo(titleLabel.snp.top)
             make.bottom.equalTo(descriptionLabel.snp.bottom)
-            make.trailing.equalTo(nextIconImageView.snp.leading).offset(12)
+            make.trailing.equalTo(nextIconImageView.snp.leading)
         }
         
         titleLabel.snp.makeConstraints{ make in
