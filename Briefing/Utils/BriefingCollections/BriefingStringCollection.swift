@@ -32,6 +32,7 @@ final class BriefingStringCollection {
         static let dateDetailDotFormat = "yyyy.MM.dd hha"
         static let dateDetailDashFormat = "yyyy-MM-dd hha"
         static let briefingServerTime = "yyyy-MM-dd'T'HH:mm:ss"
+        static let briefingNotificationTime = "ahh:mm"
     }
     
     final class Locale {
@@ -49,10 +50,11 @@ final class BriefingStringCollection {
     enum Auth: String, EnumeratedLocalized {
         case signInWithApple
         case signInWithGoogle
+        case signInLater
     }
     
     enum Setting: String, EnumeratedLocalized {
-        case notiTimeSetting
+        case notificationTimeSetting
         case appVersionTitle
         case feedbackAndInquiry
         case versionNote
@@ -62,6 +64,9 @@ final class BriefingStringCollection {
         case signInAndRegister
         case signOut
         case withdrawal
+        case setting
+        case setNotification
+        case removeNotification
     }
     
     enum Link: String, EnumeratedLocalized {

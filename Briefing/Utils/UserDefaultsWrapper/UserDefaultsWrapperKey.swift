@@ -9,4 +9,5 @@ import Foundation
 
 enum UserDefaultsWrapperKey: String {
     case member
+    case notificationTime
 }

@@ -8,16 +8,17 @@
 import UIKit
 
 enum SettingTableViewCellType {
-    case timePicker(symbol: UIImage, title: String)
-    case `default`(symbol: UIImage, title: String, value: String?=nil, urlString: String?=nil)
-    case button(title: String, color: UIColor = .briefingBlue, authType: SettingAuthType?)
+    case `default`(symbol: UIImage, title: String, type: SettingTableViewDefaultCellType)
+    case auth(title: String, color: UIColor = .briefingBlue, type: SettingTableViewAuthCellType)
 }
 
-protocol SettingTableViewCell: UITableViewCell {
-    static var identifier: String { get }
+enum SettingTableViewDefaultCellType {
+    case text(_ text: String)
+    case url(_ urlString: String)
+    case customView(_ view: UIView)
 }
 
-enum SettingAuthType {
+enum SettingTableViewAuthCellType {
     case signInAndRegister
     case signOut
     case withdrawal
@@ -26,32 +27,36 @@ enum SettingAuthType {
 class SettingViewController: UIViewController {
     private let authManager = BriefingAuthManager.shared
     
+    @UserDefaultWrapper(key: .notificationTime, defaultValue: nil)
+    var notificationTime: NotificationTime?
+    
     private lazy var settingCellData: [[SettingTableViewCellType]] = [
         [
-            .timePicker(symbol: BriefingImageCollection.Setting.clock,
-                        title: BriefingStringCollection.Setting.notiTimeSetting.localized)
+            .default(symbol: BriefingImageCollection.Setting.clock,
+                     title: BriefingStringCollection.Setting.notificationTimeSetting.localized,
+                     type: .customView(self.notificationTimePickerButton))
         ],
         [
             .default(symbol: BriefingImageCollection.Setting.appVersion,
                      title: BriefingStringCollection.Setting.appVersionTitle.localized,
-                     value: BriefingStringCollection.appVersion),
+                     type: .text(BriefingStringCollection.appVersion)),
             .default(symbol: BriefingImageCollection.Setting.feedback,
                      title: BriefingStringCollection.Setting.feedbackAndInquiry.localized,
-                     urlString: BriefingStringCollection.Link.feedBack.localized),
+                     type: .url(BriefingStringCollection.Link.feedBack.localized)),
             .default(symbol: BriefingImageCollection.Setting.versionNote,
                      title: BriefingStringCollection.Setting.versionNote.localized,
-                     urlString: BriefingStringCollection.Link.versionNote.localized)
+                     type: .url(BriefingStringCollection.Link.versionNote.localized))
         ],
         [
             .default(symbol: BriefingImageCollection.Setting.termsOfService,
                      title: BriefingStringCollection.Setting.termsOfService.localized,
-                     urlString: BriefingStringCollection.Link.termsOfService.localized),
+                     type: .url(BriefingStringCollection.Link.termsOfService.localized)),
             .default(symbol: BriefingImageCollection.Setting.privacyPolicy,
                      title: BriefingStringCollection.Setting.privacyPolicy.localized,
-                     urlString: BriefingStringCollection.Link.privacyPolicy.localized),
+                     type: .url(BriefingStringCollection.Link.privacyPolicy.localized)),
             .default(symbol: BriefingImageCollection.Setting.caution,
                      title: BriefingStringCollection.Setting.caution.localized,
-                     urlString: BriefingStringCollection.Link.caution.localized)
+                     type: .url(BriefingStringCollection.Link.caution.localized))
         ],
         []
     ]
@@ -60,19 +65,25 @@ class SettingViewController: UIViewController {
     private var authCellSectionData: [SettingTableViewCellType] {
         if authManager.member != nil {
             return [
-                .button(title: BriefingStringCollection.Setting.signOut.localized,
-                        authType: .signOut),
-                .button(title: BriefingStringCollection.Setting.withdrawal.localized,
-                        color: .briefingRed,
-                        authType: .withdrawal)
+                .auth(title: BriefingStringCollection.Setting.signOut.localized,
+                      type: .signOut),
+                .auth(title: BriefingStringCollection.Setting.withdrawal.localized,
+                      color: .briefingRed,
+                      type: .withdrawal)
             ]
         } else {
             return [
-                .button(title: BriefingStringCollection.Setting.signInAndRegister.localized,
-                        authType: .signInAndRegister)
+                .auth(title: BriefingStringCollection.Setting.signInAndRegister.localized,
+                      type: .signInAndRegister)
             ]
         }
     }
+    
+    private var navigationView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     
     private var settingTableView: UITableView = {
         let tableView = UITableView()
@@ -82,6 +93,15 @@ class SettingViewController: UIViewController {
         tableView.sectionHeaderTopPadding = 0
         tableView.rowHeight = 52
         return tableView
+    }()
+    
+    private var notificationTimePickerButton: UIButton = {
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .briefingLightBlue.withAlphaComponent(0.4)
+        let button = UIButton(configuration: configuration)
+        button.setTitle("_", for: .normal)
+        button.setTitleColor(.briefingNavy, for: .normal)
+        return button
     }()
     
     override func viewDidAppear(_ animated: Bool) {
@@ -101,12 +121,14 @@ class SettingViewController: UIViewController {
         
         self.settingTableView.delegate = self
         self.settingTableView.dataSource = self
-        self.settingTableView.register(SettingTableViewTimePickerCell.self,
-                                       forCellReuseIdentifier: SettingTableViewTimePickerCell.identifier)
         self.settingTableView.register(SettingTableViewDefaultCell.self,
                                        forCellReuseIdentifier: SettingTableViewDefaultCell.identifier)
-        self.settingTableView.register(SettingTableViewButtonCell.self,
-                                       forCellReuseIdentifier: SettingTableViewButtonCell.identifier)
+        self.settingTableView.register(SettingTableViewAuthCell.self,
+                                       forCellReuseIdentifier: SettingTableViewAuthCell.identifier)
+        
+        self.notificationTimePickerButton.addTarget(self, action: #selector(showTimePickerView(_:)), for: .touchUpInside)
+        let notificationTime = self.notificationTime?.toString() ?? BriefingStringCollection.Setting.setting.localized
+        self.notificationTimePickerButton.setTitle(notificationTime, for: .normal)
     }
     
     private func addSubviews() {
@@ -162,30 +184,19 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 { cornerMaskEdge = cornerMaskEdge == .bottom ? .all : .top }
         
         switch cellSectionData[indexPath.row] {
-        case let .timePicker(symbol, title):
-            guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: SettingTableViewTimePickerCell.identifier) as? SettingTableViewTimePickerCell else {
-                return UITableViewCell()
-            }
-            cell.setCellData(symbol: symbol,
-                             title: title,
-                             delegate: self,
-                             cornerMaskEdge: cornerMaskEdge)
-            return cell
-        case let .default(symbol, title, value, urlString):
+        case let .default(symbol, title, type):
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: SettingTableViewDefaultCell.identifier) as? SettingTableViewDefaultCell else {
                 return UITableViewCell()
             }
             cell.setCellData(symbol: symbol,
                              title: title,
-                             value: value,
-                             urlString: urlString,
+                             type: type,
                              cornerMaskEdge: cornerMaskEdge)
             return cell
-        case let .button(title, color, _):
+        case let .auth(title, color, _):
             guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: SettingTableViewButtonCell.identifier) as? SettingTableViewButtonCell else {
+                .dequeueReusableCell(withIdentifier: SettingTableViewAuthCell.identifier) as? SettingTableViewAuthCell else {
                 return UITableViewCell()
             }
             cell.setCellData(title: title,
@@ -202,17 +213,18 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         let cellSectionData = settingCellData[indexPath.section]
         
         switch  cellSectionData[indexPath.row] {
-        case let .default(_, _, _, urlString):
-            guard let urlString = urlString else { return }
-            self.openURLInSafari(urlString)
-        case let .button(_, _, authType):
-            guard let authType = authType else { return }
-            switch authType {
+        case let .default(_, _, type):
+            switch type {
+            case let .url(urlString):
+                self.openURLInSafari(urlString)
+            default: break
+            }
+        case let .auth(_, _, type):
+            switch type {
             case .signInAndRegister: selectSignInAndRegister()
             case .signOut: selectSignOut()
             case .withdrawal: selectWithdrawal()
             }
-        default: break
         }
     }
     
@@ -221,16 +233,24 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         view.backgroundColor = .clear
         return view
     }
+    
+    @objc func showTimePickerView(_ sender: UIButton) {
+        let viewController = SettingTimePickerViewController()
+        viewController.delegate = self
+        self.present(viewController, animated: true)
+    }
 }
 
-extension SettingViewController: SettingTableViewTimePickerCellDelegate {
-    func isAvailableTimePicker() -> Bool {
-        return true
+extension SettingViewController: SettingTimePickerViewControllerDelegate {
+    func setTime(_ time: NotificationTime) {
+        self.notificationTime = time
+        let notificationTime = self.notificationTime?.toString() ?? BriefingStringCollection.Setting.setting.localized
+        self.notificationTimePickerButton.setTitle(notificationTime, for: .normal)
     }
     
-    func changeTimePickerValue() {
-        
+    func removeTime() {
+        self.notificationTime = nil
+        let notificationTime = self.notificationTime?.toString() ?? BriefingStringCollection.Setting.setting.localized
+        self.notificationTimePickerButton.setTitle(notificationTime, for: .normal)
     }
-    
-    
 }
