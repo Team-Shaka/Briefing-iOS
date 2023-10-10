@@ -19,11 +19,12 @@
 "signInWithGoogle" = "Sign in with Google";
 "signInLater" = "Later";
 
-"setting" = "setting";
+"settings" = "settings";
 
 "notificationTimeSetting" = "Set notification time";
 "setNotification" = "set";
 "removeNotification" = "remove";
+"setting" = "setting";
 "appVersionTitle" = "App Version";
 "feedbackAndInquiry" = "Feedback & Inquiry";
 "versionNote" = "Version Note";
