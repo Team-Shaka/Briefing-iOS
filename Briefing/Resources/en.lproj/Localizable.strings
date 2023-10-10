@@ -15,10 +15,15 @@
 "beta" = "BETA";
 "relatedArticles" = "Related Articles";
 
-"signInWithApple" = "Log in with Apple";
-"signInWithGoogle" = "Log in with Google";
+"signInWithApple" = "Sign in with Apple";
+"signInWithGoogle" = "Sign in with Google";
+"signInLater" = "Later";
 
-"notiTimeSetting" = "Set notification time";
+"setting" = "setting";
+
+"notificationTimeSetting" = "Set notification time";
+"setNotification" = "set";
+"removeNotification" = "remove";
 "appVersionTitle" = "App Version";
 "feedbackAndInquiry" = "Feedback & Inquiry";
 "versionNote" = "Version Note";
