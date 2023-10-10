@@ -84,6 +84,23 @@ class SettingViewController: UIViewController {
         return view
     }()
     
+    private lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(BriefingImageCollection.backIconImage, for: .normal)
+        button.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(goBackToHomeViewController), for: .touchUpInside)
+        return button
+    }()
+    
+    private var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = BriefingStringCollection.Setting.settings.localized
+        label.font = .productSans(size: 24)
+        label.textColor = .briefingNavy
+        return label
+    }()
+    
     
     private var settingTableView: UITableView = {
         let tableView = UITableView()
@@ -132,16 +149,37 @@ class SettingViewController: UIViewController {
     }
     
     private func addSubviews() {
-        let subViews: [UIView] = [settingTableView]
+        [backButton, titleLabel].forEach { subView in
+            navigationView.addSubview(subView)
+        }
         
-        subViews.forEach { subView in
+        [navigationView, settingTableView].forEach { subView in
             view.addSubview(subView)
         }
     }
     
     private func makeConstraints() {
+        navigationView.snp.makeConstraints{ make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(titleLabel).offset(25)
+            make.leading.trailing.equalTo(view)
+        }
+        
+        backButton.snp.makeConstraints{ make in
+            make.centerY.equalTo(navigationView)
+            make.height.equalTo(titleLabel)
+            make.width.equalTo(backButton.snp.height)
+            make.leading.equalTo(navigationView).inset(21)
+        }
+        
+        titleLabel.snp.makeConstraints{ make in
+            make.centerY.equalTo(navigationView)
+            make.centerX.equalTo(navigationView)
+        }
+        
         settingTableView.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalToSuperview()
+            make.top.equalTo(navigationView.snp.bottom)
+            make.bottom.leading.trailing.equalToSuperview()
         }
     }
     
@@ -158,6 +196,10 @@ class SettingViewController: UIViewController {
     
     func selectWithdrawal() {
         // FIXME: - Alert View
+    }
+    
+    @objc func goBackToHomeViewController() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

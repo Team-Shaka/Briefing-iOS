@@ -54,6 +54,7 @@ final class BriefingStringCollection {
     }
     
     enum Setting: String, EnumeratedLocalized {
+        case settings
         case notificationTimeSetting
         case appVersionTitle
         case feedbackAndInquiry

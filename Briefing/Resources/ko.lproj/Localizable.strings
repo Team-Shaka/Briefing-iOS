@@ -19,11 +19,12 @@
 "signInWithGoogle" = "Google로 로그인";
 "signInLater" = "나중에 하기";
 
-"setting" = "설정";
+"settings" = "설정";
 
 "notificationTimeSetting" = "알림 시간 설정";
 "setNotification" = "알림 설정";
 "removeNotification" = "알림 삭제";
+"setting" = "설정";
 "appVersionTitle" = "앱 버전";
 "feedbackAndInquiry" = "피드백 및 문의하기";
 "versionNote" = "버전 노트";
