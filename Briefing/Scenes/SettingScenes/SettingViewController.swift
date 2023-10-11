@@ -145,6 +145,7 @@ class SettingViewController: UIViewController {
         self.notificationTimePickerButton.addTarget(self, action: #selector(showTimePickerView(_:)), for: .touchUpInside)
         let notificationTime = self.notificationTime?.toString() ?? BriefingStringCollection.Setting.setting.localized
         self.notificationTimePickerButton.setTitle(notificationTime, for: .normal)
+        addSwipeGestureToDismiss()
     }
     
     private func addSubviews() {
