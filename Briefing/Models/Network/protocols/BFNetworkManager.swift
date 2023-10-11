@@ -40,7 +40,8 @@ extension BFNetworkManager {
                     }
                     
                     guard networkResult.isSuccess else {
-                        completion(nil, BFNetworkError.requestFail(message: networkResult.message))
+                        completion(nil, BFNetworkError.requestFail(code: networkResult.code,
+                                                                   message: networkResult.message))
                         return
                     }
                     
