@@ -43,12 +43,14 @@ extension BriefingAuthURLRequest {
         case signIn(SocialType)
         case test
         case refresh
+        case withdrawal(Int)
         
         var path: String {
             switch self {
             case let .signIn(socialType): return "members/auth/\(socialType)"
             case .test: return ""
             case .refresh: return "members/auth/token"
+            case let .withdrawal(memberId): return "members/\(memberId)"
             }
         }
         
@@ -57,6 +59,7 @@ extension BriefingAuthURLRequest {
             case .signIn: return [.post]
             case .test: return [.get]
             case .refresh: return [.post]
+            case .withdrawal: return [.delete]
             }
         }
     }

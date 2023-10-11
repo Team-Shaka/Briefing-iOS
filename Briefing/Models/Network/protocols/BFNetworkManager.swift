@@ -34,7 +34,18 @@ extension BFNetworkManager {
                         default: throw BFNetworkError.networkError(statusCode: statusCode)
                         }
                     }
-                    completion(response.value?.result, response.error)
+                    guard let networkResult = response.value else {
+                        completion(nil, response.error)
+                        return
+                    }
+                    
+                    guard networkResult.isSuccess else {
+                        completion(nil, BFNetworkError.requestFail(code: networkResult.code,
+                                                                   message: networkResult.message))
+                        return
+                    }
+                    
+                    completion(networkResult.result, response.error)
                 } catch {
                     completion(nil, error)
                 }

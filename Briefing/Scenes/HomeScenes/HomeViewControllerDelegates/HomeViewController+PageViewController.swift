@@ -37,7 +37,6 @@ extension HomeViewController: UIPageViewControllerDelegate,
                 as? HomeBriefingViewController else {
             return
         }
-        print(selectdBriefingViewController.briefingDate)
         self.changeSelectedDateAction(selectdBriefingViewController.briefingDate)
     }
 }

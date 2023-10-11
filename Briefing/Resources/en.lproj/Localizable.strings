@@ -10,6 +10,8 @@
 "appDescription" = "Your Keyword Newskeeper.";
 "keywordBriefing" = "Keyword Briefing";
 "updated" = "Updated";
+"confirm" = "confirm";
+"fail" = "fail";
 "cancel" = "cancel";
 
 "askBrief" = "Ask Brief";
