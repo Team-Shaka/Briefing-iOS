@@ -291,6 +291,8 @@ class BriefingCardViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openBriefChat))
         chatView.addGestureRecognizer(tapGesture)
+        
+        addSwipeGestureToDismiss()
     }
     
     private func addSubviews() {
@@ -375,8 +377,9 @@ class BriefingCardViewController: UIViewController {
             make.top.equalTo(contextLabel.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(23)
             make.trailing.equalToSuperview().inset(23)
-            make.height.equalTo(60)
-            
+//            make.height.equalTo(60)
+            //MARK: - TODO: Show/Hide ChatView
+            make.height.equalTo(0)
         }
         
         chatImageView.snp.makeConstraints{ make in
@@ -419,6 +422,10 @@ class BriefingCardViewController: UIViewController {
     
     @objc func goBackToHomeViewController() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func scrappButtonTapped() {
+        
     }
     
     @objc func openBriefChat() {
@@ -473,6 +480,17 @@ class BriefingCardViewController: UIViewController {
         }
     }
     
+    private func scrapBriefingCard() {
+        networkManager.scrapBriefing(id: self.id) { [weak self] value,error in
+            if let error = error {
+                self?.errorHandling(error)
+                return
+            }
+            
+            self?.scrapButton.setImage(BriefingImageCollection.scrapFilledImage, for: .normal)
+        }
+    }
+    
     private func updateBriefingCard() {
         if let briefCardDate = self.briefingData?.date {
             self.dateInformationLabel.text = "\(briefCardDate) #\(self.id)"
@@ -490,7 +508,6 @@ class BriefingCardViewController: UIViewController {
         if let briefCardContent = self.briefingData?.content {
             self.contextLabel.attributedText = NSAttributedString(string: briefCardContent, attributes: [NSAttributedString.Key.paragraphStyle: contentParagraphStyle])
         }
-        
     }
     
     private func adjustArticles() {

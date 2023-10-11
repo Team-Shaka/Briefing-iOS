@@ -18,6 +18,8 @@ final class BriefingImageCollection {
     static let chatTabBarSelectedIconImage: UIImage = #imageLiteral(resourceName: "chat_selelcted")
 //    static let nextIconImage: UIImage = UIImage(systemName: "chevron.forward")!
     static let nextIconImage: UIImage = #imageLiteral(resourceName: "details")
+    static let scrapUnfilledImage: UIImage = #imageLiteral(resourceName: "scrap_normal")
+    static let scrapFilledImage: UIImage = #imageLiteral(resourceName: "scrap_selected")
     
     final class Setting {
         private init() { }
