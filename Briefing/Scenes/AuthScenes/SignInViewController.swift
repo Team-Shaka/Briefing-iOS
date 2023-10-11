@@ -170,15 +170,21 @@ class SignInViewController: UIViewController {
 
 extension SignInViewController {
     @objc func appleSignIn() {
-        authManager.appleSignIn(withPresentation: self) { [weak self] member, error in
-            self?.navigationController?.popViewController(animated: true)
-        }
+        authManager.appleSignIn(withPresentation: self, completion: handleSignInResult(_:_:))
     }
     
     @objc func googleSignIn() {
-        authManager.googleSignIn(withPresentation: self) { [weak self] member, error in
-            self?.navigationController?.popViewController(animated: true)
+        authManager.googleSignIn(withPresentation: self, completion: handleSignInResult(_:_:))
+    }
+    
+    func handleSignInResult(_ member: Member?,_ error: Error?) {
+        if let member = member {
+            print("signIn Success \(member.memberId)")
         }
+        if let error = error {
+            print("signIn Fail \(error.localizedDescription)")
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func signInLaterButtonAction() {
