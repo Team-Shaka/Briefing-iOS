@@ -10,9 +10,9 @@
 "appDescription" = "Your Keyword Newskeeper.";
 "keywordBriefing" = "Keyword Briefing";
 "updated" = "Updated";
-"confirm" = "confirm";
-"fail" = "fail";
-"cancel" = "cancel";
+"confirm" = "Confirm";
+"fail" = "Fail";
+"cancel" = "Cancel";
 
 "askBrief" = "Ask Brief";
 "beta" = "BETA";
@@ -39,6 +39,8 @@
 "signOutDescription" = "Are you sure you want to sign out?\nSome features are restricted.";
 "withdrawal" = "Withdrawal";
 "withdrawalDescription" = "Are you sure you want to drop out?\nThis account will be disabled.";
+"notificationTime" = "Notification Time";
+"notificationTurnedOff" = "The notification is currently turned off.\nPlease check the Settings > Notifications.";
 
 "notificationTitle" = "Today's Briefing has arrived.";
 "notificationBody" = "Checkout top Keywords!";
