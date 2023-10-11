@@ -12,33 +12,33 @@ import AuthenticationServices
 class SignInViewController: UIViewController {
     private let authManager: BriefingAuthManager = BriefingAuthManager.shared
     
-    private var briefingLabel: UILabel = {
+    private var briefingMainContainer: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private var briefingTitleLabel: UILabel = {
         let label = UILabel()
         label.text = BriefingStringCollection.appName
-        label.backgroundColor = .clear
         label.textColor = .white
         label.textAlignment = .center
         label.font = .productSans(size: 70, weight: .bold)
-        
         return label
     }()
     
-    private var descriptionLabel: UILabel = {
+    private var briefingDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = BriefingStringCollection.appDescription
-        label.backgroundColor = .clear
+        label.font = .productSans(size: 24)
         label.textColor = .white
         label.textAlignment = .center
-        label.font = .productSans(size: 25)
-
         return label
     }()
     
-    private var chatGPTImageView: UIImageView = {
+    private var briefingChatGPTImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = #imageLiteral(resourceName: "login_chatGPTBI")
-        
+        imageView.image = BriefingImageCollection.chatGPTImage
         return imageView
     }()
     
@@ -47,51 +47,39 @@ class SignInViewController: UIViewController {
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .equalSpacing
-        stackView.spacing = 23
-        
+        stackView.spacing = 22
         return stackView
     }()
     
     private lazy var appleSignInButton: UIButton = {
+        let configuration = UIButton.Configuration
+            .BriefingButtonConfiguration(image: BriefingImageCollection.appleLogo,
+                                               title: BriefingStringCollection.Auth.signInWithApple.localized)
+        return UIButton(configuration: configuration)
+    }()
+    
+    private lazy var googleSignInButon: UIButton = {
+        let configuration = UIButton.Configuration
+            .BriefingButtonConfiguration(image: BriefingImageCollection.googleLogo,
+                                               title: BriefingStringCollection.Auth.signInWithGoogle.localized,
+                                               foregroundColor: .googleGray,
+                                               backgroundColor: .white)
+        return UIButton(configuration: configuration)
+    }()
+    
+    private var signInButtonDivider: UIView = {
+        let view = UIView()
+        view.backgroundColor = .briefingLightBlue
+        return view
+    }()
+    
+    private var signInLaterButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .black
-        button.setTitle(BriefingStringCollection.Auth.signInWithApple.localized, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.textAlignment = .left
+        button.setTitle(BriefingStringCollection.Auth.signInLater.localized, for: .normal)
+        button.setTitleColor(.briefingGray, for: .normal)
         button.titleLabel?.font = .productSans(size: 16, weight: .bold)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 25
-        
         return button
     }()
-    
-    private var appleImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = #imageLiteral(resourceName: "login_apple")
-        
-        return imageView
-    }()
-    
-    private var googleSignInButon: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .white
-        button.setTitle(BriefingStringCollection.Auth.signInWithGoogle.localized, for: .normal)
-        button.setTitleColor(.googleGray, for: .normal)
-        button.titleLabel?.textAlignment = .left
-        button.titleLabel?.font = .productSans(size: 15, weight: .bold)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 25
-        return button
-    }()
-    
-    private var googleImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = #imageLiteral(resourceName: "login_google")
-        return imageView
-    }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,62 +92,83 @@ class SignInViewController: UIViewController {
         self.view.setGradient(color1: .briefingBlue, color2: .briefingDarkBlue)
         appleSignInButton.addTarget(self, action: #selector(appleSignIn), for: .touchUpInside)
         googleSignInButon.addTarget(self, action: #selector(googleSignIn), for: .touchUpInside)
+        signInLaterButton.addTarget(self, action: #selector(signInLaterButtonAction), for: .touchUpInside)
     }
     
     private func addSubviews() {
-        self.view.addSubviews(briefingLabel, descriptionLabel, chatGPTImageView, signInButtonStackView)
-        
-        [self.appleSignInButton, self.googleSignInButon].forEach { button in
-            signInButtonStackView.addArrangedSubview(button)
+        [briefingTitleLabel, briefingDescriptionLabel, briefingChatGPTImageView].forEach { view in
+            briefingMainContainer.addSubview(view)
         }
         
-        self.appleSignInButton.addSubviews(appleImageView)
-        self.googleSignInButon.addSubviews(googleImageView)
+        [appleSignInButton, googleSignInButon].forEach { view in
+            signInButtonStackView.addArrangedSubview(view)
+        }
+        
+        [briefingMainContainer,
+         signInButtonStackView,
+         signInButtonDivider,
+         signInLaterButton].forEach { view in
+            self.view.addSubview(view)
+        }
     }
     
     private func makeConstraint() {
-        briefingLabel.snp.makeConstraints{ make in
+        briefingMainContainer.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(self.view.bounds.height * 0.204)
+            make.centerY.equalToSuperview().multipliedBy(0.7)
         }
         
-        descriptionLabel.snp.makeConstraints{ make in
-            make.centerX.equalTo(self.briefingLabel)
-            make.top.equalTo(self.briefingLabel.snp.bottom).offset(10)
+        briefingTitleLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
         }
         
-        chatGPTImageView.snp.makeConstraints{ make in
-            make.centerX.equalTo(self.briefingLabel)
-            make.top.equalTo(self.descriptionLabel.snp.bottom).offset(19)
+        briefingDescriptionLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(briefingTitleLabel.snp.bottom).offset(4)
         }
         
-        signInButtonStackView.snp.makeConstraints{ make in
+        briefingChatGPTImageView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(briefingDescriptionLabel.snp.bottom).offset(12)
+            make.bottom.equalTo(briefingMainContainer.snp.bottom)
+        }
+        
+        signInButtonStackView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(36)
+            make.trailing.equalToSuperview().inset(36)
+            make.top.greaterThanOrEqualTo(briefingMainContainer.snp.bottom)
+        }
+        
+        appleSignInButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(50)
+            make.top.equalToSuperview()
+        }
+        
+        googleSignInButon.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(appleSignInButton.snp.height)
+            make.bottom.equalToSuperview()
+        }
+        
+        signInButtonDivider.snp.makeConstraints { make in
+            make.top.equalTo(signInButtonStackView.snp.bottom).offset(22)
+            make.leading.equalToSuperview().offset(36)
+            make.trailing.equalToSuperview().inset(36)
+            make.height.equalTo(2)
+
+        }
+        
+        signInLaterButton.snp.makeConstraints { make in
+            make.top.equalTo(signInButtonDivider.snp.bottom).offset(8)
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.chatGPTImageView.snp.bottom).offset(self.view.bounds.height * 0.271)
-            
-        }
-        
-        appleSignInButton.snp.makeConstraints{ make in
-            make.width.equalTo(322)
-            make.height.equalTo(50)
-        }
-        
-        appleImageView.snp.makeConstraints{ make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(self.appleSignInButton.snp.leading).offset(72)
-        }
-        
-        googleSignInButon.snp.makeConstraints{ make in
-            make.width.equalTo(322)
-            make.height.equalTo(50)
-        }
-        
-        googleImageView.snp.makeConstraints{ make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(self.googleSignInButon.snp.leading).offset(68)
+            make.bottom.equalToSuperview().inset(80)
         }
     }
-    
+}
+
+extension SignInViewController {
     @objc func appleSignIn() {
         authManager.appleSignIn(withPresentation: self) { [weak self] member, error in
             self?.navigationController?.popViewController(animated: true)
@@ -170,6 +179,10 @@ class SignInViewController: UIViewController {
         authManager.googleSignIn(withPresentation: self) { [weak self] member, error in
             self?.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    @objc func signInLaterButtonAction() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

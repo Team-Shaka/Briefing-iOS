@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingTableViewDefaultCell: UITableViewCell, SettingTableViewCell {
+class SettingTableViewDefaultCell: UITableViewCell {
     static let identifier: String = String(describing: SettingTableViewDefaultCell.self)
     var isUrlType: Bool = false
     
@@ -93,19 +93,32 @@ class SettingTableViewDefaultCell: UITableViewCell, SettingTableViewCell {
     
     func setCellData(symbol: UIImage,
                      title: String,
-                     value: String?,
-                     urlString: String?,
+                     type: SettingTableViewDefaultCellType,
                      cornerMaskEdge: UIRectEdge?) {
         symbolImageView.image = symbol
         titleLabel.text = title
-        valueLabel.text = value
-        isUrlType = value == nil && urlString != nil
-        cellLayoutSetting()
+        switch type {
+        case let .text(text):
+            valueLabel.text = text
+        default: break
+        }
+        cellLayoutSetting(type: type)
         mainContainerView.setCornerMask(cornerMaskEdge)
     }
     
-    func cellLayoutSetting(){
-        if isUrlType {
+    func cellLayoutSetting(type: SettingTableViewDefaultCellType){
+        switch type {
+        case .text:
+            mainContainerView.addSubview(valueLabel)
+            titleLabel.snp.makeConstraints { make in
+                make.trailing.lessThanOrEqualTo(valueLabel.snp.leading)
+            }
+            
+            valueLabel.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.trailing.equalToSuperview().inset(18)
+            }
+        case .url:
             mainContainerView.addSubview(nextIconImageView)
             titleLabel.snp.makeConstraints { make in
                 make.trailing.lessThanOrEqualTo(nextIconImageView.snp.leading)
@@ -116,14 +129,14 @@ class SettingTableViewDefaultCell: UITableViewCell, SettingTableViewCell {
                 make.trailing.equalToSuperview().inset(18)
                 make.width.height.equalTo(20)
             }
-        } else {
-            mainContainerView.addSubview(valueLabel)
-            nextIconImageView.isHidden = true
+        case let .customView(customView):
+            mainContainerView.addSubviews(customView)
+            
             titleLabel.snp.makeConstraints { make in
-                make.trailing.lessThanOrEqualTo(valueLabel.snp.leading)
+                make.trailing.lessThanOrEqualTo(customView.snp.leading)
             }
             
-            valueLabel.snp.makeConstraints { make in
+            customView.snp.makeConstraints { make in
                 make.centerY.equalToSuperview()
                 make.trailing.equalToSuperview().inset(18)
             }

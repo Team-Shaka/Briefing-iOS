@@ -10,15 +10,22 @@
 "appDescription" = "Your Keyword Newskeeper.";
 "keywordBriefing" = "Keyword Briefing";
 "updated" = "Updated";
+"cancel" = "cancel";
 
 "askBrief" = "Ask Brief";
 "beta" = "BETA";
 "relatedArticles" = "Related Articles";
 
-"signInWithApple" = "Log in with Apple";
-"signInWithGoogle" = "Log in with Google";
+"signInWithApple" = "Sign in with Apple";
+"signInWithGoogle" = "Sign in with Google";
+"signInLater" = "Later";
 
-"notiTimeSetting" = "Set notification time";
+"settings" = "settings";
+
+"notificationTimeSetting" = "Set notification time";
+"setNotification" = "set";
+"removeNotification" = "remove";
+"setting" = "setting";
 "appVersionTitle" = "App Version";
 "feedbackAndInquiry" = "Feedback & Inquiry";
 "versionNote" = "Version Note";
@@ -27,7 +34,9 @@
 "caution" = "Caution";
 "signInAndRegister" = "SignIn Or Register ";
 "signOut" = "SignOut";
+"signOutDescription" = "Are you sure you want to sign out?\nSome features are restricted.";
 "withdrawal" = "Withdrawal";
+"withdrawalDescription" = "Are you sure you want to drop out?\nThis account will be disabled.";
 
 "feedBackLink" = "https://forms.gle/HQXmEBkQ6wyW9jiw7";
 "versionNoteLink" = "https://onve.notion.site/Briefing-8af692ff041c4fc6931b2fc897411e6d?pvs=4";
