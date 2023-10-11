@@ -324,8 +324,10 @@ extension SettingViewController: BriefingPopUpDelegate {
             settingTableView.reloadSections(IndexSet(integer: authCellSectionInsertIndex),
                                             with: .fade)
         case 1:
-            // FIXME: - Withdrawal Action
-            print("withdrawal Action")
+            authManager.withdrawal { [weak self] result, error in
+                self?.settingTableView.reloadSections(IndexSet(integer: self?.authCellSectionInsertIndex ?? 3),
+                                                     with: .fade)
+            }
             break
         default: break
         }
