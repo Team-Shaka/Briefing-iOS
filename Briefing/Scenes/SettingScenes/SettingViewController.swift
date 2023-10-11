@@ -215,6 +215,19 @@ class SettingViewController: UIViewController {
         popupViewController.delegate = self
         self.present(popupViewController, animated: false)
     }
+
+    func showErrorMessage(message: String) {
+        let title = BriefingStringCollection.Setting.withdrawal.localized
+        let confirm = BriefingStringCollection.confirm
+        let popupViewController = BriefingPopUpViewController(index: 1,
+                                                              title: title,
+                                                              description: message,
+                                                              buttonTitles:[confirm],
+                                                              style: .normal)
+        popupViewController.modalPresentationStyle = .overFullScreen
+        popupViewController.delegate = self
+        self.present(popupViewController, animated: false)
+    }
     
     @objc func goBackToHomeViewController() {
         self.navigationController?.popViewController(animated: true)
@@ -331,8 +344,19 @@ extension SettingViewController: BriefingPopUpDelegate {
             settingTableView.reloadSections(IndexSet(integer: authCellSectionInsertIndex),
                                             with: .fade)
         case 1:
-            // FIXME: - Withdrawal Action
-            print("withdrawal Action")
+            authManager.withdrawal { [weak self] result, error in
+                if let error = error as? BFNetworkError {
+                    switch error {
+                    case let .requestFail(_, message):
+                        self?.showErrorMessage(message: message)
+                        return
+                    default: break
+                    }
+                }
+                
+                self?.settingTableView.reloadSections(IndexSet(integer: self?.authCellSectionInsertIndex ?? 3),
+                                                     with: .fade)
+            }
             break
         default: break
         }

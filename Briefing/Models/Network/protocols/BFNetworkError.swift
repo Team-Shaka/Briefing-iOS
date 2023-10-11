@@ -14,6 +14,7 @@ enum BFNetworkError {
     case notFoundError
     case internalServerError
     case networkError(statusCode: Int)
+    case requestFail(code: String, message: String)
 }
 
 extension BFNetworkError: LocalizedError {
@@ -25,6 +26,7 @@ extension BFNetworkError: LocalizedError {
         case .notFoundError: return NSLocalizedString("Not Found Error", comment: "")
         case .internalServerError: return NSLocalizedString("Internal Server Error", comment: "")
         case let .networkError(statusCode): return NSLocalizedString("Network Error(status code: \(statusCode)", comment: "")
+        case let .requestFail(_, message): return NSLocalizedString(message, comment: "")
         }
     }
 }

@@ -23,7 +23,9 @@ final class BriefingStringCollection {
     static let appDescription: String = NSLocalizedString("appDescription", comment: "")
     static let keywordBriefing: String = NSLocalizedString("keywordBriefing", comment: "")
     static let updated: String = NSLocalizedString("updated", comment: "")
+    static let confirm: String = NSLocalizedString("confirm", comment: "")
     static let cancel: String = NSLocalizedString("cancel", comment: "")
+    static let fail: String = NSLocalizedString("fail", comment: "")
     
     
     final class Format {

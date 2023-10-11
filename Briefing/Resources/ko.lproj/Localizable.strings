@@ -10,6 +10,8 @@
 "appDescription" = "Your Keyword Newskeeper.";
 "keywordBriefing" = "키워드 브리핑";
 "updated" = "Updated";
+"confirm" = "확인";
+"fail" = "실패";
 "cancel" = "취소";
 
 "askBrief" = "Brief에게 물어보기";
