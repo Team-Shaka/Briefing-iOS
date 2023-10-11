@@ -75,6 +75,11 @@ final class BriefingStringCollection {
         case withdrawalDescription
     }
     
+    enum Notification: String, EnumeratedLocalized {
+        case notificationTitle
+        case notificationBody
+    }
+    
     enum Link: String, EnumeratedLocalized {
         case feedBack = "feedBackLink"
         case versionNote = "versionNoteLink"
