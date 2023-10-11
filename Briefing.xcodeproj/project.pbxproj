@@ -79,6 +79,7 @@
 		A5CD89C72AD1243F00568F9D /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C62AD1243F00568F9D /* Member.swift */; };
 		A5CD89CB2AD1682700568F9D /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89CA2AD1682700568F9D /* UserDefaultsWrapper.swift */; };
 		A5CD89CE2AD168D400568F9D /* UserDefaultsWrapperKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89CD2AD168D400568F9D /* UserDefaultsWrapperKey.swift */; };
+		A5D0E8BE2AD658BA0064CEA4 /* WithdrawalResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D0E8BD2AD658BA0064CEA4 /* WithdrawalResult.swift */; };
 		A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */; };
 		A5DA2F1A2ACBF32F00EFACB5 /* BriefingNetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */; };
 		A5DA2F1C2ACBF4CA00EFACB5 /* BriefingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */; };
@@ -173,6 +174,7 @@
 		A5CD89C62AD1243F00568F9D /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		A5CD89CA2AD1682700568F9D /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		A5CD89CD2AD168D400568F9D /* UserDefaultsWrapperKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapperKey.swift; sourceTree = "<group>"; };
+		A5D0E8BD2AD658BA0064CEA4 /* WithdrawalResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalResult.swift; sourceTree = "<group>"; };
 		A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keywords.swift; sourceTree = "<group>"; };
 		A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkResult.swift; sourceTree = "<group>"; };
 		A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingData.swift; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 				A5DA2F1F2ACBFE9800EFACB5 /* ScrappedBriefing.swift */,
 				A5DA2F1D2ACBFE2200EFACB5 /* ScrapResult.swift */,
 				A5CD89C62AD1243F00568F9D /* Member.swift */,
+				A5D0E8BD2AD658BA0064CEA4 /* WithdrawalResult.swift */,
 			);
 			path = Structure;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				A51E56DD2ABE057500BD3837 /* BriefingURLManager.swift in Sources */,
 				A51E56DF2ABE097100BD3837 /* BriefingNetworkURLRequest.swift in Sources */,
 				2443C5962A93C3A0009586C7 /* Setting.swift in Sources */,
+				A5D0E8BE2AD658BA0064CEA4 /* WithdrawalResult.swift in Sources */,
 				A54AE6722ACD60FE0096CDB4 /* String+.swift in Sources */,
 				A52AF2812AB5F2E000457E4E /* HomeCalendarViewCell.swift in Sources */,
 				EE7ED4642AB9641200FC49C9 /* BriefingCardViewController.swift in Sources */,
@@ -876,6 +880,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Briefing/Briefing.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = XB6KV776A2;
@@ -896,6 +901,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bmlee.briefing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -909,6 +915,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Briefing/Briefing.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = XB6KV776A2;
@@ -929,6 +936,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bmlee.briefing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -154,6 +154,28 @@ extension BriefingAuthManager {
     }
 }
 
+extension BriefingAuthManager {
+    func withdrawal(_ completion: ((_ withdrawalResult: WithdrawalResult?, 
+                                    _ error: Error?) -> Void)?) {
+        guard let memberId = BriefingAuthManager.shared.member?.memberId else {
+            completion?(nil, BriefingNetworkError.noAuthError)
+            return
+        }
+        let url = BriefingURLManager.url(key: .baseUrl)
+        guard let urlRequest = BriefingAuthURLRequest(url: url,
+                                                      method: .delete,
+                                                      path: .withdrawal(memberId)) else {
+            completion?(nil, BriefingAuthError.wrongURLReqeustError)
+            return
+        }
+        
+        response(urlRequest,
+                 type: WithdrawalResult.self) { result, error in
+            completion?(result, error)
+        }
+    }
+}
+
 // MARK: Test Token
 extension BriefingAuthManager {
     func testToken(_ completion: ((_ member: Member?, _ error: Error?) -> Void)?) {
