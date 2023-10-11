@@ -12,6 +12,7 @@ enum BriefingAuthError {
     case wrongAccessError
     case wrongURLReqeustError
     case noDataError
+    case noAuthError
 }
 
 extension BriefingAuthError: LocalizedError {
@@ -21,6 +22,7 @@ extension BriefingAuthError: LocalizedError {
         case .wrongAccessError: return NSLocalizedString("Wrong Access Error", comment: "")
         case .wrongURLReqeustError: return NSLocalizedString("Wrong URLRequest Error", comment: "")
         case .noDataError: return NSLocalizedString("No Data Error", comment: "")
+        case .noAuthError: return NSLocalizedString("No Auth Error", comment: "")
         }
     }
 }
