@@ -26,6 +26,7 @@ enum SettingTableViewAuthCellType {
 
 class SettingViewController: UIViewController {
     private let authManager = BriefingAuthManager.shared
+    private let notificationManager = BriefingNotificationManager.shared
     
     @UserDefaultWrapper(key: .notificationTime, defaultValue: nil)
     var notificationTime: NotificationTime?
@@ -305,12 +306,18 @@ extension SettingViewController: SettingTimePickerViewControllerDelegate {
         self.notificationTime = time
         let notificationTime = self.notificationTime?.toString() ?? BriefingStringCollection.Setting.setting.localized
         self.notificationTimePickerButton.setTitle(notificationTime, for: .normal)
+        
+        if let notiTime = self.notificationTime {
+            notificationManager.scheduleNotification(notificationTime: notiTime)
+        }
     }
     
     func removeTime() {
         self.notificationTime = nil
         let notificationTime = self.notificationTime?.toString() ?? BriefingStringCollection.Setting.setting.localized
         self.notificationTimePickerButton.setTitle(notificationTime, for: .normal)
+        
+        notificationManager.removeScheduledNotification()
     }
 }
 
