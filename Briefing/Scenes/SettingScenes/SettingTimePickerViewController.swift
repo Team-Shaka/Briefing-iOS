@@ -19,7 +19,7 @@ class SettingTimePickerViewController: UIViewController {
     var minutes: Int = 0
     
     private var timePickerLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = BriefingStringCollection.Setting.notificationTimeSetting.localized
         label.font = .productSans(size: 22, weight: .bold)
         label.textColor = .briefingNavy
@@ -141,8 +141,8 @@ extension SettingTimePickerViewController: UIPickerViewDelegate,
         var rowText = ""
         switch component {
         case 0: rowText = row == 0 ? "AM" : "PM"
-        case 1: rowText = "\(row + 1)"
-        case 2: rowText = "\(row)"
+        case 1: rowText = String(format: "%02d", row+1)
+        case 2: rowText = String(format: "%02d", row)
         default: break
         }
         return NSAttributedString(string: "\(rowText)", attributes: [.font: UIFont.productSans(size: 14),

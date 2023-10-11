@@ -91,6 +91,7 @@
 		A5FD1E802ACFFC630048272D /* BFURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD1E7F2ACFFC630048272D /* BFURLRequest.swift */; };
 		DBB4CC6C614E20F93FD89172 /* Pods_Briefing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */; };
 		EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */; };
+		EE5560BF2AD65C2C0024ABBA /* BriefingNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */; };
 		EE7ED40B2AB6E75400FC49C9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7ED40A2AB6E75400FC49C9 /* SignInViewController.swift */; };
 		EE7ED4642AB9641200FC49C9 /* BriefingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7ED4632AB9641200FC49C9 /* BriefingCardViewController.swift */; };
 /* End PBXBuildFile section */
@@ -186,6 +187,7 @@
 		A5FD1E7F2ACFFC630048272D /* BFURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFURLRequest.swift; sourceTree = "<group>"; };
 		E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.release.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.release.xcconfig"; sourceTree = "<group>"; };
 		EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingPopUpViewController.swift; sourceTree = "<group>"; };
+		EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNotificationManager.swift; sourceTree = "<group>"; };
 		EE7ED40A2AB6E75400FC49C9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		EE7ED4632AB9641200FC49C9 /* BriefingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingCardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -266,6 +268,7 @@
 				2443C59B2A93D92C009586C7 /* NetworkResult.swift */,
 				2443C5992A93D8C2009586C7 /* KeywordsData.swift */,
 				2443C59D2A93DA43009586C7 /* BriefingCardData.swift */,
+				EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -333,8 +336,6 @@
 				A52B67652AC6A34400785F4A /* AuthScenes */,
 				A5C5E7832ACE35610053E434 /* SettingScenes */,
 				A51DC4922AB6B4E60055928C /* Components */,
-				2443C5892A937C76009586C7 /* BriefingTab */,
-				2443C58A2A937C87009586C7 /* ChatsTab */,
 				A5E6134C2ACADA5C004ACC6A /* Deprecated */,
 			);
 			path = Scenes;
@@ -488,6 +489,8 @@
 		A5E6134C2ACADA5C004ACC6A /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
+				2443C58A2A937C87009586C7 /* ChatsTab */,
+				2443C5892A937C76009586C7 /* BriefingTab */,
 				2443C56E2A8FECD0009586C7 /* MainTabBarController.swift */,
 				A5B3A7A52AB89D4700E1E2B6 /* TabBarItemViewController.swift */,
 			);
@@ -702,6 +705,7 @@
 				2443C5752A8FEF57009586C7 /* BriefingTableViewCell.swift in Sources */,
 				A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */,
 				A52AF2832AB6043600457E4E /* UIFont+.swift in Sources */,
+				EE5560BF2AD65C2C0024ABBA /* BriefingNotificationManager.swift in Sources */,
 				EE7ED40B2AB6E75400FC49C9 /* SignInViewController.swift in Sources */,
 				A5DA2F1A2ACBF32F00EFACB5 /* BriefingNetworkResult.swift in Sources */,
 				2443C5A62A940EE6009586C7 /* SettingWeb.swift in Sources */,
@@ -898,7 +902,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bmlee.briefing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -933,7 +937,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bmlee.briefing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
