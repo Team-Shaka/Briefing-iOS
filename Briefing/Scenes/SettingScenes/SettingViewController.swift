@@ -308,9 +308,44 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func showTimePickerView(_ sender: UIButton) {
-        let viewController = SettingTimePickerViewController()
-        viewController.delegate = self
-        self.present(viewController, animated: true)
+        //MARK: TODO: 권한 체크 후 분기 필요
+        notificationManager.isNotificationPermissionGranted{ (isGranted) in
+            if !isGranted {
+                //MARK: - 권한 설정 안 되어있으면 삭제 처리 해줌
+                self.notificationTime = nil
+                let notificationTime = self.notificationTime?.toString() ?? BriefingStringCollection.Setting.setting.localized
+                
+                self.notificationManager.removeScheduledNotification()
+                //MARK: -
+                
+                let title = BriefingStringCollection.Setting.notificationTime.localized
+                let description = BriefingStringCollection.Setting.notificationTurnedOff.localized
+                let confirm = BriefingStringCollection.confirm
+                let popupViewController = BriefingPopUpViewController(index: 0,
+                                                                      title: title,
+                                                                      description: description,
+                                                                      buttonTitles:[confirm],
+                                                                      style: .normal)
+                DispatchQueue.main.async {
+                    //MARK: Button도 시간 삭제 처리
+                    self.notificationTimePickerButton.setTitle(notificationTime, for: .normal)
+                    popupViewController.modalPresentationStyle = .overFullScreen
+                    popupViewController.delegate = self
+                    self.present(popupViewController, animated: false)
+                }
+                
+            }
+            else {
+                
+                DispatchQueue.main.async {
+                    let viewController = SettingTimePickerViewController()
+                    viewController.delegate = self
+                    self.present(viewController, animated: true)
+                }
+            }
+        }
+        
+        
     }
 }
 
