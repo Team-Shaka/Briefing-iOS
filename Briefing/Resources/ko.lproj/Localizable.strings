@@ -39,6 +39,8 @@
 "signOutDescription" = "정말 로그아웃 하시겠습니까?\n일부 기능 이용이 제한됩니다.";
 "withdrawal" = "회원 탈퇴";
 "withdrawalDescription" = "정말 회원탈퇴 하시겠습니까?\n해당 계정은 사용이 불가해집니다.";
+"notificationTime" = "알림 시간";
+"notificationTurnedOff" = "현재 알림 기능이 꺼져있습니다.\n설정 > 알림에 들어가 확인해주세요.";
 
 "notificationTitle" = "오늘의 브리핑이 도착하였습니다.";
 "notificationBody" = "오늘의 주요한 키워드를 확인해 보세요!";
