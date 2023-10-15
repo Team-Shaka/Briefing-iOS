@@ -73,6 +73,8 @@ final class BriefingStringCollection {
         case removeNotification
         case signOutDescription
         case withdrawalDescription
+        case notificationTime
+        case notificationTurnedOff
     }
     
     enum Notification: String, EnumeratedLocalized {

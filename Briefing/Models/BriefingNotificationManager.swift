@@ -10,6 +10,7 @@ import UserNotifications
 
 class BriefingNotificationManager {
     static let shared = BriefingNotificationManager()
+    private let notificationCenter = UNUserNotificationCenter.current()
     
     private init() {} // Prevents others from creating another instance
     
@@ -17,8 +18,6 @@ class BriefingNotificationManager {
     var notificationTime: NotificationTime?
     
     func scheduleNotification(notificationTime: NotificationTime) {
-        let center = UNUserNotificationCenter.current()
-        
         let content = UNMutableNotificationContent()
         content.title = BriefingStringCollection.Notification.notificationTitle.localized
         content.body = BriefingStringCollection.Notification.notificationBody.localized
@@ -26,31 +25,13 @@ class BriefingNotificationManager {
         content.sound = UNNotificationSound.default
         
         var dateComponents = DateComponents()
-        switch notificationTime.meridiem {
-        case 0:
-            if notificationTime.hour == 12 {
-                dateComponents.hour = 0
-            }
-            else {
-                dateComponents.hour = notificationTime.hour
-            }
-        case 1:
-            if notificationTime.hour == 12 {
-                dateComponents.hour = 12
-            }
-            else {
-                dateComponents.hour = notificationTime.hour+12
-            }
-        default:
-            break
-        }
-        
+        dateComponents.hour = (notificationTime.hour % 12) + (notificationTime.meridiem * 12)
         dateComponents.minute = notificationTime.minutes
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
-        let request = UNNotificationRequest(identifier: "DailyBriefing", content: content, trigger: trigger)
-        center.add(request) { (error) in
+        let request = UNNotificationRequest(identifier: .dailyBriefing, content: content, trigger: trigger)
+        notificationCenter.add(request) { (error) in
             if let error = error {
                 print("Error scheduling notification: \(error)")
             }
@@ -58,8 +39,34 @@ class BriefingNotificationManager {
     }
     
     func removeScheduledNotification() {
-        let center = UNUserNotificationCenter.current()
-        center.removeAllPendingNotificationRequests()
+        notificationCenter.removeAllPendingNotificationRequests()
+    }
+    
+    func isNotificationPermissionGranted(completion: @escaping (Bool) -> Void) {
+        notificationCenter.getNotificationSettings { (settings) in
+            switch settings.authorizationStatus {
+            case .authorized, .provisional, .ephemeral:
+                completion(true)
+            case .denied, .notDetermined:
+                completion(false)
+            @unknown default:
+                completion(false)
+            }
+        }
+    }
+}
+
+extension UNNotificationRequest {
+    enum UNNotificationRequestIndentifier: String {
+        case dailyBriefing
+    }
+    
+    convenience init(identifier: UNNotificationRequestIndentifier,
+                     content: UNMutableNotificationContent,
+                     trigger: UNCalendarNotificationTrigger) {
+        self.init(identifier: identifier.rawValue,
+                  content: content,
+                  trigger: trigger)
     }
 }
 
