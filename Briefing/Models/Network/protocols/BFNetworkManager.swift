@@ -31,7 +31,7 @@ extension BFNetworkManager {
                         case (404): throw BFNetworkError.notFoundError
                         case (403): throw BFNetworkError.forbiddenError
                         case (500): throw BFNetworkError.internalServerError
-                        default: throw BFNetworkError.networkError(statusCode: statusCode)
+                        default: break
                         }
                     }
                     guard let networkResult = response.value else {
