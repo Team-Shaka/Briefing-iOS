@@ -15,6 +15,9 @@ struct BriefingData: Codable {
     let content: String
     let date: String
     let articles: [BriefingCardArticle]
+    let isScrap: Bool
+    let isBriefingOpen: Bool?
+    let isWarning: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,6 +27,9 @@ struct BriefingData: Codable {
         case content
         case date
         case articles
+        case isScrap
+        case isBriefingOpen
+        case isWarning
     }
 }
 
