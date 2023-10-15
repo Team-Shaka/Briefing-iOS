@@ -172,7 +172,6 @@ extension SettingTimePickerViewController: UIPickerViewDelegate,
         switch component {
         case 0:
             rowText = row == 0 ? "AM" : "PM"
-            print(pickerView.selectedRow(inComponent: 1))
             if self.hour == 12 ||
                 pickerView.selectedRow(inComponent: 1) == (12 - 4) { rowText = "PM" } // 04-12
         case 1: rowText = String(format: "%02d", row+1 + 3)
