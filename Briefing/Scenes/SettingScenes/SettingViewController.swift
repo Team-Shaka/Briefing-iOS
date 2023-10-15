@@ -338,7 +338,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             else {
                 
                 DispatchQueue.main.async {
-                    let viewController = SettingTimePickerViewController(notificationTime)
+                    let viewController = SettingTimePickerViewController(self.notificationTime)
                     viewController.delegate = self
                     self.present(viewController, animated: true)
                 }
