@@ -8,6 +8,7 @@
 import Foundation
 
 enum UserDefaultsWrapperKey: String {
+    case isFirstLaunchAppWithNotification
     case member
     case notificationTime
 }
