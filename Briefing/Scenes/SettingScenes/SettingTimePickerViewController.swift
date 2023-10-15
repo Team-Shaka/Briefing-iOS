@@ -130,8 +130,8 @@ extension SettingTimePickerViewController: UIPickerViewDelegate,
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
-        case 0: return 2
-        case 1: return 12
+        case 0: return 1 // AM; 2: (AM, PM)
+        case 1: return 12 - 3 // 04-12; 12 (01-12)
         case 2: return 60
         default: return 0
         }
@@ -140,8 +140,11 @@ extension SettingTimePickerViewController: UIPickerViewDelegate,
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         var rowText = ""
         switch component {
-        case 0: rowText = row == 0 ? "AM" : "PM"
-        case 1: rowText = String(format: "%02d", row+1)
+        case 0:
+            rowText = row == 0 ? "AM" : "PM"
+            print(pickerView.selectedRow(inComponent: 1))
+            if pickerView.selectedRow(inComponent: 1) == (12 - 4) { rowText = "PM" } // 04-12
+        case 1: rowText = String(format: "%02d", row+1 + 3)
         case 2: rowText = String(format: "%02d", row)
         default: break
         }
@@ -152,7 +155,9 @@ extension SettingTimePickerViewController: UIPickerViewDelegate,
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component {
         case 0: self.meridiem = row
-        case 1: self.hour = row + 1
+        case 1:
+            self.hour = row + 1 + 3
+            if (row + 1 + 3) == 12 { pickerView.reloadComponent(0) } // 04-12
         case 2: self.minutes = row
         default: break
         }
