@@ -308,7 +308,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func showTimePickerView(_ sender: UIButton) {
-        let viewController = SettingTimePickerViewController()
+        let viewController = SettingTimePickerViewController(notificationTime)
         viewController.delegate = self
         self.present(viewController, animated: true)
     }

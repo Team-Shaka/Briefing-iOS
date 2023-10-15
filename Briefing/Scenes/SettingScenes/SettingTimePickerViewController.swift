@@ -13,9 +13,9 @@ protocol SettingTimePickerViewControllerDelegate {
 }
 
 class SettingTimePickerViewController: UIViewController {
-    var delegate: SettingTimePickerViewControllerDelegate?
+    var delegate: SettingTimePickerViewControllerDelegate? = nil
     var meridiem: Int = 0
-    var hour: Int = 0
+    var hour: Int = 4
     var minutes: Int = 0
     
     private var timePickerLabel: UILabel = {
@@ -46,6 +46,30 @@ class SettingTimePickerViewController: UIViewController {
                                          backgroundColor: .clear)
         return UIButton(configuration: configuration)
     }()
+    
+    init(_ notificationTime: NotificationTime?){
+        super.init(nibName: nil, bundle: nil)
+        if let notificationTime = notificationTime {
+            self.meridiem = notificationTime.meridiem
+            self.hour = notificationTime.hour
+            self.minutes = notificationTime.minutes
+        } else {
+            self.meridiem = 0
+            self.hour = 7
+            self.minutes = 0
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        timePickerView.selectRow(self.meridiem, inComponent: 0, animated: false)
+        timePickerView.selectRow((self.hour - 4), inComponent: 1, animated: false)
+        timePickerView.selectRow(self.minutes, inComponent: 2, animated: false)
+        timePickerView.reloadComponent(0)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,9 +130,15 @@ class SettingTimePickerViewController: UIViewController {
     }
     
     func setTime(time: NotificationTime?) {
-        self.meridiem = time?.meridiem ?? 0
-        self.hour = time?.hour ?? 12
-        self.minutes = time?.minutes ?? 0
+        if let notificationTime = time {
+            self.meridiem = notificationTime.meridiem
+            self.hour = notificationTime.hour
+            self.minutes = notificationTime.minutes
+        } else {
+            self.meridiem = 0
+            self.hour = 7
+            self.minutes = 0
+        }
     }
     
     @objc func setNotificationButtonAction() {
@@ -143,7 +173,8 @@ extension SettingTimePickerViewController: UIPickerViewDelegate,
         case 0:
             rowText = row == 0 ? "AM" : "PM"
             print(pickerView.selectedRow(inComponent: 1))
-            if pickerView.selectedRow(inComponent: 1) == (12 - 4) { rowText = "PM" } // 04-12
+            if self.hour == 12 ||
+                pickerView.selectedRow(inComponent: 1) == (12 - 4) { rowText = "PM" } // 04-12
         case 1: rowText = String(format: "%02d", row+1 + 3)
         case 2: rowText = String(format: "%02d", row)
         default: break
@@ -157,7 +188,8 @@ extension SettingTimePickerViewController: UIPickerViewDelegate,
         case 0: self.meridiem = row
         case 1:
             self.hour = row + 1 + 3
-            if (row + 1 + 3) == 12 { pickerView.reloadComponent(0) } // 04-12
+            self.meridiem = (row + 1 + 3) == 12 ? 1 : 0  // 04-12
+            pickerView.reloadComponent(0)
         case 2: self.minutes = row
         default: break
         }
