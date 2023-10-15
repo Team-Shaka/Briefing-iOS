@@ -9,6 +9,10 @@ import UIKit
 import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    @UserDefaultWrapper(key: .isFirstLaunchAppWithNotification, defaultValue: nil)
+    var isFirstLaunchAppWithNotification: Bool?
+    @UserDefaultWrapper(key: .notificationTime, defaultValue: nil)
+    var notificationTime: NotificationTime?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -16,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+                if granted {
+                    guard self.isFirstLaunchAppWithNotification == nil else { return }
+                    let notificationTime = NotificationTime(meridiem: 0, hour: 7, minutes: 0)
+                    self.notificationTime = notificationTime
+                    BriefingNotificationManager.shared
+                        .scheduleNotification(notificationTime: notificationTime)
+                    self.isFirstLaunchAppWithNotification = false
+                }
         }
         
         return true
