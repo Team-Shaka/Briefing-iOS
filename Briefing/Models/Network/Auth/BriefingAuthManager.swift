@@ -104,7 +104,8 @@ private extension BriefingAuthManager {
     func signIn(idToken: String,
                 socialType: BriefingAuthURLRequest.SocialType) {
         let url = BriefingURLManager.url(key: .baseUrl)
-        guard let urlRequest = BriefingAuthURLRequest(url: url,
+        guard let urlRequest = BriefingAuthURLRequest(member?.accessToken,
+                                                      url: url,
                                                       method: .post,
                                                       path: .signIn(socialType),
                                                       httpBody: [.idToken: idToken]) else {
@@ -136,7 +137,8 @@ extension BriefingAuthManager {
         }
         
         let url = BriefingURLManager.url(key: .baseUrl)
-        guard let urlRequest = BriefingAuthURLRequest(url: url,
+        guard let urlRequest = BriefingAuthURLRequest(member.accessToken,
+                                                      url: url,
                                                       method: .post,
                                                       path: .refresh,
                                                       httpBody: [.refreshToken: member.refreshToken]) else {
@@ -155,14 +157,15 @@ extension BriefingAuthManager {
 }
 
 extension BriefingAuthManager {
-    func withdrawal(_ completion: ((_ withdrawalResult: WithdrawalResult?, 
+    func withdrawal(_ completion: ((_ withdrawalResult: WithdrawalResult?,
                                     _ error: Error?) -> Void)?) {
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             completion?(nil, BriefingNetworkError.noAuthError)
             return
         }
         let url = BriefingURLManager.url(key: .baseUrl)
-        guard let urlRequest = BriefingAuthURLRequest(url: url,
+        guard let urlRequest = BriefingAuthURLRequest(member?.accessToken,
+                                                      url: url,
                                                       method: .delete,
                                                       path: .withdrawal(memberId)) else {
             completion?(nil, BriefingAuthError.wrongURLReqeustError)
@@ -180,7 +183,8 @@ extension BriefingAuthManager {
 extension BriefingAuthManager {
     func testToken(_ completion: ((_ member: Member?, _ error: Error?) -> Void)?) {
         let url = BriefingURLManager.url(key: .baseUrl)
-        guard let urlRequest = BriefingAuthURLRequest(url: url,
+        guard let urlRequest = BriefingAuthURLRequest(member?.accessToken,
+                                                      url: url,
                                                       method: .get,
                                                       path: .test) else {
             completion?(nil, BriefingAuthError.wrongURLReqeustError)

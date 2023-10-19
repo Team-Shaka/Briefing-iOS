@@ -10,6 +10,7 @@ import Alamofire
 
 // TODO: - POST
 public struct BriefingAuthURLRequest: BFURLRequest {
+    var accessToken: String?
     var urlRequest: URLRequest
     var httpMethod: BFHTTPMethod
     var path: Path
@@ -17,12 +18,14 @@ public struct BriefingAuthURLRequest: BFURLRequest {
     var query: [String: String]?
     var timeoutInterval: TimeInterval
     
-    init(_urlRequest: URLRequest,
+    init(_accessToken: String?,
+         _urlRequest: URLRequest,
          _method: BFHTTPMethod,
          _path: Path,
          _httpBody: Data?,
          _query: [String : String]?,
          _timeoutInterval: TimeInterval) {
+        self.accessToken = _accessToken
         self.urlRequest = _urlRequest
         self.httpMethod = _method
         self.path = _path
