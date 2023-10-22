@@ -35,11 +35,12 @@ class BriefingCardViewController: UIViewController {
         return label
     }()
     
-    private var scrapButton: UIButton = {
+    private lazy var scrapButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "scrap_normal"), for: .normal)
         button.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .right
+        button.addTarget(self, action: #selector(scrappButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -425,12 +426,12 @@ class BriefingCardViewController: UIViewController {
     }
     
     @objc func scrappButtonTapped() {
-        
+        self.scrapBriefingCard()
     }
     
     @objc func openBriefChat() {
         //MARK: - TODO: Add WebView URL
-        print("OPEN BRIEF CHAT")
+//        print("OPEN BRIEF CHAT")
     }
     
     @objc func openFirstArticleURL() {
@@ -460,16 +461,21 @@ class BriefingCardViewController: UIViewController {
             
             self?.briefingData = value
             
+            
+            print(value?.isScrap)
+            
             self?.updateBriefingCard()
             
-            if let ranks = value?.ranks {
-                if (ranks==1 || ranks==2 || ranks==3) {
+            
+            
+//            if let ranks = value?.ranks {
+//                if (ranks==1 || ranks==2 || ranks==3) {
 //                    print("1, 2, 3")
-                }
-                else {
-                    self?.hideBriefChatView()
-                }
-            }
+//                }
+//                else {
+//                    self?.hideBriefChatView()
+//                }
+//            }
             
 //            if let articleCount = value?.articles.count, let articles = value?.articles{
 //                self?.adjustArticles(articleCount: articleCount, articles: articles)
@@ -481,14 +487,33 @@ class BriefingCardViewController: UIViewController {
     }
     
     private func scrapBriefingCard() {
-        networkManager.scrapBriefing(id: self.id) { [weak self] value,error in
-            if let error = error {
-                self?.errorHandling(error)
-                return
+        
+        if let isScrap = self.briefingData?.isScrap {
+            if isScrap {
+                networkManager.deleteScrapBriefing(id: self.id) { [weak self] value, error in
+                    if let error = error {
+                        self?.errorHandling(error)
+                        return
+                    }
+                    
+                    self?.scrapButton.setImage(BriefingImageCollection.scrapUnfilledImage, for: .normal)
+                }
             }
-            
-            self?.scrapButton.setImage(BriefingImageCollection.scrapFilledImage, for: .normal)
+            else {
+                networkManager.scrapBriefing(id: self.id) { [weak self] value,error in
+                    if let error = error {
+                        self?.errorHandling(error)
+                        return
+                    }
+                    
+                    self?.scrapButton.setImage(BriefingImageCollection.scrapFilledImage, for: .normal)
+                }
+            }
         }
+        
+        
+        
+        
     }
     
     private func updateBriefingCard() {
@@ -507,6 +532,16 @@ class BriefingCardViewController: UIViewController {
         
         if let briefCardContent = self.briefingData?.content {
             self.contextLabel.attributedText = NSAttributedString(string: briefCardContent, attributes: [NSAttributedString.Key.paragraphStyle: contentParagraphStyle])
+        }
+        
+        if let isScrap = self.briefingData?.isScrap {
+            print(isScrap)
+            if isScrap {
+                self.scrapButton.setImage(BriefingImageCollection.scrapFilledImage, for: .normal)
+            }
+            else {
+                
+            }
         }
     }
     

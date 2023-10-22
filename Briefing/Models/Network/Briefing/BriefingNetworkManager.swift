@@ -11,6 +11,9 @@ import Alamofire
 final class BriefingNetworkManager: BFNetworkManager {
     static let shared: BriefingNetworkManager = BriefingNetworkManager()
     private init() { }
+    
+    @UserDefaultWrapper(key: .member, defaultValue: nil)
+    var member: Member?
 }
 
 // MARK: - functions for Briefing
@@ -19,7 +22,8 @@ extension BriefingNetworkManager {
                        type: BriefingNetworkURLRequest.KeywordsType,
                        completion: @escaping (_ value: Keywords?, _ error: Error?) -> Void) {
         let url = BriefingURLManager.url(key: .baseUrl)
-        guard let urlRequest = BriefingNetworkURLRequest(url: url,
+        guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
+                                                         url: url,
                                                          method: .get,
                                                          path: .keywords,
                                                          query: [.date: date.dateToString(),
@@ -36,7 +40,8 @@ extension BriefingNetworkManager {
     func fetchBriefingCard(id: Int,
                            completion: @escaping (_ value: BriefingData?, _ error: Error?) -> Void) {
         let url = BriefingURLManager.url(key: .baseUrl)
-        guard let urlRequest = BriefingNetworkURLRequest(url: url,
+        guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
+                                                         url: url,
                                                          method: .get,
                                                          path: .briefingCard(id: id)) else {
             completion(nil, BFNetworkError.wrongURLRequestError)
@@ -57,7 +62,8 @@ extension BriefingNetworkManager {
             completion(nil, BriefingNetworkError.noAuthError)
             return
         }
-        guard let urlRequest = BriefingNetworkURLRequest(url: url,
+        guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
+                                                         url: url,
                                                          method: .post,
                                                          path: .fetchScrap(memberId: memberId)) else {
             completion(nil, BFNetworkError.wrongURLRequestError)
@@ -85,7 +91,8 @@ extension BriefingNetworkManager {
             completion(nil, BriefingNetworkError.noAuthError)
             return
         }
-        guard let urlRequest = BriefingNetworkURLRequest(url: url,
+        guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
+                                                         url: url,
                                                          method: .post,
                                                          path: .scrap,
                                                          httpBody: [.memberId: memberId,
@@ -107,7 +114,8 @@ extension BriefingNetworkManager {
             return
         }
         
-        guard let urlRequest = BriefingNetworkURLRequest(url: url,
+        guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
+                                                         url: url,
                                                          method: .delete,
                                                          path: .deleteScrap(id: id, memberId: memberId)) else {
             completion(nil, BFNetworkError.wrongURLRequestError)

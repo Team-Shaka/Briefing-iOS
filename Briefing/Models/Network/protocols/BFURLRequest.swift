@@ -34,6 +34,7 @@ protocol BFURLRequest: URLRequestConvertible {
     associatedtype QueryKey: BFQueryKey
     associatedtype HTTPBodyKey: BFHTTPBodyKey
     
+    var accessToken: String? { get set }
     var urlRequest: URLRequest { get set }
     var httpMethod: BFHTTPMethod { get set }
     var path: Path  { get set }
@@ -41,21 +42,24 @@ protocol BFURLRequest: URLRequestConvertible {
     var query: [String: String]?  { get set }
     var timeoutInterval: TimeInterval  { get set }
     
-    init(_urlRequest: URLRequest,
+    init(_accessToken: String?,
+         _urlRequest: URLRequest,
          _method: BFHTTPMethod,
          _path: Path,
          _httpBody: Data?,
          _query: [String : String]?,
          _timeoutInterval: TimeInterval)
     
-    init?(urlRequest: URLRequest,
+    init?(_ accessToken: String?,
+          urlRequest: URLRequest,
           method: BFHTTPMethod,
           path: Path,
           httpBody: [HTTPBodyKey: Any]?,
           query: [QueryKey : String]?,
           timeoutInterval: TimeInterval)
     
-    init?(url: URL,
+    init?(_ accessToken: String?,
+          url: URL,
           method: BFHTTPMethod,
           path: Path,
           httpBody: [HTTPBodyKey: Any]?,
@@ -64,7 +68,8 @@ protocol BFURLRequest: URLRequestConvertible {
 }
 
 extension BFURLRequest {
-    init?(urlRequest: URLRequest,
+    init?(_ accessToken: String?,
+          urlRequest: URLRequest,
           method: BFHTTPMethod = .get,
           path: Path,
           httpBody: [HTTPBodyKey: Any]? = nil,
@@ -77,7 +82,8 @@ extension BFURLRequest {
             httpBodyData = try? JSONSerialization.data(withJSONObject: httpBodyDict)
         }
         let query = query?.dictMap({ ($0.rawValue, $1)})
-        self.init(_urlRequest: urlRequest,
+        self.init(_accessToken: accessToken,
+                  _urlRequest: urlRequest,
                   _method: method,
                   _path: path,
                   _httpBody: httpBodyData,
@@ -85,13 +91,15 @@ extension BFURLRequest {
                   _timeoutInterval: timeoutInterval)
     }
     
-    init?(url: URL,
+    init?(_ accessToken: String?,
+          url: URL,
           method: BFHTTPMethod = .get,
           path: Path,
           httpBody: [HTTPBodyKey: Any]? = nil,
           query: [QueryKey : String]? = nil,
           timeoutInterval: TimeInterval = 10) {
-        self.init(urlRequest: URLRequest(url: url),
+        self.init(accessToken,
+                  urlRequest: URLRequest(url: url),
                   method: method,
                   path: path,
                   httpBody: httpBody,
@@ -114,6 +122,12 @@ extension BFURLRequest {
                             forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/json",
                             forHTTPHeaderField: "Content-Type")
+        if let accessToken = accessToken,
+           httpMethod == .post {
+            urlRequest.setValue("Bearer \(accessToken)",
+                                forHTTPHeaderField: "Authorization")
+            print(urlRequest.headers)
+        }
         urlRequest.httpBody = httpBody
         urlRequest.timeoutInterval = timeoutInterval
         urlRequest.url?.append(path: path.path)
