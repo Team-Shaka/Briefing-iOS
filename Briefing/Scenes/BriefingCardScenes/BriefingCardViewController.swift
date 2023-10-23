@@ -461,9 +461,6 @@ class BriefingCardViewController: UIViewController {
             
             self?.briefingData = value
             
-            
-            print(value?.isScrap)
-            
             self?.updateBriefingCard()
             
             
@@ -511,6 +508,8 @@ class BriefingCardViewController: UIViewController {
             }
         }
         
+        updateBriefingCard()
+        
         
         
         
@@ -540,7 +539,7 @@ class BriefingCardViewController: UIViewController {
                 self.scrapButton.setImage(BriefingImageCollection.scrapFilledImage, for: .normal)
             }
             else {
-                
+                self.scrapButton.setImage(BriefingImageCollection.scrapUnfilledImage, for: .normal)
             }
         }
     }
