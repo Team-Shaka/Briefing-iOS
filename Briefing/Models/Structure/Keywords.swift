@@ -11,6 +11,11 @@ struct Keywords: Codable {
     let createdAt: Date
     let briefings: [KeywordBriefing]
     
+    init(createdAt: Date, briefings: [KeywordBriefing]){
+        self.createdAt = createdAt
+        self.briefings = briefings
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let dateString = try container.decode(String.self, forKey: .createdAt)

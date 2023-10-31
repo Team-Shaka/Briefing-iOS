@@ -18,6 +18,7 @@ extension EnumeratedLocalized {
 }
 
 final class BriefingStringCollection {
+    private init() { }
     static let appName: String = NSLocalizedString("appName", comment: "")
     static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
     static let appDescription: String = NSLocalizedString("appDescription", comment: "")

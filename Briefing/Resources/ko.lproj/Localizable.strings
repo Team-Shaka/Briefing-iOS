@@ -50,3 +50,8 @@
 "termsOfServiceLink" = "https://sites.google.com/view/brieifinguse/%ED%99%88";
 "privacyPolicyLink" = "https://sites.google.com/view/briefing-private/%ED%99%88";
 "cautionLink" = "https://onve.notion.site/Briefing-e1cb17e2e7c54d3b9a7036b29ee9b11a?pvs=4";
+
+
+"widget_displayName" = "오늘의 Briefing";
+"widget_description" = "오늘의 Briefing을 확인할 수 있습니다!";
+"widget_waitingData" = "아직 Briefing이 도착하지 않았어요!";
