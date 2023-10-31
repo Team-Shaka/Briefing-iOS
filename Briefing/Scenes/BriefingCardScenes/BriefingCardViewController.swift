@@ -13,6 +13,7 @@ class BriefingCardViewController: UIViewController {
     let contentParagraphStyle = NSMutableParagraphStyle()
     var id: Int
     var briefingData: BriefingData? = nil
+    var isScrap: Bool = false
     
     private var navigationView: UIView = {
         let view = UIView()
@@ -30,6 +31,7 @@ class BriefingCardViewController: UIViewController {
     
     private var titleLabel: UILabel = {
         let label = UILabel()
+        label.text = "Briefing #  "
         label.font = .productSans(size: 24)
         label.textColor = .briefingWhite
         return label
@@ -66,7 +68,7 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .thirdBlue
         label.textAlignment = .right
         label.font = .productSans(size: 14)
-        
+        label.text = "0000-00-00 #000"
         return label
     }()
     
@@ -307,12 +309,12 @@ class BriefingCardViewController: UIViewController {
         
         self.chatView.addSubviews(chatImageView, chatLabel, chatBetaLabel, chatDetailsButton)
         
-//        [self.firstArticleView, self.secondArticleView, self.thirdArticleView].forEach { articleStackView.addArrangedSubview($0) }
+        //        [self.firstArticleView, self.secondArticleView, self.thirdArticleView].forEach { articleStackView.addArrangedSubview($0) }
     }
     
     private func makeConstraint() {
         navigationView.snp.makeConstraints{ make in
-//            make.top.equalTo(view).offset(50)
+            //            make.top.equalTo(view).offset(50)
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(titleLabel).offset(25)
             make.leading.trailing.equalTo(view)
@@ -326,7 +328,7 @@ class BriefingCardViewController: UIViewController {
         }
         
         titleLabel.snp.makeConstraints{ make in
-//            make.top.equalTo(navigationView).offset(6)
+            //            make.top.equalTo(navigationView).offset(6)
             make.centerY.equalTo(navigationView)
             make.centerX.equalTo(navigationView)
             make.trailing.lessThanOrEqualTo(scrapButton)
@@ -378,7 +380,7 @@ class BriefingCardViewController: UIViewController {
             make.top.equalTo(contextLabel.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(23)
             make.trailing.equalToSuperview().inset(23)
-//            make.height.equalTo(60)
+            //            make.height.equalTo(60)
             //MARK: - TODO: Show/Hide ChatView
             make.height.equalTo(0)
         }
@@ -392,7 +394,6 @@ class BriefingCardViewController: UIViewController {
         chatLabel.snp.makeConstraints{ make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(chatImageView.snp.trailing).offset(10)
-            
         }
         
         chatBetaLabel.snp.makeConstraints{ make in
@@ -431,7 +432,7 @@ class BriefingCardViewController: UIViewController {
     
     @objc func openBriefChat() {
         //MARK: - TODO: Add WebView URL
-//        print("OPEN BRIEF CHAT")
+        //        print("OPEN BRIEF CHAT")
     }
     
     @objc func openFirstArticleURL() {
@@ -454,93 +455,69 @@ class BriefingCardViewController: UIViewController {
     
     private func fetchBriefingCard() {
         networkManager.fetchBriefingCard(id: self.id) { [weak self] value, error in
+            guard let self = self else  { return }
             if let error = error {
-                self?.errorHandling(error)
+                self.errorHandling(error)
                 return
             }
             
-            self?.briefingData = value
+            if let briefingData = value {
+                self.briefingData = briefingData
+                self.isScrap = briefingData.isScrap
+            }
             
-            self?.updateBriefingCard()
-            
-            
-            
-//            if let ranks = value?.ranks {
-//                if (ranks==1 || ranks==2 || ranks==3) {
-//                    print("1, 2, 3")
-//                }
-//                else {
-//                    self?.hideBriefChatView()
-//                }
-//            }
-            
-//            if let articleCount = value?.articles.count, let articles = value?.articles{
-//                self?.adjustArticles(articleCount: articleCount, articles: articles)
-//            }
-            
-            self?.adjustArticles()
-            
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.5) {
+                    self.updateBriefingCard()
+                    self.adjustArticles()
+                    self.view.layoutIfNeeded()
+                }
+            }
         }
     }
     
     private func scrapBriefingCard() {
-        
-        if let isScrap = self.briefingData?.isScrap {
-            if isScrap {
-                networkManager.deleteScrapBriefing(id: self.id) { [weak self] value, error in
-                    if let error = error {
-                        self?.errorHandling(error)
-                        return
-                    }
-                    
-                    self?.scrapButton.setImage(BriefingImageCollection.scrapUnfilledImage, for: .normal)
-                }
+        let scrapResultCompletion: (ScrapResult?, Error?) -> Void = { [weak self] value, error in
+            guard let self = self else { return }
+            if let error = error {
+                self.errorHandling(error)
+                return
             }
-            else {
-                networkManager.scrapBriefing(id: self.id) { [weak self] value,error in
-                    if let error = error {
-                        self?.errorHandling(error)
-                        return
-                    }
-                    
-                    self?.scrapButton.setImage(BriefingImageCollection.scrapFilledImage, for: .normal)
-                }
-            }
+            self.isScrap.toggle()
+            self.updateBriefingCardScrapState()
         }
-        
-        updateBriefingCard()
-        
-        
-        
-        
+        if isScrap {
+            networkManager.deleteScrapBriefing(id: id, completion: scrapResultCompletion)
+        } else {
+            networkManager.scrapBriefing(id: id, completion: scrapResultCompletion)
+        }
     }
     
     private func updateBriefingCard() {
-        if let briefCardDate = self.briefingData?.date {
-            self.dateInformationLabel.text = "\(briefCardDate) #\(self.id)"
+        guard let briefingData = briefingData else { return }
+        self.dateInformationLabel.text = "\(briefingData.date) #\(id)"
+        
+        self.titleLabel.text = "\(BriefingStringCollection.appName) #\(briefingData.ranks)"
+        
+        self.topicLabel.text = briefingData.title
+        self.subtopicLabel.text = briefingData.subTitle
+        
+        self.contentParagraphStyle.lineHeightMultiple = 1.37
+        let contextLabelAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.paragraphStyle: self.contentParagraphStyle
+        ]
+        self.contextLabel.attributedText = NSAttributedString(string: briefingData.content,
+                                                              attributes: contextLabelAttributes)
+        
+        updateBriefingCardScrapState()
+    }
+    
+    private func updateBriefingCardScrapState() {
+        if isScrap {
+            self.scrapButton.setImage(BriefingImageCollection.scrapFilledImage, for: .normal)
         }
-        
-        if let ranks = self.briefingData?.ranks {
-            self.titleLabel.text = "\(BriefingStringCollection.appName) #\(ranks)"
-        }
-
-        self.topicLabel.text = self.briefingData?.title
-        self.subtopicLabel.text = self.briefingData?.subTitle
-        
-        contentParagraphStyle.lineHeightMultiple = 1.37
-        
-        if let briefCardContent = self.briefingData?.content {
-            self.contextLabel.attributedText = NSAttributedString(string: briefCardContent, attributes: [NSAttributedString.Key.paragraphStyle: contentParagraphStyle])
-        }
-        
-        if let isScrap = self.briefingData?.isScrap {
-            print(isScrap)
-            if isScrap {
-                self.scrapButton.setImage(BriefingImageCollection.scrapFilledImage, for: .normal)
-            }
-            else {
-                self.scrapButton.setImage(BriefingImageCollection.scrapUnfilledImage, for: .normal)
-            }
+        else {
+            self.scrapButton.setImage(BriefingImageCollection.scrapUnfilledImage, for: .normal)
         }
     }
     
@@ -560,14 +537,14 @@ class BriefingCardViewController: UIViewController {
                 make.width.height.equalTo(27)
                 make.trailing.equalToSuperview().inset(7)
                 make.centerY.equalToSuperview()
-
+                
             }
             
             thirdArticleDetailButton.snp.makeConstraints{ make in
                 make.width.height.equalTo(27)
                 make.trailing.equalToSuperview().inset(7)
                 make.centerY.equalToSuperview()
-
+                
             }
             
             let firstArticleTapGesture = UITapGestureRecognizer(target: self, action: #selector(openFirstArticleURL))
@@ -648,7 +625,7 @@ class BriefingCardViewController: UIViewController {
                 
                 firstArticleView.addGestureRecognizer(firstArticleTapGesture)
                 secondArticleView.addGestureRecognizer(secondArticleTapGesture)
-
+                
             case 3:
                 firstArticlePressLabel.text = articles[0].press
                 firstArticleTitleLabel.text = articles[0].title
