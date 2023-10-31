@@ -45,6 +45,13 @@
 		A51E56DD2ABE057500BD3837 /* BriefingURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */; };
 		A51E56DF2ABE097100BD3837 /* BriefingNetworkURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */; };
 		A51E56E32ABE156C00BD3837 /* BFNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */; };
+		A526C4EC2AF0E3DD00C75475 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A526C4EB2AF0E3DD00C75475 /* WidgetKit.framework */; };
+		A526C4EE2AF0E3DD00C75475 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A526C4ED2AF0E3DD00C75475 /* SwiftUI.framework */; };
+		A526C4F12AF0E3DD00C75475 /* Briefing_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A526C4F02AF0E3DD00C75475 /* Briefing_WidgetBundle.swift */; };
+		A526C4F52AF0E3DD00C75475 /* Briefing_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A526C4F42AF0E3DD00C75475 /* Briefing_Widget.swift */; };
+		A526C4F72AF0E3DD00C75475 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A526C4F62AF0E3DD00C75475 /* AppIntent.swift */; };
+		A526C4F92AF0E3DE00C75475 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A526C4F82AF0E3DE00C75475 /* Assets.xcassets */; };
+		A526C4FD2AF0E3DE00C75475 /* Briefing-WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A526C4EA2AF0E3DD00C75475 /* Briefing-WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A52AF27D2AB5CA3600457E4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF27C2AB5CA3600457E4E /* HomeViewController.swift */; };
 		A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF27E2AB5D2F500457E4E /* Date+.swift */; };
 		A52AF2812AB5F2E000457E4E /* HomeCalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2802AB5F2E000457E4E /* HomeCalendarViewCell.swift */; };
@@ -96,6 +103,30 @@
 		EE7ED4642AB9641200FC49C9 /* BriefingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7ED4632AB9641200FC49C9 /* BriefingCardViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A526C4FB2AF0E3DE00C75475 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2443C5482A8FE88B009586C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A526C4E92AF0E3DD00C75475;
+			remoteInfo = "Briefing-WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A526C4FE2AF0E3DE00C75475 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A526C4FD2AF0E3DE00C75475 /* Briefing-WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		026F2B92F7F7F910F5214518 /* Pods-Briefing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.debug.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.debug.xcconfig"; sourceTree = "<group>"; };
 		2430A94D2A9BD21A0051B454 /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
@@ -140,6 +171,14 @@
 		A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkURLRequest.swift; sourceTree = "<group>"; };
 		A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFNetworkError.swift; sourceTree = "<group>"; };
 		A51F631A2ACE437B00F00515 /* Briefing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Briefing.entitlements; sourceTree = "<group>"; };
+		A526C4EA2AF0E3DD00C75475 /* Briefing-WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Briefing-WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A526C4EB2AF0E3DD00C75475 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A526C4ED2AF0E3DD00C75475 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A526C4F02AF0E3DD00C75475 /* Briefing_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Briefing_WidgetBundle.swift; sourceTree = "<group>"; };
+		A526C4F42AF0E3DD00C75475 /* Briefing_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Briefing_Widget.swift; sourceTree = "<group>"; };
+		A526C4F62AF0E3DD00C75475 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		A526C4F82AF0E3DE00C75475 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A526C4FA2AF0E3DE00C75475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A52AF27C2AB5CA3600457E4E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A52AF27E2AB5D2F500457E4E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A52AF2802AB5F2E000457E4E /* HomeCalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarViewCell.swift; sourceTree = "<group>"; };
@@ -201,6 +240,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A526C4E72AF0E3DD00C75475 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A526C4EE2AF0E3DD00C75475 /* SwiftUI.framework in Frameworks */,
+				A526C4EC2AF0E3DD00C75475 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -208,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				2443C5522A8FE88B009586C7 /* Briefing */,
+				A526C4EF2AF0E3DD00C75475 /* Briefing-Widget */,
 				2443C5512A8FE88B009586C7 /* Products */,
 				C557BFB202DA26D74051831E /* Pods */,
 				480939DB60E1AB65706A9784 /* Frameworks */,
@@ -218,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				2443C5502A8FE88B009586C7 /* Briefing.app */,
+				A526C4EA2AF0E3DD00C75475 /* Briefing-WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -304,6 +354,8 @@
 			isa = PBXGroup;
 			children = (
 				4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */,
+				A526C4EB2AF0E3DD00C75475 /* WidgetKit.framework */,
+				A526C4ED2AF0E3DD00C75475 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -378,6 +430,18 @@
 				A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		A526C4EF2AF0E3DD00C75475 /* Briefing-Widget */ = {
+			isa = PBXGroup;
+			children = (
+				A526C4F02AF0E3DD00C75475 /* Briefing_WidgetBundle.swift */,
+				A526C4F42AF0E3DD00C75475 /* Briefing_Widget.swift */,
+				A526C4F62AF0E3DD00C75475 /* AppIntent.swift */,
+				A526C4F82AF0E3DE00C75475 /* Assets.xcassets */,
+				A526C4FA2AF0E3DE00C75475 /* Info.plist */,
+			);
+			path = "Briefing-Widget";
 			sourceTree = "<group>";
 		};
 		A52B67652AC6A34400785F4A /* AuthScenes */ = {
@@ -546,15 +610,34 @@
 				2443C54D2A8FE88B009586C7 /* Frameworks */,
 				2443C54E2A8FE88B009586C7 /* Resources */,
 				474DAB0F778132679D7D7096 /* [CP] Embed Pods Frameworks */,
+				A526C4FE2AF0E3DE00C75475 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A526C4FC2AF0E3DE00C75475 /* PBXTargetDependency */,
 			);
 			name = Briefing;
 			productName = Briefing;
 			productReference = 2443C5502A8FE88B009586C7 /* Briefing.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A526C4E92AF0E3DD00C75475 /* Briefing-WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A526C5012AF0E3DE00C75475 /* Build configuration list for PBXNativeTarget "Briefing-WidgetExtension" */;
+			buildPhases = (
+				A526C4E62AF0E3DD00C75475 /* Sources */,
+				A526C4E72AF0E3DD00C75475 /* Frameworks */,
+				A526C4E82AF0E3DD00C75475 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Briefing-WidgetExtension";
+			productName = "Briefing-WidgetExtension";
+			productReference = A526C4EA2AF0E3DD00C75475 /* Briefing-WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -563,11 +646,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					2443C54F2A8FE88B009586C7 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					A526C4E92AF0E3DD00C75475 = {
+						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
 			};
@@ -586,6 +672,7 @@
 			projectRoot = "";
 			targets = (
 				2443C54F2A8FE88B009586C7 /* Briefing */,
+				A526C4E92AF0E3DD00C75475 /* Briefing-WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -608,6 +695,14 @@
 				2443C55D2A8FE88D009586C7 /* Assets.xcassets in Resources */,
 				2443C57C2A925B6F009586C7 /* ProductSans-Italic.ttf in Resources */,
 				2443C57E2A925B6F009586C7 /* ProductSans-Bold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A526C4E82AF0E3DD00C75475 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A526C4F92AF0E3DE00C75475 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,7 +831,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A526C4E62AF0E3DD00C75475 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A526C4F72AF0E3DD00C75475 /* AppIntent.swift in Sources */,
+				A526C4F12AF0E3DD00C75475 /* Briefing_WidgetBundle.swift in Sources */,
+				A526C4F52AF0E3DD00C75475 /* Briefing_Widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A526C4FC2AF0E3DE00C75475 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A526C4E92AF0E3DD00C75475 /* Briefing-WidgetExtension */;
+			targetProxy = A526C4FB2AF0E3DE00C75475 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2443C55E2A8FE88D009586C7 /* LaunchScreen.storyboard */ = {
@@ -881,6 +994,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 026F2B92F7F7F910F5214518 /* Pods-Briefing.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Briefing/Briefing.entitlements;
@@ -916,6 +1030,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Briefing/Briefing.entitlements;
@@ -947,6 +1062,73 @@
 			};
 			name = Release;
 		};
+		A526C4FF2AF0E3DE00C75475 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XB6KV776A2;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Briefing-Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Briefing-Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bmlee.briefing.Briefing-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A526C5002AF0E3DE00C75475 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XB6KV776A2;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Briefing-Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Briefing-Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bmlee.briefing.Briefing-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -964,6 +1146,15 @@
 			buildConfigurations = (
 				2443C5652A8FE88D009586C7 /* Debug */,
 				2443C5662A8FE88D009586C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A526C5012AF0E3DE00C75475 /* Build configuration list for PBXNativeTarget "Briefing-WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A526C4FF2AF0E3DE00C75475 /* Debug */,
+				A526C5002AF0E3DE00C75475 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
