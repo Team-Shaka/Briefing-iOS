@@ -126,7 +126,6 @@ extension BFURLRequest {
            httpMethod == .post {
             urlRequest.setValue("Bearer \(accessToken)",
                                 forHTTPHeaderField: "Authorization")
-            print(urlRequest.headers)
         }
         urlRequest.httpBody = httpBody
         urlRequest.timeoutInterval = timeoutInterval
