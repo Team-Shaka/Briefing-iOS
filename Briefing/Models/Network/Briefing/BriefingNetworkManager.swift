@@ -101,8 +101,6 @@ extension BriefingNetworkManager {
             return
         }
         
-        print("scrap url request: ", try! urlRequest.asURLRequest())
-        
         response(urlRequest,
                  type: ScrapResult.self,
                  completion: completion)
@@ -123,8 +121,6 @@ extension BriefingNetworkManager {
             completion(nil, BFNetworkError.wrongURLRequestError)
             return
         }
-        
-        print("delete scrap url request: ", try! urlRequest.asURLRequest())
         
         response(urlRequest,
                  type: ScrapResult.self,
