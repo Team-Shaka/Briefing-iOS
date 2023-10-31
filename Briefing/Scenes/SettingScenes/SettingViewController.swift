@@ -336,7 +336,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 
             }
             else {
-                
                 DispatchQueue.main.async {
                     let viewController = SettingTimePickerViewController(self.notificationTime)
                     viewController.delegate = self
@@ -374,20 +373,22 @@ extension SettingViewController: BriefingPopUpDelegate {
         switch popupViewController.index {
         case 0:
             authManager.signOut()
-            settingTableView.reloadSections(IndexSet(integer: authCellSectionInsertIndex),
+            let indexSet = IndexSet(integer: self.authCellSectionInsertIndex)
+            settingTableView.reloadSections(indexSet,
                                             with: .fade)
         case 1:
             authManager.withdrawal { [weak self] result, error in
+                guard let self = self else { return }
                 if let error = error as? BFNetworkError {
                     switch error {
                     case let .requestFail(_, message):
-                        self?.showErrorMessage(message: message)
+                        self.showErrorMessage(message: message)
                         return
                     default: break
                     }
                 }
-                
-                self?.settingTableView.reloadSections(IndexSet(integer: self?.authCellSectionInsertIndex ?? 3),
+                let indexSet = IndexSet(integer: self.authCellSectionInsertIndex)
+                self.settingTableView.reloadSections(indexSet,
                                                      with: .fade)
             }
             break

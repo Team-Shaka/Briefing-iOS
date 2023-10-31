@@ -122,11 +122,11 @@ extension BFURLRequest {
                             forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/json",
                             forHTTPHeaderField: "Content-Type")
-        if let accessToken = accessToken,
-           httpMethod == .post {
+        if let accessToken = accessToken {
             urlRequest.setValue("Bearer \(accessToken)",
                                 forHTTPHeaderField: "Authorization")
         }
+        
         urlRequest.httpBody = httpBody
         urlRequest.timeoutInterval = timeoutInterval
         urlRequest.url?.append(path: path.path)

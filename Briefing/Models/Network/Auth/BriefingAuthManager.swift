@@ -171,9 +171,12 @@ extension BriefingAuthManager {
             completion?(nil, BriefingAuthError.wrongURLReqeustError)
             return
         }
-        
+
         response(urlRequest,
                  type: WithdrawalResult.self) { result, error in
+            if let _ = result {
+                self.member = nil
+            }
             completion?(result, error)
         }
     }

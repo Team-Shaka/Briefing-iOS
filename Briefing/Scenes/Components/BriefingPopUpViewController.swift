@@ -223,7 +223,7 @@ class BriefingPopUpViewController: UIViewController {
         mainContainerView.snp.remakeConstraints{ make in
             make.centerX.centerY.equalToSuperview()
             make.width.equalTo(307)
-            make.top.equalTo(self.labelStackView.snp.top).offset(28)
+            // make.top.equalTo(self.labelStackView.snp.top).offset(28)
             make.bottom.equalTo(self.buttonStackView.snp.bottom).offset(16)
         }
     }
