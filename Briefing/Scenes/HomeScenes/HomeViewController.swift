@@ -173,7 +173,7 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
     }
     
     @objc func showScrapViewController() {
-        self.navigationController?.pushViewController(Scrapbook(), animated: true)
+        self.navigationController?.pushViewController(ScrapbookViewController(), animated: true)
     }
     
     @objc func showSettingViewController() {
