@@ -64,7 +64,7 @@ extension BriefingNetworkManager {
         }
         guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
                                                          url: url,
-                                                         method: .post,
+                                                         method: .get,
                                                          path: .fetchScrap(memberId: memberId)) else {
             completion(nil, BFNetworkError.wrongURLRequestError)
             return
