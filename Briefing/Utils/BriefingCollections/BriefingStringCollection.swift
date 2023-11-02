@@ -50,6 +50,10 @@ final class BriefingStringCollection {
         case relatedArticles
     }
     
+    enum Scrapbook: String, EnumeratedLocalized {
+        case scrapbookTitle
+    }
+    
     enum Auth: String, EnumeratedLocalized {
         case signInWithApple
         case signInWithGoogle
