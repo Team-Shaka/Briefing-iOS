@@ -18,7 +18,7 @@ extension Color {
     static let briefingLightBlue: Color = Color(red: 147/255,
                                                 green: 168/255,
                                                 blue: 208/255)
-    static let briefingWhite: Color = Color(red: 247/255,
-                                            green: 247/255,
-                                            blue: 247/255)
+    static let briefingWhite: Color = Color(red: 237/255,
+                                            green: 237/255,
+                                            blue: 237/255)
 }
