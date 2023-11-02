@@ -18,6 +18,8 @@
 "beta" = "BETA";
 "relatedArticles" = "Related Articles";
 
+"scrapbookTitle" = "Scrapbook";
+
 "signInWithApple" = "Sign in with Apple";
 "signInWithGoogle" = "Sign in with Google";
 "signInLater" = "Later";
@@ -36,7 +38,7 @@
 "caution" = "Caution";
 "signInAndRegister" = "SignIn Or Register ";
 "signOut" = "SignOut";
-"signOutDescription" = "Are you sure you want to sign out?\nSome features are restricted.";
+"signOutDescription" = "Are you sure you want to sign out?\nSome features will be restricted.";
 "withdrawal" = "Withdrawal";
 "withdrawalDescription" = "Are you sure you want to drop out?\nThis account will be disabled.";
 "notificationTime" = "Notification Time";
