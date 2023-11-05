@@ -11,7 +11,7 @@ import SnapKit
 class ScrapbookViewController: UIViewController {
     private let networkManager = BriefingNetworkManager.shared
     
-    var scrapData: [(Date?, [ScrapData?])] = [(nil, [nil])]
+    var scrapData: [(Date, [ScrapData])]? = []
     
     private var navigationView: UIView = {
         let view = UIView()
@@ -64,9 +64,9 @@ class ScrapbookViewController: UIViewController {
     private func configure() {
         self.view.backgroundColor = .briefingWhite
         
-//        self.scrapTableView.delegate = self
-//        self.scrapTableView.dataSource = self
-//        self.scrapTableView.register(ScrapbookTableViewCell.self, forCellReuseIdentifier: ScrapbookTableViewCell.identifier)
+        self.scrapTableView.delegate = self
+        self.scrapTableView.dataSource = self
+        self.scrapTableView.register(ScrapbookTableViewCell.self, forCellReuseIdentifier: ScrapbookTableViewCell.identifier)
         
         addSwipeGestureToDismiss()
     }
@@ -114,8 +114,6 @@ class ScrapbookViewController: UIViewController {
             
             self.scrapData = scrapData
             
-            print(self.scrapData.count)
-            
         }
     }
     
@@ -129,12 +127,35 @@ class ScrapbookViewController: UIViewController {
     
 }
 
-//extension ScrapbookViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//}
+extension ScrapbookViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        guard let scrapData = scrapData else { return 0 }
+        return scrapData.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let scrapRowData = scrapData?[safe: section] else { return 0 }
+        return scrapRowData.1.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cellSectionData = scrapData?[safe: indexPath.section]?.1 else { return UITableViewCell() }
+        
+        var cornerMaskEdge: UIRectEdge? = nil
+        if indexPath.row == (cellSectionData.count - 1) { cornerMaskEdge = .bottom }
+        if indexPath.row == 0 { cornerMaskEdge = cornerMaskEdge == .bottom ? .all : .top }
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ScrapbookTableViewCell.identifier) as? ScrapbookTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        if let cellData = cellSectionData[safe: indexPath.row] {
+            cell.setCellData(title: cellData.title,
+                             subtitle: cellData.subTitle,
+                             date: cellData.date,
+                             cornerMaskEdge: cornerMaskEdge)
+        }
+        
+        return cell
+    }
+}
