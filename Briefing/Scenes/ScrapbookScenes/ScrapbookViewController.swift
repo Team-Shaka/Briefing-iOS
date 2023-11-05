@@ -66,7 +66,8 @@ class ScrapbookViewController: UIViewController {
         
         self.scrapTableView.delegate = self
         self.scrapTableView.dataSource = self
-        self.scrapTableView.register(ScrapbookTableViewCell.self, forCellReuseIdentifier: ScrapbookTableViewCell.identifier)
+        self.scrapTableView.register(ScrapbookTableViewCell.self,
+                                     forCellReuseIdentifier: ScrapbookTableViewCell.identifier)
         
         addSwipeGestureToDismiss()
     }
@@ -158,4 +159,18 @@ extension ScrapbookViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let id = self.scrapData?[safe: indexPath.section]?.1[safe: indexPath.row]?.briefingId else { return }
+        self.navigationController?.pushViewController(BriefingCardViewController(id: id), animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let dateData = scrapData?[safe: section]?.0 else { return UIView() }
+        
+        let headerView = ScrapbookTableViewSectionHeaderView(Date: dateData)
+        
+        return headerView
+    }
+    
 }
