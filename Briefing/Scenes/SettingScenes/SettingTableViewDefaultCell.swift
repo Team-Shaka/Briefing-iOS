@@ -18,17 +18,10 @@ class SettingTableViewDefaultCell: UITableViewCell {
         return view
     }()
     
-    private var symbolImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.tintColor = .briefingNavy
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .productSans(size: 18)
-        label.textColor = .briefingNavy
+        label.textColor = .black
         return label
     }()
     
@@ -42,7 +35,7 @@ class SettingTableViewDefaultCell: UITableViewCell {
     private var nextIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = BriefingImageCollection.nextIconImage
-        imageView.tintColor = .briefingNavy
+        imageView.tintColor = .black
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -59,15 +52,15 @@ class SettingTableViewDefaultCell: UITableViewCell {
     }
     
     func configure() {
-        self.preservesSuperviewLayoutMargins = false
-        self.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
-        self.layoutMargins = UIEdgeInsets.zero
+        // self.preservesSuperviewLayoutMargins = false
+        // self.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+        // self.layoutMargins = UIEdgeInsets.zero
     }
     
     func addSubviews() {
         self.contentView.addSubview(mainContainerView)
         
-        let subViews: [UIView] = [symbolImageView, titleLabel]
+        let subViews: [UIView] = [titleLabel]
         subViews.forEach { subView in
             mainContainerView.addSubview(subView)
         }
@@ -76,26 +69,18 @@ class SettingTableViewDefaultCell: UITableViewCell {
     func makeConstraints() {
         mainContainerView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(24)
+            make.leading.trailing.equalToSuperview()
+            // make.leading.trailing.equalToSuperview().inset(24)
         }
-        
-        symbolImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(18)
-            make.width.height.equalTo(20)
-        }
-        
+    
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(symbolImageView.snp.trailing).offset(12)
+            make.leading.equalTo(mainContainerView.snp.leading).offset(30)
         }
     }
     
-    func setCellData(symbol: UIImage,
-                     title: String,
-                     type: SettingTableViewDefaultCellType,
-                     cornerMaskEdge: UIRectEdge?) {
-        symbolImageView.image = symbol
+    func setCellData(title: String,
+                     type: SettingTableViewDefaultCellType) {
         titleLabel.text = title
         switch type {
         case let .text(text):
@@ -103,7 +88,6 @@ class SettingTableViewDefaultCell: UITableViewCell {
         default: break
         }
         cellLayoutSetting(type: type)
-        mainContainerView.setCornerMask(cornerMaskEdge)
     }
     
     func cellLayoutSetting(type: SettingTableViewDefaultCellType){

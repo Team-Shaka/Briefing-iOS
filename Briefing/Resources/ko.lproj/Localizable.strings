@@ -26,6 +26,11 @@
 
 "settings" = "설정";
 
+"notification" = "알림";
+"appInfo" = "앱 정보";
+"support" = "지원";
+"account" = "로그인 / 로그아웃";
+
 "notificationTimeSetting" = "알림 시간 설정";
 "setNotification" = "알림 설정";
 "removeNotification" = "알림 삭제";
