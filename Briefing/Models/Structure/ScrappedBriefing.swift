@@ -12,7 +12,7 @@ struct ScrapData: Codable {
     let ranks: Int
     let title: String
     let subTitle: String
-    let date: Date
+    let date: String
     
     enum CodingKeys: String, CodingKey {
         case briefingId

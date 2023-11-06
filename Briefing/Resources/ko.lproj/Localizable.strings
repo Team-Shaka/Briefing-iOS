@@ -18,6 +18,8 @@
 "beta" = "베타";
 "relatedArticles" = "관련 기사";
 
+"scrapbookTitle" = "스크랩북";
+
 "signInWithApple" = "Apple로 로그인";
 "signInWithGoogle" = "Google로 로그인";
 "signInLater" = "나중에 하기";
