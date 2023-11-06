@@ -55,6 +55,7 @@
 		A5026F792AF13D05002B7438 /* ProductSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2443C5772A925B6E009586C7 /* ProductSans-Regular.ttf */; };
 		A5026F7D2AF13E44002B7438 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5026F7B2AF13E3F002B7438 /* Font+.swift */; };
 		A5026F7F2AF13E87002B7438 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2822AB6043600457E4E /* UIFont+.swift */; };
+		A50C06F82AF8A00B00185E5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A50C06F72AF8A00B00185E5E /* GoogleService-Info.plist */; };
 		A51E56D82ABE037100BD3837 /* BriefingNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56D72ABE037100BD3837 /* BriefingNetworkManager.swift */; };
 		A51E56DD2ABE057500BD3837 /* BriefingURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */; };
 		A51E56DF2ABE097100BD3837 /* BriefingNetworkURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */; };
@@ -191,6 +192,7 @@
 		A5026F5C2AF11675002B7438 /* BriefingWidgetNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingWidgetNetworkManager.swift; sourceTree = "<group>"; };
 		A5026F6D2AF12FFD002B7438 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		A5026F7B2AF13E3F002B7438 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		A50C06F72AF8A00B00185E5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A51E56D72ABE037100BD3837 /* BriefingNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkManager.swift; sourceTree = "<group>"; };
 		A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingURLManager.swift; sourceTree = "<group>"; };
 		A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkURLRequest.swift; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 		A595F0382ABDAC36006543B2 /* propertyList */ = {
 			isa = PBXGroup;
 			children = (
+				A50C06F72AF8A00B00185E5E /* GoogleService-Info.plist */,
 				A595F0342ABDAC09006543B2 /* url.plist */,
 				A595F0362ABDAC2D006543B2 /* url-debug.plist */,
 			);
@@ -683,6 +686,7 @@
 				2443C54E2A8FE88B009586C7 /* Resources */,
 				474DAB0F778132679D7D7096 /* [CP] Embed Pods Frameworks */,
 				A526C4FE2AF0E3DE00C75475 /* Embed Foundation Extensions */,
+				A50C06F92AF8A1DC00185E5E /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -767,6 +771,7 @@
 				2443C55D2A8FE88D009586C7 /* Assets.xcassets in Resources */,
 				2443C57C2A925B6F009586C7 /* ProductSans-Italic.ttf in Resources */,
 				2443C57E2A925B6F009586C7 /* ProductSans-Bold.ttf in Resources */,
+				A50C06F82AF8A00B00185E5E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,6 +831,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A50C06F92AF8A1DC00185E5E /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
