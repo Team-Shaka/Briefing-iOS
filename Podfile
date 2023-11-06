@@ -10,4 +10,6 @@ target 'Briefing' do
   pod 'Alamofire', '~> 5.0.0'
   pod 'FSCalendar', '~> 2.8.4'
   pod 'GoogleSignIn'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseCrashlytics'
 end
