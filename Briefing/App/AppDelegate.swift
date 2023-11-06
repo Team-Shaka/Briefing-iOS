@@ -7,6 +7,8 @@
 
 import UIKit
 import UserNotifications
+import FirebaseCore
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     @UserDefaultWrapper(key: .isFirstLaunchAppWithNotification, defaultValue: nil)
@@ -17,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        FirebaseApp.configure()
         let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
                 if granted {
