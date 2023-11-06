@@ -12,5 +12,6 @@ import SwiftUI
 struct Briefing_WidgetBundle: WidgetBundle {
     var body: some Widget {
         Briefing_Widget()
+        Briefing_SubWidget()
     }
 }
