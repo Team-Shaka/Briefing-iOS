@@ -64,7 +64,7 @@ extension BriefingNetworkManager {
         }
         guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
                                                          url: url,
-                                                         method: .post,
+                                                         method: .get,
                                                          path: .fetchScrap(memberId: memberId)) else {
             completion(nil, BFNetworkError.wrongURLRequestError)
             return
@@ -75,7 +75,8 @@ extension BriefingNetworkManager {
                  completion: { value, error in
             let value = value?.reduce(Dictionary<Date,[ScrapData]>(), { partialResult, scrapData in
                 var partialResult = partialResult
-                partialResult[scrapData.date, default: []].append(scrapData)
+                let date = scrapData.date.toDate(dataFormat:"yyyy-MM-dd") ?? Date()
+                partialResult[date, default: []].append(scrapData)
                 return partialResult
             })
                 .map { return ($0, $1) }
@@ -85,7 +86,7 @@ extension BriefingNetworkManager {
     }
     
     func scrapBriefing(id: Int,
-                           completion: @escaping (_ value: ScrapResult?, _ error: Error?) -> Void) {
+                       completion: @escaping (_ value: ScrapResult?, _ error: Error?) -> Void) {
         let url = BriefingURLManager.url(key: .baseUrl)
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             completion(nil, BriefingNetworkError.noAuthError)
@@ -107,7 +108,7 @@ extension BriefingNetworkManager {
     }
     
     func deleteScrapBriefing(id: Int,
-                                    completion: @escaping (_ value: ScrapResult?, _ error: Error?) -> Void) {
+                             completion: @escaping (_ value: ScrapResult?, _ error: Error?) -> Void) {
         let url = BriefingURLManager.url(key: .baseUrl)
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             completion(nil, BriefingNetworkError.noAuthError)

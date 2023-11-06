@@ -461,10 +461,15 @@ class BriefingCardViewController: UIViewController {
                 return
             }
             
-            if let briefingData = value {
-                self.briefingData = briefingData
-                self.isScrap = briefingData.isScrap
-            }
+            guard let briefingData = value else { return }
+            
+            self.briefingData = briefingData
+            self.isScrap = briefingData.isScrap
+            
+//            if let briefingData = value {
+//                self.briefingData = briefingData
+//                self.isScrap = briefingData.isScrap
+//            }
             
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.5) {
