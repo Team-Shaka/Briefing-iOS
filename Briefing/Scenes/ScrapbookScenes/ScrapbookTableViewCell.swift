@@ -95,5 +95,18 @@ class ScrapbookTableViewCell: UITableViewCell {
         
         mainContainerView.setCornerMask(cornerMaskEdge)
     }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        self.backgroundColor = .clear
+        if highlighted {
+            mainContainerView.backgroundColor = .briefingLightBlue.withAlphaComponent(0.3)
+        } else {
+            mainContainerView.backgroundColor = .white
+        }
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        self.backgroundColor = .clear
+    }
 
 }

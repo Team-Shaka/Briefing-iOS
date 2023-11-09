@@ -66,7 +66,7 @@ struct Briefing_WidgetSubEntryView : View {
     }
     
     var accessoryRectangular: some View {
-        let contentCount: Int = 3
+        let contentCount: Int = 2
         return VStack(alignment: .leading, spacing: 4) {
             Text(BriefingWidgetStringCollection.displayName)
                 .font(.productSans(size: 16))
