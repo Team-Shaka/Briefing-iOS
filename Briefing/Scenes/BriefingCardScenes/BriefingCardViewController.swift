@@ -488,7 +488,9 @@ class BriefingCardViewController: UIViewController {
                 self.errorHandling(error)
                 return
             }
-            self.isScrap.toggle()
+            guard let isScrap = value?.isScrap else { return }
+            print(isScrap)
+            self.isScrap = isScrap
             self.updateBriefingCardScrapState()
         }
         if isScrap {
