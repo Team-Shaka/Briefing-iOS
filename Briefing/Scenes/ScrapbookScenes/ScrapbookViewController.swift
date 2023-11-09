@@ -12,6 +12,7 @@ class ScrapbookViewController: UIViewController {
     private let networkManager = BriefingNetworkManager.shared
     
     var scrapData: [(Date, [ScrapData])]? = []
+    var isFetchedTableView: Bool = false
     
     private var navigationView: UIView = {
         let view = UIView()
@@ -110,10 +111,10 @@ class ScrapbookViewController: UIViewController {
                 self.errorHandling(error)
                 return
             }
-            
             guard let scrapData = value else { return }
-            
             self.scrapData = scrapData
+            self.isFetchedTableView.toggle()
+            self.scrapTableView.reloadData()
             
         }
     }
@@ -167,10 +168,13 @@ extension ScrapbookViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let dateData = scrapData?[safe: section]?.0 else { return UIView() }
+        if isFetchedTableView {
+            let headerView = ScrapbookTableViewSectionHeaderView(Date: dateData)
+            return headerView
+        } else {
+            return nil
+        }
         
-        let headerView = ScrapbookTableViewSectionHeaderView(Date: dateData)
-        
-        return headerView
     }
     
 }

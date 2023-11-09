@@ -36,8 +36,8 @@
 "termsOfService" = "Terms Of Service";
 "privacyPolicy" = "Privacy Policy";
 "caution" = "Caution";
-"signInAndRegister" = "SignIn Or Register ";
-"signOut" = "SignOut";
+"signInAndRegister" = "sign in or register ";
+"signOut" = "sign out";
 "signOutDescription" = "Are you sure you want to sign out?\nSome features will be restricted.";
 "withdrawal" = "Withdrawal";
 "withdrawalDescription" = "Are you sure you want to drop out?\nThis account will be disabled.";
@@ -56,4 +56,4 @@
 
 "widget_displayName" = "Today's Briefings";
 "widget_description" = "You can check out today's briefings!";
-"widget_waitingData" = "The briefing hasn't arrived yet.";
+"widget_waitingData" = "The briefings haven't arrived yet.";
