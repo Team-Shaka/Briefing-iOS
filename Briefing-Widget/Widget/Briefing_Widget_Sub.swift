@@ -107,7 +107,7 @@ struct Briefing_SubWidget: Widget {
             
                 .containerBackground(.white,
                                      for: .widget)
-        }.configurationDisplayName(BriefingWidgetStringCollection.displayName)
+        }.configurationDisplayName(BriefingWidgetStringCollection.displayName+"(Simple)")
             .description(BriefingWidgetStringCollection.description)
             .supportedFamilies([.accessoryRectangular])
     }
