@@ -80,7 +80,7 @@ extension BriefingNetworkManager {
                 return partialResult
             })
                 .map { return ($0, $1) }
-                .sorted(by: { $0.0 < $1.0 })
+                .sorted(by: { $0.0 > $1.0 })
             completion(value, error)
         })
     }

@@ -28,6 +28,7 @@ class ScrapbookTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .productSans(size: 10)
         label.textColor = .briefingLightBlue
+        label.numberOfLines = 1
         return label
     }()
     
@@ -75,6 +76,7 @@ class ScrapbookTableViewCell: UITableViewCell {
         subtitleLabel.snp.makeConstraints{ make in
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.leading.equalTo(titleLabel)
+            make.trailing.equalToSuperview().inset(20)
         }
         
         dateLabel.snp.makeConstraints{ make in
