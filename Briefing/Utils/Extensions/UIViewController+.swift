@@ -82,51 +82,6 @@ extension UIViewController {
             return nil
         }
     }
-    
-    func readScrapFile(fileName: String) -> Scrap? {
-        let documentFolder = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        let textPath = documentFolder.appendingPathComponent(fileName)
-
-        do {
-            let text = try String(contentsOf: textPath, encoding: .utf8)
-            return Scrap(from: text)
-        } catch {
-            print("Error reading text file")
-            return nil
-        }
-    }
-    
-    func readAllScraps() -> [Scrap] {
-        var scraps: [Scrap] = []
-        
-        let documentFolder = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        
-//        let briefingFolder = documentFolder.appendingPathComponent("Briefing")
-        
-        do {
-            let files = try FileManager.default.contentsOfDirectory(at: documentFolder, includingPropertiesForKeys: nil, options: [])
-            let txtFiles = files.filter { $0.pathExtension == "txt" }
-            
-            for txtFile in txtFiles {
-                let fileName = txtFile.lastPathComponent
-                
-                if let scrap = readScrapFile(fileName: fileName) {
-                    scraps.append(scrap)
-                }
-            }
-        } catch {
-            print("Error reading directory contents: \(error)")
-        }
-        
-        scraps.sort {
-            let rank1 = Int($0.rank) ?? 0
-            let rank2 = Int($1.rank) ?? 0
-            return rank1 < rank2
-        }
-
-        
-        return scraps
-    }
 }
 
 extension UIViewController {

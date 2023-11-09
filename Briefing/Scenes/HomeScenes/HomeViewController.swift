@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-final class HomeViewController: UIViewController, TabBarItemViewController {
+final class HomeViewController: UIViewController {
     let tabBarIcon: UIImage = BriefingImageCollection.briefingTabBarNormalIconImage
     let tabBarSelectedIcon: UIImage = BriefingImageCollection.briefingTabBarSelectedIconImage
     var selectedDate = Date().midnight
