@@ -764,6 +764,7 @@
 		};
 		A50C06F92AF8A1DC00185E5E /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1029,7 +1030,8 @@
 				CODE_SIGN_ENTITLEMENTS = Briefing/Briefing.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1023;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = XB6KV776A2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Briefing/Resources/Info.plist;
@@ -1065,7 +1067,7 @@
 				CODE_SIGN_ENTITLEMENTS = Briefing/Briefing.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1023;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XB6KV776A2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Briefing/Resources/Info.plist;
