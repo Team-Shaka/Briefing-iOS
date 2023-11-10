@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-final class HomeViewController: UIViewController, TabBarItemViewController {
+final class HomeViewController: UIViewController {
     let tabBarIcon: UIImage = BriefingImageCollection.briefingTabBarNormalIconImage
     let tabBarSelectedIcon: UIImage = BriefingImageCollection.briefingTabBarSelectedIconImage
     var selectedDate = Date().midnight
@@ -30,7 +30,7 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
         let button = UIButton()
         button.setImage(BriefingImageCollection.scrapImage, for: .normal)
         button.contentMode = .scaleAspectFit
-        button.addTarget(self, action: #selector(showScrapViewController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(showScrapBookViewController), for: .touchUpInside)
         return button
     }()
     
@@ -172,8 +172,23 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
         }
     }
     
-    @objc func showScrapViewController() {
-        self.navigationController?.pushViewController(ScrapbookViewController(), animated: true)
+    @objc func showScrapBookViewController() {
+        if let _ = BriefingAuthManager.shared.member {
+            self.navigationController?.pushViewController(ScrapbookViewController(), animated: true)
+        } else {
+            let title = BriefingStringCollection.Popup.signInRequired.localized
+            let description = BriefingStringCollection.Popup.signInRequiredDescription.localized
+            let cancel = BriefingStringCollection.cancel
+            let confirm = BriefingStringCollection.Setting.signIn.localized
+            let popupViewController = BriefingPopUpViewController(index: 0,
+                                                                  title: title,
+                                                                  description: description,
+                                                                  buttonTitles:[cancel, confirm],
+                                                                  style: .twoButtonsDefault)
+            popupViewController.modalPresentationStyle = .overFullScreen
+            popupViewController.delegate = self
+            self.present(popupViewController, animated: false)
+        }
     }
     
     @objc func showSettingViewController() {
@@ -197,5 +212,13 @@ final class HomeViewController: UIViewController, TabBarItemViewController {
                                                       animated: true)
             }
         }
+    }
+}
+
+extension HomeViewController: BriefingPopUpDelegate {
+    func cancelButtonTapped(_ popupViewController: BriefingPopUpViewController) { }
+    
+    func confirmButtonTapped(_ popupViewController: BriefingPopUpViewController) {
+        self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
 }
