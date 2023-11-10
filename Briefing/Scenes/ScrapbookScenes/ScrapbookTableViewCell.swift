@@ -28,6 +28,7 @@ class ScrapbookTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .productSans(size: 10)
         label.textColor = .briefingLightBlue
+        label.numberOfLines = 1
         return label
     }()
     
@@ -75,6 +76,7 @@ class ScrapbookTableViewCell: UITableViewCell {
         subtitleLabel.snp.makeConstraints{ make in
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.leading.equalTo(titleLabel)
+            make.trailing.equalToSuperview().inset(20)
         }
         
         dateLabel.snp.makeConstraints{ make in
@@ -94,6 +96,19 @@ class ScrapbookTableViewCell: UITableViewCell {
         dateLabel.text = date
         
         mainContainerView.setCornerMask(cornerMaskEdge)
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        self.backgroundColor = .clear
+        if highlighted {
+            mainContainerView.backgroundColor = .briefingLightBlue.withAlphaComponent(0.3)
+        } else {
+            mainContainerView.backgroundColor = .white
+        }
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        self.backgroundColor = .clear
     }
 
 }

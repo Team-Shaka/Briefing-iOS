@@ -80,13 +80,13 @@ extension BriefingNetworkManager {
                 return partialResult
             })
                 .map { return ($0, $1) }
-                .sorted(by: { $0.0 < $1.0 })
+                .sorted(by: { $0.0 > $1.0 })
             completion(value, error)
         })
     }
     
     func scrapBriefing(id: Int,
-                       completion: @escaping (_ value: ScrapResult?, _ error: Error?) -> Void) {
+                       completion: @escaping (_ value: (any ScrapResult)?, _ error: Error?) -> Void) {
         let url = BriefingURLManager.url(key: .baseUrl)
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             completion(nil, BriefingNetworkError.noAuthError)
@@ -103,12 +103,12 @@ extension BriefingNetworkManager {
         }
         
         response(urlRequest,
-                 type: ScrapResult.self,
+                 type: CreateScrapResult.self,
                  completion: completion)
     }
     
     func deleteScrapBriefing(id: Int,
-                             completion: @escaping (_ value: ScrapResult?, _ error: Error?) -> Void) {
+                             completion: @escaping (_ value: (any ScrapResult)?, _ error: Error?) -> Void) {
         let url = BriefingURLManager.url(key: .baseUrl)
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             completion(nil, BriefingNetworkError.noAuthError)
@@ -124,7 +124,7 @@ extension BriefingNetworkManager {
         }
         
         response(urlRequest,
-                 type: ScrapResult.self,
+                 type: DeleteScrapResult.self,
                  completion: completion)
     }
 }
