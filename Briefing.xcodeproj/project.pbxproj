@@ -78,6 +78,8 @@
 		A595F0352ABDAC09006543B2 /* url.plist in Resources */ = {isa = PBXBuildFile; fileRef = A595F0342ABDAC09006543B2 /* url.plist */; };
 		A595F0372ABDAC2D006543B2 /* url-debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = A595F0362ABDAC2D006543B2 /* url-debug.plist */; };
 		A5AC45F92AF93B3F00E7C161 /* Briefing_Widget_Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC45F82AF93B3F00E7C161 /* Briefing_Widget_Sub.swift */; };
+		A5AC45FB2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC45FA2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift */; };
+		A5B3A7A62AB89D4700E1E2B6 /* TabBarItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3A7A52AB89D4700E1E2B6 /* TabBarItemViewController.swift */; };
 		A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7842ACE357E0053E434 /* SettingViewController.swift */; };
 		A5CA5EAF2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift */; };
 		A5CA5EB12AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */; };
@@ -198,6 +200,8 @@
 		A595F0342ABDAC09006543B2 /* url.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = url.plist; sourceTree = "<group>"; };
 		A595F0362ABDAC2D006543B2 /* url-debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "url-debug.plist"; sourceTree = "<group>"; };
 		A5AC45F82AF93B3F00E7C161 /* Briefing_Widget_Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Briefing_Widget_Sub.swift; sourceTree = "<group>"; };
+		A5AC45FA2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
+		A5B3A7A52AB89D4700E1E2B6 /* TabBarItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemViewController.swift; sourceTree = "<group>"; };
 		A5C5E7842ACE357E0053E434 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewAuthCell.swift; sourceTree = "<group>"; };
 		A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewDefaultCell.swift; sourceTree = "<group>"; };
@@ -517,6 +521,7 @@
 				A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */,
 				A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift */,
 				A58F5DF02AD5168E006B4E85 /* SettingTimePickerViewController.swift */,
+				A5AC45FA2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift */,
 			);
 			path = SettingScenes;
 			sourceTree = "<group>";
@@ -826,6 +831,7 @@
 				A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */,
 				EE5560BF2AD65C2C0024ABBA /* BriefingNotificationManager.swift in Sources */,
 				EE7ED40B2AB6E75400FC49C9 /* SignInViewController.swift in Sources */,
+				A5AC45FB2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift in Sources */,
 				A5DA2F1A2ACBF32F00EFACB5 /* BriefingNetworkResult.swift in Sources */,
 				A5DA2F242ACC423C00EFACB5 /* HomeBriefingTableViewCell.swift in Sources */,
 				2443C5562A8FE88B009586C7 /* SceneDelegate.swift in Sources */,

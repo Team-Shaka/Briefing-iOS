@@ -26,6 +26,11 @@
 
 "settings" = "settings";
 
+"notification" = "Notification";
+"appInfo" = "App Information";
+"support" = "Support";
+"account" = "Account";
+
 "notificationTimeSetting" = "Set notification time";
 "setNotification" = "set";
 "removeNotification" = "remove";
@@ -55,7 +60,6 @@
 "termsOfServiceLink" = "https://sites.google.com/view/brieifinguse/%ED%99%88";
 "privacyPolicyLink" = "https://sites.google.com/view/briefing-private/%ED%99%88";
 "cautionLink" = "https://onve.notion.site/Briefing-e1cb17e2e7c54d3b9a7036b29ee9b11a?pvs=4";
-
 
 "widget_displayName" = "Today's Briefings";
 "widget_description" = "You can check out today's briefings!";
