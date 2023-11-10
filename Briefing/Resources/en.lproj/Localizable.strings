@@ -41,13 +41,16 @@
 "termsOfService" = "Terms Of Service";
 "privacyPolicy" = "Privacy Policy";
 "caution" = "Caution";
-"signInAndRegister" = "SignIn Or Register ";
-"signOut" = "SignOut";
+"signIn" = "sign in";
+"signInAndRegister" = "sign in or register ";
+"signOut" = "sign out";
 "signOutDescription" = "Are you sure you want to sign out?\nSome features will be restricted.";
 "withdrawal" = "Withdrawal";
 "withdrawalDescription" = "Are you sure you want to drop out?\nThis account will be disabled.";
 "notificationTime" = "Notification Time";
 "notificationTurnedOff" = "The notification is currently turned off.\nPlease check the Settings > Notifications.";
+"signInRequired" = "Sign In Required";
+"signInRequiredDescription" = "This feature requires sign in.\n Are you sure you want to sign in?";
 
 "notificationTitle" = "Today's Briefing has arrived.";
 "notificationBody" = "Checkout top Keywords!";
@@ -60,4 +63,4 @@
 
 "widget_displayName" = "Today's Briefings";
 "widget_description" = "You can check out today's briefings!";
-"widget_waitingData" = "The briefing hasn't arrived yet.";
+"widget_waitingData" = "The briefings haven't arrived yet.";
