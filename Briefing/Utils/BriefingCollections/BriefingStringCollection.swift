@@ -76,6 +76,7 @@ final class BriefingStringCollection {
         case privacyPolicy
         case caution
         case signInAndRegister
+        case signIn
         case signOut
         case withdrawal
         case setting
@@ -85,6 +86,11 @@ final class BriefingStringCollection {
         case withdrawalDescription
         case notificationTime
         case notificationTurnedOff
+    }
+    
+    enum Popup: String, EnumeratedLocalized {
+        case signInRequired
+        case signInRequiredDescription
     }
     
     enum Notification: String, EnumeratedLocalized {

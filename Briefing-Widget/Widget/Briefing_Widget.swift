@@ -105,7 +105,7 @@ struct Briefing_WidgetEntryView : View {
     }
     
     func system(_ type: SystemWidgetType) -> some View {
-        var widgetTitleFont: Font = .productSans(size: 18).bold()
+        let widgetTitleFont: Font = .productSans(size: 18).bold()
         var title: String = BriefingWidgetStringCollection.displayName
         var contentCount: Int = 3
         switch type {
