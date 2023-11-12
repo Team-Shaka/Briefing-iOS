@@ -362,7 +362,7 @@ class BriefingCardViewController: UIViewController {
         
         topicLabel.snp.makeConstraints{ make in
             make.top.equalTo(dateInformationLabel.snp.bottom).offset(13)
-            make.leading.equalToSuperview().offset(25)
+            make.leading.trailing.equalToSuperview().inset(25)
         }
         
         subtopicLabel.snp.makeConstraints{ make in
