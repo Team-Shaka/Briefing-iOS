@@ -24,6 +24,8 @@ final class BriefingImageCollection {
     static let appleLogo: UIImage = UIImage(named: "login_apple")!
     static let googleLogo: UIImage = UIImage(named: "login_google")!
     static let backIconImage: UIImage = UIImage(named: "arrow_blue")!
+    static let backIconBlackImage: UIImage = #imageLiteral(resourceName: "arrow_left_black")
+    static let othersIconBlackImage: UIImage = #imageLiteral(resourceName: "others_black")
     
     final class Setting {
         private init() { }
