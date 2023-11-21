@@ -43,15 +43,17 @@ class BriefingCardViewController: UIViewController {
         return scrollView
     }()
     
+    private var cardView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     private var topicLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.textAlignment = .left
         label.font = .productSans(size: 30, weight: .bold)
         label.numberOfLines = 1
-        
-        //MARK: Delete it. this is for test.
-        label.text = "배터리 혁명"
         
         return label
     }()
@@ -61,7 +63,6 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .briefingLightGray
         label.textAlignment = .left
         label.font = .productSans(size: 13)
-        label.text = "0000-00-00 00"
         return label
     }()
     
@@ -70,7 +71,6 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .briefingLightGray
         label.textAlignment = .left
         label.font = .productSans(size: 13)
-        label.text = "00 #0"
         return label
     }()
     
@@ -79,7 +79,7 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .briefingLightGray
         label.textAlignment = .left
         label.font = .productSans(size: 13)
-        label.text = "GPT-3로 생성됨"
+//        label.text = "GPT-3로 생성됨"
         return label
     }()
     
@@ -98,26 +98,32 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .briefingLightGray
         label.textAlignment = .center
         label.font = .productSans(size: 13)
-        label.text = "1352"
+//        label.text = "1352"
         
         return label
     }()
     
     private lazy var scrapButton: UIButton = {
         let button = UIButton()
-        //MARK: - ToDo: Edit Scrap Image
         button.setImage(UIImage(named: "scrap_normal"), for: .normal)
         button.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .right
         button.addTarget(self, action: #selector(scrappButtonTapped), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     
-    //MARK: - Add Line Separator View
+    private var lineSeparatorView1: UIView = {
+        let view = UIView()
+        view.backgroundColor = .briefingGray
+        view.isHidden = true
+
+        return view
+    }()
     
     private var subtopicLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .briefingNavy
+        label.textColor = .black
         label.textAlignment = .left
         label.font = .productSans(size: 17, weight: .bold)
         label.numberOfLines = 1
@@ -128,7 +134,7 @@ class BriefingCardViewController: UIViewController {
     private var contextLabel: UILabel = {
         let label = UILabel()
         
-        label.textColor = .briefingNavy
+        label.textColor = .black
         label.textAlignment = .left
         label.font = .productSans(size: 15)
         label.numberOfLines = 0
@@ -137,7 +143,12 @@ class BriefingCardViewController: UIViewController {
         return label
     }()
     
-    //MARK: - Add Line Separator View
+    private var lineSeparatorView2: UIView = {
+        let view = UIView()
+        view.backgroundColor = .briefingGray
+        view.isHidden = true
+        return view
+    }()
     
     private var relatedLabel: UILabel = {
         let label = UILabel()
@@ -146,6 +157,7 @@ class BriefingCardViewController: UIViewController {
         label.textAlignment = .left
         label.font = .productSans(size: 20, weight: .bold)
         label.numberOfLines = 1
+        label.isHidden = true
         
         return label
     }()
@@ -178,7 +190,6 @@ class BriefingCardViewController: UIViewController {
     
     private var firstArticleDetailButton: UIButton = {
         let button = UIButton()
-        //MARK: - ToDo: Check if image edit is needed
         button.setImage(BriefingImageCollection.nextIconImage, for: .normal)
         return button
     }()
@@ -211,7 +222,6 @@ class BriefingCardViewController: UIViewController {
     
     private var secondArticleDetailButton: UIButton = {
         let button = UIButton()
-        //MARK: - ToDo: Check if image edit is needed
         button.setImage(BriefingImageCollection.nextIconImage, for: .normal)
         return button
     }()
@@ -244,7 +254,6 @@ class BriefingCardViewController: UIViewController {
     
     private var thirdArticleDetailButton: UIButton = {
         let button = UIButton()
-        //MARK: - ToDo: Check if image edit is needed
         button.setImage(BriefingImageCollection.nextIconImage, for: .normal)
         return button
     }()
@@ -272,7 +281,7 @@ class BriefingCardViewController: UIViewController {
         configure()
         addSubviews()
         makeConstraint()
-//        fetchBriefingCard()
+        fetchBriefingCard()
     }
     
     init(id: Int){
@@ -297,14 +306,15 @@ class BriefingCardViewController: UIViewController {
         
         [self.dateInformationLabel, self.categoryInformationLabel, self.generateInformationLabel].forEach { informationStackView.addArrangedSubview($0) }
         
-        self.cardScrollView.addSubviews(topicLabel, informationStackView, scrapButton, scrapNumberLabel, subtopicLabel, contextLabel, relatedLabel, articleStackView)
+        self.cardScrollView.addSubview(cardView)
+        
+        self.cardView.addSubviews(topicLabel, informationStackView, scrapButton, scrapNumberLabel, lineSeparatorView1, subtopicLabel, contextLabel, lineSeparatorView2, relatedLabel, articleStackView)
         
         // 기사 개수에 따라 articleStackView 내용 달라지므로 나중에 처리
     }
     
     private func makeConstraint() {
         navigationView.snp.makeConstraints{ make in
-            //MARK: - ToDo: Check Height Constraints... how?
             make.top.equalTo(view)
 //            make.bottom.equalTo(backButton).offset(4)
             make.height.equalTo(90)
@@ -318,12 +328,6 @@ class BriefingCardViewController: UIViewController {
             make.leading.equalTo(navigationView).inset(19)
         }
         
-//        titleLabel.snp.makeConstraints{ make in
-//            make.centerY.equalTo(navigationView)
-//            make.centerX.equalTo(navigationView)
-//            make.trailing.lessThanOrEqualTo(scrapButton)
-//        }
-        
         othersButton.snp.makeConstraints{ make in
             make.centerY.equalTo(backButton)
             make.height.equalTo(backButton)
@@ -334,20 +338,29 @@ class BriefingCardViewController: UIViewController {
         cardScrollView.snp.makeConstraints{ make in
             make.top.equalTo(navigationView.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            //MARK: - ToDo: Check bottom constraints
+            //MARK: Check bottom constraints
             make.bottom.equalToSuperview().inset(50)
+        }
+        
+        cardView.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(31)
+            make.trailing.equalToSuperview().inset(31)
+            make.bottom.equalToSuperview()
         }
         
         topicLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview().offset(18)
-            make.leading.equalToSuperview().offset(31)
+            make.leading.equalToSuperview()
+            make.trailing.equalTo(scrapButton.snp.leading)
         }
         
         scrapButton.snp.makeConstraints{ make in
             make.centerY.equalTo(topicLabel.snp.bottom)
             make.height.equalTo(41)
             make.width.equalTo(scrapButton.snp.height)
-            make.trailing.equalTo(navigationView).inset(30)
+            make.trailing.equalToSuperview()
         }
         
         scrapNumberLabel.snp.makeConstraints{ make in
@@ -372,11 +385,17 @@ class BriefingCardViewController: UIViewController {
             make.top.equalTo(topicLabel.snp.bottom).offset(8)
         }
         
+        lineSeparatorView1.snp.makeConstraints{ make in
+            make.top.equalTo(informationStackView.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(-10)
+            make.trailing.equalToSuperview().offset(10)
+            make.height.equalTo(1)
+        }
         
         subtopicLabel.snp.makeConstraints{ make in
-            make.top.equalTo(topicLabel.snp.bottom).offset(12)
+            make.top.equalTo(lineSeparatorView1.snp.bottom).offset(20)
             make.leading.equalTo(topicLabel)
-            make.trailing.equalToSuperview().inset(25)
+            make.trailing.equalToSuperview()
         }
         
         contextLabel.snp.makeConstraints{ make in
@@ -384,18 +403,25 @@ class BriefingCardViewController: UIViewController {
             make.leading.trailing.equalTo(subtopicLabel)
         }
         
-//        relatedLabel.snp.makeConstraints{ make in
-//            make.top.equalTo(chatView.snp.bottom).offset(30)
-//            make.leading.trailing.equalTo(subtopicLabel)
-//        }
+        lineSeparatorView2.snp.makeConstraints{ make in
+            make.top.equalTo(contextLabel.snp.bottom).offset(18)
+            make.leading.equalToSuperview().offset(-10)
+            make.trailing.equalToSuperview().offset(10)
+            make.height.equalTo(1)
+        }
+        
+        relatedLabel.snp.makeConstraints{ make in
+            make.top.equalTo(lineSeparatorView2.snp.bottom).offset(18)
+            make.leading.trailing.equalTo(subtopicLabel)
+        }
 //        
-//        articleStackView.snp.makeConstraints{ make in
-//            make.centerX.equalToSuperview()
-//            make.top.equalTo(relatedLabel.snp.bottom).offset(11)
-//            make.leading.equalToSuperview().offset(23)
-//            make.trailing.equalToSuperview().inset(23)
-//            make.bottom.equalToSuperview().inset(25)
-//        }
+        articleStackView.snp.makeConstraints{ make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(relatedLabel.snp.bottom).offset(11)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(25)
+        }
         
     }
     
@@ -426,7 +452,7 @@ class BriefingCardViewController: UIViewController {
     }
     
     private func fetchBriefingCard() {
-        networkManager.fetchBriefingCard(id: self.id) { [weak self] value, error in
+        networkManager.fetchBriefingCard(id: 123) { [weak self] value, error in
             guard let self = self else  { return }
             if let error = error {
                 self.errorHandling(error)
@@ -472,13 +498,23 @@ class BriefingCardViewController: UIViewController {
     }
     
     private func updateBriefingCard() {
+        self.scrapButton.isHidden = false
+        
+        self.lineSeparatorView1.isHidden = false
+        self.lineSeparatorView2.isHidden = false
+        
+        self.relatedLabel.isHidden = false
+        
         guard let briefingData = briefingData else { return }
         self.dateInformationLabel.text = "\(briefingData.date) #\(id)"
         
 //        self.titleLabel.text = "\(BriefingStringCollection.appName) #\(briefingData.ranks)"
-        
         self.topicLabel.text = briefingData.title
         self.subtopicLabel.text = briefingData.subTitle
+        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
+        self.generateInformationLabel.text = "GPT-4로 생성됨"
+        
+        self.scrapNumberLabel.text = "1352"
         
         self.contentParagraphStyle.lineHeightMultiple = 1.37
         let contextLabelAttributes: [NSAttributedString.Key : Any] = [
