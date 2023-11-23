@@ -7,6 +7,8 @@ target 'Briefing' do
 
   # Pods for Briefing
   pod 'SnapKit', '~> 5.0.0'
+  pod 'RxSwift', '6.6.0'
+  pod 'RxCocoa', '6.6.0'
   pod 'Alamofire', '~> 5.0.0'
   pod 'FSCalendar', '~> 2.8.4'
   pod 'GoogleSignIn'

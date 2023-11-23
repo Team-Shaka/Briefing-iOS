@@ -113,6 +113,12 @@ PODS:
   - PromisesObjC (2.3.1)
   - PromisesSwift (2.3.1):
     - PromisesObjC (= 2.3.1)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
@@ -121,6 +127,8 @@ DEPENDENCIES:
   - FirebaseCrashlytics
   - FSCalendar (~> 2.8.4)
   - GoogleSignIn
+  - RxCocoa (= 6.6.0)
+  - RxSwift (= 6.6.0)
   - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
@@ -144,6 +152,9 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - PromisesSwift
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SnapKit
 
 SPEC CHECKSUMS:
@@ -166,8 +177,11 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 900d00a07eb5e0a63c3ce28d754ad8969a072fee
+PODFILE CHECKSUM: 54363847cc099c91864b4aa7ba3c3b41af565a51
 
 COCOAPODS: 1.13.0
