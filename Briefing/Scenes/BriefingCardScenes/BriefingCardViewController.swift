@@ -356,11 +356,17 @@ class BriefingCardViewController: UIViewController {
             make.trailing.equalTo(scrapButton.snp.leading)
         }
         
+
         scrapButton.snp.makeConstraints{ make in
             make.centerY.equalTo(topicLabel.snp.bottom)
             make.height.equalTo(41)
             make.width.equalTo(scrapButton.snp.height)
             make.trailing.equalToSuperview()
+
+        topicLabel.snp.makeConstraints{ make in
+            make.top.equalTo(dateInformationLabel.snp.bottom).offset(13)
+            make.leading.trailing.equalToSuperview().inset(25)
+
         }
         
         scrapNumberLabel.snp.makeConstraints{ make in
