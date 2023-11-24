@@ -79,7 +79,7 @@
 		A595F0372ABDAC2D006543B2 /* url-debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = A595F0362ABDAC2D006543B2 /* url-debug.plist */; };
 		A5AC45F92AF93B3F00E7C161 /* Briefing_Widget_Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC45F82AF93B3F00E7C161 /* Briefing_Widget_Sub.swift */; };
 		A5AC45FB2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC45FA2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift */; };
-		A5B3A7A62AB89D4700E1E2B6 /* TabBarItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3A7A52AB89D4700E1E2B6 /* TabBarItemViewController.swift */; };
+		A5AFCC182B10F7FB0013D9AA /* TestBriefingAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFCC172B10F7FB0013D9AA /* TestBriefingAuthManager.swift */; };
 		A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7842ACE357E0053E434 /* SettingViewController.swift */; };
 		A5CA5EAF2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift */; };
 		A5CA5EB12AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */; };
@@ -201,7 +201,7 @@
 		A595F0362ABDAC2D006543B2 /* url-debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "url-debug.plist"; sourceTree = "<group>"; };
 		A5AC45F82AF93B3F00E7C161 /* Briefing_Widget_Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Briefing_Widget_Sub.swift; sourceTree = "<group>"; };
 		A5AC45FA2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
-		A5B3A7A52AB89D4700E1E2B6 /* TabBarItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemViewController.swift; sourceTree = "<group>"; };
+		A5AFCC172B10F7FB0013D9AA /* TestBriefingAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBriefingAuthManager.swift; sourceTree = "<group>"; };
 		A5C5E7842ACE357E0053E434 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewAuthCell.swift; sourceTree = "<group>"; };
 		A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewDefaultCell.swift; sourceTree = "<group>"; };
@@ -282,6 +282,7 @@
 				A51DC48F2AB6B3B50055928C /* Scenes */,
 				2443C5672A8FEB0D009586C7 /* Utils */,
 				A57C38472AB49AC700FD0B0A /* Resources */,
+				A5AFCC152B10F7C70013D9AA /* Test */,
 			);
 			path = Briefing;
 			sourceTree = "<group>";
@@ -500,6 +501,22 @@
 				A595F0362ABDAC2D006543B2 /* url-debug.plist */,
 			);
 			path = propertyList;
+			sourceTree = "<group>";
+		};
+		A5AFCC152B10F7C70013D9AA /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				A5AFCC162B10F7E00013D9AA /* RxSwift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		A5AFCC162B10F7E00013D9AA /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				A5AFCC172B10F7FB0013D9AA /* TestBriefingAuthManager.swift */,
+			);
+			path = RxSwift;
 			sourceTree = "<group>";
 		};
 		A5B3A7A42AB89BFA00E1E2B6 /* HomeScenes */ = {
@@ -844,6 +861,7 @@
 				EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */,
 				A554836E2AD195A0006CF628 /* UIRectEdge+.swift in Sources */,
 				2443C5692A8FEB1B009586C7 /* UIColor+.swift in Sources */,
+				A5AFCC182B10F7FB0013D9AA /* TestBriefingAuthManager.swift in Sources */,
 				A5334CD92AB881E10041F5BA /* HomeViewController+FSCalendar.swift in Sources */,
 				A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */,
 				A5CD89C72AD1243F00568F9D /* Member.swift in Sources */,
