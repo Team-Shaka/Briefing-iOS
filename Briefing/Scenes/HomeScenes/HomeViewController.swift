@@ -160,7 +160,6 @@ final class HomeViewController: UIViewController {
         selectedCategoryRelay
             .subscribe(onNext:  { [weak self] categoryIndex in
                 guard let self = self else { return }
-                print(categoryIndex)
                 if let prevSelectedViewCategory = (pageViewController.viewControllers?.first
                                                    as? HomeBriefingViewController)?.category {
                     let prevCategoryIndex: Int = categories.firstIndex(of: prevSelectedViewCategory) ?? 0

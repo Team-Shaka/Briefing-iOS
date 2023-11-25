@@ -30,7 +30,7 @@ final class HomeBriefingViewController: UIViewController {
     
     var keywordBriefingTableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 86
+        tableView.rowHeight = 120
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
@@ -62,13 +62,7 @@ final class HomeBriefingViewController: UIViewController {
     }
     
     private func configure() {
-        view.layer.cornerRadius = 16
-        view.clipsToBounds = true
-        view.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
-        view.backgroundColor = .briefingWhite
-    
         briefingUpdateTimeLabel.text = "briefingUpdateTimeLabel"
-        
         keywordBriefingTableView.delegate = self
         keywordBriefingTableView.dataSource = self
         keywordBriefingTableView.register(HomeBriefingTableViewCell.self,
@@ -91,11 +85,13 @@ final class HomeBriefingViewController: UIViewController {
             make.leading.equalToSuperview().offset(22)
             make.trailing.lessThanOrEqualToSuperview().offset(22)
         }
+        
         briefingUpdateTimeLabel.snp.makeConstraints { make in
             make.top.equalTo(briefingTitleLabel.snp.bottom)
             make.leading.equalToSuperview().offset(22)
             make.trailing.lessThanOrEqualToSuperview().offset(22)
         }
+        
         keywordBriefingTableView.snp.makeConstraints { make in
             make.top.equalTo(briefingUpdateTimeLabel.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview()
@@ -112,7 +108,6 @@ final class HomeBriefingViewController: UIViewController {
             guard let self = self else { return }
             self.keywords = keywords
             self.keywordBriefingTableView.reloadData()
-            print(keywords)
         } onFailure: { error in
             self.errorHandling(error)
         }
@@ -145,8 +140,8 @@ extension HomeBriefingViewController: UITableViewDelegate, UITableViewDataSource
         gradient.locations = [0.0, 0.8]
         gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
         gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
-        gradient.colors = [UIColor.briefingWhite.cgColor,
-                           UIColor.briefingWhite.withAlphaComponent(0.0).cgColor]
+        gradient.colors = [UIColor.bfWhite.cgColor,
+                           UIColor.bfWhite.withAlphaComponent(0.0).cgColor]
         tableViewHeaderView.layer.addSublayer(gradient)
         return tableViewHeaderView
     }
