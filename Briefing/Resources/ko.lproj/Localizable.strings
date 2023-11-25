@@ -14,6 +14,12 @@
 "fail" = "실패";
 "cancel" = "취소";
 
+"social" = "사회";
+"science" = "과학";
+"global" = "글로벌";
+"economy" = "경제";
+"culture" = "문화";
+
 "askBrief" = "Brief에게 물어보기";
 "beta" = "베타";
 "relatedArticles" = "관련 기사";

@@ -8,6 +8,21 @@
 import Foundation
 import Alamofire
 
+// MARK: - Category Mapping
+extension BriefingCategory {
+    var keywordType: BriefingNetworkURLRequest.KeywordsType {
+        switch self {
+        case .social: return .social
+        case .science: return .science
+        case .global: return .global
+        #warning("replace social to economy, can not find economy tpe")
+        case .economy: return .social
+        case .culture: return .korea
+        }
+    }
+}
+
+
 // TODO: - POST
 public struct BriefingNetworkURLRequest: BFURLRequest {
     var accessToken: String?
@@ -40,6 +55,8 @@ extension BriefingNetworkURLRequest {
     enum KeywordsType: String {
         case korea = "KOREA"
         case global = "GLOBAL"
+        case social = "SOCIAL"
+        case science = "SCIENCE"
     }
     
     enum Path: BFPath {

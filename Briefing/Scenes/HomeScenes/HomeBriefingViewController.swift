@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 final class HomeBriefingViewController: UIViewController {
     private let networkManager = BriefingNetworkManager.shared
-    var briefingDate: Date
+    var category: BriefingCategory
     var keywords: Keywords? = nil
+    let disposeBag: DisposeBag = DisposeBag()
     
     var briefingTitleLabel: UILabel = {
         let label = UILabel()
@@ -30,7 +32,6 @@ final class HomeBriefingViewController: UIViewController {
         let tableView = UITableView()
         tableView.rowHeight = 86
         tableView.separatorStyle = .none
-        // tableView.allowsSelection = false
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.sectionHeaderHeight = 14
@@ -43,8 +44,8 @@ final class HomeBriefingViewController: UIViewController {
         return view
     }()
     
-    init(briefingDate: Date) {
-        self.briefingDate = briefingDate
+    init(category: BriefingCategory) {
+        self.category = category
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -65,17 +66,8 @@ final class HomeBriefingViewController: UIViewController {
         view.clipsToBounds = true
         view.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
         view.backgroundColor = .briefingWhite
-        
-        let dateFormat = BriefingStringCollection.Format.dateDotFormat
-        let dateString = briefingDate.dateToString(dateFormat)
-        let titleLabelText = "\(dateString) \(BriefingStringCollection.keywordBriefing)"
-        briefingTitleLabel.text = titleLabelText
-        
-        let updateTimeDateFormat = BriefingStringCollection.Format.dateDetailDotFormat
-        let updateTimeString = Date().dateToString(updateTimeDateFormat,
-                                                   localeIdentifier: BriefingStringCollection.Locale.en)
-        let updateTimeLabelText = "\(BriefingStringCollection.updated): \(updateTimeString)"
-        briefingUpdateTimeLabel.text = updateTimeLabelText
+    
+        briefingUpdateTimeLabel.text = "briefingUpdateTimeLabel"
         
         keywordBriefingTableView.delegate = self
         keywordBriefingTableView.dataSource = self
@@ -112,28 +104,24 @@ final class HomeBriefingViewController: UIViewController {
     }
     
     private func fetchKeywords() {
-        networkManager.fetchKeywords(date: briefingDate,
-                                     type: .korea) { [weak self] value, error in
-            if let error = error {
-                self?.errorHandling(error)
-                return
-            }
-            self?.keywords = value
-            self?.tableViewHeaderView.layer.sublayers?.first?.frame = self?.tableViewHeaderView.bounds ?? .zero
-            self?.keywordBriefingTableView.reloadData()
-
-            if let updateDate = value?.createdAt {
-                let updateTimeDateFormat = BriefingStringCollection.Format.dateDetailDotFormat
-                let updateTimeString = updateDate.dateToString(updateTimeDateFormat,
-                                                               localeIdentifier: BriefingStringCollection.Locale.en)
-                let updateTimeLabelText = "\(BriefingStringCollection.updated): \(updateTimeString)"
-                self?.briefingUpdateTimeLabel.text = updateTimeLabelText
-            }
+        networkManager.fetchKeywords(date: Date(),
+                                     type: category.keywordType)
+        .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
+        .observe(on: MainScheduler.asyncInstance)
+        .subscribe { [weak self] keywords in
+            guard let self = self else { return }
+            self.keywords = keywords
+            self.keywordBriefingTableView.reloadData()
+            print(keywords)
+        } onFailure: { error in
+            self.errorHandling(error)
         }
+        .disposed(by: disposeBag)
+
     }
     
     private func errorHandling(_ error: Error) {
-        print("error: \(error)")
+        
     }
 }
 
