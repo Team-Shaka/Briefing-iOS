@@ -17,7 +17,7 @@ extension HomeViewController: FSCalendarDelegate,
                   at monthPosition: FSCalendarMonthPosition) {
         // MARK: - 전체 날짜 선택 가능시 calendarScrollDateToCenter
         // calendarScrollDateToCenter(calendar, selectedDate: date)
-        changeSelectedDateAction(date)
+        // changeSelectedDateAction(date)
     }
     
     func calendarScrollDateToCenter(_ calendar: FSCalendar,
