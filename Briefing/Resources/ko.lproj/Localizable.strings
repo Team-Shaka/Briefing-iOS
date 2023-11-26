@@ -8,6 +8,7 @@
 
 "appName" = "Briefing";
 "appDescription" = "Your Keyword Newskeeper.";
+"briefing" = "브리핑";
 "keywordBriefing" = "키워드 브리핑";
 "updated" = "Updated";
 "confirm" = "확인";

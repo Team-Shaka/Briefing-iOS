@@ -146,11 +146,10 @@ final class HomeViewController: UIViewController {
         categorySelectionView.snp.makeConstraints { make in
             make.top.equalTo(navigationView.snp.bottom).offset(28)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(28)
         }
         
         pageViewController.view.snp.makeConstraints { make in
-            make.top.equalTo(categorySelectionView.snp.bottom).offset(10)
+            make.top.equalTo(categorySelectionView.snp.bottom)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view)
         }
