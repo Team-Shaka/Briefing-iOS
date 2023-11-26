@@ -27,6 +27,7 @@ final class BriefingStringCollection {
     static let confirm: String = NSLocalizedString("confirm", comment: "")
     static let cancel: String = NSLocalizedString("cancel", comment: "")
     static let fail: String = NSLocalizedString("fail", comment: "")
+    static let briefing: String = NSLocalizedString("briefing", comment: "")
     
     
     final class Format {

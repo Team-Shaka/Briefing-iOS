@@ -81,6 +81,10 @@ class CategorySelectionView: UIView {
     }
     
     private func makeConstraints() {
+        self.snp.makeConstraints { make in
+            make.top.equalTo(categoryStackView)
+            make.bottom.equalTo(underline)
+        }
         categoryStackView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(22)
             make.trailing.lessThanOrEqualToSuperview().inset(22).priority(.low)
@@ -91,12 +95,12 @@ class CategorySelectionView: UIView {
         divider.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(1.5)
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(self.snp.bottom)
         }
         
-        self.underline.snp.makeConstraints { make in
-            make.height.centerY.equalTo(self.divider)
-            make.leading.trailing.equalTo(self.categoryButtons[0])
+        underline.snp.makeConstraints { make in
+            make.height.centerY.equalTo(divider)
+            make.leading.trailing.equalTo(categoryButtons[0])
         }
     }
     

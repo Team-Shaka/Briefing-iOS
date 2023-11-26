@@ -8,6 +8,7 @@
 
 "appName" = "Briefing";
 "appDescription" = "Your Keyword Newskeeper.";
+"briefing" = "briefing";
 "keywordBriefing" = "Keyword Briefing";
 "updated" = "Updated";
 "confirm" = "Confirm";

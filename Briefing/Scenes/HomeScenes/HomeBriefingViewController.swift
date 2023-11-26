@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 final class HomeBriefingViewController: UIViewController {
     private let networkManager = BriefingNetworkManager.shared
@@ -14,18 +15,27 @@ final class HomeBriefingViewController: UIViewController {
     var keywords: Keywords? = nil
     let disposeBag: DisposeBag = DisposeBag()
     
-    var briefingTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .productSans(size: 26, weight: .bold)
-        label.textColor = .briefingNavy
-        return label
-    }()
+    var briefingUpdateTimeContainer: UIView = UIView()
     
     var briefingUpdateTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = .productSans(size: 12, weight: .regular)
-        label.textColor = .briefingLightBlue
+        label.font = .productSans(size: 18, weight: .regular)
+        label.textColor = .bfTextGray
         return label
+    }()
+    
+    lazy var fetchKeywordButton: UIButton = {
+        let button = UIButton()
+        button.setImage(BriefingImageCollection.fetchImage, for: .normal)
+        button.contentMode = .scaleAspectFill
+        button.addTarget(self, action: #selector(fetchButtonAction), for: .touchUpInside)
+        return button
+    }()
+    
+    var divider: UIView = {
+        let divider = UIView()
+        divider.backgroundColor = .bfSeperatorGray
+        return divider
     }()
     
     var keywordBriefingTableView: UITableView = {
@@ -41,6 +51,7 @@ final class HomeBriefingViewController: UIViewController {
     
     private var tableViewHeaderView: UIView = {
         let view = UIView()
+        
         return view
     }()
     
@@ -59,6 +70,7 @@ final class HomeBriefingViewController: UIViewController {
         addSubviews()
         makeConstraints()
         fetchKeywords()
+        bind()
     }
     
     private func configure() {
@@ -71,32 +83,66 @@ final class HomeBriefingViewController: UIViewController {
     }
     
     private func addSubviews() {
-        let subViews: [UIView] = [briefingTitleLabel,
-                                  briefingUpdateTimeLabel,
+        let briefingUpdateTimeContainerSubviews: [UIView] = [fetchKeywordButton,
+                                                             briefingUpdateTimeLabel,
+                                                             divider]
+        
+        briefingUpdateTimeContainerSubviews.forEach { subview in
+            briefingUpdateTimeContainer.addSubview(subview)
+        }
+        
+        let subviews: [UIView] = [briefingUpdateTimeContainer,
                                   keywordBriefingTableView]
-        subViews.forEach { subView in
-            view.addSubview(subView)
+        subviews.forEach { subview in
+            view.addSubview(subview)
         }
     }
     
     private func makeConstraints() {
-        briefingTitleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.leading.equalToSuperview().offset(22)
-            make.trailing.lessThanOrEqualToSuperview().offset(22)
+        briefingUpdateTimeContainer.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(divider.snp.bottom)
         }
         
         briefingUpdateTimeLabel.snp.makeConstraints { make in
-            make.top.equalTo(briefingTitleLabel.snp.bottom)
-            make.leading.equalToSuperview().offset(22)
-            make.trailing.lessThanOrEqualToSuperview().offset(22)
+            make.top.centerX.equalToSuperview()
+            make.height.equalTo(40)
+        }
+        
+        fetchKeywordButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(12)
+            make.leading.greaterThanOrEqualTo(briefingUpdateTimeLabel.snp.trailing).priority(.low)
+            make.width.equalTo(26)
+            make.centerY.equalTo(briefingUpdateTimeLabel)
+        }
+        
+        divider.snp.makeConstraints { make in
+            make.top.equalTo(briefingUpdateTimeLabel.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(1)
         }
         
         keywordBriefingTableView.snp.makeConstraints { make in
-            make.top.equalTo(briefingUpdateTimeLabel.snp.bottom).offset(4)
+            make.top.equalTo(briefingUpdateTimeContainer.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+    }
+    
+    private func bind() {
+        keywordBriefingTableView
+            .rx
+            .contentOffset
+            .subscribe { point in
+            
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    @objc
+    private func fetchButtonAction() {
+        fetchKeywords()
     }
     
     private func fetchKeywords() {
@@ -108,6 +154,8 @@ final class HomeBriefingViewController: UIViewController {
             guard let self = self else { return }
             self.keywords = keywords
             self.keywordBriefingTableView.reloadData()
+            let briefingWord = BriefingStringCollection.briefing
+            self.briefingUpdateTimeLabel.text = "\(keywords.createdAt.dateToString("yyyy.MM.dd (E) a")) \(briefingWord)"
         } onFailure: { error in
             self.errorHandling(error)
         }
@@ -116,7 +164,7 @@ final class HomeBriefingViewController: UIViewController {
     }
     
     private func errorHandling(_ error: Error) {
-        
+        print("Error: \(error)")
     }
 }
 
