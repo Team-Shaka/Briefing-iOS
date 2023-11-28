@@ -87,7 +87,7 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .briefingNavy
         label.textAlignment = .left
         label.font = .productSans(size: 17, weight: .bold)
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         
         return label
     }()
