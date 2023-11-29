@@ -152,12 +152,11 @@ class BriefingCardViewController: UIViewController {
     
     private var relatedLabel: UILabel = {
         let label = UILabel()
-        label.text = BriefingStringCollection.Card.relatedArticles.localized
+//        label.text = BriefingStringCollection.Card.relatedArticles.localized
         label.textColor = .black
         label.textAlignment = .left
         label.font = .productSans(size: 20, weight: .bold)
         label.numberOfLines = 1
-        label.isHidden = true
         
         return label
     }()
@@ -354,12 +353,6 @@ class BriefingCardViewController: UIViewController {
             make.width.equalTo(scrapButton.snp.height)
             make.trailing.equalToSuperview()
         }
-
-        topicLabel.snp.makeConstraints{ make in
-            make.top.equalTo(dateInformationLabel.snp.bottom).offset(13)
-            make.leading.trailing.equalToSuperview().inset(25)
-
-        }
         
         scrapNumberLabel.snp.makeConstraints{ make in
             make.bottom.equalTo(scrapButton.snp.top)
@@ -462,6 +455,8 @@ class BriefingCardViewController: UIViewController {
             self.briefingData = briefingData
             self.isScrap = briefingData.isScrap
             
+            setBriefingCard()
+            
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.5) {
                     self.updateBriefingCard()
@@ -490,23 +485,42 @@ class BriefingCardViewController: UIViewController {
         }
     }
     
-    private func updateBriefingCard() {
-        self.scrapButton.isHidden = false
-        
-        self.lineSeparatorView1.isHidden = false
-        self.lineSeparatorView2.isHidden = false
-        
-        self.relatedLabel.isHidden = false
-        
+    private func setBriefingCard() {
         guard let briefingData = briefingData else { return }
-        self.dateInformationLabel.text = "\(briefingData.date) #\(id)"
         
         self.topicLabel.text = briefingData.title
-        self.subtopicLabel.text = briefingData.subTitle
+        
+        self.dateInformationLabel.text = "\(briefingData.date) #\(self.id)"
         self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
         self.generateInformationLabel.text = "GPT-4로 생성됨"
         
         self.scrapNumberLabel.text = "1352"
+        
+        self.lineSeparatorView1.isHidden = false
+        
+    }
+    
+    private func updateBriefingCard() {
+        self.scrapButton.isHidden = false
+        
+//        self.lineSeparatorView1.isHidden = false
+        self.lineSeparatorView2.isHidden = false
+        
+        self.relatedLabel.text = BriefingStringCollection.Card.relatedArticles.localized
+        
+        guard let briefingData = briefingData else { return }
+        
+//        self.topicLabel.text = briefingData.title
+        
+//        self.dateInformationLabel.text = "\(briefingData.date) #\(id)"
+//        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
+//        self.generateInformationLabel.text = "GPT-4로 생성됨"
+        
+//        self.scrapNumberLabel.text = "1352"
+        
+        
+        self.subtopicLabel.text = briefingData.subTitle
+    
         
         self.contentParagraphStyle.lineHeightMultiple = 1.37
         let contextLabelAttributes: [NSAttributedString.Key : Any] = [
