@@ -53,7 +53,7 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .black
         label.textAlignment = .left
         label.font = .productSans(size: 30, weight: .bold)
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         
         return label
     }()
@@ -126,7 +126,7 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .black
         label.textAlignment = .left
         label.font = .productSans(size: 17, weight: .bold)
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         
         return label
     }()
@@ -268,14 +268,6 @@ class BriefingCardViewController: UIViewController {
         return stackView
     }()
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        navigationController?.setNavigationBarHidden(true, animated: true)
-//    }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -310,7 +302,6 @@ class BriefingCardViewController: UIViewController {
         
         self.cardView.addSubviews(topicLabel, informationStackView, scrapButton, scrapNumberLabel, lineSeparatorView1, subtopicLabel, contextLabel, lineSeparatorView2, relatedLabel, articleStackView)
         
-        // 기사 개수에 따라 articleStackView 내용 달라지므로 나중에 처리
     }
     
     private func makeConstraint() {
@@ -471,11 +462,6 @@ class BriefingCardViewController: UIViewController {
             self.briefingData = briefingData
             self.isScrap = briefingData.isScrap
             
-//            if let briefingData = value {
-//                self.briefingData = briefingData
-//                self.isScrap = briefingData.isScrap
-//            }
-            
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.5) {
                     self.updateBriefingCard()
@@ -515,7 +501,6 @@ class BriefingCardViewController: UIViewController {
         guard let briefingData = briefingData else { return }
         self.dateInformationLabel.text = "\(briefingData.date) #\(id)"
         
-//        self.titleLabel.text = "\(BriefingStringCollection.appName) #\(briefingData.ranks)"
         self.topicLabel.text = briefingData.title
         self.subtopicLabel.text = briefingData.subTitle
         self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
