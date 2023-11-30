@@ -63,6 +63,7 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .briefingLightGray
         label.textAlignment = .left
         label.font = .productSans(size: 13)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -503,7 +504,7 @@ class BriefingCardViewController: UIViewController {
         self.topicLabel.text = briefingData.title
         
         // MARK: ToDo: id를 morning/evening으로 변경. 00을 분야명으로 변경.
-        self.informationLabel.text = "\(briefingData.date) #\(self.id)  |  00 #\(briefingData.ranks)  |  \(briefingData.gptModel)로 생성됨"
+        self.informationLabel.text = "\(briefingData.date) #\(self.id)  |  00 #\(briefingData.ranks)  |  GPT-3.5로 생성됨"
         
 //        self.dateInformationLabel.text = "\(briefingData.date) #\(self.id)"
 //        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
