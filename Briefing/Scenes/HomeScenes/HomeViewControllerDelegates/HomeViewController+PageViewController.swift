@@ -11,32 +11,38 @@ extension HomeViewController: UIPageViewControllerDelegate,
                               UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let briefingViewController = viewController as? HomeBriefingViewController,
-              let date = briefingViewController.briefingDate.date(byAdding: .day, value: -1) else {
+        guard let briefingViewController = pageViewController.viewControllers?.first
+                as? HomeBriefingViewController else {
             return nil
         }
-        guard date >= calendarView.minimumDate else { return nil }
-        return HomeBriefingViewController(briefingDate: date)
+        let category = briefingViewController.category
+        let index = (categories.firstIndex(of: category) ?? 0) - 1
+        guard index >= 0 else { return nil }
+        return pageChildViewControllers[safe: index]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let briefingViewController = viewController as? HomeBriefingViewController,
-              let date = briefingViewController.briefingDate.date(byAdding: .day, value: 1) else {
+        guard let briefingViewController = pageViewController.viewControllers?.first
+                as? HomeBriefingViewController else {
             return nil
         }
-        guard date < calendarView.maximumDate else { return nil }
-        return HomeBriefingViewController(briefingDate: date)
+        let category = briefingViewController.category
+        let index = (categories.firstIndex(of: category) ?? 0) + 1
+        guard index < pageChildViewControllers.count else { return nil }
+        return pageChildViewControllers[safe: index]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             didFinishAnimating finished: Bool,
                             previousViewControllers: [UIViewController],
                             transitionCompleted completed: Bool) {
-        guard let selectdBriefingViewController = pageViewController.viewControllers?.first
+        guard let selectedBriefingViewController = pageViewController.viewControllers?.first
                 as? HomeBriefingViewController else {
             return
         }
-        self.changeSelectedDateAction(selectdBriefingViewController.briefingDate)
+        let category = selectedBriefingViewController.category
+        let index = categories.firstIndex(of: category) ?? 0
+        self.selectedCategoryRelay.accept(index)
     }
 }

@@ -6,12 +6,23 @@
 //
 
 import UIKit
-import FSCalendar
+import RxSwift
+import RxRelay
 
 final class HomeViewController: UIViewController {
     let tabBarIcon: UIImage = BriefingImageCollection.briefingTabBarNormalIconImage
     let tabBarSelectedIcon: UIImage = BriefingImageCollection.briefingTabBarSelectedIconImage
-    var selectedDate = Date().midnight
+    
+    let categories: [BriefingCategory] = [
+        .social,
+        .science,
+        .global,
+        .economy,
+        .culture
+    ]
+    let disposeBag: DisposeBag = DisposeBag()
+    
+    lazy var selectedCategoryRelay: BehaviorRelay<Int> = BehaviorRelay(value: 0)
     
     private var navigationView: UIView = {
         let view = UIView()
@@ -21,8 +32,8 @@ final class HomeViewController: UIViewController {
     private var titleLabel: UIView = {
         let label = UILabel()
         label.text = BriefingStringCollection.appName
-        label.font = .productSans(size: 24)
-        label.textColor = .briefingWhite
+        label.font = .productSans(size: 24, weight: .bold)
+        label.textColor = .bfPrimaryBlue
         return label
     }()
     
@@ -42,37 +53,22 @@ final class HomeViewController: UIViewController {
         return button
     }()
     
-    private var calendarGuideView: UIView = {
-        let view = UIView()
-        view.clipsToBounds = true
-        return view
-    }()
-    
-    lazy var calendarView: FSCalendar = {
-        let calendarView = FSCalendar()
-        calendarView.locale = .current
-        calendarView.scope = .week
-        calendarView.headerHeight = .zero
-        calendarView.weekdayHeight = .zero
-        calendarView.appearance.weekdayTextColor = .blue
-        calendarView.scrollDirection = .horizontal
-        calendarView.pagingEnabled = false
-        calendarView.select(selectedDate)
-        calendarView.today = nil
-        calendarView.appearance.selectionColor = .clear
-        calendarView.allowsMultipleSelection = false
-        
-        calendarView.firstWeekday = UInt((7 + Date().dayOfWeek - 5)%7)
-        // MARK: - 전체 날짜 선택 가능시 true
-        calendarView.scrollEnabled = false
-        return calendarView
+    private lazy var categorySelectionView: CategorySelectionView = {
+        let categorySelectionView = CategorySelectionView(categories: categories,
+                                                          selectedCategoryRelay: selectedCategoryRelay)
+        return categorySelectionView
     }()
     
     private lazy var pageViewController: UIPageViewController = {
         let pageViewController = UIPageViewController(transitionStyle: .scroll,
                                                       navigationOrientation: .horizontal)
-        
         return pageViewController
+    }()
+    
+    lazy var pageChildViewControllers: [UIViewController] = {
+        categories.map { category in
+            HomeBriefingViewController(category: category)
+        }
     }()
     
     override func viewDidLoad() {
@@ -80,6 +76,7 @@ final class HomeViewController: UIViewController {
         configure()
         addSubviews()
         makeConstraints()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,25 +88,18 @@ final class HomeViewController: UIViewController {
     }
     
     private func configure() {
-        view.backgroundColor = .briefingBlue
+        view.backgroundColor = .bfWhite
         navigationItem.title = BriefingStringCollection.appName
-        
-        calendarView.delegate = self
-        calendarView.dataSource = self
-        calendarView.register(HomeCalendarCell.self,
-                              forCellReuseIdentifier: HomeCalendarCell.identifier)
         
         pageViewController.delegate = self
         pageViewController.dataSource = self
         addChild(pageViewController)
-        pageViewController.setViewControllers([HomeBriefingViewController(briefingDate: selectedDate)],
+        pageViewController.setViewControllers([pageChildViewControllers[0]],
                                               direction: .forward,
                                               animated: true)
     }
     
     private func addSubviews() {
-        calendarGuideView.addSubview(calendarView)
-        
         let navigationSubviews: [UIView] = [titleLabel,
                                             scrapButton,
                                             settingButton]
@@ -118,7 +108,7 @@ final class HomeViewController: UIViewController {
         }
         
         let subViews: [UIView] = [navigationView,
-                                  calendarGuideView,
+                                  categorySelectionView,
                                   pageViewController.view]
         subViews.forEach { subView in
             view.addSubview(subView)
@@ -153,23 +143,34 @@ final class HomeViewController: UIViewController {
             make.centerY.equalTo(navigationView)
         }
         
-        calendarGuideView.snp.makeConstraints { make in
-            make.top.equalTo(navigationView.snp.bottom)
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(6)
-            make.height.equalTo(80)
-        }
-        
-        calendarView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(calendarGuideView)
-            make.bottom.equalTo(view)
+        categorySelectionView.snp.makeConstraints { make in
+            make.top.equalTo(navigationView.snp.bottom).offset(28)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         
         pageViewController.view.snp.makeConstraints { make in
-            make.top.equalTo(calendarGuideView.snp.bottom).offset(10)
+            make.top.equalTo(categorySelectionView.snp.bottom)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view)
         }
+    }
+    
+    func bind() {
+        selectedCategoryRelay
+            .subscribe(onNext:  { [weak self] categoryIndex in
+                guard let self = self else { return }
+                if let prevSelectedViewCategory = (pageViewController.viewControllers?.first
+                                                   as? HomeBriefingViewController)?.category {
+                    let prevCategoryIndex: Int = categories.firstIndex(of: prevSelectedViewCategory) ?? 0
+                    if prevSelectedViewCategory != categories[categoryIndex] {
+                        let direction: UIPageViewController.NavigationDirection = categoryIndex > prevCategoryIndex ? .forward : .reverse
+                        pageViewController.setViewControllers([pageChildViewControllers[categoryIndex]],
+                                                              direction: direction,
+                                                              animated: true)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc func showScrapBookViewController() {
@@ -193,25 +194,6 @@ final class HomeViewController: UIViewController {
     
     @objc func showSettingViewController() {
         self.navigationController?.pushViewController(SettingViewController(), animated: true)
-    }
-    
-    // FIXME: - PageViewController & Calendar Sync
-    func changeSelectedDateAction(_ date: Date) {
-        self.selectedDate = date
-        if let prevSelectedDate = calendarView.selectedDate,
-           prevSelectedDate != date {
-            calendarView.cell(for: prevSelectedDate, at: .current)?.isSelected = false
-            calendarView.select(selectedDate)
-        }
-        if let prevSelectedViewDate = (pageViewController.viewControllers?.first
-                               as? HomeBriefingViewController)?.briefingDate {
-            let direction: UIPageViewController.NavigationDirection = date > prevSelectedViewDate ? .forward : .reverse
-            if prevSelectedViewDate != date {
-                pageViewController.setViewControllers([HomeBriefingViewController(briefingDate: date)],
-                                                      direction: direction,
-                                                      animated: true)
-            }
-        }
     }
 }
 

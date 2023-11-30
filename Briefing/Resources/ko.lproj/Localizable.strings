@@ -8,11 +8,18 @@
 
 "appName" = "Briefing";
 "appDescription" = "Your Keyword Newskeeper.";
+"briefing" = "브리핑";
 "keywordBriefing" = "키워드 브리핑";
 "updated" = "Updated";
 "confirm" = "확인";
 "fail" = "실패";
 "cancel" = "취소";
+
+"social" = "사회";
+"science" = "과학";
+"global" = "글로벌";
+"economy" = "경제";
+"culture" = "문화";
 
 "askBrief" = "Brief에게 물어보기";
 "beta" = "베타";
