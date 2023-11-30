@@ -455,7 +455,7 @@ class BriefingCardViewController: UIViewController {
     }
     
     private func fetchBriefingCard() {
-        networkManager.fetchBriefingCard(id: 815) { [weak self] value, error in
+        networkManager.fetchBriefingCard(id: self.id) { [weak self] value, error in
             guard let self = self else  { return }
             if let error = error {
                 self.errorHandling(error)
