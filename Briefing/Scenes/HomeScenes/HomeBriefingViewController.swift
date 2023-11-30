@@ -28,7 +28,8 @@ final class HomeBriefingViewController: UIViewController {
         let button = UIButton()
         button.setImage(BriefingImageCollection.fetchImage, for: .normal)
         button.contentMode = .scaleAspectFill
-        button.addTarget(self, action: #selector(fetchButtonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(fetchAction), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     
@@ -55,6 +56,8 @@ final class HomeBriefingViewController: UIViewController {
         return view
     }()
     
+    let refreshControl = UIRefreshControl()
+    
     init(category: BriefingCategory) {
         self.category = category
         super.init(nibName: nil, bundle: nil)
@@ -79,6 +82,9 @@ final class HomeBriefingViewController: UIViewController {
         keywordBriefingTableView.dataSource = self
         keywordBriefingTableView.register(HomeBriefingTableViewCell.self,
                                           forCellReuseIdentifier: HomeBriefingTableViewCell.identifier)
+        
+        refreshControl.addTarget(self, action: #selector(fetchAction), for: .valueChanged)
+        keywordBriefingTableView.refreshControl = refreshControl
         
     }
     
@@ -130,18 +136,13 @@ final class HomeBriefingViewController: UIViewController {
         }
     }
     
+    
     private func bind() {
-        keywordBriefingTableView
-            .rx
-            .contentOffset
-            .subscribe { point in
-            
-        }
-        .disposed(by: disposeBag)
+
     }
     
     @objc
-    private func fetchButtonAction() {
+    private func fetchAction() {
         fetchKeywords()
     }
     
@@ -156,11 +157,16 @@ final class HomeBriefingViewController: UIViewController {
             self.keywordBriefingTableView.reloadData()
             let briefingWord = BriefingStringCollection.briefing
             self.briefingUpdateTimeLabel.text = "\(keywords.createdAt.dateToString("yyyy.MM.dd (E) a")) \(briefingWord)"
+            print(keywords)
+            if let refreshControl = self.keywordBriefingTableView.refreshControl,
+                refreshControl.isRefreshing {
+                refreshControl.endRefreshing()
+            }
         } onFailure: { error in
             self.errorHandling(error)
         }
         .disposed(by: disposeBag)
-
+        
     }
     
     private func errorHandling(_ error: Error) {
