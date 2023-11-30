@@ -8,11 +8,18 @@
 
 "appName" = "Briefing";
 "appDescription" = "Your Keyword Newskeeper.";
+"briefing" = "briefing";
 "keywordBriefing" = "Keyword Briefing";
 "updated" = "Updated";
 "confirm" = "Confirm";
 "fail" = "Fail";
 "cancel" = "Cancel";
+
+"social" = "social";
+"science" = "science";
+"global" = "global";
+"economy" = "economy";
+"culture" = "culture";
 
 "askBrief" = "Ask Brief";
 "beta" = "BETA";
