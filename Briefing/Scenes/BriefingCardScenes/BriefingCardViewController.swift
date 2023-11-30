@@ -53,8 +53,17 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .black
         label.textAlignment = .left
         label.font = .productSans(size: 30, weight: .bold)
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         
+        return label
+    }()
+    
+    private var informationLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .briefingLightGray
+        label.textAlignment = .left
+        label.font = .productSans(size: 13)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -79,7 +88,6 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .briefingLightGray
         label.textAlignment = .left
         label.font = .productSans(size: 13)
-//        label.text = "GPT-3로 생성됨"
         return label
     }()
     
@@ -126,7 +134,7 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .black
         label.textAlignment = .left
         label.font = .productSans(size: 17, weight: .bold)
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         
         return label
     }()
@@ -152,12 +160,11 @@ class BriefingCardViewController: UIViewController {
     
     private var relatedLabel: UILabel = {
         let label = UILabel()
-        label.text = BriefingStringCollection.Card.relatedArticles.localized
+//        label.text = BriefingStringCollection.Card.relatedArticles.localized
         label.textColor = .black
         label.textAlignment = .left
         label.font = .productSans(size: 20, weight: .bold)
         label.numberOfLines = 1
-        label.isHidden = true
         
         return label
     }()
@@ -268,14 +275,6 @@ class BriefingCardViewController: UIViewController {
         return stackView
     }()
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        navigationController?.setNavigationBarHidden(true, animated: true)
-//    }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -304,13 +303,12 @@ class BriefingCardViewController: UIViewController {
         
         self.navigationView.addSubviews(backButton, othersButton)
         
-        [self.dateInformationLabel, self.categoryInformationLabel, self.generateInformationLabel].forEach { informationStackView.addArrangedSubview($0) }
+//        [self.dateInformationLabel, self.categoryInformationLabel, self.generateInformationLabel].forEach { informationStackView.addArrangedSubview($0) }
         
         self.cardScrollView.addSubview(cardView)
         
-        self.cardView.addSubviews(topicLabel, informationStackView, scrapButton, scrapNumberLabel, lineSeparatorView1, subtopicLabel, contextLabel, lineSeparatorView2, relatedLabel, articleStackView)
+        self.cardView.addSubviews(topicLabel, informationLabel, scrapButton, scrapNumberLabel, lineSeparatorView1, subtopicLabel, contextLabel, lineSeparatorView2, relatedLabel, articleStackView)
         
-        // 기사 개수에 따라 articleStackView 내용 달라지므로 나중에 처리
     }
     
     private func makeConstraint() {
@@ -361,13 +359,6 @@ class BriefingCardViewController: UIViewController {
             make.centerY.equalTo(topicLabel.snp.bottom)
             make.height.equalTo(41)
             make.width.equalTo(scrapButton.snp.height)
-            make.trailing.equalToSuperview()
-        }
-
-        topicLabel.snp.makeConstraints{ make in
-            make.top.equalTo(dateInformationLabel.snp.bottom).offset(13)
-            make.leading.trailing.equalToSuperview().inset(25)
-
         }
         
         scrapNumberLabel.snp.makeConstraints{ make in
@@ -375,25 +366,30 @@ class BriefingCardViewController: UIViewController {
             make.centerX.equalTo(scrapButton)
         }
         
-        dateInformationLabel.snp.makeConstraints{ make in
-            
-        }
-        
-        categoryInformationLabel.snp.makeConstraints{ make in
-            
-        }
-        
-        generateInformationLabel.snp.makeConstraints{ make in
-            
-        }
-        
-        informationStackView.snp.makeConstraints{ make in
+        informationLabel.snp.makeConstraints{ make in
             make.leading.equalTo(topicLabel)
             make.top.equalTo(topicLabel.snp.bottom).offset(8)
         }
         
+//        dateInformationLabel.snp.makeConstraints{ make in
+//            
+//        }
+//        
+//        categoryInformationLabel.snp.makeConstraints{ make in
+//            
+//        }
+//        
+//        generateInformationLabel.snp.makeConstraints{ make in
+//            
+//        }
+//        
+//        informationStackView.snp.makeConstraints{ make in
+//            make.leading.equalTo(topicLabel)
+//            make.top.equalTo(topicLabel.snp.bottom).offset(8)
+//        }
+        
         lineSeparatorView1.snp.makeConstraints{ make in
-            make.top.equalTo(informationStackView.snp.bottom).offset(20)
+            make.top.equalTo(informationLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(-10)
             make.trailing.equalToSuperview().offset(10)
             make.height.equalTo(1)
@@ -459,7 +455,7 @@ class BriefingCardViewController: UIViewController {
     }
     
     private func fetchBriefingCard() {
-        networkManager.fetchBriefingCard(id: 123) { [weak self] value, error in
+        networkManager.fetchBriefingCard(id: 815) { [weak self] value, error in
             guard let self = self else  { return }
             if let error = error {
                 self.errorHandling(error)
@@ -471,10 +467,7 @@ class BriefingCardViewController: UIViewController {
             self.briefingData = briefingData
             self.isScrap = briefingData.isScrap
             
-//            if let briefingData = value {
-//                self.briefingData = briefingData
-//                self.isScrap = briefingData.isScrap
-//            }
+            setBriefingCard()
             
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.5) {
@@ -504,24 +497,45 @@ class BriefingCardViewController: UIViewController {
         }
     }
     
+    private func setBriefingCard() {
+        guard let briefingData = briefingData else { return }
+        
+        self.topicLabel.text = briefingData.title
+        
+        // MARK: ToDo: id를 morning/evening으로 변경. 00을 분야명으로 변경.
+        self.informationLabel.text = "\(briefingData.date) #\(self.id)  |  00 #\(briefingData.ranks)  |  GPT-3.5로 생성됨"
+        
+//        self.dateInformationLabel.text = "\(briefingData.date) #\(self.id)"
+//        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
+//        self.generateInformationLabel.text = "\(briefingData.gptModel)로 생성됨"
+        
+        self.scrapNumberLabel.text = "\(briefingData.scrapCount)"
+        
+        self.lineSeparatorView1.isHidden = false
+        
+    }
+    
     private func updateBriefingCard() {
         self.scrapButton.isHidden = false
         
-        self.lineSeparatorView1.isHidden = false
+//        self.lineSeparatorView1.isHidden = false
         self.lineSeparatorView2.isHidden = false
         
-        self.relatedLabel.isHidden = false
+        self.relatedLabel.text = BriefingStringCollection.Card.relatedArticles.localized
         
         guard let briefingData = briefingData else { return }
-        self.dateInformationLabel.text = "\(briefingData.date) #\(id)"
         
-//        self.titleLabel.text = "\(BriefingStringCollection.appName) #\(briefingData.ranks)"
-        self.topicLabel.text = briefingData.title
+//        self.topicLabel.text = briefingData.title
+        
+//        self.dateInformationLabel.text = "\(briefingData.date) #\(id)"
+//        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
+//        self.generateInformationLabel.text = "GPT-4로 생성됨"
+        
+//        self.scrapNumberLabel.text = "1352"
+        
+        
         self.subtopicLabel.text = briefingData.subTitle
-        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
-        self.generateInformationLabel.text = "GPT-4로 생성됨"
-        
-        self.scrapNumberLabel.text = "1352"
+    
         
         self.contentParagraphStyle.lineHeightMultiple = 1.37
         let contextLabelAttributes: [NSAttributedString.Key : Any] = [

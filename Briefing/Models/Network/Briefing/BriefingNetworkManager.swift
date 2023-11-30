@@ -150,7 +150,7 @@ extension BriefingNetworkManager {
                                                          path: .briefingCard(id: id)) else {
             completion(nil, BFNetworkError.wrongURLRequestError)
             return
-        }
+
         response(urlRequest,
                  type: BriefingData.self,
                  completion: completion)
