@@ -47,11 +47,7 @@ extension BriefingNetworkManager {
             completion(nil, BFNetworkError.wrongURLRequestError)
             return
         }
-        response(urlRequest) { value, error in
-            print(error)
-            guard let value = value else { return }
-            print(String(data: value, encoding: .utf8))
-        }
+        
         response(urlRequest,
                  type: BriefingData.self,
                  completion: completion)

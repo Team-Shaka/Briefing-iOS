@@ -58,6 +58,14 @@ class BriefingCardViewController: UIViewController {
         return label
     }()
     
+    private var informationLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .briefingLightGray
+        label.textAlignment = .left
+        label.font = .productSans(size: 13)
+        return label
+    }()
+    
     private var dateInformationLabel: UILabel = {
         let label = UILabel()
         label.textColor = .briefingLightGray
@@ -79,7 +87,6 @@ class BriefingCardViewController: UIViewController {
         label.textColor = .briefingLightGray
         label.textAlignment = .left
         label.font = .productSans(size: 13)
-//        label.text = "GPT-3로 생성됨"
         return label
     }()
     
@@ -295,11 +302,11 @@ class BriefingCardViewController: UIViewController {
         
         self.navigationView.addSubviews(backButton, othersButton)
         
-        [self.dateInformationLabel, self.categoryInformationLabel, self.generateInformationLabel].forEach { informationStackView.addArrangedSubview($0) }
+//        [self.dateInformationLabel, self.categoryInformationLabel, self.generateInformationLabel].forEach { informationStackView.addArrangedSubview($0) }
         
         self.cardScrollView.addSubview(cardView)
         
-        self.cardView.addSubviews(topicLabel, informationStackView, scrapButton, scrapNumberLabel, lineSeparatorView1, subtopicLabel, contextLabel, lineSeparatorView2, relatedLabel, articleStackView)
+        self.cardView.addSubviews(topicLabel, informationLabel, scrapButton, scrapNumberLabel, lineSeparatorView1, subtopicLabel, contextLabel, lineSeparatorView2, relatedLabel, articleStackView)
         
     }
     
@@ -359,25 +366,30 @@ class BriefingCardViewController: UIViewController {
             make.centerX.equalTo(scrapButton)
         }
         
-        dateInformationLabel.snp.makeConstraints{ make in
-            
-        }
-        
-        categoryInformationLabel.snp.makeConstraints{ make in
-            
-        }
-        
-        generateInformationLabel.snp.makeConstraints{ make in
-            
-        }
-        
-        informationStackView.snp.makeConstraints{ make in
+        informationLabel.snp.makeConstraints{ make in
             make.leading.equalTo(topicLabel)
             make.top.equalTo(topicLabel.snp.bottom).offset(8)
         }
         
+//        dateInformationLabel.snp.makeConstraints{ make in
+//            
+//        }
+//        
+//        categoryInformationLabel.snp.makeConstraints{ make in
+//            
+//        }
+//        
+//        generateInformationLabel.snp.makeConstraints{ make in
+//            
+//        }
+//        
+//        informationStackView.snp.makeConstraints{ make in
+//            make.leading.equalTo(topicLabel)
+//            make.top.equalTo(topicLabel.snp.bottom).offset(8)
+//        }
+        
         lineSeparatorView1.snp.makeConstraints{ make in
-            make.top.equalTo(informationStackView.snp.bottom).offset(20)
+            make.top.equalTo(informationLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(-10)
             make.trailing.equalToSuperview().offset(10)
             make.height.equalTo(1)
@@ -443,7 +455,7 @@ class BriefingCardViewController: UIViewController {
     }
     
     private func fetchBriefingCard() {
-        networkManager.fetchBriefingCard(id: 123) { [weak self] value, error in
+        networkManager.fetchBriefingCard(id: 815) { [weak self] value, error in
             guard let self = self else  { return }
             if let error = error {
                 self.errorHandling(error)
@@ -490,11 +502,14 @@ class BriefingCardViewController: UIViewController {
         
         self.topicLabel.text = briefingData.title
         
-        self.dateInformationLabel.text = "\(briefingData.date) #\(self.id)"
-        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
-        self.generateInformationLabel.text = "GPT-4로 생성됨"
+        // MARK: ToDo: id를 morning/evening으로 변경. 00을 분야명으로 변경.
+        self.informationLabel.text = "\(briefingData.date) #\(self.id)  |  00 #\(briefingData.ranks)  |  \(briefingData.gptModel)로 생성됨"
         
-        self.scrapNumberLabel.text = "1352"
+//        self.dateInformationLabel.text = "\(briefingData.date) #\(self.id)"
+//        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
+//        self.generateInformationLabel.text = "\(briefingData.gptModel)로 생성됨"
+        
+        self.scrapNumberLabel.text = "\(briefingData.scrapCount)"
         
         self.lineSeparatorView1.isHidden = false
         
