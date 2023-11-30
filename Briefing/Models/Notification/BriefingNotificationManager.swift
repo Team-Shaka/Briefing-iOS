@@ -7,6 +7,7 @@
 
 import Foundation
 import UserNotifications
+import RxSwift
 
 class BriefingNotificationManager {
     static let shared = BriefingNotificationManager()
@@ -52,6 +53,22 @@ class BriefingNotificationManager {
             @unknown default:
                 completion(false)
             }
+        }
+    }
+    
+    func isNotificationPermissionGranted() -> Single<Bool> {
+        Single.create { single in
+            self.notificationCenter.getNotificationSettings { (settings) in
+                switch settings.authorizationStatus {
+                case .authorized, .provisional, .ephemeral:
+                    single(.success(true))
+                case .denied, .notDetermined:
+                    single(.success(true))
+                @unknown default:
+                    single(.success(true))
+                }
+            }
+            return Disposables.create()
         }
     }
 }
