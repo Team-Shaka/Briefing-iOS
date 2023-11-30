@@ -359,7 +359,6 @@ class BriefingCardViewController: UIViewController {
             make.centerY.equalTo(topicLabel.snp.bottom)
             make.height.equalTo(41)
             make.width.equalTo(scrapButton.snp.height)
-            make.trailing.equalToSuperview()
         }
         
         scrapNumberLabel.snp.makeConstraints{ make in
