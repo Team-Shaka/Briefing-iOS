@@ -28,6 +28,7 @@ final class BriefingImageCollection {
     static let othersIconBlackImage: UIImage = #imageLiteral(resourceName: "others_black")
     static let scrapCountImage: UIImage = UIImage(named: "scrap_count")!
     static let fetchImage: UIImage = UIImage(named: "fetch")!
+    static let briefingLogoImage: UIImage = #imageLiteral(resourceName: "briefing_logo")
     
     final class Setting {
         private init() { }

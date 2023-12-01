@@ -59,6 +59,8 @@
 "signInRequired" = "Sign In Required";
 "signInRequiredDescription" = "This feature requires sign in.\n Are you sure you want to sign in?";
 
+"briefingPremium" = "Briefing Premium";
+
 "notificationTitle" = "Today's Briefing has arrived.";
 "notificationBody" = "Checkout top Keywords!";
 

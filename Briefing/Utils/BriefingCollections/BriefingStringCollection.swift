@@ -89,6 +89,10 @@ final class BriefingStringCollection {
         case notificationTurnedOff
     }
     
+    enum Purchase: String, EnumeratedLocalized {
+        case briefingPremium
+    }
+    
     enum Popup: String, EnumeratedLocalized {
         case signInRequired
         case signInRequiredDescription

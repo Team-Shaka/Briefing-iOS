@@ -489,6 +489,9 @@ class BriefingCardViewController: UIViewController {
             guard let isScrap = value?.isScrap else { return }
             self.isScrap = isScrap
             self.updateBriefingCardScrapState()
+            
+            self.setBriefingCard()
+            self.updateBriefingCard()
         }
         if isScrap {
             networkManager.deleteScrapBriefing(id: id, completion: scrapResultCompletion)
