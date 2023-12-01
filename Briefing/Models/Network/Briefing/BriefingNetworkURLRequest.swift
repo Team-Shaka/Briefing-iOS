@@ -15,9 +15,7 @@ extension BriefingCategory {
         case .social: return .social
         case .science: return .science
         case .global: return .global
-        #warning("replace social to economy, can not find economy tpe")
-        case .economy: return .social
-        case .culture: return .korea
+        case .economy: return .economy
         }
     }
 }
@@ -57,6 +55,9 @@ extension BriefingNetworkURLRequest {
         case global = "GLOBAL"
         case social = "SOCIAL"
         case science = "SCIENCE"
+        case economy = "ECONOMY"
+        case morning = "Morning"
+        case Evening = "Evening"
     }
     
     enum Path: BFPath {
@@ -71,7 +72,7 @@ extension BriefingNetworkURLRequest {
         var path: String {
             switch self {
             case .root: return ""
-            case .keywords: return "briefings/temp"
+            case .keywords: return "v2/briefings"
             case let .briefingCard(id): return "briefings/\(id)"
             case let .chattings(id):
                 guard let id = id else { return "chattings" }
@@ -99,6 +100,7 @@ extension BriefingNetworkURLRequest {
     enum QueryKey: String, BFQueryKey {
         case date
         case type
+        case timeOfDay
     }
     
     enum HTTPBodyKey: String, BFHTTPBodyKey {

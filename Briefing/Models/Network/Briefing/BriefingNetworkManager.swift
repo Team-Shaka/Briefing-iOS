@@ -22,12 +22,14 @@ extension BriefingNetworkManager {
     func fetchKeywords(date: Date,
                        type: BriefingNetworkURLRequest.KeywordsType) -> Single<Keywords> {
         let url = BriefingURLManager.url(key: .baseUrl)
+        let morning = BriefingNetworkURLRequest.KeywordsType.morning
         guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
                                                          url: url,
                                                          method: .get,
                                                          path: .keywords,
                                                          query: [.date: date.dateToString(),
-                                                                 .type: type.rawValue]) else {
+                                                                 .type: type.rawValue,
+                                                                 .timeOfDay: morning.rawValue]) else {
             return Single.error(BFNetworkError.wrongURLRequestError)
         }
         return response(urlRequest,
