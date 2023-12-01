@@ -21,7 +21,7 @@ struct SubProvider: TimelineProvider {
         }
         
         return Keywords(createdAt: createdAt,
-                        type: "SOCIAL",
+                        // type: "SOCIAL",
                         briefings: briefings)
     }()
     
@@ -127,7 +127,7 @@ struct Briefing_SubWidget: Widget {
                             subTitle: "", scrapCount: 0)
         }
         return Keywords(createdAt: createdAt,
-                        type: "SOCIAL",
+                        // type: "SOCIAL",
                         briefings: briefings)
     }())
 }

@@ -17,8 +17,7 @@ final class HomeViewController: UIViewController {
         .social,
         .science,
         .global,
-        .economy,
-        .culture
+        .economy
     ]
     let disposeBag: DisposeBag = DisposeBag()
     
