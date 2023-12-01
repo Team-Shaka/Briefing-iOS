@@ -106,6 +106,8 @@
 		EE6C4A672AF360B4009F2568 /* ScrapbookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6C4A662AF360B4009F2568 /* ScrapbookTableViewCell.swift */; };
 		EE7ED40B2AB6E75400FC49C9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7ED40A2AB6E75400FC49C9 /* SignInViewController.swift */; };
 		EE7ED4642AB9641200FC49C9 /* BriefingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7ED4632AB9641200FC49C9 /* BriefingCardViewController.swift */; };
+		EE8D8AB02B1878BC00394931 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D8AAF2B1878BC00394931 /* PurchaseViewController.swift */; };
+		EE8D8AB22B188E5400394931 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D8AB12B188E5400394931 /* UILabel+.swift */; };
 		EEC25C422AF753380038DBBB /* ScrapbookTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC25C412AF753380038DBBB /* ScrapbookTableViewSectionHeaderView.swift */; };
 		EEC25C4E2AFCA6E10038DBBB /* ScrapbookTableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC25C4D2AFCA6E10038DBBB /* ScrapbookTableViewHeaderCell.swift */; };
 /* End PBXBuildFile section */
@@ -228,6 +230,8 @@
 		EE6C4A662AF360B4009F2568 /* ScrapbookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapbookTableViewCell.swift; sourceTree = "<group>"; };
 		EE7ED40A2AB6E75400FC49C9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		EE7ED4632AB9641200FC49C9 /* BriefingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingCardViewController.swift; sourceTree = "<group>"; };
+		EE8D8AAF2B1878BC00394931 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
+		EE8D8AB12B188E5400394931 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		EEC25C412AF753380038DBBB /* ScrapbookTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapbookTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
 		EEC25C4D2AFCA6E10038DBBB /* ScrapbookTableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapbookTableViewHeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -385,6 +389,7 @@
 		A51DC48F2AB6B3B50055928C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				EE8D8AAE2B1878A400394931 /* PurchaseScenes */,
 				A5B3A7A42AB89BFA00E1E2B6 /* HomeScenes */,
 				EE5560BB2AD26C6C0024ABBA /* BriefingCardScenes */,
 				EE6C4A632AF34515009F2568 /* ScrapbookScenes */,
@@ -419,6 +424,7 @@
 				A54AE6712ACD60FE0096CDB4 /* String+.swift */,
 				A5CD89C22AD11C3300568F9D /* Dictionary+.swift */,
 				A58F5DF22AD5565C006B4E85 /* UIButton.Configuration+.swift */,
+				EE8D8AB12B188E5400394931 /* UILabel+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -633,6 +639,14 @@
 			path = ScrapbookScenes;
 			sourceTree = "<group>";
 		};
+		EE8D8AAE2B1878A400394931 /* PurchaseScenes */ = {
+			isa = PBXGroup;
+			children = (
+				EE8D8AAF2B1878BC00394931 /* PurchaseViewController.swift */,
+			);
+			path = PurchaseScenes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -824,6 +838,7 @@
 				2443C5AA2A9760A2009586C7 /* DateParser.swift in Sources */,
 				EE6C4A672AF360B4009F2568 /* ScrapbookTableViewCell.swift in Sources */,
 				A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */,
+				EE8D8AB02B1878BC00394931 /* PurchaseViewController.swift in Sources */,
 				A51E56D82ABE037100BD3837 /* BriefingNetworkManager.swift in Sources */,
 				A5334CDD2AB8917F0041F5BA /* BriefingStringCollection.swift in Sources */,
 				A5DA2F1E2ACBFE2200EFACB5 /* ScrapResult.swift in Sources */,
@@ -855,6 +870,7 @@
 				A5DA2F202ACBFE9800EFACB5 /* ScrappedBriefing.swift in Sources */,
 				A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */,
 				EE5560BF2AD65C2C0024ABBA /* BriefingNotificationManager.swift in Sources */,
+				EE8D8AB22B188E5400394931 /* UILabel+.swift in Sources */,
 				EE7ED40B2AB6E75400FC49C9 /* SignInViewController.swift in Sources */,
 				A5AC45FB2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift in Sources */,
 				A5DA2F1A2ACBF32F00EFACB5 /* BriefingNetworkResult.swift in Sources */,
