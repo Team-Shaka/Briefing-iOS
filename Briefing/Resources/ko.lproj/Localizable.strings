@@ -59,6 +59,8 @@
 "signInRequired" = "로그인 필요";
 "signInRequiredDescription" = "로그인이 필요한 기능입니다.\n 로그인하시겠습니까?";
 
+"briefingPremium" = "Briefing Premium";
+
 "notificationTitle" = "오늘의 브리핑이 도착하였습니다.";
 "notificationBody" = "오늘의 주요한 키워드를 확인해 보세요!";
 
