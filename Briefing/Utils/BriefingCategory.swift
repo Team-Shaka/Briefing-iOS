@@ -12,5 +12,4 @@ enum BriefingCategory: String, EnumeratedLocalized {
     case science
     case global
     case economy
-    case culture
 }

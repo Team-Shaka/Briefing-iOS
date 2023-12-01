@@ -9,14 +9,14 @@ import Foundation
 
 struct Keywords: Codable {
     let createdAt: Date
-    let type: String
+    // let type: String
     let briefings: [KeywordBriefing]
     
     init(createdAt: Date, 
-         type: String,
+         // type: String,
          briefings: [KeywordBriefing]){
         self.createdAt = createdAt
-        self.type = type
+        // self.type = type
         self.briefings = briefings
     }
     
@@ -24,7 +24,7 @@ struct Keywords: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let dateString = try container.decode(String.self, forKey: .createdAt)
         self.createdAt = dateString.toDate(dataFormat: "yyyy-MM-dd'T'HH:mm:ss") ?? Date()
-        self.type = try container.decode(String.self, forKey: .type)
+        // self.type = try container.decode(String.self, forKey: .type)
         self.briefings = try container.decode([KeywordBriefing].self, forKey: .briefings)
     }
 }
