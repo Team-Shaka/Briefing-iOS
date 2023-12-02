@@ -91,6 +91,13 @@ final class BriefingStringCollection {
     
     enum Purchase: String, EnumeratedLocalized {
         case briefingPremium
+        case briefingPremiumIntroduction
+        case briefingPremiumDescription
+        case breifingPremiumFirstDescription
+        case breifingPremiumSecondDescription
+        case breifingPremiumThirdDescription
+        case breifingPremiumFourthDescription
+        case breifingPremiumFifthDescription
     }
     
     enum Popup: String, EnumeratedLocalized {

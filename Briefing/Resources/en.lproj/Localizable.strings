@@ -15,11 +15,11 @@
 "fail" = "Fail";
 "cancel" = "Cancel";
 
-"social" = "social";
-"science" = "science";
-"global" = "global";
-"economy" = "economy";
-"culture" = "culture";
+"social" = "Social";
+"science" = "Science";
+"global" = "Global";
+"economy" = "Economy";
+"culture" = "Culture";
 
 "askBrief" = "Ask Brief";
 "beta" = "BETA";
@@ -60,6 +60,13 @@
 "signInRequiredDescription" = "This feature requires sign in.\n Are you sure you want to sign in?";
 
 "briefingPremium" = "Briefing Premium";
+"briefingPremiumIntroduction" = "Enjoy more powerful, broader features with Briefing Premium.";
+"briefingPremiumDescription" = "Premium enables you to use the following features.";
+"breifingPremiumFirstDescription" = "Remove Ads";
+"breifingPremiumSecondDescription" = "Offers Briefing in All Fields";
+"breifingPremiumThirdDescription" = "View past Briefing";
+"breifingPremiumFourthDescription" = "Provides Voice Briefing";
+"breifingPremiumFifthDescription" = "Pre-access to New Features";
 
 "notificationTitle" = "Today's Briefing has arrived.";
 "notificationBody" = "Checkout top Keywords!";
