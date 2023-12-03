@@ -58,6 +58,7 @@
 "notificationTurnedOff" = "The notification is currently turned off.\nPlease check the Settings > Notifications.";
 "signInRequired" = "Sign In Required";
 "signInRequiredDescription" = "This feature requires sign in.\n Are you sure you want to sign in?";
+"subscribeService" = "subscribe";
 
 "briefingPremium" = "Briefing Premium";
 

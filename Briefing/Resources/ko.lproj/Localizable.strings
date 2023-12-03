@@ -58,6 +58,7 @@
 "notificationTurnedOff" = "현재 알림 기능이 꺼져있습니다.\n설정 > 알림에 들어가 확인해주세요.";
 "signInRequired" = "로그인 필요";
 "signInRequiredDescription" = "로그인이 필요한 기능입니다.\n 로그인하시겠습니까?";
+"subscribeService" = "구독 서비스";
 
 "briefingPremium" = "Briefing Premium";
 
