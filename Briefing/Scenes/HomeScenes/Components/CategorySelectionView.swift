@@ -108,7 +108,7 @@ class CategorySelectionView: UIView {
         selectedCategoryRelay.subscribe { [weak self] category in
             guard let self = self else { return }
             let index = self.selectedCategoryRelay.value
-            UIView.animate(withDuration: 0.25) {
+            UIView.animate(withDuration: 0.2) {
                 self.underline.snp.removeConstraints()
                 self.underline.snp.makeConstraints { make in
                     make.height.centerY.equalTo(self.divider)

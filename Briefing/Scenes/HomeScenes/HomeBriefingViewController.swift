@@ -39,22 +39,23 @@ final class HomeBriefingViewController: UIViewController {
         return divider
     }()
     
-    var keywordBriefingTableView: UITableView = {
-        let tableView = UITableView()
+    lazy var keywordBriefingTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.rowHeight = 120
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
-        tableView.sectionHeaderHeight = 14
         tableView.sectionHeaderTopPadding = 0
+        tableView.sectionHeaderHeight = 40
+        // tableView.tableHeaderView = briefingUpdateTimeContainer
         return tableView
     }()
     
     private var tableViewHeaderView: UIView = {
         let view = UIView()
-        
         return view
     }()
+    
     
     let refreshControl = UIRefreshControl()
     
@@ -77,7 +78,7 @@ final class HomeBriefingViewController: UIViewController {
     }
     
     private func configure() {
-        briefingUpdateTimeLabel.text = "briefingUpdateTimeLabel"
+        briefingUpdateTimeLabel.text = "fetching..."
         keywordBriefingTableView.delegate = self
         keywordBriefingTableView.dataSource = self
         keywordBriefingTableView.register(HomeBriefingTableViewCell.self,
@@ -97,19 +98,18 @@ final class HomeBriefingViewController: UIViewController {
             briefingUpdateTimeContainer.addSubview(subview)
         }
         
-        let subviews: [UIView] = [briefingUpdateTimeContainer,
-                                  keywordBriefingTableView]
+        let subviews: [UIView] = [keywordBriefingTableView]
         subviews.forEach { subview in
             view.addSubview(subview)
         }
     }
     
     private func makeConstraints() {
-        briefingUpdateTimeContainer.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(divider.snp.bottom)
-        }
+        // briefingUpdateTimeContainer.snp.makeConstraints { make in
+        //     make.top.equalTo(briefingUpdateTimeLabel)
+        //     // make.leading.trailing.equalTo(self.view)
+        //     make.bottom.equalTo(divider.snp.bottom)
+        // }
         
         briefingUpdateTimeLabel.snp.makeConstraints { make in
             make.top.centerX.equalToSuperview()
@@ -130,7 +130,8 @@ final class HomeBriefingViewController: UIViewController {
         }
         
         keywordBriefingTableView.snp.makeConstraints { make in
-            make.top.equalTo(briefingUpdateTimeContainer.snp.bottom).offset(4)
+            // make.top.equalTo(briefingUpdateTimeContainer.snp.bottom).offset(4)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
@@ -189,19 +190,20 @@ extension HomeBriefingViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let gradient = CAGradientLayer()
-        gradient.frame = tableViewHeaderView.bounds
-        gradient.locations = [0.0, 0.8]
-        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
-        gradient.colors = [UIColor.bfWhite.cgColor,
-                           UIColor.bfWhite.withAlphaComponent(0.0).cgColor]
-        tableViewHeaderView.layer.addSublayer(gradient)
-        return tableViewHeaderView
+        // let gradient = CAGradientLayer()
+        // gradient.frame = briefingUpdateTimeContainer.bounds
+        // gradient.locations = [0.0, 0.8]
+        // gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
+        // gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+        // gradient.colors = [UIColor.bfWhite.cgColor,
+        //                    UIColor.bfWhite.withAlphaComponent(0.0).cgColor]
+        return briefingUpdateTimeContainer
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let id = self.keywords?.briefings[safe: indexPath.row]?.id else { return }
         self.navigationController?.pushViewController(BriefingCardViewController(id: id), animated: true)
     }
+    
+    
 }
