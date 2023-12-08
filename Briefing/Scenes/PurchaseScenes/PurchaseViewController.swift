@@ -9,6 +9,8 @@ import UIKit
 
 class PurchaseViewController: UIViewController {
     
+    let contentParagraphStyle = NSMutableParagraphStyle()
+    
     private var navigationView: UIView = {
         let view = UIView()
         return view
@@ -32,6 +34,16 @@ class PurchaseViewController: UIViewController {
         label.text = BriefingStringCollection.Purchase.briefingPremium.localized
         
         return label
+    }()
+    
+    private var purchaseScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        return scrollView
+    }()
+    
+    private var purchaseView: UIView = {
+        let view = UIView()
+        return view
     }()
     
     private var logoImageView: UIImageView = {
@@ -60,11 +72,79 @@ class PurchaseViewController: UIViewController {
         label.textAlignment = .left
         label.font = .productSans(size: 20)
         label.numberOfLines = 2
-        label.text = "더 강력하고, 더 폭넓은 기능을\nBriefing Premium으로 누려보세요."
-        label.asFont(targetString: "Briefing Premium", font: .productSans(size: 20, weight: .bold))
-        label.asColor(targetString: "Briefing", color: .bfPrimaryBlue)
+        label.text = BriefingStringCollection.Purchase.briefingPremiumIntroduction.localized
+        label.applyStyles(to: [("Briefing", .productSans(size: 20, weight: .bold), .bfPrimaryBlue),
+                               ("Premium", .productSans(size: 20, weight: .bold), nil)])
         
         return label
+    }()
+    
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.textAlignment = .left
+        label.font = .productSans(size: 17)
+        label.numberOfLines = 2
+        
+        self.contentParagraphStyle.lineHeightMultiple = 1.21
+        let contextLabelAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.paragraphStyle: self.contentParagraphStyle
+        ]
+        
+        label.attributedText = NSAttributedString(string: BriefingStringCollection.Purchase.briefingPremiumDescription.localized,
+                                                  attributes: contextLabelAttributes)
+        
+        return label
+    }()
+    
+    var purchaseDescriptionStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 10
+        return stackView
+    }()
+    
+    private var purchaseDescriptionFirstView: PurchaseDescriptionView = {
+        let view = PurchaseDescriptionView(descriptionImage: BriefingImageCollection.briefingPurchaseCheckImage,
+                                           descriptionText: BriefingStringCollection.Purchase.briefingPremiumFirstDescription.localized)
+        return view
+    }()
+    
+    private var purchaseDescriptionSecondView: PurchaseDescriptionView = {
+        let view = PurchaseDescriptionView(descriptionImage: BriefingImageCollection.briefingPurchaseCheckImage,
+                                           descriptionText: BriefingStringCollection.Purchase.briefingPremiumSecondDescription.localized)
+        return view
+    }()
+    
+    private var purchaseDescriptionThirdView: PurchaseDescriptionView = {
+        let view = PurchaseDescriptionView(descriptionImage: BriefingImageCollection.briefingPurchaseCheckImage,
+                                           descriptionText: BriefingStringCollection.Purchase.briefingPremiumThirdDescription.localized)
+        return view
+    }()
+    
+    private var purchaseDescriptionFourthView: PurchaseDescriptionView = {
+        let view = PurchaseDescriptionView(descriptionImage: BriefingImageCollection.briefingPurchaseCheckImage,
+                                           descriptionText: BriefingStringCollection.Purchase.briefingPremiumFourthDescription.localized)
+        return view
+    }()
+    
+    private var purchaseDescriptionFifthView: PurchaseDescriptionView = {
+        let view = PurchaseDescriptionView(descriptionImage: BriefingImageCollection.briefingPurchaseCheckImage,
+                                           descriptionText: BriefingStringCollection.Purchase.briefingPremiumFifthDescription.localized)
+        return view
+    }()
+    
+    private var purchaseYearlyView: PurchaseSubscriptionView = {
+        let view = PurchaseSubscriptionView(style: .yearly)
+        
+        return view
+    }()
+    
+    private var purchaseMonthlyView: PurchaseSubscriptionView = {
+        let view = PurchaseSubscriptionView(style: .monthly)
+        
+        return view
     }()
     
     override func viewDidLoad() {
@@ -78,10 +158,18 @@ class PurchaseViewController: UIViewController {
     }
     
     private func addSubviews() {
+        [self.purchaseDescriptionFirstView,
+         self.purchaseDescriptionSecondView,
+         self.purchaseDescriptionThirdView,
+         self.purchaseDescriptionFourthView,
+         self.purchaseDescriptionFifthView].forEach { purchaseDescriptionStackView.addArrangedSubview($0) }
+        
+        self.view.addSubviews(navigationView, purchaseScrollView)
         
         self.navigationView.addSubviews(backButton, titleLabel)
+        self.purchaseScrollView.addSubview(purchaseView)
         
-        self.view.addSubviews(navigationView, logoImageView, briefingPremiumLabel, introduceLabel)
+        self.purchaseView.addSubviews(logoImageView, briefingPremiumLabel, introduceLabel, descriptionLabel, purchaseDescriptionStackView, purchaseYearlyView, purchaseMonthlyView)
     }
     
     private func makeConstraints() {
@@ -103,6 +191,19 @@ class PurchaseViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         
+        purchaseScrollView.snp.makeConstraints{ make in
+            make.top.equalTo(navigationView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(50)
+        }
+        
+        purchaseView.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
         logoImageView.snp.makeConstraints{ make in
             make.centerX.equalToSuperview()
             make.top.equalTo(navigationView.snp.bottom).offset(20)
@@ -118,7 +219,35 @@ class PurchaseViewController: UIViewController {
         introduceLabel.snp.makeConstraints{ make in
             make.top.equalTo(briefingPremiumLabel.snp.bottom).offset(42)
             make.leading.equalToSuperview().offset(31)
+            make.trailing.equalToSuperview().inset(31)
         }
+        
+        descriptionLabel.snp.makeConstraints{ make in
+            make.top.equalTo(introduceLabel.snp.bottom).offset(29)
+            make.leading.trailing.equalTo(introduceLabel)
+        }
+        
+        purchaseDescriptionStackView.snp.makeConstraints{ make in
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(17)
+            make.leading.equalToSuperview().offset(33)
+            make.height.equalTo(150)
+        }
+        
+        purchaseYearlyView.snp.makeConstraints { make in
+            make.top.equalTo(purchaseDescriptionStackView.snp.bottom).offset(24)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().inset(30)
+            make.height.equalTo(140)
+        }
+        
+        purchaseMonthlyView.snp.makeConstraints{ make in
+            make.top.equalTo(purchaseYearlyView.snp.bottom).offset(16)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().inset(30)
+            make.height.equalTo(140)
+            make.bottom.equalToSuperview().inset(20)
+        }
+        
     }
 }
 

@@ -15,11 +15,11 @@
 "fail" = "Fail";
 "cancel" = "Cancel";
 
-"social" = "social";
-"science" = "science";
-"global" = "global";
-"economy" = "economy";
-"culture" = "culture";
+"social" = "Social";
+"science" = "Science";
+"global" = "Global";
+"economy" = "Economy";
+"culture" = "Culture";
 
 "askBrief" = "Ask Brief";
 "beta" = "BETA";
@@ -60,6 +60,17 @@
 "signInRequiredDescription" = "This feature requires sign in.\n Are you sure you want to sign in?";
 
 "briefingPremium" = "Briefing Premium";
+"briefingPremiumIntroduction" = "Enjoy more powerful, broader features with Briefing Premium.";
+"briefingPremiumDescription" = "Premium enables you to use the following features.";
+"briefingPremiumFirstDescription" = "Remove Ads";
+"briefingPremiumSecondDescription" = "Offers Briefing in All Fields";
+"briefingPremiumThirdDescription" = "View past Briefing";
+"briefingPremiumFourthDescription" = "Provides Voice Briefing";
+"briefingPremiumFifthDescription" = "Pre-access to New Features";
+"briefingPremiumPurchaseYearly" = "Briefing Premium Yearly";
+"briefingPremiumPurchaseMonthly" = "Briefing Premium Monthly";
+"briefingPremiumPurchaseYearlyPrice" = "₩15,000 Billed Yearly";
+"briefingPremiumPurchaseMonthlyPrice" = "₩1,500 Billed Monthly";
 
 "notificationTitle" = "Today's Briefing has arrived.";
 "notificationBody" = "Checkout top Keywords!";
