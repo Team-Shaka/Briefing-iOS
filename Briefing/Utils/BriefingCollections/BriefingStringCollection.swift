@@ -93,11 +93,15 @@ final class BriefingStringCollection {
         case briefingPremium
         case briefingPremiumIntroduction
         case briefingPremiumDescription
-        case breifingPremiumFirstDescription
-        case breifingPremiumSecondDescription
-        case breifingPremiumThirdDescription
-        case breifingPremiumFourthDescription
-        case breifingPremiumFifthDescription
+        case briefingPremiumFirstDescription
+        case briefingPremiumSecondDescription
+        case briefingPremiumThirdDescription
+        case briefingPremiumFourthDescription
+        case briefingPremiumFifthDescription
+        case briefingPremiumPurchaseYearly
+        case briefingPremiumPurchaseMonthly
+        case briefingPremiumPurchaseYearlyPrice
+        case briefingPremiumPurchaseMonthlyPrice
     }
     
     enum Popup: String, EnumeratedLocalized {
