@@ -62,11 +62,15 @@
 "briefingPremium" = "Briefing Premium";
 "briefingPremiumIntroduction" = "더 강력하고, 더 폭넓은 기능을\nBriefing Premium으로 누려보세요.";
 "briefingPremiumDescription" = "Premium을 통해서 다음과 같은 기능을 사용할 수 있습니다.";
-"breifingPremiumFirstDescription" = "광고 제거";
-"breifingPremiumSecondDescription" = "모든 분야 Briefing 제공";
-"breifingPremiumThirdDescription" = "과거 Briefing 조회 가능";
-"breifingPremiumFourthDescription" = "음성 Briefing 기능 추가";
-"breifingPremiumFifthDescription" = "기능 미리 사용하기";
+"briefingPremiumFirstDescription" = "광고 제거";
+"briefingPremiumSecondDescription" = "모든 분야 Briefing 제공";
+"briefingPremiumThirdDescription" = "과거 Briefing 조회 가능";
+"briefingPremiumFourthDescription" = "음성 Briefing 기능 추가";
+"briefingPremiumFifthDescription" = "기능 미리 사용하기";
+"briefingPremiumPurchaseYearly" = "Briefing Premium 연간 구독";
+"briefingPremiumPurchaseMonthly" = "Briefing Premium 월간 구독";
+"briefingPremiumPurchaseYearlyPrice" = "연 ₩15,000";
+"briefingPremiumPurchaseMonthlyPrice" = "월 ₩1,500";
 
 "notificationTitle" = "오늘의 브리핑이 도착하였습니다.";
 "notificationBody" = "오늘의 주요한 키워드를 확인해 보세요!";

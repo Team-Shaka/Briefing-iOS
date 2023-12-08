@@ -36,7 +36,7 @@ class PurchaseViewController: UIViewController {
         return label
     }()
     
-    private var purchaseScrollView: UIView = {
+    private var purchaseScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         return scrollView
     }()
@@ -102,41 +102,47 @@ class PurchaseViewController: UIViewController {
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 10
-        
         return stackView
     }()
     
     private var purchaseDescriptionFirstView: PurchaseDescriptionView = {
         let view = PurchaseDescriptionView(descriptionImage: BriefingImageCollection.briefingPurchaseCheckImage,
-                                           descriptionText: BriefingStringCollection.Purchase.breifingPremiumFirstDescription.localized)
-        
+                                           descriptionText: BriefingStringCollection.Purchase.briefingPremiumFirstDescription.localized)
         return view
     }()
     
     private var purchaseDescriptionSecondView: PurchaseDescriptionView = {
         let view = PurchaseDescriptionView(descriptionImage: BriefingImageCollection.briefingPurchaseCheckImage,
-                                           descriptionText: BriefingStringCollection.Purchase.breifingPremiumSecondDescription.localized)
-        
+                                           descriptionText: BriefingStringCollection.Purchase.briefingPremiumSecondDescription.localized)
         return view
     }()
     
     private var purchaseDescriptionThirdView: PurchaseDescriptionView = {
         let view = PurchaseDescriptionView(descriptionImage: BriefingImageCollection.briefingPurchaseCheckImage,
-                                           descriptionText: BriefingStringCollection.Purchase.breifingPremiumThirdDescription.localized)
-        
+                                           descriptionText: BriefingStringCollection.Purchase.briefingPremiumThirdDescription.localized)
         return view
     }()
     
     private var purchaseDescriptionFourthView: PurchaseDescriptionView = {
         let view = PurchaseDescriptionView(descriptionImage: BriefingImageCollection.briefingPurchaseCheckImage,
-                                           descriptionText: BriefingStringCollection.Purchase.breifingPremiumFourthDescription.localized)
-        
+                                           descriptionText: BriefingStringCollection.Purchase.briefingPremiumFourthDescription.localized)
         return view
     }()
     
     private var purchaseDescriptionFifthView: PurchaseDescriptionView = {
         let view = PurchaseDescriptionView(descriptionImage: BriefingImageCollection.briefingPurchaseCheckImage,
-                                           descriptionText: BriefingStringCollection.Purchase.breifingPremiumFifthDescription.localized)
+                                           descriptionText: BriefingStringCollection.Purchase.briefingPremiumFifthDescription.localized)
+        return view
+    }()
+    
+    private var purchaseYearlyView: PurchaseSubscriptionView = {
+        let view = PurchaseSubscriptionView(style: .yearly)
+        
+        return view
+    }()
+    
+    private var purchaseMonthlyView: PurchaseSubscriptionView = {
+        let view = PurchaseSubscriptionView(style: .monthly)
         
         return view
     }()
@@ -163,7 +169,7 @@ class PurchaseViewController: UIViewController {
         self.navigationView.addSubviews(backButton, titleLabel)
         self.purchaseScrollView.addSubview(purchaseView)
         
-        self.purchaseView.addSubviews(logoImageView, briefingPremiumLabel, introduceLabel, descriptionLabel, purchaseDescriptionStackView)
+        self.purchaseView.addSubviews(logoImageView, briefingPremiumLabel, introduceLabel, descriptionLabel, purchaseDescriptionStackView, purchaseYearlyView, purchaseMonthlyView)
     }
     
     private func makeConstraints() {
@@ -227,6 +233,20 @@ class PurchaseViewController: UIViewController {
             make.height.equalTo(150)
         }
         
+        purchaseYearlyView.snp.makeConstraints { make in
+            make.top.equalTo(purchaseDescriptionStackView.snp.bottom).offset(24)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().inset(30)
+            make.height.equalTo(140)
+        }
+        
+        purchaseMonthlyView.snp.makeConstraints{ make in
+            make.top.equalTo(purchaseYearlyView.snp.bottom).offset(16)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().inset(30)
+            make.height.equalTo(140)
+            make.bottom.equalToSuperview().inset(20)
+        }
         
     }
 }

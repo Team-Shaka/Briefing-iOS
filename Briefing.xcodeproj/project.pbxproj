@@ -99,6 +99,7 @@
 		A5FD1E802ACFFC630048272D /* BFURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD1E7F2ACFFC630048272D /* BFURLRequest.swift */; };
 		DBB4CC6C614E20F93FD89172 /* Pods_Briefing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */; };
 		EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */; };
+		EE455A9E2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE455A9D2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift */; };
 		EE5560BF2AD65C2C0024ABBA /* BriefingNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */; };
 		EE6C4A652AF3456C009F2568 /* ScrapbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6C4A642AF3456C009F2568 /* ScrapbookViewController.swift */; };
 		EE6C4A672AF360B4009F2568 /* ScrapbookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6C4A662AF360B4009F2568 /* ScrapbookTableViewCell.swift */; };
@@ -222,6 +223,7 @@
 		A5FD1E7F2ACFFC630048272D /* BFURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFURLRequest.swift; sourceTree = "<group>"; };
 		E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.release.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.release.xcconfig"; sourceTree = "<group>"; };
 		EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingPopUpViewController.swift; sourceTree = "<group>"; };
+		EE455A9D2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSubscriptionView.swift; sourceTree = "<group>"; };
 		EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNotificationManager.swift; sourceTree = "<group>"; };
 		EE6C4A642AF3456C009F2568 /* ScrapbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapbookViewController.swift; sourceTree = "<group>"; };
 		EE6C4A662AF360B4009F2568 /* ScrapbookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapbookTableViewCell.swift; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 			isa = PBXGroup;
 			children = (
 				EE8D8AB42B1B60AA00394931 /* PurchaseDescriptionView.swift */,
+				EE455A9D2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 				EE6C4A652AF3456C009F2568 /* ScrapbookViewController.swift in Sources */,
 				2443C5542A8FE88B009586C7 /* AppDelegate.swift in Sources */,
 				A5AFCC1A2B10FC370013D9AA /* BriefingCategory.swift in Sources */,
+				EE455A9E2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift in Sources */,
 				A58F5DF12AD5168E006B4E85 /* SettingTimePickerViewController.swift in Sources */,
 				A52AF2872AB6262100457E4E /* HomeBriefingViewController.swift in Sources */,
 				A58F5DF52AD5661B006B4E85 /* NotificationTime.swift in Sources */,
