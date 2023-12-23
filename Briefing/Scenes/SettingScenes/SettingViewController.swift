@@ -16,6 +16,7 @@ enum SettingTableViewDefaultCellType {
     case text(_ text: String)
     case url(_ urlString: String)
     case customView(_ view: UIView)
+    case pushViewController(_ viewController: UIViewController)
 }
 
 enum SettingTableViewAuthCellType {
@@ -35,6 +36,10 @@ class SettingViewController: UIViewController {
         (BriefingStringCollection.Setting.notification.localized, [
             .default(title: BriefingStringCollection.Setting.notificationTimeSetting.localized,
                      type: .customView(self.notificationTimePickerButton))
+        ]),
+        (BriefingStringCollection.Setting.subscribe.localized,[
+            .default(title: BriefingStringCollection.Purchase.briefingPremium.localized,
+                     type: .pushViewController(PurchaseViewController()))
         ]),
         (BriefingStringCollection.Setting.appInfo.localized,[
             .default(title: BriefingStringCollection.Setting.appVersionTitle.localized,
@@ -81,7 +86,7 @@ class SettingViewController: UIViewController {
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
-        button.setImage(BriefingImageCollection.backIconImage, for: .normal)
+        button.setImage(BriefingImageCollection.backIconBlackImage, for: .normal)
         button.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(goBackToHomeViewController), for: .touchUpInside)
@@ -91,8 +96,8 @@ class SettingViewController: UIViewController {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = BriefingStringCollection.Setting.settings.localized
-        label.font = .productSans(size: 24)
-        label.textColor = .briefingNavy
+        label.font = .productSans(size: 20)
+        label.textColor = .bfTextBlack
         return label
     }()
     
@@ -161,21 +166,20 @@ class SettingViewController: UIViewController {
     
     private func makeConstraints() {
         navigationView.snp.makeConstraints{ make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(titleLabel).offset(25)
-            make.leading.trailing.equalTo(view)
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(titleLabel).offset(16)
         }
         
         backButton.snp.makeConstraints{ make in
-            make.centerY.equalTo(navigationView)
-            make.height.equalTo(titleLabel)
+            make.centerY.height.equalTo(titleLabel)
             make.width.equalTo(backButton.snp.height)
-            make.leading.equalTo(navigationView).inset(21)
+            make.leading.equalTo(navigationView).inset(22)
         }
         
         titleLabel.snp.makeConstraints{ make in
-            make.centerY.equalTo(navigationView)
-            make.centerX.equalTo(navigationView)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.centerX.equalTo(navigationView).priority(.low)
+            make.leading.greaterThanOrEqualTo(backButton.snp.trailing)
         }
         
         settingTableView.snp.makeConstraints { make in
@@ -283,6 +287,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             switch type {
             case let .url(urlString):
                 self.openURLInSafari(urlString)
+            case let .pushViewController(viewController):
+                self.navigationController?.pushViewController(viewController,
+                                                              animated: true)
             default: break
             }
         case let .auth(_, _, type):

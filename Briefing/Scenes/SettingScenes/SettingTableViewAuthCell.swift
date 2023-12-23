@@ -20,7 +20,7 @@ class SettingTableViewAuthCell: UITableViewCell {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .productSans(size: 18)
-        label.textColor = .briefingNavy
+        label.textColor = .bfPrimaryBlue
         return label
     }()
     

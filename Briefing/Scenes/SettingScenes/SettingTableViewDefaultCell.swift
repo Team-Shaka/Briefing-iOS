@@ -28,7 +28,7 @@ class SettingTableViewDefaultCell: UITableViewCell {
     private var valueLabel: UILabel = {
         let label = UILabel()
         label.font = .productSans(size: 18)
-        label.textColor = .briefingNavy
+        label.textColor = .bfPrimaryBlue
         return label
     }()
     
@@ -102,7 +102,7 @@ class SettingTableViewDefaultCell: UITableViewCell {
                 make.centerY.equalToSuperview()
                 make.trailing.equalToSuperview().inset(18)
             }
-        case .url:
+        case .url, .pushViewController:
             mainContainerView.addSubview(nextIconImageView)
             titleLabel.snp.makeConstraints { make in
                 make.trailing.lessThanOrEqualTo(nextIconImageView.snp.leading)

@@ -114,7 +114,7 @@ class HomeBriefingTableViewCell: UITableViewCell {
         rankLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(16)
             make.leading.equalToSuperview()
-            make.width.equalTo(46)
+            make.width.equalTo(50)
             make.height.equalTo(30)
         }
         

@@ -21,8 +21,8 @@ class SettingTimePickerViewController: UIViewController {
     private var timePickerLabel: UILabel = {
         let label = UILabel()
         label.text = BriefingStringCollection.Setting.notificationTimeSetting.localized
-        label.font = .productSans(size: 22, weight: .bold)
-        label.textColor = .briefingNavy
+        label.font = .productSans(size: 22)
+        label.textColor = .bfTextBlack
         return label
     }()
     
@@ -34,8 +34,8 @@ class SettingTimePickerViewController: UIViewController {
     private var setNotificationTimeButton: UIButton = {
         let configuration = UIButton.Configuration
             .BriefingButtonConfiguration(title: BriefingStringCollection.Setting.setNotification.localized,
-                                         foregroundColor: .briefingWhite,
-                                         backgroundColor: .briefingNavy)
+                                         foregroundColor: .bfPrimaryBlue,
+                                         backgroundColor: .clear)
         return UIButton(configuration: configuration)
     }()
     
@@ -179,7 +179,7 @@ extension SettingTimePickerViewController: UIPickerViewDelegate,
         default: break
         }
         return NSAttributedString(string: "\(rowText)", attributes: [.font: UIFont.productSans(size: 14),
-                                                                 .foregroundColor: UIColor.briefingNavy])
+                                                                 .foregroundColor: UIColor.bfTextBlack])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
