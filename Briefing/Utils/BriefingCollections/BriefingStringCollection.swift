@@ -87,6 +87,7 @@ final class BriefingStringCollection {
         case withdrawalDescription
         case notificationTime
         case notificationTurnedOff
+        case subscribe = "subscribeService"
     }
     
     enum Purchase: String, EnumeratedLocalized {
