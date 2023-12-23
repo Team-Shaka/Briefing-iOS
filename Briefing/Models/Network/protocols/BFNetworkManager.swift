@@ -53,7 +53,6 @@ extension BFNetworkManager {
                     
                     completion(networkResult.result, response.error)
                 } catch {
-                    print(#function, error)
                     completion(nil, error)
                 }
             }

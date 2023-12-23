@@ -20,6 +20,8 @@
 "global" = "Global";
 "economy" = "Economy";
 "culture" = "Culture";
+"morning" = "Morning";
+"evening" = "Evening";
 
 "askBrief" = "Ask Brief";
 "beta" = "BETA";

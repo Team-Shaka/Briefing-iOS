@@ -29,7 +29,6 @@ final class BriefingStringCollection {
     static let fail: String = NSLocalizedString("fail", comment: "")
     static let briefing: String = NSLocalizedString("briefing", comment: "")
     
-    
     final class Format {
         private init() { }
         static let dateDotFormat = "yyyy.MM.dd"

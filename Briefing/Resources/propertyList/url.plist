@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>briefing</key>
-	<string>https://dev.newsbreifing.store</string>
+	<string>https://api.newsbreifing.store/v2</string>
 </dict>
 </plist>

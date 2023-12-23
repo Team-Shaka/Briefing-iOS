@@ -368,6 +368,7 @@ class BriefingCardViewController: UIViewController {
         
         informationLabel.snp.makeConstraints{ make in
             make.leading.equalTo(topicLabel)
+            make.trailing.equalTo(self.scrapButton.snp.leading)
             make.top.equalTo(topicLabel.snp.bottom).offset(8)
         }
         
@@ -506,7 +507,7 @@ class BriefingCardViewController: UIViewController {
         self.topicLabel.text = briefingData.title
         
         // MARK: ToDo: id를 morning/evening으로 변경. 00을 분야명으로 변경.
-        self.informationLabel.text = "\(briefingData.date) #\(self.id)  |  00 #\(briefingData.ranks)  |  GPT-3.5로 생성됨"
+        self.informationLabel.text = "\(briefingData.date) \(briefingData.timeOfDay.localize())  |  \(briefingData.type.localize()) #\(briefingData.ranks)  |  \(briefingData.gptModel)로 생성됨"
         
 //        self.dateInformationLabel.text = "\(briefingData.date) #\(self.id)"
 //        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"

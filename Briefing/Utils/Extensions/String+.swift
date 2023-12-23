@@ -8,6 +8,10 @@
 import Foundation
 
 extension String {
+    func localize() -> String {
+        NSLocalizedString((self.lowercased()), comment: "")
+    }
+    
     var capitalizingFirstLetter: String {
         return prefix(1).uppercased() + self.dropFirst()
     }
