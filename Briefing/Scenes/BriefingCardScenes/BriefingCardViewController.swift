@@ -493,10 +493,8 @@ class BriefingCardViewController: UIViewController {
             }
             guard let isScrap = value?.isScrap else { return }
             self.isScrap = isScrap
-            self.updateBriefingCardScrapState()
             
             self.fetchBriefingCard()
-
             self.updateBriefingCard()
             
         }
@@ -540,11 +538,17 @@ class BriefingCardViewController: UIViewController {
 //        self.dateInformationLabel.text = "\(briefingData.date) #\(id)"
 //        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
 //        self.generateInformationLabel.text = "GPT-4로 생성됨"
-        
-        self.scrapNumberLabel.text = "\(briefingData.scrapCount)"
-        
-        
+    
         self.subtopicLabel.text = briefingData.subTitle
+        
+        // Fetch Scrap
+        self.scrapNumberLabel.text = "\(briefingData.scrapCount)"
+        if briefingData.isScrap {
+            self.scrapButton.setImage(BriefingImageCollection.scrapFilledImage, for: .normal)
+        }
+        else {
+            self.scrapButton.setImage(BriefingImageCollection.scrapUnfilledImage, for: .normal)
+        }
     
         
         self.contentParagraphStyle.lineHeightMultiple = 1.37
@@ -553,17 +557,6 @@ class BriefingCardViewController: UIViewController {
         ]
         self.contextLabel.attributedText = NSAttributedString(string: briefingData.content,
                                                               attributes: contextLabelAttributes)
-        
-        updateBriefingCardScrapState()
-    }
-    
-    private func updateBriefingCardScrapState() {
-        if isScrap {
-            self.scrapButton.setImage(BriefingImageCollection.scrapFilledImage, for: .normal)
-        }
-        else {
-            self.scrapButton.setImage(BriefingImageCollection.scrapUnfilledImage, for: .normal)
-        }
     }
     
     private func adjustArticles() {
