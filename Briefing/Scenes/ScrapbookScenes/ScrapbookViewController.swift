@@ -168,9 +168,16 @@ extension ScrapbookViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             if let cellData = cellSectionData[safe: indexPath.row - 1] {
+//                cell.setCellData(title: cellData.title,
+//                                 subtitle: cellData.subTitle,
+//                                 date: cellData.date,
+//                                 cornerMaskEdge: cornerMaskEdge)
                 cell.setCellData(title: cellData.title,
                                  subtitle: cellData.subTitle,
                                  date: cellData.date,
+                                 time: cellData.timeOfDay,
+                                 rank: cellData.ranks,
+                                 gptInformation: cellData.gptModel,
                                  cornerMaskEdge: cornerMaskEdge)
             }
             
