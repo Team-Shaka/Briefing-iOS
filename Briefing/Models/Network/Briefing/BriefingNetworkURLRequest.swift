@@ -72,7 +72,7 @@ extension BriefingNetworkURLRequest {
         var path: String {
             switch self {
             case .root: return ""
-            case .keywords: return "v2/briefings"
+            case .keywords: return "briefings"
             case let .briefingCard(id): return "briefings/\(id)"
             case let .chattings(id):
                 guard let id = id else { return "chattings" }
