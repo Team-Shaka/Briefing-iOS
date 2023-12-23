@@ -87,13 +87,12 @@ class ScrapbookTableViewCell: UITableViewCell {
                      date: String,
                      time: String,
                      rank: Int,
-                     gptInformation: String,
-                     cornerMaskEdge: UIRectEdge?) {
-        informationLabel.text = "\(date) \(time) | 이슈 #\(rank) | \(gptInformation)"
+                     gptInformation: String) {
+        informationLabel.text = "\(date) \(time) | 이슈 #\(rank) | \(gptInformation)로 생성됨"
         titleLabel.text = title
         subtitleLabel.text = subtitle
         
-        mainContainerView.setCornerMask(cornerMaskEdge)
+//        mainContainerView.setCornerMask(cornerMaskEdge)
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {

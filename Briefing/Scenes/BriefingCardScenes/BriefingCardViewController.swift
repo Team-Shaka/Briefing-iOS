@@ -276,6 +276,10 @@ class BriefingCardViewController: UIViewController {
         return stackView
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -295,7 +299,6 @@ class BriefingCardViewController: UIViewController {
     
     private func configure() {
         self.view.backgroundColor = .white
-        
         addSwipeGestureToDismiss()
     }
     
@@ -492,6 +495,7 @@ class BriefingCardViewController: UIViewController {
             self.isScrap = isScrap
             self.updateBriefingCardScrapState()
             
+            self.fetchBriefingCard()
             self.setBriefingCard()
             self.updateBriefingCard()
         }
@@ -536,7 +540,7 @@ class BriefingCardViewController: UIViewController {
 //        self.categoryInformationLabel.text = "00 #\(briefingData.ranks)"
 //        self.generateInformationLabel.text = "GPT-4로 생성됨"
         
-//        self.scrapNumberLabel.text = "1352"
+        self.scrapNumberLabel.text = "\(briefingData.scrapCount)"
         
         
         self.subtopicLabel.text = briefingData.subTitle
