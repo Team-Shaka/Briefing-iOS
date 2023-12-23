@@ -23,9 +23,7 @@ extension BriefingNetworkManager {
                        type: BriefingNetworkURLRequest.KeywordsType) -> Single<Keywords> {
         let url = BriefingURLManager.url(key: .baseUrl)
         
-        #warning("develop temporary settings")
         // FIXME: - when release, should be changed
-        let date = "2023-11-30 13:00:00".toDate()!
         let morning = BriefingNetworkURLRequest.KeywordsType.morning
         
         guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,

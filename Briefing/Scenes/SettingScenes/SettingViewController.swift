@@ -37,10 +37,10 @@ class SettingViewController: UIViewController {
             .default(title: BriefingStringCollection.Setting.notificationTimeSetting.localized,
                      type: .customView(self.notificationTimePickerButton))
         ]),
-        (BriefingStringCollection.Setting.subscribe.localized,[
-            .default(title: BriefingStringCollection.Purchase.briefingPremium.localized,
-                     type: .pushViewController(PurchaseViewController()))
-        ]),
+        // (BriefingStringCollection.Setting.subscribe.localized,[
+        //     .default(title: BriefingStringCollection.Purchase.briefingPremium.localized,
+        //              type: .pushViewController(PurchaseViewController()))
+        // ]),
         (BriefingStringCollection.Setting.appInfo.localized,[
             .default(title: BriefingStringCollection.Setting.appVersionTitle.localized,
                      type: .text(BriefingStringCollection.appVersion)),
