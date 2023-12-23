@@ -162,6 +162,7 @@ final class HomeBriefingViewController: UIViewController {
                 refreshControl.isRefreshing {
                 refreshControl.endRefreshing()
             }
+            print(keywords)
         } onFailure: { error in
             self.errorHandling(error)
         }
