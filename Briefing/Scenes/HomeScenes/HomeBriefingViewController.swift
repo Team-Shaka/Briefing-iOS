@@ -158,7 +158,6 @@ final class HomeBriefingViewController: UIViewController {
             self.keywordBriefingTableView.reloadData()
             let briefingWord = BriefingStringCollection.briefing
             self.briefingUpdateTimeLabel.text = "\(keywords.createdAt.dateToString("yyyy.MM.dd (E) a")) \(briefingWord)"
-            print(keywords)
             if let refreshControl = self.keywordBriefingTableView.refreshControl,
                 refreshControl.isRefreshing {
                 refreshControl.endRefreshing()

@@ -34,6 +34,7 @@ class BriefingCardViewController: UIViewController {
         button.setImage(BriefingImageCollection.othersIconBlackImage, for: .normal)
         button.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .right
+        button.isHidden = true
 //        button.addTarget(self, action: #selector(othersButtonTapped), for: .touchUpInside)
         return button
     }()
