@@ -15,9 +15,9 @@ final class HomeViewController: UIViewController {
     
     let categories: [BriefingCategory] = [
         .social,
-        .science,
         .global,
-        .economy
+        .economy,
+        .science
     ]
     let disposeBag: DisposeBag = DisposeBag()
     
