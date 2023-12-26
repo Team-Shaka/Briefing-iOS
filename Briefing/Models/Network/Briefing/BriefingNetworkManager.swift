@@ -30,9 +30,7 @@ extension BriefingNetworkManager {
                                                          url: url,
                                                          method: .get,
                                                          path: .keywords,
-                                                         query: [.date: date.dateToString(),
-                                                                 .type: type.rawValue,
-                                                                 .timeOfDay: morning.rawValue]) else {
+                                                         query: [.type: type.rawValue]) else {
             return Single.error(BFNetworkError.wrongURLRequestError)
         }
         return response(urlRequest,
