@@ -12,7 +12,7 @@ struct Keywords: Codable {
     // let type: String
     let briefings: [KeywordBriefing]
     
-    init(createdAt: Date, 
+    init(createdAt: Date,
          // type: String,
          briefings: [KeywordBriefing]){
         self.createdAt = createdAt
@@ -26,6 +26,7 @@ struct Keywords: Codable {
         self.createdAt = dateString.toDate(dataFormat: "yyyy-MM-dd'T'HH:mm:ss") ?? Date()
         // self.type = try container.decode(String.self, forKey: .type)
         self.briefings = try container.decode([KeywordBriefing].self, forKey: .briefings)
+            .sorted(by: { $0.ranks < $1.ranks })
     }
 }
 
