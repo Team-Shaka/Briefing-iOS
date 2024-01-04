@@ -16,7 +16,7 @@ final class BriefingWidgetNetworkManager {
 }
 
 extension BriefingWidgetNetworkManager {
-    func keywordsReqeuest(type: String = "KOREA",
+    func keywordsReqeuest(type: String = "SOCIAL",
                           date: Date = Date(),
                           timeoutInterval: TimeInterval = 10) -> URLRequest {
         

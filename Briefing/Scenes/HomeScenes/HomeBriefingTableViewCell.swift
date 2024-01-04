@@ -13,23 +13,15 @@ class HomeBriefingTableViewCell: UITableViewCell {
     
     private var mainContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 26
-        view.addShadow(offset: CGSize(width: 0, height: 4),
-                       color: .black,
-                       radius: 5,
-                       opacity: 0.1)
         return view
     }()
     
     private var rankLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .briefingNavy
-        label.font = .productSans(size: 20, weight: .bold)
-        label.textAlignment = .center
+        label.textColor = .bfPrimaryBlue
+        label.font = .productSans(size: 35, weight: .bold)
+        label.textAlignment = .right
         label.numberOfLines = 1
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 46/2
         return label
     }()
     
@@ -40,7 +32,7 @@ class HomeBriefingTableViewCell: UITableViewCell {
     
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .briefingNavy
+        label.textColor = .bfTextBlack
         label.font = .productSans(size: 20, weight: .bold)
         label.numberOfLines = 1
         return label
@@ -48,19 +40,33 @@ class HomeBriefingTableViewCell: UITableViewCell {
     
     private var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .briefingLightBlue
-        label.font = .productSans(size: 12)
+        label.textColor = .bfTextGray
+        label.font = .productSans(size: 16)
         label.lineBreakMode = .byTruncatingTail
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         return label
     }()
     
-    private var nextIconImageView: UIImageView = {
+    private var scrapCountContainer: UIView = UIView()
+    
+    private var scrapImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = BriefingImageCollection.nextIconImage
-        imageView.tintColor = .briefingNavy
-        imageView.contentMode = .scaleAspectFit
+        imageView.image = BriefingImageCollection.scrapCountImage
+        imageView.contentMode = .scaleToFill
         return imageView
+    }()
+    
+    private var scrapCountLabel: UILabel = {
+        let label = UILabel()
+        label.font = .productSans(size: 14)
+        label.textColor = .bfTextGray
+        return label
+    }()
+    
+    private var divider: UIView = {
+        let view = UIView()
+        view.backgroundColor = .bfSeperatorGray
+        return view
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -87,7 +93,12 @@ class HomeBriefingTableViewCell: UITableViewCell {
             textContainer.addSubview(view)
         }
         
-        let subViews: [UIView] = [rankLabel, textContainer, nextIconImageView]
+        let scrapCountContainerSubviews: [UIView] = [scrapImageView, scrapCountLabel]
+        scrapCountContainerSubviews.forEach { view in
+            scrapCountContainer.addSubview(view)
+        }
+        
+        let subViews: [UIView] = [rankLabel, textContainer, scrapCountContainer, divider]
         subViews.forEach { subView in
             mainContainerView.addSubview(subView)
         }
@@ -96,73 +107,77 @@ class HomeBriefingTableViewCell: UITableViewCell {
     func makeConstraints() {
         mainContainerView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(18)
-            make.trailing.equalToSuperview().inset(18)
-            make.height.equalTo(72)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(120)
         }
         
         rankLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(18)
-            make.width.height.equalTo(46)
-        }
-        
-        nextIconImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(18)
-            make.width.height.equalTo(28)
+            make.top.equalToSuperview().inset(16)
+            make.leading.equalToSuperview()
+            make.width.equalTo(50)
+            make.height.equalTo(30)
         }
         
         textContainer.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(rankLabel.snp.trailing).offset(12)
-            make.top.equalTo(titleLabel.snp.top)
+            make.top.equalTo(rankLabel)
+            make.leading.equalTo(rankLabel.snp.trailing).offset(14)
+            make.trailing.equalToSuperview()
             make.bottom.equalTo(descriptionLabel.snp.bottom)
-            make.trailing.equalTo(nextIconImageView.snp.leading)
         }
         
         titleLabel.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
             make.leading.trailing.equalTo(textContainer)
         }
         
         descriptionLabel.snp.makeConstraints{ make in
             make.leading.trailing.equalTo(textContainer)
-            make.top.equalTo(titleLabel.snp.bottom)
+            make.top.equalTo(titleLabel.snp.bottom).offset(2)
+        }
+        
+        scrapCountContainer.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.height.equalTo(16)
+            make.bottom.equalTo(divider.snp.top).offset(-6)
+            make.leading.greaterThanOrEqualTo(textContainer).priority(.low)
+        }
+        
+        scrapImageView.snp.makeConstraints { make in
+            make.height.equalToSuperview()
+            make.width.equalTo(scrapImageView.snp.height)
+            make.centerY.leading.equalToSuperview()
+        }
+        
+        scrapCountLabel.snp.makeConstraints { make in
+            make.leading.equalTo(scrapImageView.snp.trailing)
+            make.centerY.height.trailing.equalToSuperview()
+        }
+        
+        divider.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(1)
+            make.leading.trailing.equalToSuperview()
         }
     }
     
     func updateKeywordBriefing(_ keywordBriefing: KeywordBriefing) {
         self.keywordBriefing = keywordBriefing
-        switch keywordBriefing.ranks {
-        case 1:
-            rankLabel.textColor = .white
-            rankLabel.backgroundColor = .briefingNavy
-        case 2:
-            rankLabel.textColor = .white
-            rankLabel.backgroundColor = .briefingBlue
-        case 3:
-            rankLabel.textColor = .white
-            rankLabel.backgroundColor = .briefingLightBlue
-        default:
-            rankLabel.textColor = .briefingNavy
-            rankLabel.backgroundColor = .clear
-        }
-        rankLabel.text = "\(keywordBriefing.ranks)"
+        rankLabel.text = "\(keywordBriefing.ranks)."
         titleLabel.text = keywordBriefing.title
         descriptionLabel.text = keywordBriefing.subTitle
+        scrapCountLabel.text = "\(keywordBriefing.scrapCount >= 1000 ? "+1K" : "+\(keywordBriefing.scrapCount)")"
         layoutIfNeeded()
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        self.backgroundColor = .clear
         if highlighted {
-            mainContainerView.backgroundColor = .briefingLightBlue.withAlphaComponent(0.3)
+            self.backgroundColor = .briefingLightBlue.withAlphaComponent(0.3)
         } else {
-            mainContainerView.backgroundColor = .white
+            self.backgroundColor = .white
         }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        self.backgroundColor = .clear
+        
     }
 }

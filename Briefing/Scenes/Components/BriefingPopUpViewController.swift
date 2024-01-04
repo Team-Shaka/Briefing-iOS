@@ -32,7 +32,7 @@ class BriefingPopUpViewController: UIViewController {
         label.backgroundColor = .clear
         label.textAlignment = .center
         label.font = .productSans(size: 20, weight: .bold)
-        
+        label.textColor = .black
         return label
     }()
     
@@ -43,7 +43,7 @@ class BriefingPopUpViewController: UIViewController {
         label.numberOfLines = 0
         label.font = .productSans(size: 15)
         label.lineBreakMode = .byCharWrapping
-        
+        label.textColor = .black
         return label
     }()
     

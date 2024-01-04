@@ -8,14 +8,15 @@
 import UIKit
 
 enum SettingTableViewCellType {
-    case `default`(symbol: UIImage, title: String, type: SettingTableViewDefaultCellType)
-    case auth(title: String, color: UIColor = .briefingBlue, type: SettingTableViewAuthCellType)
+    case `default`(title: String, type: SettingTableViewDefaultCellType)
+    case auth(title: String, color: UIColor = .black, type: SettingTableViewAuthCellType)
 }
 
 enum SettingTableViewDefaultCellType {
     case text(_ text: String)
     case url(_ urlString: String)
     case customView(_ view: UIView)
+    case pushViewController(_ viewController: UIViewController)
 }
 
 enum SettingTableViewAuthCellType {
@@ -31,63 +32,61 @@ class SettingViewController: UIViewController {
     @UserDefaultWrapper(key: .notificationTime, defaultValue: nil)
     var notificationTime: NotificationTime?
     
-    private lazy var settingCellData: [[SettingTableViewCellType]] = [
-        [
-            .default(symbol: BriefingImageCollection.Setting.clock,
-                     title: BriefingStringCollection.Setting.notificationTimeSetting.localized,
+    private lazy var settingCellData: [(String, [SettingTableViewCellType])] = [
+        (BriefingStringCollection.Setting.notification.localized, [
+            .default(title: BriefingStringCollection.Setting.notificationTimeSetting.localized,
                      type: .customView(self.notificationTimePickerButton))
-        ],
-        [
-            .default(symbol: BriefingImageCollection.Setting.appVersion,
-                     title: BriefingStringCollection.Setting.appVersionTitle.localized,
+        ]),
+        // (BriefingStringCollection.Setting.subscribe.localized,[
+        //     .default(title: BriefingStringCollection.Purchase.briefingPremium.localized,
+        //              type: .pushViewController(PurchaseViewController()))
+        // ]),
+        (BriefingStringCollection.Setting.appInfo.localized,[
+            .default(title: BriefingStringCollection.Setting.appVersionTitle.localized,
                      type: .text(BriefingStringCollection.appVersion)),
-            .default(symbol: BriefingImageCollection.Setting.feedback,
-                     title: BriefingStringCollection.Setting.feedbackAndInquiry.localized,
+            .default(title: BriefingStringCollection.Setting.feedbackAndInquiry.localized,
                      type: .url(BriefingStringCollection.Link.feedBack.localized)),
-            .default(symbol: BriefingImageCollection.Setting.versionNote,
-                     title: BriefingStringCollection.Setting.versionNote.localized,
+            .default(title: BriefingStringCollection.Setting.versionNote.localized,
                      type: .url(BriefingStringCollection.Link.versionNote.localized))
-        ],
-        [
-            .default(symbol: BriefingImageCollection.Setting.termsOfService,
-                     title: BriefingStringCollection.Setting.termsOfService.localized,
+        ]),
+        (BriefingStringCollection.Setting.support.localized, [
+            .default(title: BriefingStringCollection.Setting.termsOfService.localized,
                      type: .url(BriefingStringCollection.Link.termsOfService.localized)),
-            .default(symbol: BriefingImageCollection.Setting.privacyPolicy,
-                     title: BriefingStringCollection.Setting.privacyPolicy.localized,
+            .default(title: BriefingStringCollection.Setting.privacyPolicy.localized,
                      type: .url(BriefingStringCollection.Link.privacyPolicy.localized)),
-            .default(symbol: BriefingImageCollection.Setting.caution,
-                     title: BriefingStringCollection.Setting.caution.localized,
+            .default(title: BriefingStringCollection.Setting.caution.localized,
                      type: .url(BriefingStringCollection.Link.caution.localized))
-        ],
-        []
+        ]),
+        ("", [])
     ]
     
     private let authCellSectionInsertIndex: Int = 3
-    private var authCellSectionData: [SettingTableViewCellType] {
+    private var authCellSectionData: (String, [SettingTableViewCellType]) {
         if authManager.member != nil {
-            return [
+            return (BriefingStringCollection.Setting.account.localized, [
                 .auth(title: BriefingStringCollection.Setting.signOut.localized,
                       type: .signOut),
                 .auth(title: BriefingStringCollection.Setting.withdrawal.localized,
                       color: .briefingRed,
                       type: .withdrawal)
-            ]
+            ])
         } else {
-            return [
+            return (BriefingStringCollection.Setting.account.localized,[
                 .auth(title: BriefingStringCollection.Setting.signInAndRegister.localized,
                       type: .signInAndRegister)
-            ]
+            ])
         }
     }
     
     private var navigationView: UIView = {
         let view = UIView()
+        view.backgroundColor = .white
         return view
     }()
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
-        button.setImage(BriefingImageCollection.backIconImage, for: .normal)
+        button.setImage(BriefingImageCollection.backIconBlackImage, for: .normal)
         button.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(goBackToHomeViewController), for: .touchUpInside)
@@ -97,25 +96,27 @@ class SettingViewController: UIViewController {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = BriefingStringCollection.Setting.settings.localized
-        label.font = .productSans(size: 24)
-        label.textColor = .briefingNavy
+        label.font = .productSans(size: 20)
+        label.textColor = .bfTextBlack
         return label
     }()
     
     private var settingTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero,
+                                    style: UITableView.Style.grouped)
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.sectionHeaderHeight = 50
         tableView.sectionHeaderTopPadding = 0
-        tableView.rowHeight = 52
+        tableView.rowHeight = 56
+        tableView.separatorStyle = .none
         return tableView
     }()
     
     private var notificationTimePickerButton: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.baseBackgroundColor = .briefingLightBlue.withAlphaComponent(0.4)
-        let button = UIButton(configuration: configuration)
+        // var configuration = UIButton.Configuration.filled()
+        // configuration.baseBackgroundColor = .briefingLightBlue.withAlphaComponent(0.4)
+        let button = UIButton()
         button.setTitle("_", for: .normal)
         button.setTitleColor(.briefingNavy, for: .normal)
         return button
@@ -142,6 +143,10 @@ class SettingViewController: UIViewController {
                                        forCellReuseIdentifier: SettingTableViewDefaultCell.identifier)
         self.settingTableView.register(SettingTableViewAuthCell.self,
                                        forCellReuseIdentifier: SettingTableViewAuthCell.identifier)
+        self.settingTableView.tableFooterView =
+        UIView(frame: CGRect(origin: .zero,
+                             size: CGSize(width:CGFloat.leastNormalMagnitude,
+                                          height: CGFloat.leastNormalMagnitude)))
         
         self.notificationTimePickerButton.addTarget(self, action: #selector(showTimePickerView(_:)), for: .touchUpInside)
         let notificationTime = self.notificationTime?.toString() ?? BriefingStringCollection.Setting.setting.localized
@@ -161,21 +166,20 @@ class SettingViewController: UIViewController {
     
     private func makeConstraints() {
         navigationView.snp.makeConstraints{ make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(titleLabel).offset(25)
-            make.leading.trailing.equalTo(view)
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(titleLabel).offset(16)
         }
         
         backButton.snp.makeConstraints{ make in
-            make.centerY.equalTo(navigationView)
-            make.height.equalTo(titleLabel)
+            make.centerY.height.equalTo(titleLabel)
             make.width.equalTo(backButton.snp.height)
-            make.leading.equalTo(navigationView).inset(21)
+            make.leading.equalTo(navigationView).inset(22)
         }
         
         titleLabel.snp.makeConstraints{ make in
-            make.centerY.equalTo(navigationView)
-            make.centerX.equalTo(navigationView)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.centerX.equalTo(navigationView).priority(.low)
+            make.leading.greaterThanOrEqualTo(backButton.snp.trailing)
         }
         
         settingTableView.snp.makeConstraints { make in
@@ -243,29 +247,23 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         var settingCellData = settingCellData
         settingCellData.insert(authCellSectionData,
                                at: authCellSectionInsertIndex)
-        return settingCellData[section].count
+        return settingCellData[section].1.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var settingCellData = settingCellData
         settingCellData.insert(authCellSectionData,
                                at: authCellSectionInsertIndex)
-        let cellSectionData = settingCellData[indexPath.section]
-        
-        var cornerMaskEdge: UIRectEdge? = nil
-        if indexPath.row == (cellSectionData.count - 1) { cornerMaskEdge = .bottom }
-        if indexPath.row == 0 { cornerMaskEdge = cornerMaskEdge == .bottom ? .all : .top }
+        let cellSectionData = settingCellData[indexPath.section].1
         
         switch cellSectionData[indexPath.row] {
-        case let .default(symbol, title, type):
+        case let .default(title, type):
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: SettingTableViewDefaultCell.identifier) as? SettingTableViewDefaultCell else {
                 return UITableViewCell()
             }
-            cell.setCellData(symbol: symbol,
-                             title: title,
-                             type: type,
-                             cornerMaskEdge: cornerMaskEdge)
+            cell.setCellData(title: title,
+                             type: type)
             return cell
         case let .auth(title, color, _):
             guard let cell = tableView
@@ -273,8 +271,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.setCellData(title: title,
-                             color: color,
-                             cornerMaskEdge: cornerMaskEdge)
+                             color: color)
             return cell
         }
     }
@@ -283,13 +280,16 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         var settingCellData = settingCellData
         settingCellData.insert(authCellSectionData,
                                at: authCellSectionInsertIndex)
-        let cellSectionData = settingCellData[indexPath.section]
+        let cellSectionData = settingCellData[indexPath.section].1
         
         switch  cellSectionData[indexPath.row] {
-        case let .default(_, _, type):
+        case let .default(_, type):
             switch type {
             case let .url(urlString):
                 self.openURLInSafari(urlString)
+            case let .pushViewController(viewController):
+                self.navigationController?.pushViewController(viewController,
+                                                              animated: true)
             default: break
             }
         case let .auth(_, _, type):
@@ -302,9 +302,15 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
+        var settingCellData = settingCellData
+        settingCellData.insert(authCellSectionData,
+                               at: authCellSectionInsertIndex)
+        let cellSectionHeaderTitle = settingCellData[section].0
+        return SettingTableViewSectionHeaderView(title: cellSectionHeaderTitle)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+            return .leastNormalMagnitude
     }
     
     @objc func showTimePickerView(_ sender: UIButton) {
