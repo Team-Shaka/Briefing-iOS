@@ -376,23 +376,6 @@ class BriefingCardViewController: UIViewController {
             make.top.equalTo(topicLabel.snp.bottom).offset(8)
         }
         
-//        dateInformationLabel.snp.makeConstraints{ make in
-//            
-//        }
-//        
-//        categoryInformationLabel.snp.makeConstraints{ make in
-//            
-//        }
-//        
-//        generateInformationLabel.snp.makeConstraints{ make in
-//            
-//        }
-//        
-//        informationStackView.snp.makeConstraints{ make in
-//            make.leading.equalTo(topicLabel)
-//            make.top.equalTo(topicLabel.snp.bottom).offset(8)
-//        }
-        
         lineSeparatorView1.snp.makeConstraints{ make in
             make.top.equalTo(informationLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(-10)
@@ -448,13 +431,13 @@ class BriefingCardViewController: UIViewController {
     }
     
     @objc func openSecondArticleURL() {
-        if let secondArticleURL = self.briefingData?.articles[0].url {
+        if let secondArticleURL = self.briefingData?.articles[1].url {
             openURLInSafari(secondArticleURL)
         }
     }
     
     @objc func openThirdArticleURL() {
-        if let thirdArticleURL = self.briefingData?.articles[0].url {
+        if let thirdArticleURL = self.briefingData?.articles[2].url {
             openURLInSafari(thirdArticleURL)
         }
     }
