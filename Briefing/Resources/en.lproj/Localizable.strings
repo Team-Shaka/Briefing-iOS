@@ -22,6 +22,7 @@
 "culture" = "Culture";
 "morning" = "Morning";
 "evening" = "Evening";
+"loading" = "load Today Briefings...";
 
 "askBrief" = "Ask Brief";
 "beta" = "BETA";
