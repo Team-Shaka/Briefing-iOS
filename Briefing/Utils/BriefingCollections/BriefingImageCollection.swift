@@ -17,13 +17,19 @@ final class BriefingImageCollection {
     static let chatTabBarNormalIconImage: UIImage = #imageLiteral(resourceName: "chat_normal")
     static let chatTabBarSelectedIconImage: UIImage = #imageLiteral(resourceName: "chat_selelcted")
 //    static let nextIconImage: UIImage = UIImage(systemName: "chevron.forward")!
-    static let nextIconImage: UIImage = #imageLiteral(resourceName: "details")
+    static let nextIconImage: UIImage = UIImage(named: "details_black")!
     static let scrapUnfilledImage: UIImage = #imageLiteral(resourceName: "scrap_normal")
     static let scrapFilledImage: UIImage = #imageLiteral(resourceName: "scrap_selected")
     static let chatGPTImage: UIImage = #imageLiteral(resourceName: "login_chatGPTBI")
     static let appleLogo: UIImage = UIImage(named: "login_apple")!
     static let googleLogo: UIImage = UIImage(named: "login_google")!
     static let backIconImage: UIImage = UIImage(named: "arrow_blue")!
+    static let backIconBlackImage: UIImage = #imageLiteral(resourceName: "arrow_left_black")
+    static let othersIconBlackImage: UIImage = #imageLiteral(resourceName: "others_black")
+    static let scrapCountImage: UIImage = UIImage(named: "scrap_count")!
+    static let fetchImage: UIImage = UIImage(named: "fetch")!
+    static let briefingLogoImage: UIImage = #imageLiteral(resourceName: "briefing_logo")
+    static let briefingPurchaseCheckImage: UIImage = #imageLiteral(resourceName: "briefing_premium_check")
     
     final class Setting {
         private init() { }

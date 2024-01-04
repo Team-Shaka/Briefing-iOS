@@ -12,7 +12,7 @@ extension UIButton.Configuration {
                                             title: String,
                                             foregroundColor: UIColor = .white,
                                             backgroundColor: UIColor = .black,
-                                            font: UIFont = .productSans(size: 16, weight: .bold),
+                                            font: UIFont = .productSans(size: 16),
                                             imagePadding:CGFloat = 10,
                                             cornerRadius: CGFloat = 26) -> UIButton.Configuration {
         var container = AttributeContainer()

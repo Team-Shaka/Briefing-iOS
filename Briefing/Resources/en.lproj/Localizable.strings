@@ -8,11 +8,20 @@
 
 "appName" = "Briefing";
 "appDescription" = "Your Keyword Newskeeper.";
+"briefing" = "briefing";
 "keywordBriefing" = "Keyword Briefing";
 "updated" = "Updated";
 "confirm" = "Confirm";
 "fail" = "Fail";
 "cancel" = "Cancel";
+
+"social" = "Social";
+"science" = "Science";
+"global" = "Global";
+"economy" = "Economy";
+"culture" = "Culture";
+"morning" = "Morning";
+"evening" = "Evening";
 
 "askBrief" = "Ask Brief";
 "beta" = "BETA";
@@ -25,6 +34,11 @@
 "signInLater" = "Later";
 
 "settings" = "settings";
+
+"notification" = "Notification";
+"appInfo" = "App Information";
+"support" = "Support";
+"account" = "Account";
 
 "notificationTimeSetting" = "Set notification time";
 "setNotification" = "set";
@@ -46,6 +60,20 @@
 "notificationTurnedOff" = "The notification is currently turned off.\nPlease check the Settings > Notifications.";
 "signInRequired" = "Sign In Required";
 "signInRequiredDescription" = "This feature requires sign in.\n Are you sure you want to sign in?";
+"subscribeService" = "subscribe";
+
+"briefingPremium" = "Briefing Premium";
+"briefingPremiumIntroduction" = "Enjoy more powerful, broader features with Briefing Premium.";
+"briefingPremiumDescription" = "Premium enables you to use the following features.";
+"briefingPremiumFirstDescription" = "Remove Ads";
+"briefingPremiumSecondDescription" = "Offers Briefing in All Fields";
+"briefingPremiumThirdDescription" = "View past Briefing";
+"briefingPremiumFourthDescription" = "Provides Voice Briefing";
+"briefingPremiumFifthDescription" = "Pre-access to New Features";
+"briefingPremiumPurchaseYearly" = "Briefing Premium Yearly";
+"briefingPremiumPurchaseMonthly" = "Briefing Premium Monthly";
+"briefingPremiumPurchaseYearlyPrice" = "₩15,000 Billed Yearly";
+"briefingPremiumPurchaseMonthlyPrice" = "₩1,500 Billed Monthly";
 
 "notificationTitle" = "Today's Briefing has arrived.";
 "notificationBody" = "Checkout top Keywords!";
@@ -55,7 +83,6 @@
 "termsOfServiceLink" = "https://sites.google.com/view/brieifinguse/%ED%99%88";
 "privacyPolicyLink" = "https://sites.google.com/view/briefing-private/%ED%99%88";
 "cautionLink" = "https://onve.notion.site/Briefing-e1cb17e2e7c54d3b9a7036b29ee9b11a?pvs=4";
-
 
 "widget_displayName" = "Today's Briefings";
 "widget_description" = "You can check out today's briefings!";

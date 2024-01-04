@@ -18,6 +18,10 @@ struct BriefingData: Codable {
     let isScrap: Bool
     let isBriefingOpen: Bool?
     let isWarning: Bool?
+    let scrapCount: Int
+    let gptModel: String
+    let timeOfDay: String
+    let type: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -30,6 +34,10 @@ struct BriefingData: Codable {
         case isScrap
         case isBriefingOpen
         case isWarning
+        case scrapCount
+        case gptModel
+        case timeOfDay
+        case type
     }
 }
 

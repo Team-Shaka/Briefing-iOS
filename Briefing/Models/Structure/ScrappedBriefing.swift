@@ -13,6 +13,8 @@ struct ScrapData: Codable {
     let title: String
     let subTitle: String
     let date: String
+    let gptModel: String
+    let timeOfDay: String
     
     enum CodingKeys: String, CodingKey {
         case briefingId
@@ -20,5 +22,7 @@ struct ScrapData: Codable {
         case title
         case subTitle = "subtitle"
         case date
+        case gptModel
+        case timeOfDay
     }
 }

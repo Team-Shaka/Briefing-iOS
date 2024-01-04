@@ -16,10 +16,12 @@ struct SubProvider: TimelineProvider {
             KeywordBriefing(id: rank,
                             ranks: rank,
                             title: "",
-                            subTitle: "")
+                            subTitle: "",
+                            scrapCount: 0)
         }
         
         return Keywords(createdAt: createdAt,
+                        // type: "SOCIAL",
                         briefings: briefings)
     }()
     
@@ -122,9 +124,10 @@ struct Briefing_SubWidget: Widget {
             KeywordBriefing(id: rank,
                             ranks: rank,
                             title: "\(rank) - Breifing",
-                            subTitle: "")
+                            subTitle: "", scrapCount: 0)
         }
         return Keywords(createdAt: createdAt,
+                        // type: "SOCIAL",
                         briefings: briefings)
     }())
 }

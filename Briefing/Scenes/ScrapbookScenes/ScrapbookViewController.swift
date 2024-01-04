@@ -11,17 +11,18 @@ import SnapKit
 class ScrapbookViewController: UIViewController {
     private let networkManager = BriefingNetworkManager.shared
     
-    var scrapData: [(Date, [ScrapData])]? = []
+    var scrapData: [ScrapData]? = []
     var isFetchedTableView: Bool = false
     
     private var navigationView: UIView = {
         let view = UIView()
+        view.backgroundColor = .bfWhite
         return view
     }()
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "arrow_blue"), for: .normal)
+        button.setImage(BriefingImageCollection.backIconBlackImage, for: .normal)
         button.contentMode = .scaleAspectFit
         button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(goBackToHomeViewController), for: .touchUpInside)
@@ -31,8 +32,8 @@ class ScrapbookViewController: UIViewController {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = BriefingStringCollection.Scrapbook.scrapbookTitle.localized
-        label.font = .productSans(size: 24)
-        label.textColor = .briefingNavy
+        label.font = .productSans(size: 20)
+        label.textColor = .bfTextBlack
         return label
     }()
     
@@ -64,7 +65,7 @@ class ScrapbookViewController: UIViewController {
     }
     
     private func configure() {
-        self.view.backgroundColor = .briefingWhite
+        self.view.backgroundColor = .bfWhite
         
         self.scrapTableView.delegate = self
         self.scrapTableView.dataSource = self
@@ -113,7 +114,9 @@ class ScrapbookViewController: UIViewController {
                 self.errorHandling(error)
                 return
             }
-            guard let scrapData = value else { return }
+            guard let scrapData = value?.reduce([ScrapData].init(), { partialResult, scrapWithDate in
+                return partialResult + scrapWithDate.1
+            }).sorted(by: { $0.date > $1.date }) else { return }
             self.scrapData = scrapData
             self.isFetchedTableView.toggle()
             self.scrapTableView.reloadData()
@@ -132,66 +135,42 @@ class ScrapbookViewController: UIViewController {
 }
 
 extension ScrapbookViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        guard let scrapData = scrapData else { return 0 }
-        return scrapData.count
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let scrapRowData = scrapData?[safe: section] else { return 0 }
-        return scrapRowData.1.count + 1
+        guard let scrapRowData = scrapData else { return 0 }
+        return scrapRowData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cellSectionData = scrapData?[safe: indexPath.section]?.1 else { return UITableViewCell() }
+        guard let cellRowData = scrapData else { return UITableViewCell() }
         
-        var cornerMaskEdge: UIRectEdge? = nil
-        if indexPath.row == (cellSectionData.count) { cornerMaskEdge = .bottom }
-        if indexPath.row == 1 { cornerMaskEdge = cornerMaskEdge == .bottom ? .all : .top }
+//        var cornerMaskEdge: UIRectEdge? = nil
+//        if indexPath.row == (cellRowData.count) { cornerMaskEdge = .bottom }
         
-        switch indexPath.row {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ScrapbookTableViewHeaderCell.identifier) as? ScrapbookTableViewHeaderCell else {
-                return UITableViewCell()
-            }
-            
-            if let cellData = cellSectionData[safe: indexPath.row] {
-                cell.setCellData(date: cellData.date, cornerMaskEdge: cornerMaskEdge)
-            }
-            
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-                        
-            return cell
-        default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ScrapbookTableViewCell.identifier) as? ScrapbookTableViewCell else {
-                return UITableViewCell()
-            }
-            
-            if let cellData = cellSectionData[safe: indexPath.row - 1] {
-                cell.setCellData(title: cellData.title,
-                                 subtitle: cellData.subTitle,
-                                 date: cellData.date,
-                                 cornerMaskEdge: cornerMaskEdge)
-            }
-            
-            if indexPath.row == (cellSectionData.count) { cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude) }
-            
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ScrapbookTableViewCell.identifier) as? ScrapbookTableViewCell else {
+            return UITableViewCell()
         }
+        
+        if let cellData = cellRowData[safe: indexPath.row] {
+            cell.setCellData(title: cellData.title,
+                             subtitle: cellData.subTitle,
+                             date: cellData.date,
+                             time: cellData.timeOfDay.localize(),
+                             rank: cellData.ranks,
+                             gptInformation: cellData.gptModel)
+        }
+        
+        if indexPath.row == (cellRowData.count) { cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude) }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let id = self.scrapData?[safe: indexPath.section]?.1[safe: indexPath.row-1]?.briefingId else { return }
+        guard let id = self.scrapData?[safe: indexPath.row]?.briefingId else { return }
         self.navigationController?.pushViewController(BriefingCardViewController(id: id), animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0:
-            return 60
-        default:
-            return 54
-        }
+        return 110
     }
     
 }

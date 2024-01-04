@@ -27,7 +27,7 @@ final class BriefingStringCollection {
     static let confirm: String = NSLocalizedString("confirm", comment: "")
     static let cancel: String = NSLocalizedString("cancel", comment: "")
     static let fail: String = NSLocalizedString("fail", comment: "")
-    
+    static let briefing: String = NSLocalizedString("briefing", comment: "")
     
     final class Format {
         private init() { }
@@ -62,6 +62,11 @@ final class BriefingStringCollection {
     }
     
     enum Setting: String, EnumeratedLocalized {
+        case notification
+        case appInfo
+        case support
+        case account
+        
         case settings
         case notificationTimeSetting
         case appVersionTitle
@@ -81,6 +86,22 @@ final class BriefingStringCollection {
         case withdrawalDescription
         case notificationTime
         case notificationTurnedOff
+        case subscribe = "subscribeService"
+    }
+    
+    enum Purchase: String, EnumeratedLocalized {
+        case briefingPremium
+        case briefingPremiumIntroduction
+        case briefingPremiumDescription
+        case briefingPremiumFirstDescription
+        case briefingPremiumSecondDescription
+        case briefingPremiumThirdDescription
+        case briefingPremiumFourthDescription
+        case briefingPremiumFifthDescription
+        case briefingPremiumPurchaseYearly
+        case briefingPremiumPurchaseMonthly
+        case briefingPremiumPurchaseYearlyPrice
+        case briefingPremiumPurchaseMonthlyPrice
     }
     
     enum Popup: String, EnumeratedLocalized {
