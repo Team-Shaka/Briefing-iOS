@@ -22,6 +22,7 @@
 "culture" = "문화";
 "morning" = "아침";
 "evening" = "저녁";
+"loading" = "오늘의 브리핑을 불러오는 중...";
 
 "askBrief" = "Brief에게 물어보기";
 "beta" = "베타";

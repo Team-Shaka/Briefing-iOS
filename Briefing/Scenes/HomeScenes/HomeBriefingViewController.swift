@@ -78,7 +78,7 @@ final class HomeBriefingViewController: UIViewController {
     }
     
     private func configure() {
-        briefingUpdateTimeLabel.text = "fetching..."
+        briefingUpdateTimeLabel.text = BriefingStringCollection.loading
         keywordBriefingTableView.delegate = self
         keywordBriefingTableView.dataSource = self
         keywordBriefingTableView.register(HomeBriefingTableViewCell.self,
@@ -148,8 +148,7 @@ final class HomeBriefingViewController: UIViewController {
     }
     
     private func fetchKeywords() {
-        networkManager.fetchKeywords(date: Date(),
-                                     type: category.keywordType)
+        networkManager.fetchKeywords(type: category.keywordType)
         .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
         .observe(on: MainScheduler.asyncInstance)
         .subscribe { [weak self] keywords in
@@ -162,7 +161,6 @@ final class HomeBriefingViewController: UIViewController {
                 refreshControl.isRefreshing {
                 refreshControl.endRefreshing()
             }
-            print(keywords)
         } onFailure: { error in
             self.errorHandling(error)
         }
