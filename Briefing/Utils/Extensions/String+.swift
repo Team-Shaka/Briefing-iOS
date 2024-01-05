@@ -22,7 +22,6 @@ extension String {
         dateFormatter.dateFormat = dataFormat
         dateFormatter.locale = Locale(identifier: localeIdentifier)
         dateFormatter.timeZone = .current
-        dateFormatter.date(from: self)
         return dateFormatter.date(from: self)
     }
 }

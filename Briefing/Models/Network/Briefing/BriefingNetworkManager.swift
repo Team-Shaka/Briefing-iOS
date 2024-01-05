@@ -19,7 +19,7 @@ final class BriefingNetworkManager: BFNetworkManager {
 
 // MARK: - rx functions for Briefing
 extension BriefingNetworkManager {
-    func fetchKeywords(date: Date,
+    func fetchKeywords(date: Date? = nil,
                        type: BriefingNetworkURLRequest.KeywordsType) -> Single<Keywords> {
         let url = BriefingURLManager.url(key: .baseUrl)
         
