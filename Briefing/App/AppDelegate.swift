@@ -8,6 +8,7 @@
 import UIKit
 import UserNotifications
 import FirebaseCore
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.isFirstLaunchAppWithNotification = false
                 }
         }
+        
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         return true
     }

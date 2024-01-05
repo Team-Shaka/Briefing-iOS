@@ -14,4 +14,5 @@ target 'Briefing' do
   pod 'GoogleSignIn'
   pod 'FirebaseAnalytics'
   pod 'FirebaseCrashlytics'
+  pod 'Google-Mobile-Ads-SDK'
 end
