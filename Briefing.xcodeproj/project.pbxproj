@@ -1080,7 +1080,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 026F2B92F7F7F910F5214518 /* Pods-Briefing.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Briefing/Briefing.entitlements;
@@ -1117,7 +1117,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Briefing/Briefing.entitlements;
