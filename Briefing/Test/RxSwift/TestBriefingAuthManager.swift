@@ -140,7 +140,7 @@ extension TestBriefingAuthManager {
 private extension TestBriefingAuthManager {
     func signIn(idToken: String,
                 socialType: BriefingAuthURLRequest.SocialType) {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let urlRequest = BriefingAuthURLRequest(member?.accessToken,
                                                       url: url,
                                                       method: .post,
@@ -173,7 +173,7 @@ extension TestBriefingAuthManager {
             return
         }
         
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let urlRequest = BriefingAuthURLRequest(member.accessToken,
                                                       url: url,
                                                       method: .post,
@@ -200,7 +200,7 @@ extension TestBriefingAuthManager {
             completion?(nil, BriefingNetworkError.noAuthError)
             return
         }
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let urlRequest = BriefingAuthURLRequest(member?.accessToken,
                                                       url: url,
                                                       method: .delete,
@@ -222,7 +222,7 @@ extension TestBriefingAuthManager {
 // MARK: Test Token
 extension TestBriefingAuthManager {
     func testToken(_ completion: ((_ member: Member?, _ error: Error?) -> Void)?) {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let urlRequest = BriefingAuthURLRequest(member?.accessToken,
                                                       url: url,
                                                       method: .get,

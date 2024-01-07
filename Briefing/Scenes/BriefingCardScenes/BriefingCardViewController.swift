@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import GoogleMobileAds
 
 class BriefingCardViewController: UIViewController {
     private let networkManager = BriefingNetworkManager.shared
@@ -266,6 +267,12 @@ class BriefingCardViewController: UIViewController {
         return button
     }()
     
+    private lazy var bannerView: GADBannerView = {
+        let bannerView = addBannerAdView()
+        bannerView.delegate = self
+        return bannerView
+    }()
+    
     private var articleStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -303,13 +310,13 @@ class BriefingCardViewController: UIViewController {
     }
     
     private func addSubviews() {
-        self.view.addSubviews(navigationView, cardScrollView)
+        self.view.addSubviews(navigationView, cardScrollView, bannerView)
         
         self.navigationView.addSubviews(backButton, othersButton)
         
 //        [self.dateInformationLabel, self.categoryInformationLabel, self.generateInformationLabel].forEach { informationStackView.addArrangedSubview($0) }
         
-        self.cardScrollView.addSubview(cardView)
+        self.cardScrollView.addSubviews(cardView)
         
         self.cardView.addSubviews(topicLabel, informationLabel, scrapButton, scrapNumberLabel, lineSeparatorView1, subtopicLabel, contextLabel, lineSeparatorView2, relatedLabel, articleStackView)
         
@@ -341,7 +348,7 @@ class BriefingCardViewController: UIViewController {
             make.top.equalTo(navigationView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             //MARK: Check bottom constraints
-            make.bottom.equalToSuperview().inset(50)
+            make.bottom.equalTo(bannerView.snp.top)
         }
         
         cardView.snp.makeConstraints{ make in
@@ -414,6 +421,10 @@ class BriefingCardViewController: UIViewController {
             make.bottom.equalToSuperview().inset(25)
         }
         
+        bannerView.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     @objc func goBackToHomeViewController() {
@@ -725,6 +736,14 @@ class BriefingCardViewController: UIViewController {
     private func errorHandling(_ error: Error) {
         print("error: \(error)")
     }
-    
-    
 }
+
+extension BriefingCardViewController: GADBannerViewDelegate {
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        bannerView.alpha = 0
+        UIView.animate(withDuration: 1, animations: {
+            bannerView.alpha = 1
+        })
+    }
+}
+
