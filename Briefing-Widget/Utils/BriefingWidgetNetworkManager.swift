@@ -11,7 +11,7 @@ final class BriefingWidgetNetworkManager {
     static let shared: BriefingWidgetNetworkManager = BriefingWidgetNetworkManager()
     let baseUrl: URL
     private init() {
-        self.baseUrl = BriefingURLManager.url(key: .baseUrl)
+        self.baseUrl = BriefingURLContainer.url(key: .baseUrl)
     }
 }
 
