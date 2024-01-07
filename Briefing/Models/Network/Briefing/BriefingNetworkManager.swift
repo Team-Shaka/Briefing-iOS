@@ -21,7 +21,7 @@ final class BriefingNetworkManager: BFNetworkManager {
 extension BriefingNetworkManager {
     func fetchKeywords(date: Date? = nil,
                        type: BriefingNetworkURLRequest.KeywordsType) -> Single<Keywords> {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         
         // FIXME: - when release, should be changed
         let morning = BriefingNetworkURLRequest.KeywordsType.morning
@@ -38,7 +38,7 @@ extension BriefingNetworkManager {
     }
     
     func fetchBriefingCard(id: Int) -> Single<BriefingData> {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
                                                          url: url,
                                                          method: .get,
@@ -54,7 +54,7 @@ extension BriefingNetworkManager {
 // MARK: - rx functions for Scrap
 extension BriefingNetworkManager {
     func fetchScrapBrifings() -> Single<[(Date, [ScrapData])]> {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             return Single.error(BriefingNetworkError.noAuthError)
         }
@@ -81,7 +81,7 @@ extension BriefingNetworkManager {
     }
     
     func scrapBriefing(id: Int) -> Single<ScrapResult> {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             return Single.error(BriefingNetworkError.noAuthError)
         }
@@ -100,7 +100,7 @@ extension BriefingNetworkManager {
     }
     
     func deleteScrapBriefing(id: Int) -> Single<ScrapResult> {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             return Single.error(BriefingNetworkError.noAuthError)
         }
@@ -128,7 +128,7 @@ extension BriefingNetworkManager {
     func fetchKeywords(date: Date,
                        type: BriefingNetworkURLRequest.KeywordsType,
                        completion: @escaping (_ value: Keywords?, _ error: Error?) -> Void) {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
                                                          url: url,
                                                          method: .get,
@@ -146,7 +146,7 @@ extension BriefingNetworkManager {
     
     func fetchBriefingCard(id: Int,
                            completion: @escaping (_ value: BriefingData?, _ error: Error?) -> Void) {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
                                                          url: url,
                                                          method: .get,
@@ -165,7 +165,7 @@ extension BriefingNetworkManager {
 extension BriefingNetworkManager {
     
     func fetchScrapBrifings(completion: @escaping (_ value: [(Date, [ScrapData])]?, _ error: Error?) -> Void) {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             completion(nil, BriefingNetworkError.noAuthError)
             return
@@ -195,7 +195,7 @@ extension BriefingNetworkManager {
     
     func scrapBriefing(id: Int,
                        completion: @escaping (_ value: (any ScrapResult)?, _ error: Error?) -> Void) {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             completion(nil, BriefingNetworkError.noAuthError)
             return
@@ -217,7 +217,7 @@ extension BriefingNetworkManager {
     
     func deleteScrapBriefing(id: Int,
                              completion: @escaping (_ value: (any ScrapResult)?, _ error: Error?) -> Void) {
-        let url = BriefingURLManager.url(key: .baseUrl)
+        let url = BriefingURLContainer.url(key: .baseUrl)
         guard let memberId = BriefingAuthManager.shared.member?.memberId else {
             completion(nil, BriefingNetworkError.noAuthError)
             return

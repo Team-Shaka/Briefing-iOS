@@ -36,7 +36,7 @@
 		A5026F7F2AF13E87002B7438 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2822AB6043600457E4E /* UIFont+.swift */; };
 		A50C06F82AF8A00B00185E5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A50C06F72AF8A00B00185E5E /* GoogleService-Info.plist */; };
 		A51E56D82ABE037100BD3837 /* BriefingNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56D72ABE037100BD3837 /* BriefingNetworkManager.swift */; };
-		A51E56DD2ABE057500BD3837 /* BriefingURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */; };
+		A51E56DD2ABE057500BD3837 /* BriefingURLContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */; };
 		A51E56DF2ABE097100BD3837 /* BriefingNetworkURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */; };
 		A51E56E32ABE156C00BD3837 /* BFNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */; };
 		A526C4EC2AF0E3DD00C75475 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A526C4EB2AF0E3DD00C75475 /* WidgetKit.framework */; };
@@ -57,13 +57,17 @@
 		A54AE6722ACD60FE0096CDB4 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54AE6712ACD60FE0096CDB4 /* String+.swift */; };
 		A554836E2AD195A0006CF628 /* UIRectEdge+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A554836D2AD195A0006CF628 /* UIRectEdge+.swift */; };
 		A55483702AD1BB85006CF628 /* BriefingNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A554836F2AD1BB85006CF628 /* BriefingNetworkError.swift */; };
+		A56449BA2B4A8EE50009A8F6 /* AdUnitIds.plist in Resources */ = {isa = PBXBuildFile; fileRef = A56449B92B4A8EE50009A8F6 /* AdUnitIds.plist */; };
+		A56449C12B4A8FC40009A8F6 /* AdsUnitIdContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56449C02B4A8FC40009A8F6 /* AdsUnitIdContainer.swift */; };
+		A56449C32B4A92B00009A8F6 /* UIViewController+GoogleMobileAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56449C22B4A92B00009A8F6 /* UIViewController+GoogleMobileAds.swift */; };
+		A56449C52B4A93870009A8F6 /* AdsUnitIdContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56449C02B4A8FC40009A8F6 /* AdsUnitIdContainer.swift */; };
 		A564DA2E2AF104C700699139 /* BriefingWidget_StringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A564DA2C2AF1040200699139 /* BriefingWidget_StringCollection.swift */; };
 		A564DA2F2AF1050200699139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A54AE66F2ACD60070096CDB4 /* Localizable.strings */; };
 		A564DA322AF1066800699139 /* BriefingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A564DA302AF1066300699139 /* BriefingEntry.swift */; };
 		A564DA332AF106FE00699139 /* BriefingNetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */; };
 		A564DA342AF1070800699139 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */; };
 		A564DA352AF1073200699139 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54AE6712ACD60FE0096CDB4 /* String+.swift */; };
-		A564DA3C2AF1075F00699139 /* BriefingURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */; };
+		A564DA3C2AF1075F00699139 /* BriefingURLContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */; };
 		A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */; };
 		A57C384E2AB49B9800FD0B0A /* LaunchScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */; };
 		A58E0E0A2AB4A0AB0041F19B /* ChatGPTBI.png in Resources */ = {isa = PBXBuildFile; fileRef = A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */; };
@@ -159,7 +163,7 @@
 		A5026F7B2AF13E3F002B7438 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		A50C06F72AF8A00B00185E5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A51E56D72ABE037100BD3837 /* BriefingNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkManager.swift; sourceTree = "<group>"; };
-		A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingURLManager.swift; sourceTree = "<group>"; };
+		A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingURLContainer.swift; sourceTree = "<group>"; };
 		A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkURLRequest.swift; sourceTree = "<group>"; };
 		A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFNetworkError.swift; sourceTree = "<group>"; };
 		A51F631A2ACE437B00F00515 /* Briefing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Briefing.entitlements; sourceTree = "<group>"; };
@@ -184,6 +188,9 @@
 		A54AE6712ACD60FE0096CDB4 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		A554836D2AD195A0006CF628 /* UIRectEdge+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRectEdge+.swift"; sourceTree = "<group>"; };
 		A554836F2AD1BB85006CF628 /* BriefingNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkError.swift; sourceTree = "<group>"; };
+		A56449B92B4A8EE50009A8F6 /* AdUnitIds.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AdUnitIds.plist; sourceTree = "<group>"; };
+		A56449C02B4A8FC40009A8F6 /* AdsUnitIdContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsUnitIdContainer.swift; sourceTree = "<group>"; };
+		A56449C22B4A92B00009A8F6 /* UIViewController+GoogleMobileAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+GoogleMobileAds.swift"; sourceTree = "<group>"; };
 		A564DA2C2AF1040200699139 /* BriefingWidget_StringCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingWidget_StringCollection.swift; sourceTree = "<group>"; };
 		A564DA302AF1066300699139 /* BriefingEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingEntry.swift; sourceTree = "<group>"; };
 		A564DA402AF1078600699139 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -294,6 +301,7 @@
 		2443C5672A8FEB0D009586C7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A56449C42B4A937A0009A8F6 /* PropertyListContainer */,
 				A5CD89CC2AD168C400568F9D /* UserDefaultsWrapper */,
 				A5334CDE2AB892560041F5BA /* BriefingCollections */,
 				A51DC4932AB6B5530055928C /* Extensions */,
@@ -423,6 +431,7 @@
 				A5CD89C22AD11C3300568F9D /* Dictionary+.swift */,
 				A58F5DF22AD5565C006B4E85 /* UIButton.Configuration+.swift */,
 				EE8D8AB12B188E5400394931 /* UILabel+.swift */,
+				A56449C22B4A92B00009A8F6 /* UIViewController+GoogleMobileAds.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -433,7 +442,6 @@
 				A5FD1E7E2ACFFC570048272D /* protocols */,
 				A5FD1E7D2ACFFC2A0048272D /* Auth */,
 				A5CD89BF2AD111A600568F9D /* Briefing */,
-				A51E56DC2ABE057500BD3837 /* BriefingURLManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -483,6 +491,15 @@
 			path = BriefingCollections;
 			sourceTree = "<group>";
 		};
+		A56449C42B4A937A0009A8F6 /* PropertyListContainer */ = {
+			isa = PBXGroup;
+			children = (
+				A56449C02B4A8FC40009A8F6 /* AdsUnitIdContainer.swift */,
+				A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */,
+			);
+			path = PropertyListContainer;
+			sourceTree = "<group>";
+		};
 		A57C38472AB49AC700FD0B0A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +520,7 @@
 				A50C06F72AF8A00B00185E5E /* GoogleService-Info.plist */,
 				A595F0342ABDAC09006543B2 /* url.plist */,
 				A595F0362ABDAC2D006543B2 /* url-debug.plist */,
+				A56449B92B4A8EE50009A8F6 /* AdUnitIds.plist */,
 			);
 			path = propertyList;
 			sourceTree = "<group>";
@@ -750,6 +768,7 @@
 				A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */,
 				2443C5602A8FE88D009586C7 /* LaunchScreen.storyboard in Resources */,
 				A54AE66D2ACD60070096CDB4 /* Localizable.strings in Resources */,
+				A56449BA2B4A8EE50009A8F6 /* AdUnitIds.plist in Resources */,
 				2443C55D2A8FE88D009586C7 /* Assets.xcassets in Resources */,
 				2443C57C2A925B6F009586C7 /* ProductSans-Italic.ttf in Resources */,
 				2443C57E2A925B6F009586C7 /* ProductSans-Bold.ttf in Resources */,
@@ -862,11 +881,12 @@
 				EE6C4A652AF3456C009F2568 /* ScrapbookViewController.swift in Sources */,
 				2443C5542A8FE88B009586C7 /* AppDelegate.swift in Sources */,
 				A5AFCC1A2B10FC370013D9AA /* BriefingCategory.swift in Sources */,
+				A56449C32B4A92B00009A8F6 /* UIViewController+GoogleMobileAds.swift in Sources */,
 				EE455A9E2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift in Sources */,
 				A58F5DF12AD5168E006B4E85 /* SettingTimePickerViewController.swift in Sources */,
 				A52AF2872AB6262100457E4E /* HomeBriefingViewController.swift in Sources */,
 				A58F5DF52AD5661B006B4E85 /* NotificationTime.swift in Sources */,
-				A51E56DD2ABE057500BD3837 /* BriefingURLManager.swift in Sources */,
+				A51E56DD2ABE057500BD3837 /* BriefingURLContainer.swift in Sources */,
 				A51E56DF2ABE097100BD3837 /* BriefingNetworkURLRequest.swift in Sources */,
 				A5D0E8BE2AD658BA0064CEA4 /* WithdrawalResult.swift in Sources */,
 				A54AE6722ACD60FE0096CDB4 /* String+.swift in Sources */,
@@ -897,6 +917,7 @@
 				A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */,
 				A5AFCC1D2B10FD510013D9AA /* CategorySelectionView.swift in Sources */,
 				A5CD89C72AD1243F00568F9D /* Member.swift in Sources */,
+				A56449C12B4A8FC40009A8F6 /* AdsUnitIdContainer.swift in Sources */,
 				A5334CDB2AB8821C0041F5BA /* HomeViewController+PageViewController.swift in Sources */,
 				A5026F632AF11B3B002B7438 /* BriefingWidgetNetworkManager.swift in Sources */,
 				A5334CE02AB892660041F5BA /* BriefingImageCollection.swift in Sources */,
@@ -919,7 +940,8 @@
 				A564DA342AF1070800699139 /* Keywords.swift in Sources */,
 				A526C4F12AF0E3DD00C75475 /* Briefing_WidgetBundle.swift in Sources */,
 				A564DA332AF106FE00699139 /* BriefingNetworkResult.swift in Sources */,
-				A564DA3C2AF1075F00699139 /* BriefingURLManager.swift in Sources */,
+				A564DA3C2AF1075F00699139 /* BriefingURLContainer.swift in Sources */,
+				A56449C52B4A93870009A8F6 /* AdsUnitIdContainer.swift in Sources */,
 				A564DA322AF1066800699139 /* BriefingEntry.swift in Sources */,
 				A526C4F52AF0E3DD00C75475 /* Briefing_Widget.swift in Sources */,
 				A5026F6C2AF12F90002B7438 /* UIColor+.swift in Sources */,

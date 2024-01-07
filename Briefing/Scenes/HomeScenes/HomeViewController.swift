@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxRelay
+import GoogleMobileAds
 
 final class HomeViewController: UIViewController {
     let tabBarIcon: UIImage = BriefingImageCollection.briefingTabBarNormalIconImage
@@ -70,6 +71,12 @@ final class HomeViewController: UIViewController {
         }
     }()
     
+    private lazy var bannerView = {
+        let bannerView = addBannerAdView()
+        bannerView.delegate = self
+        return bannerView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -108,7 +115,8 @@ final class HomeViewController: UIViewController {
         
         let subViews: [UIView] = [navigationView,
                                   categorySelectionView,
-                                  pageViewController.view]
+                                  pageViewController.view,
+                                  bannerView]
         subViews.forEach { subView in
             view.addSubview(subView)
         }
@@ -150,7 +158,12 @@ final class HomeViewController: UIViewController {
         pageViewController.view.snp.makeConstraints { make in
             make.top.equalTo(categorySelectionView.snp.bottom)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view)
+            make.bottom.equalTo(bannerView.snp.top)
+        }
+        
+        bannerView.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.centerX.equalTo(view)
         }
     }
     
@@ -201,5 +214,14 @@ extension HomeViewController: BriefingPopUpDelegate {
     
     func confirmButtonTapped(_ popupViewController: BriefingPopUpViewController) {
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
+    }
+}
+
+extension  HomeViewController: GADBannerViewDelegate {
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        bannerView.alpha = 0
+        UIView.animate(withDuration: 1, animations: {
+            bannerView.alpha = 1
+        })
     }
 }

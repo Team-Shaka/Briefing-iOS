@@ -1,5 +1,5 @@
 //
-//  BriefingURLManager.swift
+//  BriefingURLContainer.swift
 //  Briefing
 //
 //  Created by 이전희 on 2023/09/23.
@@ -12,7 +12,7 @@ enum BriefingURLKey: String {
     case baseUrl = "briefing"
 }
 
-final class BriefingURLManager {
+final class BriefingURLContainer {
     private init() { }
     
     /// Briefing URL function
@@ -35,7 +35,7 @@ final class BriefingURLManager {
     /// - Parameter key: briefingUrlKey
     /// - Returns: URLRequest
     static func urlRequest(key: BriefingURLKey) -> URLRequest {
-        let url = BriefingURLManager.url(key: key)
+        let url = BriefingURLContainer.url(key: key)
         return URLRequest(url: url)
     }
 }
