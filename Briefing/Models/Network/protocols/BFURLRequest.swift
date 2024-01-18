@@ -29,6 +29,8 @@ protocol BFHTTPBodyKey: Hashable {
     var rawValue: String { get }
 }
 
+/// Briefing URL Request
+/// API Path와 HttpMethod를 검사하여 잘못된 API 호출을 방지
 protocol BFURLRequest: URLRequestConvertible {
     associatedtype Path: BFPath
     associatedtype QueryKey: BFQueryKey
@@ -114,6 +116,7 @@ extension BFURLRequest {
     }
     
     /// URLRequestConvertible protocol function
+    /// Alamofire에서 제공되는 URLRequestConvertible을 상속 받아 AF의 static function request에서 사용
     /// - Returns: URL Request
     public func asURLRequest() throws -> URLRequest {
         var urlRequest = urlRequest

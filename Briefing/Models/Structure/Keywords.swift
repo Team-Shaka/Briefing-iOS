@@ -39,6 +39,10 @@ struct KeywordBriefing: Codable {
     let subTitle: String
     let scrapCount: Int
     
+    var scrapCountText: String {
+        return scrapCount >= 1000 ? "+\(scrapCount/1000)K" : "+\(scrapCount)"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
         case ranks

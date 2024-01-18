@@ -47,7 +47,6 @@ final class HomeBriefingViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.sectionHeaderTopPadding = 0
         tableView.sectionHeaderHeight = 40
-        // tableView.tableHeaderView = briefingUpdateTimeContainer
         return tableView
     }()
     
@@ -55,7 +54,6 @@ final class HomeBriefingViewController: UIViewController {
         let view = UIView()
         return view
     }()
-    
     
     let refreshControl = UIRefreshControl()
     
@@ -74,7 +72,6 @@ final class HomeBriefingViewController: UIViewController {
         addSubviews()
         makeConstraints()
         fetchKeywords()
-        bind()
     }
     
     private func configure() {
@@ -105,12 +102,6 @@ final class HomeBriefingViewController: UIViewController {
     }
     
     private func makeConstraints() {
-        // briefingUpdateTimeContainer.snp.makeConstraints { make in
-        //     make.top.equalTo(briefingUpdateTimeLabel)
-        //     // make.leading.trailing.equalTo(self.view)
-        //     make.bottom.equalTo(divider.snp.bottom)
-        // }
-        
         briefingUpdateTimeLabel.snp.makeConstraints { make in
             make.top.centerX.equalToSuperview()
             make.height.equalTo(40)
@@ -135,11 +126,6 @@ final class HomeBriefingViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-    }
-    
-    
-    private func bind() {
-
     }
     
     @objc
@@ -188,13 +174,6 @@ extension HomeBriefingViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // let gradient = CAGradientLayer()
-        // gradient.frame = briefingUpdateTimeContainer.bounds
-        // gradient.locations = [0.0, 0.8]
-        // gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
-        // gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
-        // gradient.colors = [UIColor.bfWhite.cgColor,
-        //                    UIColor.bfWhite.withAlphaComponent(0.0).cgColor]
         return briefingUpdateTimeContainer
     }
     
@@ -202,6 +181,4 @@ extension HomeBriefingViewController: UITableViewDelegate, UITableViewDataSource
         guard let id = self.keywords?.briefings[safe: indexPath.row]?.id else { return }
         self.navigationController?.pushViewController(BriefingCardViewController(id: id), animated: true)
     }
-    
-    
 }

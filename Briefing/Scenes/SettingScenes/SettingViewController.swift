@@ -37,10 +37,6 @@ class SettingViewController: UIViewController {
             .default(title: BriefingStringCollection.Setting.notificationTimeSetting.localized,
                      type: .customView(self.notificationTimePickerButton))
         ]),
-        // (BriefingStringCollection.Setting.subscribe.localized,[
-        //     .default(title: BriefingStringCollection.Purchase.briefingPremium.localized,
-        //              type: .pushViewController(PurchaseViewController()))
-        // ]),
         (BriefingStringCollection.Setting.appInfo.localized,[
             .default(title: BriefingStringCollection.Setting.appVersionTitle.localized,
                      type: .text(BriefingStringCollection.appVersion)),
@@ -114,8 +110,6 @@ class SettingViewController: UIViewController {
     }()
     
     private var notificationTimePickerButton: UIButton = {
-        // var configuration = UIButton.Configuration.filled()
-        // configuration.baseBackgroundColor = .briefingLightBlue.withAlphaComponent(0.4)
         let button = UIButton()
         button.setTitle("_", for: .normal)
         button.setTitleColor(.briefingNavy, for: .normal)

@@ -19,7 +19,6 @@
 		2443C57C2A925B6F009586C7 /* ProductSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2443C5782A925B6F009586C7 /* ProductSans-Italic.ttf */; };
 		2443C57D2A925B6F009586C7 /* ProductSans-Bold-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2443C5792A925B6F009586C7 /* ProductSans-Bold-Italic.ttf */; };
 		2443C57E2A925B6F009586C7 /* ProductSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2443C57A2A925B6F009586C7 /* ProductSans-Bold.ttf */; };
-		2443C5AA2A9760A2009586C7 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2443C5A92A9760A2009586C7 /* DateParser.swift */; };
 		A5026F5D2AF11675002B7438 /* BriefingWidgetNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5026F5C2AF11675002B7438 /* BriefingWidgetNetworkManager.swift */; };
 		A5026F5E2AF116B9002B7438 /* url.plist in Resources */ = {isa = PBXBuildFile; fileRef = A595F0342ABDAC09006543B2 /* url.plist */; };
 		A5026F5F2AF116BB002B7438 /* url-debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = A595F0362ABDAC2D006543B2 /* url-debug.plist */; };
@@ -79,7 +78,6 @@
 		A595F0372ABDAC2D006543B2 /* url-debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = A595F0362ABDAC2D006543B2 /* url-debug.plist */; };
 		A5AC45F92AF93B3F00E7C161 /* Briefing_Widget_Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC45F82AF93B3F00E7C161 /* Briefing_Widget_Sub.swift */; };
 		A5AC45FB2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC45FA2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift */; };
-		A5AFCC182B10F7FB0013D9AA /* TestBriefingAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFCC172B10F7FB0013D9AA /* TestBriefingAuthManager.swift */; };
 		A5AFCC1A2B10FC370013D9AA /* BriefingCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFCC192B10FC370013D9AA /* BriefingCategory.swift */; };
 		A5AFCC1D2B10FD510013D9AA /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFCC1C2B10FD510013D9AA /* CategorySelectionView.swift */; };
 		A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7842ACE357E0053E434 /* SettingViewController.swift */; };
@@ -156,7 +154,6 @@
 		2443C5782A925B6F009586C7 /* ProductSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProductSans-Italic.ttf"; sourceTree = "<group>"; };
 		2443C5792A925B6F009586C7 /* ProductSans-Bold-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProductSans-Bold-Italic.ttf"; sourceTree = "<group>"; };
 		2443C57A2A925B6F009586C7 /* ProductSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProductSans-Bold.ttf"; sourceTree = "<group>"; };
-		2443C5A92A9760A2009586C7 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Briefing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5026F5C2AF11675002B7438 /* BriefingWidgetNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingWidgetNetworkManager.swift; sourceTree = "<group>"; };
 		A5026F6D2AF12FFD002B7438 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -206,7 +203,6 @@
 		A595F0362ABDAC2D006543B2 /* url-debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "url-debug.plist"; sourceTree = "<group>"; };
 		A5AC45F82AF93B3F00E7C161 /* Briefing_Widget_Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Briefing_Widget_Sub.swift; sourceTree = "<group>"; };
 		A5AC45FA2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
-		A5AFCC172B10F7FB0013D9AA /* TestBriefingAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBriefingAuthManager.swift; sourceTree = "<group>"; };
 		A5AFCC192B10FC370013D9AA /* BriefingCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingCategory.swift; sourceTree = "<group>"; };
 		A5AFCC1C2B10FD510013D9AA /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 		A5C5E7842ACE357E0053E434 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -293,7 +289,6 @@
 				A51DC48F2AB6B3B50055928C /* Scenes */,
 				2443C5672A8FEB0D009586C7 /* Utils */,
 				A57C38472AB49AC700FD0B0A /* Resources */,
-				A5AFCC152B10F7C70013D9AA /* Test */,
 			);
 			path = Briefing;
 			sourceTree = "<group>";
@@ -306,7 +301,6 @@
 				A5334CDE2AB892560041F5BA /* BriefingCollections */,
 				A51DC4932AB6B5530055928C /* Extensions */,
 				2430A94D2A9BD21A0051B454 /* UserNotification.swift */,
-				2443C5A92A9760A2009586C7 /* DateParser.swift */,
 				A5AFCC192B10FC370013D9AA /* BriefingCategory.swift */,
 			);
 			path = Utils;
@@ -523,22 +517,6 @@
 				A56449B92B4A8EE50009A8F6 /* AdUnitIds.plist */,
 			);
 			path = propertyList;
-			sourceTree = "<group>";
-		};
-		A5AFCC152B10F7C70013D9AA /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				A5AFCC162B10F7E00013D9AA /* RxSwift */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
-		A5AFCC162B10F7E00013D9AA /* RxSwift */ = {
-			isa = PBXGroup;
-			children = (
-				A5AFCC172B10F7FB0013D9AA /* TestBriefingAuthManager.swift */,
-			);
-			path = RxSwift;
 			sourceTree = "<group>";
 		};
 		A5AFCC1B2B10FD400013D9AA /* Components */ = {
@@ -862,7 +840,6 @@
 				2443C56D2A8FEC5A009586C7 /* UIView+.swift in Sources */,
 				2430A94E2A9BD21B0051B454 /* UserNotification.swift in Sources */,
 				A52AF2892AB6275500457E4E /* Array+.swift in Sources */,
-				2443C5AA2A9760A2009586C7 /* DateParser.swift in Sources */,
 				EE6C4A672AF360B4009F2568 /* ScrapbookTableViewCell.swift in Sources */,
 				A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */,
 				EE8D8AB02B1878BC00394931 /* PurchaseViewController.swift in Sources */,
@@ -913,7 +890,6 @@
 				EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */,
 				A554836E2AD195A0006CF628 /* UIRectEdge+.swift in Sources */,
 				2443C5692A8FEB1B009586C7 /* UIColor+.swift in Sources */,
-				A5AFCC182B10F7FB0013D9AA /* TestBriefingAuthManager.swift in Sources */,
 				A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */,
 				A5AFCC1D2B10FD510013D9AA /* CategorySelectionView.swift in Sources */,
 				A5CD89C72AD1243F00568F9D /* Member.swift in Sources */,

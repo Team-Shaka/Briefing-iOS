@@ -70,7 +70,6 @@ class SettingTableViewDefaultCell: UITableViewCell {
         mainContainerView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            // make.leading.trailing.equalToSuperview().inset(24)
         }
     
         titleLabel.snp.makeConstraints { make in

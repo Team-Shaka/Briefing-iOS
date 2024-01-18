@@ -11,9 +11,6 @@ import RxRelay
 import GoogleMobileAds
 
 final class HomeViewController: UIViewController {
-    let tabBarIcon: UIImage = BriefingImageCollection.briefingTabBarNormalIconImage
-    let tabBarSelectedIcon: UIImage = BriefingImageCollection.briefingTabBarSelectedIconImage
-    
     let categories: [BriefingCategory] = [
         .social,
         .global,
@@ -87,10 +84,6 @@ final class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        // navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     private func configure() {

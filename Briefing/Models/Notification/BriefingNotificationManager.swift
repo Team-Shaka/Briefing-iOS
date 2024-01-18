@@ -13,7 +13,7 @@ class BriefingNotificationManager {
     static let shared = BriefingNotificationManager()
     private let notificationCenter = UNUserNotificationCenter.current()
     
-    private init() {} // Prevents others from creating another instance
+    private init() {}
     
     @UserDefaultWrapper(key: .member, defaultValue: nil)
     var notificationTime: NotificationTime?

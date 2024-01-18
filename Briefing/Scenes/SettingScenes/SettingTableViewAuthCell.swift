@@ -35,11 +35,7 @@ class SettingTableViewAuthCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure() {
-        // self.preservesSuperviewLayoutMargins = false
-        // self.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
-        // self.layoutMargins = UIEdgeInsets.zero
-    }
+    func configure() { }
     
     func addSubviews() {
         self.contentView.addSubview(mainContainerView)
@@ -54,7 +50,6 @@ class SettingTableViewAuthCell: UITableViewCell {
         mainContainerView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            // make.leading.trailing.equalToSuperview().inset(24)
         }
         
         titleLabel.snp.makeConstraints { make in

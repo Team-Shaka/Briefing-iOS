@@ -34,7 +34,7 @@ final class BriefingAuthManager: NSObject, BFNetworkManager {
     }
 }
 
-// MARK: - functions for Apple SignIn
+// MARK: - Apple SignIn
 extension BriefingAuthManager: ASAuthorizationControllerDelegate,
                                ASAuthorizationControllerPresentationContextProviding {
     func appleSignIn(withPresentation viewController: UIViewController,
@@ -66,7 +66,7 @@ extension BriefingAuthManager: ASAuthorizationControllerDelegate,
     }
 }
 
-// MARK: - functions for Google SignIn
+// MARK: - Google SignIn
 extension BriefingAuthManager {
     func googleSignIn(withPresentation viewController: UIViewController,
                       completion: @escaping (_ member: Member?, _ error: Error?) -> Void) {
@@ -178,25 +178,6 @@ extension BriefingAuthManager {
                 self.member = nil
             }
             completion?(result, error)
-        }
-    }
-}
-
-// MARK: Test Token
-extension BriefingAuthManager {
-    func testToken(_ completion: ((_ member: Member?, _ error: Error?) -> Void)?) {
-        let url = BriefingURLContainer.url(key: .baseUrl)
-        guard let urlRequest = BriefingAuthURLRequest(member?.accessToken,
-                                                      url: url,
-                                                      method: .get,
-                                                      path: .test) else {
-            completion?(nil, BriefingAuthError.wrongURLReqeustError)
-            return
-        }
-        
-        response(urlRequest,
-                 type: Member.self) { testMember, error in
-            completion?(testMember, error)
         }
     }
 }

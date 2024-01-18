@@ -7,19 +7,6 @@
 
 import Foundation
 
-//extension Date {
-//    func currentDateToYMD(date: Self) -> String {
-//        let currentDate = Date()
-//        let formatter = DateFormatter()
-//
-//        formatter.dateFormat = "yyyy-MM-dd"
-//
-//        let dateString = formatter.string(from: currentDate)
-//
-//        return dateString
-//    }
-//}
-
 func isBefore3AM() -> Bool {
     let now = Date()
     let calendar = Calendar.current

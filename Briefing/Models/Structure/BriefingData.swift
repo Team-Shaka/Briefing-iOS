@@ -11,7 +11,7 @@ struct BriefingData: Codable {
     let id: Int
     let ranks: Int
     let title: String
-    let subTitle: String
+    let subTitle: String?
     let content: String
     let date: String
     let articles: [BriefingCardArticle]

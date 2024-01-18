@@ -165,7 +165,7 @@ class HomeBriefingTableViewCell: UITableViewCell {
         rankLabel.text = "\(keywordBriefing.ranks)."
         titleLabel.text = keywordBriefing.title
         descriptionLabel.text = keywordBriefing.subTitle
-        scrapCountLabel.text = "\(keywordBriefing.scrapCount >= 1000 ? "+1K" : "+\(keywordBriefing.scrapCount)")"
+        scrapCountLabel.text = keywordBriefing.scrapCountText
         layoutIfNeeded()
     }
     

@@ -22,10 +22,6 @@ extension BriefingNetworkManager {
     func fetchKeywords(date: Date? = nil,
                        type: BriefingNetworkURLRequest.KeywordsType) -> Single<Keywords> {
         let url = BriefingURLContainer.url(key: .baseUrl)
-        
-        // FIXME: - when release, should be changed
-        let morning = BriefingNetworkURLRequest.KeywordsType.morning
-        
         guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
                                                          url: url,
                                                          method: .get,
