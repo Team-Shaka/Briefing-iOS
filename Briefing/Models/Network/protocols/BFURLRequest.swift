@@ -70,7 +70,7 @@ protocol BFURLRequest: URLRequestConvertible {
 }
 
 extension BFURLRequest {
-    init?(_ accessToken: String?,
+    init?(_ accessToken: String? = nil,
           urlRequest: URLRequest,
           method: BFHTTPMethod = .get,
           path: Path,
@@ -93,7 +93,7 @@ extension BFURLRequest {
                   _timeoutInterval: timeoutInterval)
     }
     
-    init?(_ accessToken: String?,
+    init?(_ accessToken: String? = nil,
           url: URL,
           method: BFHTTPMethod = .get,
           path: Path,

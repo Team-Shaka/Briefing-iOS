@@ -22,7 +22,7 @@ extension BriefingNetworkManager {
     func fetchKeywords(date: Date? = nil,
                        type: BriefingNetworkURLRequest.KeywordsType) -> Single<Keywords> {
         let url = BriefingURLContainer.url(key: .baseUrl)
-        guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
+        guard let urlRequest = BriefingNetworkURLRequest(/*member?.accessToken,*/
                                                          url: url,
                                                          method: .get,
                                                          path: .keywords,
@@ -35,7 +35,7 @@ extension BriefingNetworkManager {
     
     func fetchBriefingCard(id: Int) -> Single<BriefingData> {
         let url = BriefingURLContainer.url(key: .baseUrl)
-        guard let urlRequest = BriefingNetworkURLRequest(member?.accessToken,
+        guard let urlRequest = BriefingNetworkURLRequest(/*member?.accessToken,*/
                                                          url: url,
                                                          method: .get,
                                                          path: .briefingCard(id: id)) else {
