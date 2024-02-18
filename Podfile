@@ -15,4 +15,5 @@ target 'Briefing' do
   pod 'FirebaseAnalytics'
   pod 'FirebaseCrashlytics'
   pod 'Google-Mobile-Ads-SDK'
+  pod 'Firebase/Messaging'
 end
