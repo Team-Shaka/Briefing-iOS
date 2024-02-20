@@ -42,8 +42,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         window?.rootViewController?.reloadInputViews()
-        // FIXME: - Refresh Token
-        BriefingAuthManager.shared.refreshToken(nil)
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

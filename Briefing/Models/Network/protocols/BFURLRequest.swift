@@ -67,6 +67,14 @@ protocol BFURLRequest: URLRequestConvertible {
           httpBody: [HTTPBodyKey: Any]?,
           query: [QueryKey : String]?,
           timeoutInterval: TimeInterval)
+    
+    init(_ accessToken: String?,
+         url: URL,
+         method: BFHTTPMethod,
+         path: Path,
+         httpBodyDict: [String: Any],
+         query: [String : String]?,
+         timeoutInterval: TimeInterval)
 }
 
 extension BFURLRequest {
@@ -108,6 +116,24 @@ extension BFURLRequest {
                   query: query,
                   timeoutInterval: timeoutInterval)
     }
+    
+    init(_ accessToken: String? = nil,
+         url: URL,
+         method: BFHTTPMethod = .get,
+         path: Path,
+         httpBodyDict: [String: Any],
+         query: [String : String]? = nil,
+         timeoutInterval: TimeInterval = 10) {
+        let httpBodyData = try? JSONSerialization.data(withJSONObject: httpBodyDict,
+                                                   options: .prettyPrinted)
+        self.init(_accessToken: accessToken,
+                  _urlRequest: URLRequest(url: url),
+                  _method: method,
+                  _path: path,
+                  _httpBody: httpBodyData,
+                  _query: query,
+                  _timeoutInterval: timeoutInterval)
+   }
     
     var queryItem: [URLQueryItem]? {
         return query?.compactMap({ (key: String, value: String) in

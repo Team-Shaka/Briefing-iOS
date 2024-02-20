@@ -13,11 +13,11 @@ import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
     @UserDefaultWrapper(key: .isFirstLaunchAppWithNotification, defaultValue: nil)
     var isFirstLaunchAppWithNotification: Bool?
     @UserDefaultWrapper(key: .notificationTime, defaultValue: nil)
     var notificationTime: NotificationTime?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -33,10 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.isFirstLaunchAppWithNotification = false
                 }
         }
-        
-        FirebaseApp.configure()
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-        
+        BriefingAuthManager.shared.refreshToken { _, member, error in
+            print("🔥🔥REFRESH", member?.accessToken)
+            
+            // print("🔥🔥REFRESH-ERROR", error)
+            BriefingFCMService.configure(application)
+            GADMobileAds.sharedInstance().start(completionHandler: nil)
+        }
         return true
     }
     

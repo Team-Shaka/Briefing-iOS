@@ -67,6 +67,8 @@
 		A564DA342AF1070800699139 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */; };
 		A564DA352AF1073200699139 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54AE6712ACD60FE0096CDB4 /* String+.swift */; };
 		A564DA3C2AF1075F00699139 /* BriefingURLContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */; };
+		A57746B32B8481FD00B556F6 /* BriefingFCMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57746B22B8481FD00B556F6 /* BriefingFCMService.swift */; };
+		A57746B72B8499C900B556F6 /* BriefingFCMURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57746B62B8499C900B556F6 /* BriefingFCMURLRequest.swift */; };
 		A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */; };
 		A57C384E2AB49B9800FD0B0A /* LaunchScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */; };
 		A58E0E0A2AB4A0AB0041F19B /* ChatGPTBI.png in Resources */ = {isa = PBXBuildFile; fileRef = A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */; };
@@ -192,6 +194,8 @@
 		A564DA302AF1066300699139 /* BriefingEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingEntry.swift; sourceTree = "<group>"; };
 		A564DA402AF1078600699139 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A564DA452AF1080F00699139 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A57746B22B8481FD00B556F6 /* BriefingFCMService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BriefingFCMService.swift; sourceTree = "<group>"; };
+		A57746B62B8499C900B556F6 /* BriefingFCMURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingFCMURLRequest.swift; sourceTree = "<group>"; };
 		A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppSymbol.png; sourceTree = "<group>"; };
 		A57C384D2AB49B9800FD0B0A /* LaunchScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreenBackground.png; sourceTree = "<group>"; };
 		A58E0E092AB4A0AB0041F19B /* ChatGPTBI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChatGPTBI.png; sourceTree = "<group>"; };
@@ -463,7 +467,9 @@
 		A52B76822AFCD07100D360B9 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				A57746B22B8481FD00B556F6 /* BriefingFCMService.swift */,
 				EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */,
+				A57746B62B8499C900B556F6 /* BriefingFCMURLRequest.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -851,6 +857,7 @@
 				A5FD1E7C2ACFF3990048272D /* BriefingAuthURLRequest.swift in Sources */,
 				EEC25C4E2AFCA6E10038DBBB /* ScrapbookTableViewHeaderCell.swift in Sources */,
 				A52AF27D2AB5CA3600457E4E /* HomeViewController.swift in Sources */,
+				A57746B72B8499C900B556F6 /* BriefingFCMURLRequest.swift in Sources */,
 				A5CD89CE2AD168D400568F9D /* UserDefaultsWrapperKey.swift in Sources */,
 				A5FD1E802ACFFC630048272D /* BFURLRequest.swift in Sources */,
 				A5E6134F2ACADC29004ACC6A /* BriefingAuthManager.swift in Sources */,
@@ -862,6 +869,7 @@
 				EE455A9E2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift in Sources */,
 				A58F5DF12AD5168E006B4E85 /* SettingTimePickerViewController.swift in Sources */,
 				A52AF2872AB6262100457E4E /* HomeBriefingViewController.swift in Sources */,
+				A57746B32B8481FD00B556F6 /* BriefingFCMService.swift in Sources */,
 				A58F5DF52AD5661B006B4E85 /* NotificationTime.swift in Sources */,
 				A51E56DD2ABE057500BD3837 /* BriefingURLContainer.swift in Sources */,
 				A51E56DF2ABE097100BD3837 /* BriefingNetworkURLRequest.swift in Sources */,
