@@ -101,7 +101,6 @@
 		A5E6134F2ACADC29004ACC6A /* BriefingAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E6134E2ACADC29004ACC6A /* BriefingAuthManager.swift */; };
 		A5FD1E7C2ACFF3990048272D /* BriefingAuthURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD1E7B2ACFF3990048272D /* BriefingAuthURLRequest.swift */; };
 		A5FD1E802ACFFC630048272D /* BFURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD1E7F2ACFFC630048272D /* BFURLRequest.swift */; };
-		DBB4CC6C614E20F93FD89172 /* Pods_Briefing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */; };
 		EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */; };
 		EE455A9E2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE455A9D2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift */; };
 		EE5560BF2AD65C2C0024ABBA /* BriefingNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */; };
@@ -141,7 +140,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		026F2B92F7F7F910F5214518 /* Pods-Briefing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.debug.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.debug.xcconfig"; sourceTree = "<group>"; };
 		2430A94D2A9BD21A0051B454 /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
 		2443C5502A8FE88B009586C7 /* Briefing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Briefing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2443C5532A8FE88B009586C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 		2443C5782A925B6F009586C7 /* ProductSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProductSans-Italic.ttf"; sourceTree = "<group>"; };
 		2443C5792A925B6F009586C7 /* ProductSans-Bold-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProductSans-Bold-Italic.ttf"; sourceTree = "<group>"; };
 		2443C57A2A925B6F009586C7 /* ProductSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProductSans-Bold.ttf"; sourceTree = "<group>"; };
-		4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Briefing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5026F5C2AF11675002B7438 /* BriefingWidgetNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingWidgetNetworkManager.swift; sourceTree = "<group>"; };
 		A5026F6D2AF12FFD002B7438 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		A5026F7B2AF13E3F002B7438 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -228,7 +225,6 @@
 		A5E6134E2ACADC29004ACC6A /* BriefingAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingAuthManager.swift; sourceTree = "<group>"; };
 		A5FD1E7B2ACFF3990048272D /* BriefingAuthURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingAuthURLRequest.swift; sourceTree = "<group>"; };
 		A5FD1E7F2ACFFC630048272D /* BFURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFURLRequest.swift; sourceTree = "<group>"; };
-		E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Briefing.release.xcconfig"; path = "Target Support Files/Pods-Briefing/Pods-Briefing.release.xcconfig"; sourceTree = "<group>"; };
 		EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingPopUpViewController.swift; sourceTree = "<group>"; };
 		EE455A9D2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSubscriptionView.swift; sourceTree = "<group>"; };
 		EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNotificationManager.swift; sourceTree = "<group>"; };
@@ -248,7 +244,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBB4CC6C614E20F93FD89172 /* Pods_Briefing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,7 +265,6 @@
 				2443C5522A8FE88B009586C7 /* Briefing */,
 				A526C4EF2AF0E3DD00C75475 /* Briefing-Widget */,
 				2443C5512A8FE88B009586C7 /* Products */,
-				C557BFB202DA26D74051831E /* Pods */,
 				480939DB60E1AB65706A9784 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -336,7 +330,6 @@
 			children = (
 				A564DA452AF1080F00699139 /* Alamofire.framework */,
 				A564DA402AF1078600699139 /* Alamofire.framework */,
-				4EA32AF6CC5CB7913217C5AB /* Pods_Briefing.framework */,
 				A526C4EB2AF0E3DD00C75475 /* WidgetKit.framework */,
 				A526C4ED2AF0E3DD00C75475 /* SwiftUI.framework */,
 			);
@@ -611,15 +604,6 @@
 			path = protocols;
 			sourceTree = "<group>";
 		};
-		C557BFB202DA26D74051831E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				026F2B92F7F7F910F5214518 /* Pods-Briefing.debug.xcconfig */,
-				E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		EE5560BB2AD26C6C0024ABBA /* BriefingCardScenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,11 +648,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2443C5642A8FE88D009586C7 /* Build configuration list for PBXNativeTarget "Briefing" */;
 			buildPhases = (
-				94A534FA5696A28D53BC1BD1 /* [CP] Check Pods Manifest.lock */,
 				2443C54C2A8FE88B009586C7 /* Sources */,
 				2443C54D2A8FE88B009586C7 /* Frameworks */,
 				2443C54E2A8FE88B009586C7 /* Resources */,
-				474DAB0F778132679D7D7096 /* [CP] Embed Pods Frameworks */,
 				A526C4FE2AF0E3DE00C75475 /* Embed Foundation Extensions */,
 				A50C06F92AF8A1DC00185E5E /* Run Script */,
 			);
@@ -778,45 +760,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		474DAB0F778132679D7D7096 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Briefing/Pods-Briefing-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Briefing/Pods-Briefing-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Briefing/Pods-Briefing-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		94A534FA5696A28D53BC1BD1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Briefing-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A50C06F92AF8A1DC00185E5E /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1084,7 +1027,6 @@
 		};
 		2443C5652A8FE88D009586C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 026F2B92F7F7F910F5214518 /* Pods-Briefing.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1121,7 +1063,6 @@
 		};
 		2443C5662A8FE88D009586C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9E74B1FED676CA05E98B2F9 /* Pods-Briefing.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
