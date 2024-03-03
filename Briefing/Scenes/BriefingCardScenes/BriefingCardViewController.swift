@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import GoogleMobileAds
+import RxSwift
 
 class BriefingCardViewController: UIViewController {
     private let networkManager = BriefingNetworkManager.shared
@@ -15,6 +16,8 @@ class BriefingCardViewController: UIViewController {
     var id: Int
     var briefingData: BriefingData? = nil
     var isScrap: Bool = false
+    
+    private let disposeBag = DisposeBag()
     
     private var navigationView: UIView = {
         let view = UIView()
@@ -454,49 +457,55 @@ class BriefingCardViewController: UIViewController {
     }
     
     private func fetchBriefingCard() {
-        networkManager.fetchBriefingCard(id: self.id) { [weak self] value, error in
-            guard let self = self else  { return }
-            if let error = error {
-                self.errorHandling(error)
-                return
-            }
-            
-            guard let briefingData = value else { return }
-            
-            self.briefingData = briefingData
-            self.isScrap = briefingData.isScrap
-            
-            setBriefingCard()
-            
-            DispatchQueue.main.async {
+        
+        networkManager.fetchBriefingCard(id: id)
+            .subscribe(on: MainScheduler.instance)
+            .subscribe(with: self) { owner, briefingData in
+                owner.briefingData = briefingData
+                owner.isScrap = briefingData.isScrap
+                owner.setBriefingCard()
                 UIView.animate(withDuration: 0.5) {
                     self.updateBriefingCard()
                     self.adjustArticles()
                     self.view.layoutIfNeeded()
                 }
+            } onFailure: { owner, error in
+                owner.errorHandling(error)
             }
-        }
+            .disposed(by: disposeBag)
     }
     
     private func scrapBriefingCard() {
-        let scrapResultCompletion: (ScrapResult?, Error?) -> Void = { [weak self] value, error in
-            guard let self = self else { return }
-            if let error = error {
-                self.errorHandling(error)
-                return
-            }
-            guard let isScrap = value?.isScrap else { return }
-            self.isScrap = isScrap
-            
-            self.fetchBriefingCard()
-            self.updateBriefingCard()
-            
-        }
         if isScrap {
-            networkManager.deleteScrapBriefing(id: id, completion: scrapResultCompletion)
+            networkManager.deleteScrapBriefing(id: id)
+                .subscribe(with: self) { owner, scrapResult in
+                    owner.scrapResultCompletion(scrapResult)
+                } onFailure: { owner, error in
+                    owner.scrapResultCompletion(nil, error)
+                }
+                .disposed(by: disposeBag)
+
         } else {
-            networkManager.scrapBriefing(id: id, completion: scrapResultCompletion)
+            networkManager.scrapBriefing(id: id)
+                .subscribe(with: self) { owner, scrapResult in
+                    owner.scrapResultCompletion(scrapResult)
+                } onFailure: { owner, error in
+                    owner.scrapResultCompletion(nil, error)
+                }
+                .disposed(by: disposeBag)
         }
+    }
+    
+    private func scrapResultCompletion(_ result: ScrapResult?, _ error: Error? = nil) {
+        if let error = error {
+            self.errorHandling(error)
+            return
+        }
+        guard let isScrap = result?.isScrap else { return }
+        self.isScrap = isScrap
+        
+        self.fetchBriefingCard()
+        self.updateBriefingCard()
     }
     
     private func setBriefingCard() {

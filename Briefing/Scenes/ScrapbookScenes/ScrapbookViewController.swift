@@ -7,12 +7,14 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class ScrapbookViewController: UIViewController {
     private let networkManager = BriefingNetworkManager.shared
     
     var scrapData: [ScrapData]? = []
     var isFetchedTableView: Bool = false
+    private let disposeBag = DisposeBag()
     
     private var navigationView: UIView = {
         let view = UIView()
@@ -41,7 +43,7 @@ class ScrapbookViewController: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
-//        tableView.sectionHeaderHeight = 50
+        //        tableView.sectionHeaderHeight = 50
         tableView.sectionHeaderTopPadding = 0
         tableView.rowHeight = 52
         tableView.separatorStyle = .singleLine
@@ -108,20 +110,20 @@ class ScrapbookViewController: UIViewController {
     }
     
     private func fetchScrapbook() {
-        networkManager.fetchScrapBrifings() { [weak self] value, error in
-            guard let self = self else  { return }
-            if let error = error {
-                self.errorHandling(error)
-                return
-            }
-            guard let scrapData = value?.reduce([ScrapData].init(), { partialResult, scrapWithDate in
-                return partialResult + scrapWithDate.1
-            }).sorted(by: { $0.date > $1.date }) else { return }
-            self.scrapData = scrapData
-            self.isFetchedTableView.toggle()
-            self.scrapTableView.reloadData()
-            
-        }
+        networkManager.fetchScrapBrifings()
+            .subscribe(with: self,
+                       onSuccess: { owner, result in
+                let scrapData = result.reduce([ScrapData].init(), { partialResult, scrapWithDate in
+                    return partialResult + scrapWithDate.1
+                }).sorted(by: { $0.date > $1.date })
+                self.scrapData = scrapData
+                self.isFetchedTableView.toggle()
+                self.scrapTableView.reloadData()
+            }, onFailure: { owner, error in
+                owner.errorHandling(error)
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     private func errorHandling(_ error: Error) {
@@ -143,8 +145,8 @@ extension ScrapbookViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cellRowData = scrapData else { return UITableViewCell() }
         
-//        var cornerMaskEdge: UIRectEdge? = nil
-//        if indexPath.row == (cellRowData.count) { cornerMaskEdge = .bottom }
+        //        var cornerMaskEdge: UIRectEdge? = nil
+        //        if indexPath.row == (cellRowData.count) { cornerMaskEdge = .bottom }
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ScrapbookTableViewCell.identifier) as? ScrapbookTableViewCell else {
             return UITableViewCell()
