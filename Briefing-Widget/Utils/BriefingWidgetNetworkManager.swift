@@ -40,11 +40,11 @@ extension BriefingWidgetNetworkManager {
         return urlRequest
     }
     
-    func fetchKeywords(date: Date) async -> Keywords? {
+    func fetchKeywords(date: Date) async -> KeywordsDTO? {
         let urlRequest = self.keywordsReqeuest()
         do {
             let (data, _) = try await URLSession.shared.data(for: urlRequest)
-            let result = try JSONDecoder().decode(BriefingNetworkResult<Keywords>.self, from: data)
+            let result = try JSONDecoder().decode(BFNetworkResult<KeywordsDTO>.self, from: data)
             return result.result
         } catch {
             return nil

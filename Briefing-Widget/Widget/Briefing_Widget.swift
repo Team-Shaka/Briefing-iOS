@@ -10,17 +10,17 @@ import SwiftUI
 
 // 위젯 새로고침 타임라인 결정
 struct Provider: TimelineProvider {
-    private let keywordsExample: Keywords = {
+    private let keywordsExample: KeywordsDTO = {
         let createdAt = Date()
-        let briefings:[KeywordBriefing] = (1...10).map { rank in
-            KeywordBriefing(id: rank,
+        let briefings:[KeywordBriefingDTO] = (1...10).map { rank in
+            KeywordBriefingDTO(id: rank,
                             ranks: rank,
                             title: "",
                             subTitle: "",
                             scrapCount: 0)
         }
         
-        return Keywords(createdAt: createdAt,
+        return KeywordsDTO(createdAt: createdAt,
                         // type: "SOCIAL",
                         briefings: briefings)
     }()
@@ -140,7 +140,7 @@ struct Briefing_WidgetEntryView : View {
         }
     }
     
-    func keywordView(keyword: KeywordBriefing,
+    func keywordView(keyword: KeywordBriefingDTO,
                      type: SystemWidgetType) -> some View {
         var dividerColor: Color = .briefingWhite
         switch keyword.ranks {
@@ -235,14 +235,14 @@ struct Briefing_Widget: Widget {
 } timeline: {
     BriefingEntry(date: .now, keywords: {
         let createdAt = Date()
-        let briefings:[KeywordBriefing] = (1...10).map { rank in
-            KeywordBriefing(id: rank,
+        let briefings:[KeywordBriefingDTO] = (1...10).map { rank in
+            KeywordBriefingDTO(id: rank,
                             ranks: rank,
                             title: "\(rank) - Breifing",
                             subTitle: "",
                             scrapCount: 0)
         }
-        return Keywords(createdAt: createdAt,
+        return KeywordsDTO(createdAt: createdAt,
                         // type: "SOCIAL",
                         briefings: briefings)
     }())

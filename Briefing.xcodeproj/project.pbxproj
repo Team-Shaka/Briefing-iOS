@@ -34,9 +34,9 @@
 		A5026F7D2AF13E44002B7438 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5026F7B2AF13E3F002B7438 /* Font+.swift */; };
 		A5026F7F2AF13E87002B7438 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52AF2822AB6043600457E4E /* UIFont+.swift */; };
 		A50C06F82AF8A00B00185E5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A50C06F72AF8A00B00185E5E /* GoogleService-Info.plist */; };
-		A51E56D82ABE037100BD3837 /* BriefingNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56D72ABE037100BD3837 /* BriefingNetworkManager.swift */; };
+		A51E56D82ABE037100BD3837 /* DefaultBriefingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56D72ABE037100BD3837 /* DefaultBriefingRepository.swift */; };
 		A51E56DD2ABE057500BD3837 /* BriefingURLContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */; };
-		A51E56DF2ABE097100BD3837 /* BriefingNetworkURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */; };
+		A51E56DF2ABE097100BD3837 /* BriefingEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DE2ABE097100BD3837 /* BriefingEndpoint.swift */; };
 		A51E56E32ABE156C00BD3837 /* BFNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */; };
 		A526C4EC2AF0E3DD00C75475 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A526C4EB2AF0E3DD00C75475 /* WidgetKit.framework */; };
 		A526C4EE2AF0E3DD00C75475 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A526C4ED2AF0E3DD00C75475 /* SwiftUI.framework */; };
@@ -63,8 +63,6 @@
 		A564DA2E2AF104C700699139 /* BriefingWidget_StringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A564DA2C2AF1040200699139 /* BriefingWidget_StringCollection.swift */; };
 		A564DA2F2AF1050200699139 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A54AE66F2ACD60070096CDB4 /* Localizable.strings */; };
 		A564DA322AF1066800699139 /* BriefingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A564DA302AF1066300699139 /* BriefingEntry.swift */; };
-		A564DA332AF106FE00699139 /* BriefingNetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */; };
-		A564DA342AF1070800699139 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */; };
 		A564DA352AF1073200699139 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54AE6712ACD60FE0096CDB4 /* String+.swift */; };
 		A564DA3C2AF1075F00699139 /* BriefingURLContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */; };
 		A56B78262B9441790017082A /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = A56B78252B9441790017082A /* GoogleMobileAds */; };
@@ -77,6 +75,39 @@
 		A56B78392B9442210017082A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A56B78382B9442210017082A /* RxCocoa */; };
 		A56B783B2B9442210017082A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A56B783A2B9442210017082A /* RxRelay */; };
 		A56B783D2B9442210017082A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A56B783C2B9442210017082A /* RxSwift */; };
+		A56B78402B944A8D0017082A /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = A56B783F2B944A8D0017082A /* Swinject */; };
+		A56B784B2B944CD50017082A /* BFEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B784A2B944CD50017082A /* BFEndpoints.swift */; };
+		A56B784D2B944CEB0017082A /* BFNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B784C2B944CEB0017082A /* BFNetworkService.swift */; };
+		A56B78532B9450350017082A /* DefaultScrapRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78522B9450350017082A /* DefaultScrapRepository.swift */; };
+		A56B78572B9451BB0017082A /* KeywordsDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78562B9451BB0017082A /* KeywordsDTO+Mapping.swift */; };
+		A56B78592B9451DE0017082A /* BriefingDataDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78582B9451DE0017082A /* BriefingDataDTO+Mapping.swift */; };
+		A56B785B2B9451EB0017082A /* ScrapResultDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B785A2B9451EB0017082A /* ScrapResultDTO+Mapping.swift */; };
+		A56B785D2B9451FF0017082A /* WithdrawalResultDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B785C2B9451FF0017082A /* WithdrawalResultDTO+Mapping.swift */; };
+		A56B78602B9453280017082A /* ScrapDataDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B785F2B9453280017082A /* ScrapDataDTO+Mapping.swift */; };
+		A56B78612B94538A0017082A /* KeywordsDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78562B9451BB0017082A /* KeywordsDTO+Mapping.swift */; };
+		A56B78622B9453A10017082A /* BFNetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F192ACBF32F00EFACB5 /* BFNetworkResult.swift */; };
+		A56B78642B9454190017082A /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78632B9454190017082A /* Keywords.swift */; };
+		A56B78662B9454250017082A /* Briefing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78652B9454250017082A /* Briefing.swift */; };
+		A56B786A2B9454430017082A /* ScrapResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78692B9454430017082A /* ScrapResult.swift */; };
+		A56B786C2B9454550017082A /* WithdrawalResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B786B2B9454550017082A /* WithdrawalResult.swift */; };
+		A56B786E2B94545E0017082A /* ScrapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B786D2B94545E0017082A /* ScrapData.swift */; };
+		A56B786F2B9456D90017082A /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78632B9454190017082A /* Keywords.swift */; };
+		A56B78712B9457910017082A /* BriefingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78702B9457910017082A /* BriefingRepository.swift */; };
+		A56B78732B9457970017082A /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78722B9457970017082A /* AuthRepository.swift */; };
+		A56B78752B94579F0017082A /* ScrapRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78742B94579F0017082A /* ScrapRepository.swift */; };
+		A56B78772B9457D60017082A /* AuthEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78762B9457D60017082A /* AuthEndpoints.swift */; };
+		A56B78792B9457DF0017082A /* BriefingEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78782B9457DF0017082A /* BriefingEndpoints.swift */; };
+		A56B787B2B9458220017082A /* ScrapEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B787A2B9458220017082A /* ScrapEndpoints.swift */; };
+		A56B787F2B945C5E0017082A /* KeywordsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B787E2B945C5E0017082A /* KeywordsType.swift */; };
+		A56B78812B945C9F0017082A /* ScrapEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78802B945C9F0017082A /* ScrapEndpoint.swift */; };
+		A56B78832B9466280017082A /* SocialType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78822B9466280017082A /* SocialType.swift */; };
+		A56B78852B946B0F0017082A /* DefaultBriefingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78842B946B0F0017082A /* DefaultBriefingUseCase.swift */; };
+		A56B78872B946B1B0017082A /* DefaultAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78862B946B1B0017082A /* DefaultAuthUseCase.swift */; };
+		A56B78892B946B250017082A /* DefaultScrapUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78882B946B250017082A /* DefaultScrapUseCase.swift */; };
+		A56B788B2B946B410017082A /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B788A2B946B410017082A /* AppDIContainer.swift */; };
+		A56B788E2B946DA40017082A /* BriefingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B788D2B946DA40017082A /* BriefingUseCase.swift */; };
+		A56B78902B946DAA0017082A /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B788F2B946DAA0017082A /* AuthUseCase.swift */; };
+		A56B78922B946DB00017082A /* ScrapUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B78912B946DB00017082A /* ScrapUseCase.swift */; };
 		A57746B32B8481FD00B556F6 /* BriefingFCMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57746B22B8481FD00B556F6 /* BriefingFCMService.swift */; };
 		A57746B72B8499C900B556F6 /* BriefingFCMURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57746B62B8499C900B556F6 /* BriefingFCMURLRequest.swift */; };
 		A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */; };
@@ -95,22 +126,15 @@
 		A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7842ACE357E0053E434 /* SettingViewController.swift */; };
 		A5CA5EAF2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift */; };
 		A5CA5EB12AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */; };
-		A5CD89C12AD1134D00568F9D /* BFNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C02AD1134D00568F9D /* BFNetworkManager.swift */; };
 		A5CD89C32AD11C3300568F9D /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C22AD11C3300568F9D /* Dictionary+.swift */; };
 		A5CD89C52AD122AC00568F9D /* BriefingAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C42AD122AC00568F9D /* BriefingAuthError.swift */; };
 		A5CD89C72AD1243F00568F9D /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89C62AD1243F00568F9D /* Member.swift */; };
 		A5CD89CB2AD1682700568F9D /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89CA2AD1682700568F9D /* UserDefaultsWrapper.swift */; };
 		A5CD89CE2AD168D400568F9D /* UserDefaultsWrapperKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD89CD2AD168D400568F9D /* UserDefaultsWrapperKey.swift */; };
-		A5D0E8BE2AD658BA0064CEA4 /* WithdrawalResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D0E8BD2AD658BA0064CEA4 /* WithdrawalResult.swift */; };
-		A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */; };
-		A5DA2F1A2ACBF32F00EFACB5 /* BriefingNetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */; };
-		A5DA2F1C2ACBF4CA00EFACB5 /* BriefingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */; };
-		A5DA2F1E2ACBFE2200EFACB5 /* ScrapResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F1D2ACBFE2200EFACB5 /* ScrapResult.swift */; };
-		A5DA2F202ACBFE9800EFACB5 /* ScrappedBriefing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F1F2ACBFE9800EFACB5 /* ScrappedBriefing.swift */; };
+		A5DA2F1A2ACBF32F00EFACB5 /* BFNetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F192ACBF32F00EFACB5 /* BFNetworkResult.swift */; };
 		A5DA2F242ACC423C00EFACB5 /* HomeBriefingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F232ACC423C00EFACB5 /* HomeBriefingTableViewCell.swift */; };
-		A5E6134F2ACADC29004ACC6A /* BriefingAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E6134E2ACADC29004ACC6A /* BriefingAuthManager.swift */; };
-		A5FD1E7C2ACFF3990048272D /* BriefingAuthURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD1E7B2ACFF3990048272D /* BriefingAuthURLRequest.swift */; };
-		A5FD1E802ACFFC630048272D /* BFURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD1E7F2ACFFC630048272D /* BFURLRequest.swift */; };
+		A5E6134F2ACADC29004ACC6A /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E6134E2ACADC29004ACC6A /* DefaultAuthRepository.swift */; };
+		A5FD1E7C2ACFF3990048272D /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD1E7B2ACFF3990048272D /* AuthEndpoint.swift */; };
 		EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */; };
 		EE455A9E2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE455A9D2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift */; };
 		EE5560BF2AD65C2C0024ABBA /* BriefingNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */; };
@@ -168,9 +192,9 @@
 		A5026F6D2AF12FFD002B7438 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		A5026F7B2AF13E3F002B7438 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		A50C06F72AF8A00B00185E5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A51E56D72ABE037100BD3837 /* BriefingNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkManager.swift; sourceTree = "<group>"; };
+		A51E56D72ABE037100BD3837 /* DefaultBriefingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBriefingRepository.swift; sourceTree = "<group>"; };
 		A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingURLContainer.swift; sourceTree = "<group>"; };
-		A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkURLRequest.swift; sourceTree = "<group>"; };
+		A51E56DE2ABE097100BD3837 /* BriefingEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingEndpoint.swift; sourceTree = "<group>"; };
 		A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFNetworkError.swift; sourceTree = "<group>"; };
 		A51F631A2ACE437B00F00515 /* Briefing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Briefing.entitlements; sourceTree = "<group>"; };
 		A526C4EA2AF0E3DD00C75475 /* Briefing-WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Briefing-WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +225,35 @@
 		A564DA302AF1066300699139 /* BriefingEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingEntry.swift; sourceTree = "<group>"; };
 		A564DA402AF1078600699139 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A564DA452AF1080F00699139 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A56B784A2B944CD50017082A /* BFEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFEndpoints.swift; sourceTree = "<group>"; };
+		A56B784C2B944CEB0017082A /* BFNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFNetworkService.swift; sourceTree = "<group>"; };
+		A56B78522B9450350017082A /* DefaultScrapRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultScrapRepository.swift; sourceTree = "<group>"; };
+		A56B78562B9451BB0017082A /* KeywordsDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeywordsDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A56B78582B9451DE0017082A /* BriefingDataDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BriefingDataDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A56B785A2B9451EB0017082A /* ScrapResultDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrapResultDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A56B785C2B9451FF0017082A /* WithdrawalResultDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WithdrawalResultDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A56B785F2B9453280017082A /* ScrapDataDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrapDataDTO+Mapping.swift"; sourceTree = "<group>"; };
+		A56B78632B9454190017082A /* Keywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keywords.swift; sourceTree = "<group>"; };
+		A56B78652B9454250017082A /* Briefing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Briefing.swift; sourceTree = "<group>"; };
+		A56B78692B9454430017082A /* ScrapResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapResult.swift; sourceTree = "<group>"; };
+		A56B786B2B9454550017082A /* WithdrawalResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalResult.swift; sourceTree = "<group>"; };
+		A56B786D2B94545E0017082A /* ScrapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapData.swift; sourceTree = "<group>"; };
+		A56B78702B9457910017082A /* BriefingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingRepository.swift; sourceTree = "<group>"; };
+		A56B78722B9457970017082A /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		A56B78742B94579F0017082A /* ScrapRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapRepository.swift; sourceTree = "<group>"; };
+		A56B78762B9457D60017082A /* AuthEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoints.swift; sourceTree = "<group>"; };
+		A56B78782B9457DF0017082A /* BriefingEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingEndpoints.swift; sourceTree = "<group>"; };
+		A56B787A2B9458220017082A /* ScrapEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapEndpoints.swift; sourceTree = "<group>"; };
+		A56B787E2B945C5E0017082A /* KeywordsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsType.swift; sourceTree = "<group>"; };
+		A56B78802B945C9F0017082A /* ScrapEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapEndpoint.swift; sourceTree = "<group>"; };
+		A56B78822B9466280017082A /* SocialType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialType.swift; sourceTree = "<group>"; };
+		A56B78842B946B0F0017082A /* DefaultBriefingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBriefingUseCase.swift; sourceTree = "<group>"; };
+		A56B78862B946B1B0017082A /* DefaultAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthUseCase.swift; sourceTree = "<group>"; };
+		A56B78882B946B250017082A /* DefaultScrapUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultScrapUseCase.swift; sourceTree = "<group>"; };
+		A56B788A2B946B410017082A /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		A56B788D2B946DA40017082A /* BriefingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingUseCase.swift; sourceTree = "<group>"; };
+		A56B788F2B946DAA0017082A /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
+		A56B78912B946DB00017082A /* ScrapUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapUseCase.swift; sourceTree = "<group>"; };
 		A57746B22B8481FD00B556F6 /* BriefingFCMService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BriefingFCMService.swift; sourceTree = "<group>"; };
 		A57746B62B8499C900B556F6 /* BriefingFCMURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingFCMURLRequest.swift; sourceTree = "<group>"; };
 		A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppSymbol.png; sourceTree = "<group>"; };
@@ -219,22 +272,15 @@
 		A5C5E7842ACE357E0053E434 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewAuthCell.swift; sourceTree = "<group>"; };
 		A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewDefaultCell.swift; sourceTree = "<group>"; };
-		A5CD89C02AD1134D00568F9D /* BFNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFNetworkManager.swift; sourceTree = "<group>"; };
 		A5CD89C22AD11C3300568F9D /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
 		A5CD89C42AD122AC00568F9D /* BriefingAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingAuthError.swift; sourceTree = "<group>"; };
 		A5CD89C62AD1243F00568F9D /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		A5CD89CA2AD1682700568F9D /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		A5CD89CD2AD168D400568F9D /* UserDefaultsWrapperKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapperKey.swift; sourceTree = "<group>"; };
-		A5D0E8BD2AD658BA0064CEA4 /* WithdrawalResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalResult.swift; sourceTree = "<group>"; };
-		A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keywords.swift; sourceTree = "<group>"; };
-		A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNetworkResult.swift; sourceTree = "<group>"; };
-		A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingData.swift; sourceTree = "<group>"; };
-		A5DA2F1D2ACBFE2200EFACB5 /* ScrapResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapResult.swift; sourceTree = "<group>"; };
-		A5DA2F1F2ACBFE9800EFACB5 /* ScrappedBriefing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrappedBriefing.swift; sourceTree = "<group>"; };
+		A5DA2F192ACBF32F00EFACB5 /* BFNetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFNetworkResult.swift; sourceTree = "<group>"; };
 		A5DA2F232ACC423C00EFACB5 /* HomeBriefingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBriefingTableViewCell.swift; sourceTree = "<group>"; };
-		A5E6134E2ACADC29004ACC6A /* BriefingAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingAuthManager.swift; sourceTree = "<group>"; };
-		A5FD1E7B2ACFF3990048272D /* BriefingAuthURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingAuthURLRequest.swift; sourceTree = "<group>"; };
-		A5FD1E7F2ACFFC630048272D /* BFURLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFURLRequest.swift; sourceTree = "<group>"; };
+		A5E6134E2ACADC29004ACC6A /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
+		A5FD1E7B2ACFF3990048272D /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
 		EE10B4582AB57E90002604C2 /* BriefingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingPopUpViewController.swift; sourceTree = "<group>"; };
 		EE455A9D2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSubscriptionView.swift; sourceTree = "<group>"; };
 		EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingNotificationManager.swift; sourceTree = "<group>"; };
@@ -259,6 +305,7 @@
 				A56B783D2B9442210017082A /* RxSwift in Frameworks */,
 				A56B782E2B9441B90017082A /* FirebaseCrashlytics in Frameworks */,
 				A56B78302B9441B90017082A /* FirebaseMessaging in Frameworks */,
+				A56B78402B944A8D0017082A /* Swinject in Frameworks */,
 				A56B78362B94420B0017082A /* SnapKit in Frameworks */,
 				A56B78332B9441F90017082A /* Alamofire in Frameworks */,
 				A56B78292B9441850017082A /* GoogleSignIn in Frameworks */,
@@ -302,9 +349,13 @@
 			isa = PBXGroup;
 			children = (
 				A51F631A2ACE437B00F00515 /* Briefing.entitlements */,
-				A51DC48C2AB6B31A0055928C /* App */,
-				2443C5852A9379DB009586C7 /* Models */,
-				A51DC48F2AB6B3B50055928C /* Scenes */,
+				A51DC48C2AB6B31A0055928C /* Application */,
+				A51DC48F2AB6B3B50055928C /* Presentation */,
+				A56B78412B944B3C0017082A /* Domain */,
+				A56B78422B944B4C0017082A /* Data */,
+				A56B78482B944C290017082A /* Infrastructure */,
+				A56B787D2B945BEC0017082A /* Common */,
+				A52B76822AFCD07100D360B9 /* Notification */,
 				2443C5672A8FEB0D009586C7 /* Utils */,
 				A57C38472AB49AC700FD0B0A /* Resources */,
 			);
@@ -319,7 +370,6 @@
 				A5334CDE2AB892560041F5BA /* BriefingCollections */,
 				A51DC4932AB6B5530055928C /* Extensions */,
 				2430A94D2A9BD21A0051B454 /* UserNotification.swift */,
-				A5AFCC192B10FC370013D9AA /* BriefingCategory.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -333,16 +383,6 @@
 				2443C5772A925B6E009586C7 /* ProductSans-Regular.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		2443C5852A9379DB009586C7 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				A52B76822AFCD07100D360B9 /* Notification */,
-				A51E56D42ABE022D00BD3837 /* Network */,
-				A5DA2F162ACBF0C200EFACB5 /* Structure */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		480939DB60E1AB65706A9784 /* Frameworks */ = {
@@ -385,13 +425,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		A51DC48C2AB6B31A0055928C /* App */ = {
+		A51DC48C2AB6B31A0055928C /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				2443C5532A8FE88B009586C7 /* AppDelegate.swift */,
 				2443C5552A8FE88B009586C7 /* SceneDelegate.swift */,
+				A56B788A2B946B410017082A /* AppDIContainer.swift */,
 			);
-			path = App;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		A51DC48E2AB6B3600055928C /* launchImages */ = {
@@ -405,7 +446,7 @@
 			path = launchImages;
 			sourceTree = "<group>";
 		};
-		A51DC48F2AB6B3B50055928C /* Scenes */ = {
+		A51DC48F2AB6B3B50055928C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				EE8D8AAE2B1878A400394931 /* PurchaseScenes */,
@@ -416,7 +457,7 @@
 				A5C5E7832ACE35610053E434 /* SettingScenes */,
 				A51DC4922AB6B4E60055928C /* Components */,
 			);
-			path = Scenes;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		A51DC4922AB6B4E60055928C /* Components */ = {
@@ -447,16 +488,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		A51E56D42ABE022D00BD3837 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				A5FD1E7E2ACFFC570048272D /* protocols */,
-				A5FD1E7D2ACFFC2A0048272D /* Auth */,
-				A5CD89BF2AD111A600568F9D /* Briefing */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
 		A526C4EF2AF0E3DD00C75475 /* Briefing-Widget */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,9 +511,10 @@
 		A52B76822AFCD07100D360B9 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				A58F5DF42AD5661B006B4E85 /* NotificationTime.swift */,
 				A57746B22B8481FD00B556F6 /* BriefingFCMService.swift */,
-				EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */,
 				A57746B62B8499C900B556F6 /* BriefingFCMURLRequest.swift */,
+				EE5560BE2AD65C2C0024ABBA /* BriefingNotificationManager.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -511,6 +543,152 @@
 				A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */,
 			);
 			path = PropertyListContainer;
+			sourceTree = "<group>";
+		};
+		A56B78412B944B3C0017082A /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				A56B78452B944BB60017082A /* Interfaces */,
+				A56B78442B944B700017082A /* UseCases */,
+				A56B78432B944B650017082A /* Entities */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A56B78422B944B4C0017082A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A56B78462B944BCB0017082A /* Repositories */,
+				A56B78542B9450600017082A /* Network */,
+				A56B785E2B9452310017082A /* Auth */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A56B78432B944B650017082A /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A56B78632B9454190017082A /* Keywords.swift */,
+				A56B78652B9454250017082A /* Briefing.swift */,
+				A56B78692B9454430017082A /* ScrapResult.swift */,
+				A56B786B2B9454550017082A /* WithdrawalResult.swift */,
+				A56B786D2B94545E0017082A /* ScrapData.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		A56B78442B944B700017082A /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				A56B788C2B946D920017082A /* Protocols */,
+				A56B78842B946B0F0017082A /* DefaultBriefingUseCase.swift */,
+				A56B78862B946B1B0017082A /* DefaultAuthUseCase.swift */,
+				A56B78882B946B250017082A /* DefaultScrapUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		A56B78452B944BB60017082A /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				A56B78702B9457910017082A /* BriefingRepository.swift */,
+				A56B78722B9457970017082A /* AuthRepository.swift */,
+				A56B78742B94579F0017082A /* ScrapRepository.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		A56B78462B944BCB0017082A /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				A51E56D72ABE037100BD3837 /* DefaultBriefingRepository.swift */,
+				A5E6134E2ACADC29004ACC6A /* DefaultAuthRepository.swift */,
+				A56B78522B9450350017082A /* DefaultScrapRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		A56B78482B944C290017082A /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				A56B78492B944C4C0017082A /* Network */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		A56B78492B944C4C0017082A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A5DA2F192ACBF32F00EFACB5 /* BFNetworkResult.swift */,
+				A56B784A2B944CD50017082A /* BFEndpoints.swift */,
+				A56B784C2B944CEB0017082A /* BFNetworkService.swift */,
+				A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A56B78542B9450600017082A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A56B787C2B9458BD0017082A /* Endpoint */,
+				A56B78782B9457DF0017082A /* BriefingEndpoints.swift */,
+				A56B78762B9457D60017082A /* AuthEndpoints.swift */,
+				A56B787A2B9458220017082A /* ScrapEndpoints.swift */,
+				A56B78552B9451970017082A /* DataMapping */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A56B78552B9451970017082A /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				A56B78562B9451BB0017082A /* KeywordsDTO+Mapping.swift */,
+				A56B78582B9451DE0017082A /* BriefingDataDTO+Mapping.swift */,
+				A56B785A2B9451EB0017082A /* ScrapResultDTO+Mapping.swift */,
+				A56B785C2B9451FF0017082A /* WithdrawalResultDTO+Mapping.swift */,
+				A56B785F2B9453280017082A /* ScrapDataDTO+Mapping.swift */,
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		A56B785E2B9452310017082A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				A5CD89C62AD1243F00568F9D /* Member.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		A56B787C2B9458BD0017082A /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				A51E56DE2ABE097100BD3837 /* BriefingEndpoint.swift */,
+				A5FD1E7B2ACFF3990048272D /* AuthEndpoint.swift */,
+				A56B78802B945C9F0017082A /* ScrapEndpoint.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		A56B787D2B945BEC0017082A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A5AFCC192B10FC370013D9AA /* BriefingCategory.swift */,
+				A5CD89C42AD122AC00568F9D /* BriefingAuthError.swift */,
+				A554836F2AD1BB85006CF628 /* BriefingNetworkError.swift */,
+				A56B787E2B945C5E0017082A /* KeywordsType.swift */,
+				A56B78822B9466280017082A /* SocialType.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A56B788C2B946D920017082A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A56B788D2B946DA40017082A /* BriefingUseCase.swift */,
+				A56B788F2B946DAA0017082A /* AuthUseCase.swift */,
+				A56B78912B946DB00017082A /* ScrapUseCase.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A57C38472AB49AC700FD0B0A /* Resources */ = {
@@ -570,16 +748,6 @@
 			path = SettingScenes;
 			sourceTree = "<group>";
 		};
-		A5CD89BF2AD111A600568F9D /* Briefing */ = {
-			isa = PBXGroup;
-			children = (
-				A51E56D72ABE037100BD3837 /* BriefingNetworkManager.swift */,
-				A51E56DE2ABE097100BD3837 /* BriefingNetworkURLRequest.swift */,
-				A554836F2AD1BB85006CF628 /* BriefingNetworkError.swift */,
-			);
-			path = Briefing;
-			sourceTree = "<group>";
-		};
 		A5CD89CC2AD168C400568F9D /* UserDefaultsWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,41 +755,6 @@
 				A5CD89CA2AD1682700568F9D /* UserDefaultsWrapper.swift */,
 			);
 			path = UserDefaultsWrapper;
-			sourceTree = "<group>";
-		};
-		A5DA2F162ACBF0C200EFACB5 /* Structure */ = {
-			isa = PBXGroup;
-			children = (
-				A58F5DF42AD5661B006B4E85 /* NotificationTime.swift */,
-				A5DA2F192ACBF32F00EFACB5 /* BriefingNetworkResult.swift */,
-				A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */,
-				A5DA2F1B2ACBF4CA00EFACB5 /* BriefingData.swift */,
-				A5DA2F1F2ACBFE9800EFACB5 /* ScrappedBriefing.swift */,
-				A5DA2F1D2ACBFE2200EFACB5 /* ScrapResult.swift */,
-				A5CD89C62AD1243F00568F9D /* Member.swift */,
-				A5D0E8BD2AD658BA0064CEA4 /* WithdrawalResult.swift */,
-			);
-			path = Structure;
-			sourceTree = "<group>";
-		};
-		A5FD1E7D2ACFFC2A0048272D /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				A5E6134E2ACADC29004ACC6A /* BriefingAuthManager.swift */,
-				A5FD1E7B2ACFF3990048272D /* BriefingAuthURLRequest.swift */,
-				A5CD89C42AD122AC00568F9D /* BriefingAuthError.swift */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
-		A5FD1E7E2ACFFC570048272D /* protocols */ = {
-			isa = PBXGroup;
-			children = (
-				A5CD89C02AD1134D00568F9D /* BFNetworkManager.swift */,
-				A5FD1E7F2ACFFC630048272D /* BFURLRequest.swift */,
-				A51E56E22ABE156C00BD3837 /* BFNetworkError.swift */,
-			);
-			path = protocols;
 			sourceTree = "<group>";
 		};
 		EE5560BB2AD26C6C0024ABBA /* BriefingCardScenes */ = {
@@ -691,6 +824,7 @@
 				A56B78382B9442210017082A /* RxCocoa */,
 				A56B783A2B9442210017082A /* RxRelay */,
 				A56B783C2B9442210017082A /* RxSwift */,
+				A56B783F2B944A8D0017082A /* Swinject */,
 			);
 			productName = Briefing;
 			productReference = 2443C5502A8FE88B009586C7 /* Briefing.app */;
@@ -748,6 +882,7 @@
 				A56B78312B9441F90017082A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				A56B78342B94420B0017082A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A56B78372B9442210017082A /* XCRemoteSwiftPackageReference "RxSwift" */,
+				A56B783E2B944A8D0017082A /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 2443C5512A8FE88B009586C7 /* Products */;
 			projectDirPath = "";
@@ -827,70 +962,92 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A56B78662B9454250017082A /* Briefing.swift in Sources */,
 				2443C56D2A8FEC5A009586C7 /* UIView+.swift in Sources */,
 				2430A94E2A9BD21B0051B454 /* UserNotification.swift in Sources */,
 				A52AF2892AB6275500457E4E /* Array+.swift in Sources */,
+				A56B78872B946B1B0017082A /* DefaultAuthUseCase.swift in Sources */,
 				EE6C4A672AF360B4009F2568 /* ScrapbookTableViewCell.swift in Sources */,
+				A56B786E2B94545E0017082A /* ScrapData.swift in Sources */,
 				A52AF27F2AB5D2F500457E4E /* Date+.swift in Sources */,
 				EE8D8AB02B1878BC00394931 /* PurchaseViewController.swift in Sources */,
-				A51E56D82ABE037100BD3837 /* BriefingNetworkManager.swift in Sources */,
+				A56B78592B9451DE0017082A /* BriefingDataDTO+Mapping.swift in Sources */,
+				A51E56D82ABE037100BD3837 /* DefaultBriefingRepository.swift in Sources */,
+				A56B78832B9466280017082A /* SocialType.swift in Sources */,
 				A5334CDD2AB8917F0041F5BA /* BriefingStringCollection.swift in Sources */,
-				A5DA2F1E2ACBFE2200EFACB5 /* ScrapResult.swift in Sources */,
 				EEC25C422AF753380038DBBB /* ScrapbookTableViewSectionHeaderView.swift in Sources */,
 				A5CD89CB2AD1682700568F9D /* UserDefaultsWrapper.swift in Sources */,
-				A5FD1E7C2ACFF3990048272D /* BriefingAuthURLRequest.swift in Sources */,
+				A5FD1E7C2ACFF3990048272D /* AuthEndpoint.swift in Sources */,
+				A56B78572B9451BB0017082A /* KeywordsDTO+Mapping.swift in Sources */,
+				A56B78922B946DB00017082A /* ScrapUseCase.swift in Sources */,
 				EEC25C4E2AFCA6E10038DBBB /* ScrapbookTableViewHeaderCell.swift in Sources */,
 				A52AF27D2AB5CA3600457E4E /* HomeViewController.swift in Sources */,
+				A56B788E2B946DA40017082A /* BriefingUseCase.swift in Sources */,
 				A57746B72B8499C900B556F6 /* BriefingFCMURLRequest.swift in Sources */,
 				A5CD89CE2AD168D400568F9D /* UserDefaultsWrapperKey.swift in Sources */,
-				A5FD1E802ACFFC630048272D /* BFURLRequest.swift in Sources */,
-				A5E6134F2ACADC29004ACC6A /* BriefingAuthManager.swift in Sources */,
+				A5E6134F2ACADC29004ACC6A /* DefaultAuthRepository.swift in Sources */,
 				A5026F7F2AF13E87002B7438 /* UIFont+.swift in Sources */,
 				EE6C4A652AF3456C009F2568 /* ScrapbookViewController.swift in Sources */,
 				2443C5542A8FE88B009586C7 /* AppDelegate.swift in Sources */,
+				A56B78642B9454190017082A /* Keywords.swift in Sources */,
+				A56B785D2B9451FF0017082A /* WithdrawalResultDTO+Mapping.swift in Sources */,
+				A56B78752B94579F0017082A /* ScrapRepository.swift in Sources */,
+				A56B78602B9453280017082A /* ScrapDataDTO+Mapping.swift in Sources */,
 				A5AFCC1A2B10FC370013D9AA /* BriefingCategory.swift in Sources */,
+				A56B787B2B9458220017082A /* ScrapEndpoints.swift in Sources */,
 				A56449C32B4A92B00009A8F6 /* UIViewController+GoogleMobileAds.swift in Sources */,
+				A56B78712B9457910017082A /* BriefingRepository.swift in Sources */,
 				EE455A9E2B1EBAFA0016F288 /* PurchaseSubscriptionView.swift in Sources */,
 				A58F5DF12AD5168E006B4E85 /* SettingTimePickerViewController.swift in Sources */,
 				A52AF2872AB6262100457E4E /* HomeBriefingViewController.swift in Sources */,
 				A57746B32B8481FD00B556F6 /* BriefingFCMService.swift in Sources */,
+				A56B78902B946DAA0017082A /* AuthUseCase.swift in Sources */,
+				A56B788B2B946B410017082A /* AppDIContainer.swift in Sources */,
+				A56B78732B9457970017082A /* AuthRepository.swift in Sources */,
 				A58F5DF52AD5661B006B4E85 /* NotificationTime.swift in Sources */,
 				A51E56DD2ABE057500BD3837 /* BriefingURLContainer.swift in Sources */,
-				A51E56DF2ABE097100BD3837 /* BriefingNetworkURLRequest.swift in Sources */,
-				A5D0E8BE2AD658BA0064CEA4 /* WithdrawalResult.swift in Sources */,
+				A51E56DF2ABE097100BD3837 /* BriefingEndpoint.swift in Sources */,
 				A54AE6722ACD60FE0096CDB4 /* String+.swift in Sources */,
+				A56B786C2B9454550017082A /* WithdrawalResult.swift in Sources */,
 				EE7ED4642AB9641200FC49C9 /* BriefingCardViewController.swift in Sources */,
+				A56B786A2B9454430017082A /* ScrapResult.swift in Sources */,
 				A5CA5EB12AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift in Sources */,
-				A5DA2F1C2ACBF4CA00EFACB5 /* BriefingData.swift in Sources */,
+				A56B78812B945C9F0017082A /* ScrapEndpoint.swift in Sources */,
+				A56B787F2B945C5E0017082A /* KeywordsType.swift in Sources */,
+				A56B78532B9450350017082A /* DefaultScrapRepository.swift in Sources */,
 				A5CA5EAF2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift in Sources */,
-				A5DA2F202ACBFE9800EFACB5 /* ScrappedBriefing.swift in Sources */,
 				A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */,
+				A56B78792B9457DF0017082A /* BriefingEndpoints.swift in Sources */,
 				EE5560BF2AD65C2C0024ABBA /* BriefingNotificationManager.swift in Sources */,
 				EE8D8AB22B188E5400394931 /* UILabel+.swift in Sources */,
 				EE7ED40B2AB6E75400FC49C9 /* SignInViewController.swift in Sources */,
 				A5AC45FB2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift in Sources */,
-				A5DA2F1A2ACBF32F00EFACB5 /* BriefingNetworkResult.swift in Sources */,
+				A5DA2F1A2ACBF32F00EFACB5 /* BFNetworkResult.swift in Sources */,
 				A5DA2F242ACC423C00EFACB5 /* HomeBriefingTableViewCell.swift in Sources */,
+				A56B78772B9457D60017082A /* AuthEndpoints.swift in Sources */,
 				2443C5562A8FE88B009586C7 /* SceneDelegate.swift in Sources */,
 				A5CD89C32AD11C3300568F9D /* Dictionary+.swift in Sources */,
 				A5334CE22AB897D20041F5BA /* UIImage+.swift in Sources */,
+				A56B784B2B944CD50017082A /* BFEndpoints.swift in Sources */,
 				EE8D8AB52B1B60AA00394931 /* PurchaseDescriptionView.swift in Sources */,
 				A55483702AD1BB85006CF628 /* BriefingNetworkError.swift in Sources */,
 				A58F5DF32AD5565C006B4E85 /* UIButton.Configuration+.swift in Sources */,
+				A56B784D2B944CEB0017082A /* BFNetworkService.swift in Sources */,
 				2443C56B2A8FEC21009586C7 /* UIViewController+.swift in Sources */,
-				A5CD89C12AD1134D00568F9D /* BFNetworkManager.swift in Sources */,
 				EE10B4592AB57E90002604C2 /* BriefingPopUpViewController.swift in Sources */,
+				A56B78892B946B250017082A /* DefaultScrapUseCase.swift in Sources */,
 				A554836E2AD195A0006CF628 /* UIRectEdge+.swift in Sources */,
 				2443C5692A8FEB1B009586C7 /* UIColor+.swift in Sources */,
-				A5DA2F182ACBF0D300EFACB5 /* Keywords.swift in Sources */,
 				A5AFCC1D2B10FD510013D9AA /* CategorySelectionView.swift in Sources */,
 				A5CD89C72AD1243F00568F9D /* Member.swift in Sources */,
+				A56B785B2B9451EB0017082A /* ScrapResultDTO+Mapping.swift in Sources */,
 				A56449C12B4A8FC40009A8F6 /* AdsUnitIdContainer.swift in Sources */,
 				A5334CDB2AB8821C0041F5BA /* HomeViewController+PageViewController.swift in Sources */,
 				A5026F632AF11B3B002B7438 /* BriefingWidgetNetworkManager.swift in Sources */,
 				A5334CE02AB892660041F5BA /* BriefingImageCollection.swift in Sources */,
 				A5CD89C52AD122AC00568F9D /* BriefingAuthError.swift in Sources */,
 				A51E56E32ABE156C00BD3837 /* BFNetworkError.swift in Sources */,
+				A56B78852B946B0F0017082A /* DefaultBriefingUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,17 +1056,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5026F702AF13A51002B7438 /* Array+.swift in Sources */,
+				A56B78622B9453A10017082A /* BFNetworkResult.swift in Sources */,
 				A5026F622AF11A8C002B7438 /* Date+.swift in Sources */,
 				A5026F6F2AF131C9002B7438 /* Color+.swift in Sources */,
 				A5026F5D2AF11675002B7438 /* BriefingWidgetNetworkManager.swift in Sources */,
 				A564DA2E2AF104C700699139 /* BriefingWidget_StringCollection.swift in Sources */,
 				A564DA352AF1073200699139 /* String+.swift in Sources */,
 				A5026F7D2AF13E44002B7438 /* Font+.swift in Sources */,
-				A564DA342AF1070800699139 /* Keywords.swift in Sources */,
 				A526C4F12AF0E3DD00C75475 /* Briefing_WidgetBundle.swift in Sources */,
-				A564DA332AF106FE00699139 /* BriefingNetworkResult.swift in Sources */,
 				A564DA3C2AF1075F00699139 /* BriefingURLContainer.swift in Sources */,
+				A56B78612B94538A0017082A /* KeywordsDTO+Mapping.swift in Sources */,
 				A56449C52B4A93870009A8F6 /* AdsUnitIdContainer.swift in Sources */,
+				A56B786F2B9456D90017082A /* Keywords.swift in Sources */,
 				A564DA322AF1066800699139 /* BriefingEntry.swift in Sources */,
 				A526C4F52AF0E3DD00C75475 /* Briefing_Widget.swift in Sources */,
 				A5026F6C2AF12F90002B7438 /* UIColor+.swift in Sources */,
@@ -1285,6 +1443,14 @@
 				minimumVersion = 6.6.0;
 			};
 		};
+		A56B783E2B944A8D0017082A /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1337,6 +1503,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A56B78372B9442210017082A /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		A56B783F2B944A8D0017082A /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B783E2B944A8D0017082A /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

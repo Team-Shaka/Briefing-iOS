@@ -10,17 +10,17 @@ import WidgetKit
 
 // 위젯 새로고침 타임라인 결정
 struct SubProvider: TimelineProvider {
-    private let keywordsExample: Keywords = {
+    private let keywordsExample: KeywordsDTO = {
         let createdAt = Date()
-        let briefings:[KeywordBriefing] = (1...10).map { rank in
-            KeywordBriefing(id: rank,
+        let briefings:[KeywordBriefingDTO] = (1...10).map { rank in
+            KeywordBriefingDTO(id: rank,
                             ranks: rank,
                             title: "",
                             subTitle: "",
                             scrapCount: 0)
         }
         
-        return Keywords(createdAt: createdAt,
+        return KeywordsDTO(createdAt: createdAt,
                         // type: "SOCIAL",
                         briefings: briefings)
     }()
@@ -120,13 +120,13 @@ struct Briefing_SubWidget: Widget {
 } timeline: {
     BriefingEntry(date: .now, keywords: {
         let createdAt = Date()
-        let briefings:[KeywordBriefing] = (1...10).map { rank in
-            KeywordBriefing(id: rank,
+        let briefings:[KeywordBriefingDTO] = (1...10).map { rank in
+            KeywordBriefingDTO(id: rank,
                             ranks: rank,
                             title: "\(rank) - Breifing",
                             subTitle: "", scrapCount: 0)
         }
-        return Keywords(createdAt: createdAt,
+        return KeywordsDTO(createdAt: createdAt,
                         // type: "SOCIAL",
                         briefings: briefings)
     }())

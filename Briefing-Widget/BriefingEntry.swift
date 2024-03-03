@@ -9,5 +9,5 @@ import WidgetKit
 
 struct BriefingEntry: TimelineEntry {
     let date: Date
-    let keywords: Keywords?
+    let keywords: KeywordsDTO?
 }
