@@ -67,6 +67,16 @@
 		A564DA342AF1070800699139 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA2F172ACBF0D300EFACB5 /* Keywords.swift */; };
 		A564DA352AF1073200699139 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54AE6712ACD60FE0096CDB4 /* String+.swift */; };
 		A564DA3C2AF1075F00699139 /* BriefingURLContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */; };
+		A56B78262B9441790017082A /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = A56B78252B9441790017082A /* GoogleMobileAds */; };
+		A56B78292B9441850017082A /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A56B78282B9441850017082A /* GoogleSignIn */; };
+		A56B782C2B9441B90017082A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A56B782B2B9441B90017082A /* FirebaseAnalytics */; };
+		A56B782E2B9441B90017082A /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = A56B782D2B9441B90017082A /* FirebaseCrashlytics */; };
+		A56B78302B9441B90017082A /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A56B782F2B9441B90017082A /* FirebaseMessaging */; };
+		A56B78332B9441F90017082A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A56B78322B9441F90017082A /* Alamofire */; };
+		A56B78362B94420B0017082A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A56B78352B94420B0017082A /* SnapKit */; };
+		A56B78392B9442210017082A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A56B78382B9442210017082A /* RxCocoa */; };
+		A56B783B2B9442210017082A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A56B783A2B9442210017082A /* RxRelay */; };
+		A56B783D2B9442210017082A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A56B783C2B9442210017082A /* RxSwift */; };
 		A57746B32B8481FD00B556F6 /* BriefingFCMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57746B22B8481FD00B556F6 /* BriefingFCMService.swift */; };
 		A57746B72B8499C900B556F6 /* BriefingFCMURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57746B62B8499C900B556F6 /* BriefingFCMURLRequest.swift */; };
 		A57C384C2AB49B7B00FD0B0A /* AppSymbol.png in Resources */ = {isa = PBXBuildFile; fileRef = A57C384B2AB49B7B00FD0B0A /* AppSymbol.png */; };
@@ -244,6 +254,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A56B783B2B9442210017082A /* RxRelay in Frameworks */,
+				A56B78262B9441790017082A /* GoogleMobileAds in Frameworks */,
+				A56B783D2B9442210017082A /* RxSwift in Frameworks */,
+				A56B782E2B9441B90017082A /* FirebaseCrashlytics in Frameworks */,
+				A56B78302B9441B90017082A /* FirebaseMessaging in Frameworks */,
+				A56B78362B94420B0017082A /* SnapKit in Frameworks */,
+				A56B78332B9441F90017082A /* Alamofire in Frameworks */,
+				A56B78292B9441850017082A /* GoogleSignIn in Frameworks */,
+				A56B78392B9442210017082A /* RxCocoa in Frameworks */,
+				A56B782C2B9441B90017082A /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,6 +680,18 @@
 				A526C4FC2AF0E3DE00C75475 /* PBXTargetDependency */,
 			);
 			name = Briefing;
+			packageProductDependencies = (
+				A56B78252B9441790017082A /* GoogleMobileAds */,
+				A56B78282B9441850017082A /* GoogleSignIn */,
+				A56B782B2B9441B90017082A /* FirebaseAnalytics */,
+				A56B782D2B9441B90017082A /* FirebaseCrashlytics */,
+				A56B782F2B9441B90017082A /* FirebaseMessaging */,
+				A56B78322B9441F90017082A /* Alamofire */,
+				A56B78352B94420B0017082A /* SnapKit */,
+				A56B78382B9442210017082A /* RxCocoa */,
+				A56B783A2B9442210017082A /* RxRelay */,
+				A56B783C2B9442210017082A /* RxSwift */,
+			);
 			productName = Briefing;
 			productReference = 2443C5502A8FE88B009586C7 /* Briefing.app */;
 			productType = "com.apple.product-type.application";
@@ -709,6 +741,14 @@
 				ko,
 			);
 			mainGroup = 2443C5472A8FE88B009586C7;
+			packageReferences = (
+				A56B78242B9441790017082A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				A56B78272B9441850017082A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				A56B782A2B9441B90017082A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A56B78312B9441F90017082A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A56B78342B94420B0017082A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A56B78372B9442210017082A /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 2443C5512A8FE88B009586C7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -762,13 +802,14 @@
 /* Begin PBXShellScriptBuildPhase section */
 		A50C06F92AF8A1DC00185E5E /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			name = "Run Script";
 			outputFileListPaths = (
@@ -777,7 +818,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run\n";
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1194,6 +1235,110 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A56B78242B9441790017082A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.1;
+			};
+		};
+		A56B78272B9441850017082A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		A56B782A2B9441B90017082A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.21.0;
+			};
+		};
+		A56B78312B9441F90017082A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+		A56B78342B94420B0017082A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		A56B78372B9442210017082A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A56B78252B9441790017082A /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B78242B9441790017082A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		A56B78282B9441850017082A /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B78272B9441850017082A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		A56B782B2B9441B90017082A /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B782A2B9441B90017082A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		A56B782D2B9441B90017082A /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B782A2B9441B90017082A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		A56B782F2B9441B90017082A /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B782A2B9441B90017082A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		A56B78322B9441F90017082A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B78312B9441F90017082A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		A56B78352B94420B0017082A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B78342B94420B0017082A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		A56B78382B9442210017082A /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B78372B9442210017082A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		A56B783A2B9442210017082A /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B78372B9442210017082A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		A56B783C2B9442210017082A /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56B78372B9442210017082A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2443C5482A8FE88B009586C7 /* Project object */;
 }

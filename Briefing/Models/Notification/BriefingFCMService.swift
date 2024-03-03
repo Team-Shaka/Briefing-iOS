@@ -5,7 +5,7 @@
 //  Created by 이전희 on 2/20/24.
 //
 
-import Foundation
+import UIKit
 import FirebaseCore
 import FirebaseMessaging
 import RxSwift
