@@ -65,7 +65,6 @@
 		A564DA322AF1066800699139 /* BriefingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A564DA302AF1066300699139 /* BriefingEntry.swift */; };
 		A564DA352AF1073200699139 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54AE6712ACD60FE0096CDB4 /* String+.swift */; };
 		A564DA3C2AF1075F00699139 /* BriefingURLContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E56DC2ABE057500BD3837 /* BriefingURLContainer.swift */; };
-		A56B78262B9441790017082A /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = A56B78252B9441790017082A /* GoogleMobileAds */; };
 		A56B78292B9441850017082A /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A56B78282B9441850017082A /* GoogleSignIn */; };
 		A56B782C2B9441B90017082A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A56B782B2B9441B90017082A /* FirebaseAnalytics */; };
 		A56B782E2B9441B90017082A /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = A56B782D2B9441B90017082A /* FirebaseCrashlytics */; };
@@ -123,6 +122,7 @@
 		A5AC45FB2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AC45FA2AF949DE00E7C161 /* SettingTableViewSectionHeaderView.swift */; };
 		A5AFCC1A2B10FC370013D9AA /* BriefingCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFCC192B10FC370013D9AA /* BriefingCategory.swift */; };
 		A5AFCC1D2B10FD510013D9AA /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFCC1C2B10FD510013D9AA /* CategorySelectionView.swift */; };
+		A5B3B4852BA2CD31004E5B69 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = A5B3B4842BA2CD31004E5B69 /* GoogleMobileAds */; };
 		A5C5E7852ACE357E0053E434 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E7842ACE357E0053E434 /* SettingViewController.swift */; };
 		A5CA5EAF2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5EAE2AD17CE9003FBD99 /* SettingTableViewAuthCell.swift */; };
 		A5CA5EB12AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA5EB02AD17CF6003FBD99 /* SettingTableViewDefaultCell.swift */; };
@@ -301,11 +301,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A56B783B2B9442210017082A /* RxRelay in Frameworks */,
-				A56B78262B9441790017082A /* GoogleMobileAds in Frameworks */,
 				A56B783D2B9442210017082A /* RxSwift in Frameworks */,
 				A56B782E2B9441B90017082A /* FirebaseCrashlytics in Frameworks */,
 				A56B78302B9441B90017082A /* FirebaseMessaging in Frameworks */,
 				A56B78402B944A8D0017082A /* Swinject in Frameworks */,
+				A5B3B4852BA2CD31004E5B69 /* GoogleMobileAds in Frameworks */,
 				A56B78362B94420B0017082A /* SnapKit in Frameworks */,
 				A56B78332B9441F90017082A /* Alamofire in Frameworks */,
 				A56B78292B9441850017082A /* GoogleSignIn in Frameworks */,
@@ -814,7 +814,6 @@
 			);
 			name = Briefing;
 			packageProductDependencies = (
-				A56B78252B9441790017082A /* GoogleMobileAds */,
 				A56B78282B9441850017082A /* GoogleSignIn */,
 				A56B782B2B9441B90017082A /* FirebaseAnalytics */,
 				A56B782D2B9441B90017082A /* FirebaseCrashlytics */,
@@ -825,6 +824,7 @@
 				A56B783A2B9442210017082A /* RxRelay */,
 				A56B783C2B9442210017082A /* RxSwift */,
 				A56B783F2B944A8D0017082A /* Swinject */,
+				A5B3B4842BA2CD31004E5B69 /* GoogleMobileAds */,
 			);
 			productName = Briefing;
 			productReference = 2443C5502A8FE88B009586C7 /* Briefing.app */;
@@ -876,13 +876,13 @@
 			);
 			mainGroup = 2443C5472A8FE88B009586C7;
 			packageReferences = (
-				A56B78242B9441790017082A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				A56B78272B9441850017082A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				A56B782A2B9441B90017082A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A56B78312B9441F90017082A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				A56B78342B94420B0017082A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A56B78372B9442210017082A /* XCRemoteSwiftPackageReference "RxSwift" */,
 				A56B783E2B944A8D0017082A /* XCRemoteSwiftPackageReference "Swinject" */,
+				A5B3B4832BA2CD31004E5B69 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 2443C5512A8FE88B009586C7 /* Products */;
 			projectDirPath = "";
@@ -1395,14 +1395,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A56B78242B9441790017082A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.1;
-			};
-		};
 		A56B78272B9441850017082A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -1416,7 +1408,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.21.0;
+				minimumVersion = 10.22.1;
 			};
 		};
 		A56B78312B9441F90017082A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -1451,14 +1443,17 @@
 				minimumVersion = 2.8.4;
 			};
 		};
+		A5B3B4832BA2CD31004E5B69 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A56B78252B9441790017082A /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A56B78242B9441790017082A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
-		};
 		A56B78282B9441850017082A /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A56B78272B9441850017082A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
@@ -1508,6 +1503,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A56B783E2B944A8D0017082A /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		A5B3B4842BA2CD31004E5B69 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5B3B4832BA2CD31004E5B69 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
